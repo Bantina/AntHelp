@@ -74,7 +74,7 @@
     <Content Include="app\01-index\index.component.html" />
     <Content Include="app\00-main\app.component.css" />
     <Content Include="app\00-main\app.component.html" />
-    <Content Include="app\02-example\app.component.css" />
+    <Content Include="app\02-example\example.component.css" />
     <Content Include="app\02-example\example.component.html" />
     <Content Include="Index.html" />
     <Content Include="package.json" />

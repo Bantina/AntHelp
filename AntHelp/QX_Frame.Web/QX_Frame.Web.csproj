@@ -78,7 +78,9 @@
     <Content Include="app\02-example\example.component.html" />
     <Content Include="Index.html" />
     <Content Include="package.json" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages\js\jquery-1.10.2.min.map" />
     <Content Include="packages\style\bootstrap-theme.css.map" />
     <Content Include="packages\style\bootstrap.css.map" />
@@ -166,6 +168,7 @@
     <TypeScriptCompile Include="app\02-example\example.model.ts" />
     <TypeScriptCompile Include="app\02-example\example.service.ts" />
     <TypeScriptCompile Include="app\QX_Frame.module&amp;routing.ts" />
+    <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="packages\files\" />

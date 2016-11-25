@@ -81,9 +81,9 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="packages\js\jquery-1.10.2.min.map" />
-    <Content Include="packages\style\bootstrap-theme.css.map" />
-    <Content Include="packages\style\bootstrap.css.map" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -92,62 +92,62 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages\js\bootstrap.js" />
-    <Content Include="packages\js\bootstrap.min.js" />
-    <None Include="packages\js\jquery-1.10.2.intellisense.js" />
-    <Content Include="packages\js\jquery-1.10.2.js" />
-    <Content Include="packages\js\jquery-1.10.2.min.js" />
-    <Content Include="packages\style\base.css" />
-    <Content Include="packages\style\bootstrap-theme.css" />
-    <Content Include="packages\style\bootstrap-theme.min.css" />
-    <Content Include="packages\style\bootstrap.css" />
-    <Content Include="packages\style\bootstrap.min.css" />
-    <Content Include="packages\style\Bootstrap\editor.png" />
-    <Content Include="packages\style\Bootstrap\imagebrowser.png" />
-    <Content Include="packages\style\Bootstrap\indeterminate.gif" />
-    <Content Include="packages\style\Bootstrap\loading-image.gif" />
-    <Content Include="packages\style\Bootstrap\loading.gif" />
-    <Content Include="packages\style\Bootstrap\loading_2x.gif" />
-    <Content Include="packages\style\Bootstrap\markers.png" />
-    <Content Include="packages\style\Bootstrap\markers_2x.png" />
-    <Content Include="packages\style\Bootstrap\slider-h.gif" />
-    <Content Include="packages\style\Bootstrap\slider-v.gif" />
-    <Content Include="packages\style\Bootstrap\sprite.png" />
-    <Content Include="packages\style\Bootstrap\sprite_2x.png" />
-    <Content Include="packages\style\Bootstrap\sprite_kpi.png" />
-    <Content Include="packages\style\Bootstrap\sprite_kpi_2x.png" />
-    <Content Include="packages\style\font-awesome.css" />
-    <Content Include="packages\style\Images\add.png" />
-    <Content Include="packages\style\Images\arrow_home.png" />
-    <Content Include="packages\style\Images\btn_action.png" />
-    <Content Include="packages\style\Images\btn_bg.png" />
-    <Content Include="packages\style\Images\calendar.png" />
-    <Content Include="packages\style\Images\circle.png" />
-    <Content Include="packages\style\Images\clock.png" />
-    <Content Include="packages\style\Images\data.png" />
-    <Content Include="packages\style\Images\del.png" />
-    <Content Include="packages\style\Images\edit.png" />
-    <Content Include="packages\style\Images\hover_trangle.png" />
-    <Content Include="packages\style\Images\instructions.png" />
-    <Content Include="packages\style\Images\maintenance.png" />
-    <Content Include="packages\style\Images\maintenance2.jpg" />
-    <Content Include="packages\style\Images\message.png" />
-    <Content Include="packages\style\Images\minus.png" />
-    <Content Include="packages\style\Images\nodata.png" />
-    <Content Include="packages\style\Images\operation.png" />
-    <Content Include="packages\style\Images\order.png" />
-    <Content Include="packages\style\Images\plus.png" />
-    <Content Include="packages\style\Images\quick.png" />
-    <Content Include="packages\style\Images\rank.png" />
-    <Content Include="packages\style\Images\report.png" />
-    <Content Include="packages\style\Images\search.png" />
-    <Content Include="packages\style\Images\search_active.png" />
-    <Content Include="packages\style\Images\search_normal.png" />
-    <Content Include="packages\style\Images\security.png" />
-    <Content Include="packages\style\Images\setting.png" />
-    <Content Include="packages\style\Images\settings.png" />
-    <Content Include="packages\style\Images\taicon.png" />
-    <Content Include="packages\style\Images\tittle.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Content\base.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Bootstrap\editor.png" />
+    <Content Include="Content\Bootstrap\imagebrowser.png" />
+    <Content Include="Content\Bootstrap\indeterminate.gif" />
+    <Content Include="Content\Bootstrap\loading-image.gif" />
+    <Content Include="Content\Bootstrap\loading.gif" />
+    <Content Include="Content\Bootstrap\loading_2x.gif" />
+    <Content Include="Content\Bootstrap\markers.png" />
+    <Content Include="Content\Bootstrap\markers_2x.png" />
+    <Content Include="Content\Bootstrap\slider-h.gif" />
+    <Content Include="Content\Bootstrap\slider-v.gif" />
+    <Content Include="Content\Bootstrap\sprite.png" />
+    <Content Include="Content\Bootstrap\sprite_2x.png" />
+    <Content Include="Content\Bootstrap\sprite_kpi.png" />
+    <Content Include="Content\Bootstrap\sprite_kpi_2x.png" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\Images\add.png" />
+    <Content Include="Content\Images\arrow_home.png" />
+    <Content Include="Content\Images\btn_action.png" />
+    <Content Include="Content\Images\btn_bg.png" />
+    <Content Include="Content\Images\calendar.png" />
+    <Content Include="Content\Images\circle.png" />
+    <Content Include="Content\Images\clock.png" />
+    <Content Include="Content\Images\data.png" />
+    <Content Include="Content\Images\del.png" />
+    <Content Include="Content\Images\edit.png" />
+    <Content Include="Content\Images\hover_trangle.png" />
+    <Content Include="Content\Images\instructions.png" />
+    <Content Include="Content\Images\maintenance.png" />
+    <Content Include="Content\Images\maintenance2.jpg" />
+    <Content Include="Content\Images\message.png" />
+    <Content Include="Content\Images\minus.png" />
+    <Content Include="Content\Images\nodata.png" />
+    <Content Include="Content\Images\operation.png" />
+    <Content Include="Content\Images\order.png" />
+    <Content Include="Content\Images\plus.png" />
+    <Content Include="Content\Images\quick.png" />
+    <Content Include="Content\Images\rank.png" />
+    <Content Include="Content\Images\report.png" />
+    <Content Include="Content\Images\search.png" />
+    <Content Include="Content\Images\search_active.png" />
+    <Content Include="Content\Images\search_normal.png" />
+    <Content Include="Content\Images\security.png" />
+    <Content Include="Content\Images\setting.png" />
+    <Content Include="Content\Images\settings.png" />
+    <Content Include="Content\Images\taicon.png" />
+    <Content Include="Content\Images\tittle.png" />
     <Content Include="systemjs.config.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -171,10 +171,10 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="packages\files\" />
-    <Folder Include="packages\images\00-main\" />
-    <Folder Include="packages\images\01-index\" />
-    <Folder Include="packages\js\plugin\" />
+    <Folder Include="Files\" />
+    <Folder Include="Images\00-main\" />
+    <Folder Include="Images\01-index\" />
+    <Folder Include="Scripts\plugin\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

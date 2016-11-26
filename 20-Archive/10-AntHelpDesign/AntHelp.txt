@@ -1,0 +1,35 @@
+Ant Help !
+
+user A -> login(register) -> createOrder{
+                                            choose sex
+                                            choose age region...etc
+                                        }
+                                        ->wait accept -> has be accept{
+                                                                        get user info 
+                                                                        cancel ?
+                                                                        }
+                                                                        ->if complex->pay money 
+                                                                        ->reporter?
+                                                                        ->give grade
+
+user B -> login(register) -> check Orders -> choose one -> doing -> complex one -> get Money
+
+
+
+info system             the user must accomplished real name authentication !!!
+credit system           the credit is not reach lower to some level if one want to accept a order !!!
+order system            the orders management system
+
+
+db_AntHelp->
+    tb_userLogin            user login
+    tb_userLoginHistory     user login history
+    tb_usreInfo             user personal register info
+    tb_nameAuthentication   user nameAuthentication info
+    tb_credit               user`s credit
+    tb_creditHistory        user`s credit history Create by User report
+    tb_userGradeHistory     user`s grade by others
+
+    tb_order                the user order
+    tb_orderHistory         the user order history
+    tb_task                 the order`s tasks

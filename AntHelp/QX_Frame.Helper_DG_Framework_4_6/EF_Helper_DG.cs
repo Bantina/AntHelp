@@ -356,9 +356,9 @@
 //            {
 //                var list = db.Set<T>().AsExpandable();
 //                if (isDESC)
-//                    return list.OrderByDescending(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+//                    return list.OrderByDescending(orderBy).Skip((pageIndex - 1 < 0 ? 0 : pageIndex - 1) * (pageSize < 0 ? 0 : pageSize)).Take(pageSize < 0 ? 0 : pageSize).ToList();
 //                else
-//                    return list.OrderBy(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+//                    return list.OrderBy(orderBy).Skip((pageIndex - 1 < 0 ? 0 : pageIndex - 1) * (pageSize < 0 ? 0 : pageSize)).Take(pageSize < 0 ? 0 : pageSize).ToList();
 //            }
 //            catch (Exception ex)
 //            {
@@ -373,9 +373,9 @@
 //                var list = db.Set<T>().AsExpandable();
 //                Count = list.Count();
 //                if (isDESC)
-//                    return list.OrderByDescending(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+//                    return list.OrderByDescending(orderBy).Skip((pageIndex - 1 < 0 ? 0 : pageIndex - 1) * (pageSize < 0 ? 0 : pageSize)).Take(pageSize < 0 ? 0 : pageSize).ToList();
 //                else
-//                    return list.OrderBy(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+//                    return list.OrderBy(orderBy).Skip((pageIndex - 1 < 0 ? 0 : pageIndex - 1) * (pageSize < 0 ? 0 : pageSize)).Take(pageSize < 0 ? 0 : pageSize).ToList();
 //            }
 //            catch (Exception ex)
 //            {
@@ -390,9 +390,9 @@
 //            {
 //                var list = db.Set<T>().AsExpandable().Where(selectWhere);
 //                if (isDESC)
-//                    return list.OrderByDescending(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+//                    return list.OrderByDescending(orderBy).Skip((pageIndex - 1 < 0 ? 0 : pageIndex - 1) * (pageSize < 0 ? 0 : pageSize)).Take(pageSize < 0 ? 0 : pageSize).ToList();
 //                else
-//                    return list.OrderBy(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+//                    return list.OrderBy(orderBy).Skip((pageIndex - 1 < 0 ? 0 : pageIndex - 1) * (pageSize < 0 ? 0 : pageSize)).Take(pageSize < 0 ? 0 : pageSize).ToList();
 //            }
 //            catch (Exception ex)
 //            {
@@ -407,9 +407,9 @@
 //                var list = db.Set<T>().AsExpandable().Where(selectWhere);
 //                Count = list.Count();
 //                if (isDESC)
-//                    return list.OrderByDescending(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+//                    return list.OrderByDescending(orderBy).Skip((pageIndex - 1 < 0 ? 0 : pageIndex - 1) * (pageSize < 0 ? 0 : pageSize)).Take(pageSize < 0 ? 0 : pageSize).ToList();
 //                else
-//                    return list.OrderBy(orderBy).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+//                    return list.OrderBy(orderBy).Skip((pageIndex - 1 < 0 ? 0 : pageIndex - 1) * (pageSize < 0 ? 0 : pageSize)).Take(pageSize < 0 ? 0 : pageSize).ToList();
 //            }
 //            catch (Exception ex)
 //            {

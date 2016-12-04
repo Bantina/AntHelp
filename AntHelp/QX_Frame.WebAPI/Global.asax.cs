@@ -11,6 +11,10 @@ namespace QX_Frame.WebAPI
     {
         protected void Application_Start()
         {
+            //ignore the xml return it`s setting let json return only 
+            GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

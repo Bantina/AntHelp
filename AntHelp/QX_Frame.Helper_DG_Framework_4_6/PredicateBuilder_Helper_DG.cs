@@ -9,7 +9,7 @@ namespace QX_Frame.Helper_DG_Framework_4_6
 {
     #region The lambda Extend
 
-    public static class PredicateBuilder
+    public static class PredicateBuilder_Helper_DG
     {
         public static Expression<Func<T, bool>> True<T>() => f => true;
 

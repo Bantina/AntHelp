@@ -7,8 +7,8 @@
     <ProjectGuid>{3803982F-ACA9-4C7D-9FD8-C0F842893A7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QX_Frame.Helper_DG_Framework_4_6</RootNamespace>
-    <AssemblyName>QX_Frame.Helper_DG_Framework_4_6</AssemblyName>
+    <RootNamespace>QX_Frame.Helper_DG_Framework</RootNamespace>
+    <AssemblyName>QX_Frame.Helper_DG_Framework</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -60,10 +60,10 @@
     <Compile Include="DateTime_Helper_DG.cs" />
     <Compile Include="EF_Helper_DG.cs" />
     <Compile Include="Encrypt_Helper_DG.cs" />
-    <Compile Include="Lambda_Helper_DG.cs" />
     <Compile Include="ListPaging_Helper_DG.cs" />
     <Compile Include="Log_Helper_DG.cs" />
     <Compile Include="options\msg_options_DG.cs" />
+    <Compile Include="PredicateBuilder_Helper_DG.cs" />
     <Compile Include="ProcessFlow_Helper_DG.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Return_Helper_DG.cs" />

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
 
-namespace QX_Frame.Helper_DG_Framework_4_6
+namespace QX_Frame.Helper_DG_Framework
 {
     /*2016-11-12 20:40:50 author:qixiao*/
     public abstract class Config_Helper_DG

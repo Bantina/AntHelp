@@ -1,11 +1,11 @@
-﻿using QX_Frame.Helper_DG_Framework_4_6.options;
+﻿using QX_Frame.Helper_DG_Framework.options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QX_Frame.Helper_DG_Framework_4_6
+namespace QX_Frame.Helper_DG_Framework
 {
     /*2016-11-15 10:39:17 author:qixiao*/
     /// <summary>

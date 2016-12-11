@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Web.Security;
 using System.IO;
 
-namespace QX_Frame.Helper_DG_Framework_4_6
+namespace QX_Frame.Helper_DG_Framework
 {
     /*2016-11-11 17:21:08 author:qixiao*/
     public abstract class Encrypt_Helper_DG

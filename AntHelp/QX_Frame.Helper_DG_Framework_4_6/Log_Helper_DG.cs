@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace QX_Frame.Helper_DG_Framework_4_6
+namespace QX_Frame.Helper_DG_Framework
 {
     /// <summary>
     /// 20161030 14:27:23 qixiao

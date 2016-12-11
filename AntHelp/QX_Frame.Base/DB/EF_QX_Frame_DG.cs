@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Data.Entity;
-using QX_Frame.Helper_DG_Framework_4_6;
+using QX_Frame.Helper_DG_Framework;
 
 namespace QX_Frame.Base.DB
 {

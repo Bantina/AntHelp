@@ -74,9 +74,9 @@
       <Project>{169d316d-e780-4198-aced-99ec75445f4a}</Project>
       <Name>QX_Frame.DAL.Interface</Name>
     </ProjectReference>
-    <ProjectReference Include="..\QX_Frame.Helper_DG_Framework_4_6\QX_Frame.Helper_DG_Framework_4_6.csproj">
+    <ProjectReference Include="..\QX_Frame.Helper_DG_Framework_4_6\QX_Frame.Helper_DG_Framework.csproj">
       <Project>{3803982f-aca9-4c7d-9fd8-c0f842893a7b}</Project>
-      <Name>QX_Frame.Helper_DG_Framework_4_6</Name>
+      <Name>QX_Frame.Helper_DG_Framework</Name>
     </ProjectReference>
     <ProjectReference Include="..\QX_Frame.Model\QX_Frame.Model.csproj">
       <Project>{6baabd86-2d8c-42e9-a1b4-258f04b33d2a}</Project>

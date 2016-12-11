@@ -10,7 +10,7 @@ using System.Xml;
  * 分享者：远方(explore6688@sina.cn)           
  * csdn:http://blog.csdn.net/sn_explore6688  |
  ********************************************/
-namespace QX_Frame.Helper_DG_Framework_4_6
+namespace QX_Frame.Helper_DG_Framework
 {
     /// <summary> 
     /// SqlServer数据访问帮助类 

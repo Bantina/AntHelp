@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace QX_Frame.Helper_DG_Framework_4_6
+namespace QX_Frame.Helper_DG_Framework
 {
     /*2016-11-2 15:13:28 author:qixiao*/
     public abstract class String_Helper_DG

@@ -1,6 +1,6 @@
 ﻿using QX_Frame.Base;
 using QX_Frame.Base.Entities;
-using QX_Frame.Helper_DG_Framework_4_6;
+using QX_Frame.Helper_DG_Framework;
 using QX_Frame.Model.DTO;
 using QX_Frame.WebAPI.Filters_QX;
 using System;
@@ -10,7 +10,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 //using the static class  support in .NET FrameWork 4.6.*
-using static QX_Frame.Helper_DG_Framework_4_6.ProcessFlow_Helper_DG;
+using static QX_Frame.Helper_DG_Framework.ProcessFlow_Helper_DG;
 
 namespace QX_Frame.WebAPI.Controllers
 {

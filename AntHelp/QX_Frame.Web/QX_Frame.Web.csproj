@@ -76,6 +76,7 @@
     <Content Include="app\00-main\app.component.html" />
     <Content Include="app\02-example\example.component.css" />
     <Content Include="app\02-example\example.component.html" />
+    <Content Include="gulpfile.js" />
     <Content Include="Index.html" />
     <Content Include="package.json" />
     <Content Include="packages.config">

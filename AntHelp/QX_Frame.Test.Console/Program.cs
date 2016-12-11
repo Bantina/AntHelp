@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using QX_Frame.Helper_DG_Framework_4_6;
+using QX_Frame.Helper_DG_Framework;
 using QX_Frame.Model;
 using QX_Frame.DAL.Service;
 using System.Data.SqlClient;

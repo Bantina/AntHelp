@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-namespace QX_Frame.Helper_DG_Framework_4_6
+namespace QX_Frame.Helper_DG_Framework
 {
     /*2016-11-3 11:50:08 author:qixiao*/
     public abstract class Convert_Helper_DG
@@ -33,5 +33,17 @@ namespace QX_Frame.Helper_DG_Framework_4_6
         {
             return ProcessFlow_Helper_DG.channel_Exception_Log(() => Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonText), "Convert_Helper_DG Json_To_T");
         }
+
+        public static string T_To_Json<T>(T t)
+        {
+            return ProcessFlow_Helper_DG.channel_Exception_Log(() => Newtonsoft.Json.JsonConvert.SerializeObject(t), "Convert_Helper_DG Object_To_Json");
+        }
+
+        public static string Object_To_Json<T>(object obj)
+        {
+            return ProcessFlow_Helper_DG.channel_Exception_Log(() => Newtonsoft.Json.JsonConvert.SerializeObject(obj), "Convert_Helper_DG Object_To_Json");
+        }
+
+        
     }
 }

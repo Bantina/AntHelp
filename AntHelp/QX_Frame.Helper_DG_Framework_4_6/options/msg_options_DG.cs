@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QX_Frame.Helper_DG_Framework_4_6.options
+namespace QX_Frame.Helper_DG_Framework.options
 {
     /*2016-11-15 13:52:57 author:qixiao*/
     public abstract class msg_options_DG

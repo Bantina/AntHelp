@@ -3,7 +3,7 @@ using System.Collections;
 using System.Web;
 using System.Web.Caching;
 
-namespace QX_Frame.Helper_DG_Framework_4_6
+namespace QX_Frame.Helper_DG_Framework
 {
     /*2016-11-12 22:58:25 author:qixiao*/
     public abstract class Cache_Helper_DG

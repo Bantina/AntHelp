@@ -1,5 +1,5 @@
 ﻿using QX_Frame.Base.Services;
-using QX_Frame.Helper_DG_Framework_4_6;
+using QX_Frame.Helper_DG_Framework;
 using System;
 using System.Linq;
 using System.Net;

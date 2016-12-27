@@ -41,8 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QX_Frame\QX_Frame_Token_Service.cs" />
-    <Compile Include="QX_Frame\QX_Frame_User_Service.cs" />
+    <Compile Include="QX_Frame\tokenService.cs" />
+    <Compile Include="QX_Frame\userService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

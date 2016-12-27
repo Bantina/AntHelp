@@ -21,8 +21,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QX_Frame.WebAPI.Test", "QX_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QX_Frame.ConsoleApp", "QX_Frame.ConsoleApp\QX_Frame.ConsoleApp.csproj", "{692DB482-EB2E-4F3E-B4B0-13A6DEE25A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QX_Frame.Dependency", "QX_Frame.Dependency\QX_Frame.Dependency.csproj", "{410F8484-2AD8-46F9-9E78-1280B2A0D826}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,10 +63,6 @@ Global
 		{692DB482-EB2E-4F3E-B4B0-13A6DEE25A6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{692DB482-EB2E-4F3E-B4B0-13A6DEE25A6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{692DB482-EB2E-4F3E-B4B0-13A6DEE25A6A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{410F8484-2AD8-46F9-9E78-1280B2A0D826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{410F8484-2AD8-46F9-9E78-1280B2A0D826}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{410F8484-2AD8-46F9-9E78-1280B2A0D826}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{410F8484-2AD8-46F9-9E78-1280B2A0D826}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

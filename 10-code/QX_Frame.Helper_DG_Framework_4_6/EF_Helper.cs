@@ -12,11 +12,10 @@ namespace QX_Frame.Helper_DG_Framework
     /*  time:   2016-10-30 15:26:05
         author: qixiao
     */
-
     /// <summary>
-    ///EntityFramework CodeFirst Helper 
+    /// EntityFramework CodeFirst Helper 
     /// </summary>
-    /// <typeparam name="M">The DbContext</typeparam>
+    /// <typeparam name="Db">DbContext</typeparam>
     public abstract class EF_Helper_DG<Db> where Db : DbContext
     {
         /*the singleton Db */

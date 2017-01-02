@@ -19,14 +19,15 @@ namespace QX_Frame.ConsoleApp
         {
             var exam = Data.Entities.example.Build();
             exam.uid = Guid.NewGuid();
-            AppBase.RegisterEntity<example>(exam);
-            AppBase.RegisterType<ExampleService, IExampleService>();
+            exam.intValue = 333;
+            exam.stringValue = "i like ioc";
 
-            AppBase.builder.Register(c => new ExampleService(c.Resolve<IExampleService>(), c.Resolve<example>()));
+            AppBase.RegisterEntity<Data.Entities.example>(exam);
+            AppBase.GetBuilder().Register(c => new ExampleService(c.Resolve<IExampleService>(), c.Resolve<Data.Entities.example>()));
 
-            var examService = Fact<IExampleService>();
+            var examService = AppBase.Fact<ExampleService>();
 
-            example exa = examService.QuerySingle(Guid.NewGuid());
+            example exa = examService.QuerySingle(default(Guid));
 
             Console.WriteLine($"the example is uid={exa.uid} , intValue={exa.intValue} , stringValue={exa.stringValue}");
 

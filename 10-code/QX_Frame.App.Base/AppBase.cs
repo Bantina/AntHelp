@@ -11,22 +11,22 @@ namespace QX_Frame.App.Base
     /// </summary>
     public abstract class AppBase : ContainerBuilder, IDependency
     {
-        protected volatile static ContainerBuilder builder = new ContainerBuilder();
+        protected volatile static ContainerBuilder builder =null;
 
-        //#region The Singleton to new ContainerBuilder
-        //private static readonly object lockHelper = new object();
-        //static AppBase()
-        //{
-        //    if (builder == null)
-        //    {
-        //        lock (lockHelper)
-        //        {
-        //            if (builder == null)
-        //                builder = System.Activator.CreateInstance<ContainerBuilder>();
-        //        }
-        //    }
-        //}
-        //#endregion
+        #region The Singleton to new ContainerBuilder
+        private static readonly object lockHelper = new object();
+        static AppBase()
+        {
+            if (builder == null)
+            {
+                lock (lockHelper)
+                {
+                    if (builder == null)
+                        builder = System.Activator.CreateInstance<ContainerBuilder>();
+                }
+            }
+        }
+        #endregion
 
         /// <summary>
         /// Get ContainerBuilder builder

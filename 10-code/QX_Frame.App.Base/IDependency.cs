@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace QX_Frame.Base
+namespace QX_Frame.App.Base
 {
     /*
         author:qixiao

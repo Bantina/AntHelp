@@ -12,7 +12,7 @@ namespace QX_Frame.Data.Entities.QX_Frame
         {
         }
 
-        public virtual DbSet<tb_token> tb_token { get; set; }
+        public virtual DbSet<example> tb_token { get; set; }
         public virtual DbSet<tb_userAccount> tb_userAccount { get; set; }
         public virtual DbSet<tb_userFunction> tb_userFunction { get; set; }
         public virtual DbSet<tb_userFunctionAttribute> tb_userFunctionAttribute { get; set; }

@@ -1,12 +1,13 @@
 namespace QX_Frame.Data.Entities.QX_Frame
 {
+    using App.Base;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tb_token
+    public partial class example:Entity<example>
     {
         [Key]
         public Guid uid { get; set; }

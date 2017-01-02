@@ -1,23 +1,29 @@
-﻿using QX_Frame.Data.Entities.QX_Frame;
+﻿using QX_Frame.Data.QueryContract;
+using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Helper_DG_Framework;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QX_Frame.Data.QueryObject
 {
-    public class query_QX_Frame
+    public class Query_QX_Frame<TEntity> : IQuery_DB<TEntity> where TEntity:class 
     {
-        public Boolean Add<T>(T t) where T : class => EF_Helper_DG<db_qx_frame>.Add<T>(t);
-        public Boolean Update<T>(T t) where T : class => EF_Helper_DG<db_qx_frame>.Update<T>(t);
-        public Boolean Delete<T>(T t) where T : class => EF_Helper_DG<db_qx_frame>.Delete<T>(t);
-        public Boolean Exist<T>(Expression<Func<T, Boolean>> selectWhere) where T : class => EF_Helper_DG<db_qx_frame>.Exist<T>(selectWhere);
-        public T querySingle<T>(Expression<Func<T, Boolean>> selectWhere) where T : class => EF_Helper_DG<db_qx_frame>.selectSingle(selectWhere);
-        public List<T> queryAll<T>(Expression<Func<T, Boolean>> selectWhere) where T : class => EF_Helper_DG<db_qx_frame>.selectAll(selectWhere);
-        public List<T> queryAllPaging<T, TKey>(int pageIndex, int pageSize, Expression<Func<T, TKey>> orderBy, Expression<Func<T, Boolean>> selectWhere, Boolean isDESC = false) where T : class => EF_Helper_DG<db_qx_frame>.selectAllPaging(pageIndex, pageSize, orderBy, selectWhere, isDESC);
+        IQuery_DB<TEntity> _queryDB;
+        TEntity _entity;
+
+        public Query_QX_Frame(IQuery_DB<TEntity> queryDB,TEntity entity)
+        {
+            _queryDB = queryDB;
+            _entity = entity;
+        }
+
+        public Boolean Add() => EF_Helper_DG<db_qx_frame>.Add(_entity);
+        public Boolean Update() => EF_Helper_DG<db_qx_frame>.Update(_entity);
+        public Boolean Delete()=> EF_Helper_DG<db_qx_frame>.Delete(_entity);
+        public Boolean Exist(Expression<Func<TEntity, Boolean>> selectWhere) => EF_Helper_DG<db_qx_frame>.Exist(selectWhere);
+        public TEntity querySingle(Expression<Func<TEntity, Boolean>> selectWhere)  => EF_Helper_DG<db_qx_frame>.selectSingle(selectWhere);
+        public List<TEntity> queryAll(Expression<Func<TEntity, Boolean>> selectWhere)  => EF_Helper_DG<db_qx_frame>.selectAll(selectWhere);
+        public List<TEntity> queryAllPaging<TKey>(int pageIndex, int pageSize, Expression<Func<TEntity, TKey>> orderBy, Expression<Func<TEntity, Boolean>> selectWhere, Boolean isDESC = false)  => EF_Helper_DG<db_qx_frame>.selectAllPaging(pageIndex, pageSize, orderBy, selectWhere, isDESC);
     }
 }

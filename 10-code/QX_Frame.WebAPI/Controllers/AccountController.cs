@@ -1,4 +1,4 @@
-﻿using QX_Frame.Base;
+﻿using QX_Frame.App.Web;
 using QX_Frame.Data.DTO;
 using QX_Frame.Helper_DG_Framework;
 using QX_Frame.WebAPI.Filters_DG;
@@ -10,7 +10,7 @@ using static QX_Frame.Helper_DG_Framework.ProcessFlow_Helper_DG;
 
 namespace QX_Frame.WebAPI.Controllers
 {
-    public class AccountController : ApiController
+    public class AccountController : WebApiControllerBase
     {
         [HttpPost, Route("Account/Login")]
         public IHttpActionResult PostLogin(dynamic query)

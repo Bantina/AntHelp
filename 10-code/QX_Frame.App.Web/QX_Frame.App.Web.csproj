@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{692DB482-EB2E-4F3E-B4B0-13A6DEE25A6A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{44F973D1-C837-4801-A8CA-6BB97552BCD5}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>QX_Frame.ConsoleApp</RootNamespace>
-    <AssemblyName>QX_Frame.ConsoleApp</AssemblyName>
+    <RootNamespace>QX_Frame.App.Web</RootNamespace>
+    <AssemblyName>QX_Frame.App.Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,9 +30,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da" />
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Http">
+      <HintPath>..\QX_Frame.References\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\QX_Frame.References\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,33 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebApiControllerBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QX_Frame.App.Base\QX_Frame.App.Base.csproj">
-      <Project>{0046a768-ada2-4314-b7cc-391919ed71cd}</Project>
-      <Name>QX_Frame.App.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QX_Frame.Data.Contract\QX_Frame.Data.Contract.csproj">
-      <Project>{b188b868-35c0-4c20-acdd-f6140afbadda}</Project>
-      <Name>QX_Frame.Data.Contract</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QX_Frame.Data.Service\QX_Frame.Data.Service.csproj">
-      <Project>{80378a61-fd07-4af0-b09c-8f39be12ca61}</Project>
-      <Name>QX_Frame.Data.Service</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QX_Frame.Data\QX_Frame.Data.csproj">
-      <Project>{38486536-3824-4e1b-8106-3159b31caca7}</Project>
-      <Name>QX_Frame.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QX_Frame.Helper_DG_Framework_4_6\QX_Frame.Helper_DG_Framework.csproj">
-      <Project>{3803982f-aca9-4c7d-9fd8-c0f842893a7b}</Project>
-      <Name>QX_Frame.Helper_DG_Framework</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

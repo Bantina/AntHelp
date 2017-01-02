@@ -177,6 +177,16 @@
     <Folder Include="Images\01-index\" />
     <Folder Include="Scripts\plugin\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QX_Frame.App.Base\QX_Frame.App.Base.csproj">
+      <Project>{0046a768-ada2-4314-b7cc-391919ed71cd}</Project>
+      <Name>QX_Frame.App.Base</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QX_Frame.App.Web\QX_Frame.App.Web.csproj">
+      <Project>{44f973d1-c837-4801-a8ca-6bb97552bcd5}</Project>
+      <Name>QX_Frame.App.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QX_Frame.App.Base
 {
+    //author:qixiao
+    //time:2017-1-2 21:24:32
+    //sum:the entity override
+
     [Serializable]
     public class Entity<TEntity>
     {

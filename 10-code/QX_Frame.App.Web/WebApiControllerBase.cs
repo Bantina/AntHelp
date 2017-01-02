@@ -9,9 +9,6 @@ namespace QX_Frame.App.Web
 {
     public abstract class WebApiControllerBase: ApiController
     {
-        protected static ChannelFactory<TChannel> Wcf<TChannel>() where TChannel : class
-        {
-            return WcfClientManager.Create<TChannel>();
-        }
+        
     }
 }

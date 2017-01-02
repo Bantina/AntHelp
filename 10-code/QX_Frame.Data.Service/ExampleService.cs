@@ -5,22 +5,22 @@ using QX_Frame.Data.Entities;
 
 namespace QX_Frame.Data.Service
 {
-    public class ExampleService : IExampleService
+    public class ExampleService :IExampleService
     {
-        private IExampleService exampleService;
-        private example example;
+        private IExampleService _exampleService;
+        private example _example;
 
         public ExampleService(IExampleService exampleService, example example)
         {
-            this.exampleService = exampleService;
-            this.example = example;
+            this._exampleService = exampleService;
+            this._example = example;
         }
 
         public bool Add() => true;
 
         public bool Delete() => true;
 
-        public example QuerySingle(Guid uid) => new example { uid = uid, intValue = 123, stringValue = "this is a string value" };
+        public example QuerySingle(Guid uid) => new example { uid = uid, intValue = _example.intValue, stringValue = _example.stringValue };
 
         public List<example> QueryAll()
             =>

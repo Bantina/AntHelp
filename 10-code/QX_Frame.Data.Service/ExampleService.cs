@@ -7,12 +7,10 @@ namespace QX_Frame.Data.Service
 {
     public class ExampleService :IExampleService
     {
-        private IExampleService _exampleService;
-        private example _example;
+        private Example _example;
 
-        public ExampleService(IExampleService exampleService, example example)
+        public ExampleService(Example example)
         {
-            this._exampleService = exampleService;
             this._example = example;
         }
 
@@ -20,16 +18,16 @@ namespace QX_Frame.Data.Service
 
         public bool Delete() => true;
 
-        public example QuerySingle(Guid uid) => new example { uid = uid, intValue = _example.intValue, stringValue = _example.stringValue };
+        public Example QuerySingle(Guid uid) => new Example { uid = uid, intValue = _example.intValue, stringValue = _example.stringValue };
 
-        public List<example> QueryAll()
+        public List<Example> QueryAll()
             =>
-            new List<example> {
-                new example { uid = Guid.NewGuid(), intValue = 1, stringValue = "this is a string value 1" },
-                new example { uid = Guid.NewGuid(), intValue = 2, stringValue = "this is a string value 2" },
-                new example { uid = Guid.NewGuid(), intValue = 3, stringValue = "this is a string value 3" },
-                new example { uid = Guid.NewGuid(), intValue = 4, stringValue = "this is a string value 4" },
-                new example { uid = Guid.NewGuid(), intValue = 5, stringValue = "this is a string value 5" }
+            new List<Example> {
+                new Example { uid = Guid.NewGuid(), intValue = 1, stringValue = "this is a string value 1" },
+                new Example { uid = Guid.NewGuid(), intValue = 2, stringValue = "this is a string value 2" },
+                new Example { uid = Guid.NewGuid(), intValue = 3, stringValue = "this is a string value 3" },
+                new Example { uid = Guid.NewGuid(), intValue = 4, stringValue = "this is a string value 4" },
+                new Example { uid = Guid.NewGuid(), intValue = 5, stringValue = "this is a string value 5" }
             };
 
         public bool Update() => true;

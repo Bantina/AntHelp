@@ -12,24 +12,26 @@ using System.Threading.Tasks;
 
 namespace QX_Frame.ConsoleApp
 {
-    class Program:AppBase
+    class Program : AppBase
     {
-        
+
         static void Main(string[] args)
         {
-            var exam = Data.Entities.example.Build();
+            var exam = Example.Build();
+
             exam.uid = Guid.NewGuid();
             exam.intValue = 333;
             exam.stringValue = "i like ioc";
 
-            AppBase.RegisterEntity<Data.Entities.example>(exam);
-            AppBase.GetBuilder().Register(c => new ExampleService(c.Resolve<IExampleService>(), c.Resolve<Data.Entities.example>()));
+            AppBase.Register(exam);
+            AppBase.Register(c => new ExampleService(c.Resolve<Example>()));
 
-            var examService = AppBase.Fact<ExampleService>();
+            using (var fact = AppBase.Factory())
+            {
+                Example exa = fact.Resolve<ExampleService>().QuerySingle(default(Guid));
 
-            example exa = examService.QuerySingle(default(Guid));
-
-            Console.WriteLine($"the example is uid={exa.uid} , intValue={exa.intValue} , stringValue={exa.stringValue}");
+                Console.WriteLine($"the example is uid={exa.uid} , intValue={exa.intValue} , stringValue={exa.stringValue}");
+            }
 
 
             Console.WriteLine("any key to exit ...");

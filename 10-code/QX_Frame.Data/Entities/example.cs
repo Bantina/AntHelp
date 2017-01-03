@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace QX_Frame.Data.Entities
 {
     [Serializable]
-    public class example:Entity<example>
+    public class Example:Entity<Example>
     {
         public Guid uid { get; set; } = Guid.NewGuid();
         public int intValue { get; set; } = 0;

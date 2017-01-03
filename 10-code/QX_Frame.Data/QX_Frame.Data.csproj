@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="QueryContract\IQuery_DB.cs" />
     <Compile Include="DTO\UserViewModel.cs" />
-    <Compile Include="Entities\example.cs" />
+    <Compile Include="Entities\Example.cs" />
     <Compile Include="Entities\QX_Frame\db_qx_frame.cs" />
     <Compile Include="Entities\QX_Frame\tb_token.cs" />
     <Compile Include="Entities\QX_Frame\tb_userAccount.cs" />

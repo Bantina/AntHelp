@@ -9,7 +9,7 @@ namespace QX_Frame.Data.Contract
         bool Add();
         bool Update();
         bool Delete();
-        example QuerySingle(Guid uid);
-        List<example> QueryAll();
+        Example QuerySingle(Guid uid);
+        List<Example> QueryAll();
     }
 }

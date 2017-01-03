@@ -1,4 +1,8 @@
 ﻿using Autofac;
+using Autofac.Builder;
+using Autofac.Core;
+using System;
+using System.Collections.Generic;
 
 namespace QX_Frame.App.Base
 {
@@ -11,7 +15,7 @@ namespace QX_Frame.App.Base
     /// </summary>
     public abstract class AppBase : ContainerBuilder, IDependency
     {
-        protected volatile static ContainerBuilder builder =null;
+        protected volatile static ContainerBuilder builder = null;
 
         #region The Singleton to new ContainerBuilder
         private static readonly object lockHelper = new object();
@@ -38,30 +42,36 @@ namespace QX_Frame.App.Base
         /// </summary>
         /// <typeparam name="TService"></typeparam>
         /// <param name="t"></param>
-        protected static void RegisterEntity<TService>(TService t) where TService : class => builder.RegisterInstance(t).As<TService>();
+        protected static void Register<TService>(TService t) where TService : class=> builder.RegisterInstance(t).As<TService>();
+
         /// <summary>
-        /// registerType
+        /// Register
         /// </summary>
         /// <typeparam name="TService"></typeparam>
-        protected static void RegisterType<TService>() => builder.RegisterType<TService>();
+        protected static void Register<TService>() => builder.RegisterType<TService>();
         /// <summary>
-        /// registerType override
+        /// Register override
         /// </summary>
         /// <typeparam name="TService"></typeparam>
         /// <typeparam name="ITService"></typeparam>
-        protected static void RegisterType<TService, ITService>() => builder.RegisterType<TService>().As<ITService>();
-
+        protected static void Register<TService, ITService>() => builder.RegisterType<TService>().As<ITService>();
         /// <summary>
-        /// Get properties or class instance by Autofac Ioc Factory
+        /// Register override
         /// </summary>
-        /// <typeparam name="TService"></typeparam>
-        /// <returns></returns>
-        protected static TService Fact<TService>()
+        /// <typeparam name="T"></typeparam>
+        /// <param name="delegate"></param>
+        public static void Register<T>(Func<IComponentContext, T> @delegate)
         {
-            using (var container = builder.Build())
+            if (@delegate == null)
             {
-                return container.Resolve<TService>();
+                throw new ArgumentNullException("delegate");
             }
+            builder.Register<T>(((Func<IComponentContext, IEnumerable<Parameter>, T>)((c, p) => @delegate(c))));
         }
+        /// <summary>
+        /// Get The Ioc Container -> Factory
+        /// </summary>
+        /// <returns></returns>
+        protected static IContainer Factory()=> builder.Build();
     }
 }

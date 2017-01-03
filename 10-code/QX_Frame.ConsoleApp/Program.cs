@@ -33,6 +33,10 @@ namespace QX_Frame.ConsoleApp
                 Console.WriteLine($"the example is uid={exa.uid} , intValue={exa.intValue} , stringValue={exa.stringValue}");
             }
 
+            var exa2 = Example.Build(Guid.NewGuid(), 11111, "2222");
+
+            Console.WriteLine($"the example is uid={exa2.uid} , intValue={exa2.intValue} , stringValue={exa2.stringValue}");
+
 
             Console.WriteLine("any key to exit ...");
             Console.ReadKey();

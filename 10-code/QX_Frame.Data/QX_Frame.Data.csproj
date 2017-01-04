@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -37,6 +41,14 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="QX_Frame.App.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\QX_Frame.App.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="QX_Frame.Helper_DG_Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\QX_Frame.Helper_DG_Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -72,16 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configs\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\QX_Frame.App.Base\QX_Frame.App.Base.csproj">
-      <Project>{0046A768-ADA2-4314-B7CC-391919ED71CD}</Project>
-      <Name>QX_Frame.App.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QX_Frame.Helper_DG_Framework_4_6\QX_Frame.Helper_DG_Framework.csproj">
-      <Project>{3803982f-aca9-4c7d-9fd8-c0f842893a7b}</Project>
-      <Name>QX_Frame.Helper_DG_Framework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

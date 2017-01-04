@@ -60,6 +60,18 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="QX_Frame.App.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\QX_Frame.App.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="QX_Frame.App.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\QX_Frame.App.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="QX_Frame.Helper_DG_Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\QX_Frame.Helper_DG_Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -125,14 +137,6 @@
     <Folder Include="Helper_WEB_DG_Framework\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QX_Frame.App.Base\QX_Frame.App.Base.csproj">
-      <Project>{0046a768-ada2-4314-b7cc-391919ed71cd}</Project>
-      <Name>QX_Frame.App.Base</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QX_Frame.App.Web\QX_Frame.App.Web.csproj">
-      <Project>{44f973d1-c837-4801-a8ca-6bb97552bcd5}</Project>
-      <Name>QX_Frame.App.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\QX_Frame.Data.Service\QX_Frame.Data.Service.csproj">
       <Project>{80378a61-fd07-4af0-b09c-8f39be12ca61}</Project>
       <Name>QX_Frame.Data.Service</Name>
@@ -140,10 +144,6 @@
     <ProjectReference Include="..\QX_Frame.Data\QX_Frame.Data.csproj">
       <Project>{38486536-3824-4e1b-8106-3159b31caca7}</Project>
       <Name>QX_Frame.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\QX_Frame.Helper_DG_Framework_4_6\QX_Frame.Helper_DG_Framework.csproj">
-      <Project>{3803982f-aca9-4c7d-9fd8-c0f842893a7b}</Project>
-      <Name>QX_Frame.Helper_DG_Framework</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

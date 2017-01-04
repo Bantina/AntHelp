@@ -35,10 +35,10 @@ namespace QX_Frame.WebAPI.Filters_DG
                     }
                     // token= Convert_Helper_DG.Json_To_T<dynamic>(String_Helper_DG.get_String_By_Stream(httpContext.Request.InputStream)).token;
 
-                    if (new QX_Frame_Token_Service().IsTokenPass(token, out errorMsg))
-                        base.OnActionExecuting(actionContext);
-                    else
-                        actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Redirect, Return_Helper_DG.Object_TF_Msg_Code_Uri(false, errorMsg, HttpStatusCode.Redirect, "/QX_User/Login"));
+                    //if (new QX_Frame_Token_Service().IsTokenPass(token, out errorMsg))
+                    //    base.OnActionExecuting(actionContext);
+                    //else
+                    //    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Redirect, Return_Helper_DG.Object_TF_Msg_Code_Uri(false, errorMsg, HttpStatusCode.Redirect, "/QX_User/Login"));
                 },
                 () =>
                 {

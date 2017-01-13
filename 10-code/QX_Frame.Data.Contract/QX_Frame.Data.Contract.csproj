@@ -41,11 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="IExampleService.cs" />
+    <Compile Include="QX_Frame\IUserAccountService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="QX_Frame\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\QX_Frame.Data\QX_Frame.Data.csproj">
       <Project>{38486536-3824-4e1b-8106-3159b31caca7}</Project>

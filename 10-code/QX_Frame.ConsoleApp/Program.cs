@@ -1,14 +1,9 @@
-﻿using Autofac;
-using QX_Frame.App.Base;
-using QX_Frame.Data.Contract;
-using QX_Frame.Data.Entities;
-using QX_Frame.Data.Service;
+﻿using QX_Frame.App.Base;
+using QX_Frame.Data.Entities.QX_Frame;
+using QX_Frame.Data.QueryObject;
+using QX_Frame.Data.Service.QX_Frame;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QX_Frame.ConsoleApp
 {
@@ -17,20 +12,21 @@ namespace QX_Frame.ConsoleApp
 
         static void Main(string[] args)
         {
-            var exam = Example.Build();
+            UserAccountQueryObject query = new UserAccountQueryObject();
+            
 
-            exam.uid = Guid.NewGuid();
-            exam.intValue = 333;
-            exam.stringValue = "i like ioc";
+            AppBase.Register(c => new UserAccountService());
 
-            AppBase.Register(exam);
-            AppBase.Register(c => new ExampleService(c.Resolve<Example>()));
-
-            using (var fact=Wcf<ExampleService>())
+            using (var fact=Wcf<UserAccountService>())
             {
                 var channel = fact.CreateChannel();
-                Example exa = channel.QuerySingle(Guid.NewGuid());
-                Console.WriteLine($"the example is uid={exa.uid} , intValue={exa.intValue} , stringValue={exa.stringValue}");
+                int count;
+                List<tb_userAccount> list = channel.QueryAll(query).Cast<List<tb_userAccount>>(out count);
+                Console.WriteLine($"count={count}");
+                foreach (var item in list)
+                {
+                    Console.WriteLine($"item loginId={item.loginId}");
+                }
             }
 
             Console.WriteLine("any key to exit ...");

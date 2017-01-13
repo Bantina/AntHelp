@@ -17,7 +17,7 @@ namespace QX_Frame.WebAPI.Filters_DG
              ProcessFlow_Helper_DG.channel_Exception_Log(
                 () =>
                 {
-                    string token = null, errorMsg;
+                    string token = null;
                     dynamic query = actionContext.ActionArguments["query"];
                     HttpContextWrapper httpContext = (actionContext.Request.Properties["MS_HttpContext"] as HttpContextWrapper);
                     if (actionContext.Request.Method == HttpMethod.Get)

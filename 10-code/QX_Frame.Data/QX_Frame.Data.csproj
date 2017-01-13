@@ -63,9 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="QueryContract\IQuery_DB.cs" />
     <Compile Include="DTO\UserViewModel.cs" />
-    <Compile Include="Entities\Example.cs" />
     <Compile Include="Entities\QX_Frame\db_qx_frame.cs" />
     <Compile Include="Entities\QX_Frame\tb_token.cs" />
     <Compile Include="Entities\QX_Frame\tb_userAccount.cs" />
@@ -80,7 +78,7 @@
     <Compile Include="Options\opt_AccountLimits.cs" />
     <Compile Include="Options\opt_AccountStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryObject\Query_QX_Frame.cs" />
+    <Compile Include="QueryObject\UserAccountQueryObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configs\" />

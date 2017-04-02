@@ -3,15 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace QX_Frame.WebAPI.Controllers
 {
-    public class testController : ApiController
+    public class TestController : ApiController
     {
         #region RESTful Test
-        //url: http://localhost:3999/api/test
+        //url: http://localhost:3999/api/Test
         public IHttpActionResult GetQX()
         {
             var result = new { TFMark = true, Msg = "this is HttpGET Method" };
@@ -137,7 +136,7 @@ namespace QX_Frame.WebAPI.Controllers
 
                 //var result = new { TFMark = true, Msg = "this is HttpDELETE Method", list = list };
                 //return Json<dynamic>(result);
-                return Json<dynamic>(Return_Helper_DG.Object_TF_Msg_Data_Count(true, "this is HttpDELETE Method", list, list.Count));
+                return Json<dynamic>(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("this is HttpDELETE Method", list, list.Count));
             }
             catch (Exception ex)
             {

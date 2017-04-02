@@ -9,16 +9,16 @@ namespace QX_Frame.ConsoleApp
 {
     class Program : AppBase
     {
-
         static void Main(string[] args)
         {
+            new ClassRegisters();   //register classes
+
             UserAccountQueryObject query = new UserAccountQueryObject();
-            
+            query.loginId = "123";
 
-            AppBase.Register(c => new UserAccountService());
-
-            using (var fact=Wcf<UserAccountService>())
+            using (var fact = Wcf<UserAccountService>())
             {
+
                 var channel = fact.CreateChannel();
                 int count;
                 List<tb_userAccount> list = channel.QueryAll(query).Cast<List<tb_userAccount>>(out count);

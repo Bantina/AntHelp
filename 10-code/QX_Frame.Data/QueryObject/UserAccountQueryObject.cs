@@ -1,11 +1,7 @@
 ﻿using QX_Frame.App.Base;
 using QX_Frame.Data.Entities.QX_Frame;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace QX_Frame.Data.QueryObject
 {
@@ -22,14 +18,11 @@ namespace QX_Frame.Data.QueryObject
             {
                 func = func.And(t => t.loginId.Contains(loginId));
             }
-            return func;
-        }
-        protected override Expression<Func<tb_userAccount, dynamic>> OrderBy
-        {
-            get
+            if (!string.IsNullOrEmpty(pwd))
             {
-                return t => t.loginId;
+                func = func.And(t => t.pwd == "123");
             }
+            return func;
         }
     }
 }

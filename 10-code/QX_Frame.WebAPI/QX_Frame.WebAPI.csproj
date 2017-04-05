@@ -113,9 +113,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="config\ClassRegisters.cs" />
+    <Compile Include="config\ControllerConfigs.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Test1Controller.cs" />
     <Compile Include="Controllers\Test2Controller.cs" />
-    <Compile Include="Controllers\Test3Controller.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Mail_Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,7 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Files\images\userHeadImages\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

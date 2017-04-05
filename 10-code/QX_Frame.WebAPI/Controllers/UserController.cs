@@ -19,9 +19,9 @@ namespace QX_Frame.WebAPI.Controllers
         // GET: api/User
         public IHttpActionResult Get(dynamic query)
         {
-            if (query==null)
+            if (query == null)
             {
-                throw new ArgumentNullException("uid/loginid", "uid or loginid must be provide");
+                throw new ArgumentNullException("uid/loginId", "uid or loginId must be provide");
             }
 
             using (var fact = Wcf<UserAccountService>())
@@ -30,12 +30,12 @@ namespace QX_Frame.WebAPI.Controllers
 
                 tb_UserAccountInfo userAccountInfoQuery = tb_UserAccountInfo.Build();
                 userAccountInfoQuery.uid = query.uid;
-                userAccountInfoQuery.loginId = query.loginid;
+                userAccountInfoQuery.loginId = query.loginId;
 
 
                 Expression<Func<tb_UserAccountInfo, bool>> func = t => false;
 
-                if (userAccountInfoQuery.uid!=null)
+                if (userAccountInfoQuery.uid != null)
                 {
                     func = func.Or(t => t.uid.Equals(userAccountInfoQuery.uid));
                 }
@@ -44,7 +44,7 @@ namespace QX_Frame.WebAPI.Controllers
                     func = func.Or(t => t.loginId.Equals(userAccountInfoQuery.loginId));
                 }
 
-                int totalCount=0;
+                int totalCount = 0;
                 tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = func }).Cast<tb_UserAccountInfo>(out totalCount);
                 UserAccountInfoViewModel userAccountInfoViewModel = new UserAccountInfoViewModel
                 {
@@ -68,60 +68,67 @@ namespace QX_Frame.WebAPI.Controllers
                     personalizedDescription = userAccountInfo.personalizedDescription
                 };
 
-                return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("get user by loginid or uid", userAccountInfoViewModel, totalCount));
+                return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("get user by loginId or uid", userAccountInfoViewModel, totalCount));
             }
         }
 
-        // POST: api/User
-        public IHttpActionResult Post(dynamic query)
+        // POST: api/User/loginId  mail click register api
+        public IHttpActionResult Post(string loginId)
         {
-            if (query == null)
+            if (string.IsNullOrEmpty(loginId))
             {
-                throw new ArgumentNullException("loginid/pwd", "loginid and pwd must be provide");
+                throw new ArgumentNullException("loginId", "loginId must be provide");
             }
 
             bool addSuccess = true;
 
             tb_UserAccount userAccount = tb_UserAccount.Build();
             userAccount.uid = Guid.NewGuid();
-            userAccount.loginId = query.loginid;
-            userAccount.pwd = query.pwd;
+            userAccount.loginId = loginId;
 
-            //add tb_UserAccount
-            using (var fact = Wcf<UserAccountService>())
+            object pwd_mail_cache = Cache_Helper_DG.Cache_Get(loginId);//get pwd and mail from cache
+
+            if (pwd_mail_cache==null)
             {
-                var channel = fact.CreateChannel();
-                int userAccountCountByLoginId = channel.QueryCount(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId == userAccount.loginId });
-                if (userAccountCountByLoginId > 0)
+                throw new NullReferenceException("register info expired ! please register renew !");
+            }
+
+            userAccount.pwd = pwd_mail_cache.ToString().Split(',')[0];
+
+            Transaction_Helper_DG.Transaction(() =>
+            {
+                //add tb_UserAccount
+                using (var fact = Wcf<UserAccountService>())
                 {
-                    return Json(Return_Helper_DG.Error_EMsg_Ecode_Elevel_HttpCode("the loginid has been exist!"));
+                    var channel = fact.CreateChannel();
+                    addSuccess = addSuccess && channel.Add(userAccount);
                 }
-                addSuccess = addSuccess && channel.Add(userAccount);
-            }
-            //add tb_UserAccountInfo
-            using (var fact = Wcf<UserAccountInfoService>())
-            {
-                var channel = fact.CreateChannel();
-                addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid,loginId=userAccount.loginId });
-            }
-            //add tb_UserRole
-            using (var fact = Wcf<UserRoleService>())
-            {
-                var channel = fact.CreateChannel();
-                addSuccess = addSuccess && channel.Add(new tb_UserRole { uid = userAccount.uid, roleLevel = 0 });
-            }
-            //add tb_UserStatus
-            using (var fact = Wcf<UserStatusService>())
-            {
-                var channel = fact.CreateChannel();
-                addSuccess = addSuccess && channel.Add(new tb_UserStatus { uid = userAccount.uid, statusLevel = 0 });
-            }
+                //add tb_UserAccountInfo
+                using (var fact = Wcf<UserAccountInfoService>())
+                {
+                    var channel = fact.CreateChannel();
+                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId,email=pwd_mail_cache.ToString().Split(',')[1]});
+                }
+                //add tb_UserRole
+                using (var fact = Wcf<UserRoleService>())
+                {
+                    var channel = fact.CreateChannel();
+                    addSuccess = addSuccess && channel.Add(new tb_UserRole { uid = userAccount.uid, roleLevel = 0 });
+                }
+                //add tb_UserStatus
+                using (var fact = Wcf<UserStatusService>())
+                {
+                    var channel = fact.CreateChannel();
+                    addSuccess = addSuccess && channel.Add(new tb_UserStatus { uid = userAccount.uid, statusLevel = 0 });
+                }
+            });
 
-            if (addSuccess)
+            if (!addSuccess)
             {
-                return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("register user succeed!", new { loginid = userAccount.loginId }));
+                throw new Exception("register error!");
             }
-            return Json(Return_Helper_DG.Error_EMsg_Ecode_Elevel_HttpCode("register error!"));
+            
+            return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("register user succeed!", new { loginId = userAccount.loginId }));
         }
 
         // PUT: api/User
@@ -133,19 +140,46 @@ namespace QX_Frame.WebAPI.Controllers
         // DELETE: api/User
         public IHttpActionResult Delete(dynamic query)
         {
-            tb_UserAccountInfo userAccountInfoQuery = tb_UserAccountInfo.Build();
-            userAccountInfoQuery.loginId = query.loginid;
-            using (var fact = Wcf<UserAccountService>())
+            if (query == null)
             {
-                var channel = fact.CreateChannel();
-                tb_UserAccount userAccount = channel.QuerySingle(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(userAccountInfoQuery.loginId) }).Cast<tb_UserAccount>();
-                bool isSucceed = channel.Delete(userAccount);
-                if (isSucceed)
-                {
-                    return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("delete succeed !"));
-                }
+                throw new ArgumentNullException("loginId/uid", "uid or loginId must be provide");
             }
-            return Json(Return_Helper_DG.Error_EMsg_Ecode_Elevel_HttpCode("delete faild !"));
+
+            tb_UserAccountInfo userAccountInfoQuery = tb_UserAccountInfo.Build();
+
+            if (query.loginId != null)
+            {
+                userAccountInfoQuery.loginId = query.loginId;
+            }
+            if (query.uid != null)
+            {
+                userAccountInfoQuery.uid = query.uid;
+            }
+
+            bool isSucceed = true;
+
+            //transaction delete multiple tb
+            Transaction_Helper_DG.Transaction(() =>
+            {
+                using (var fact = Wcf<UserAccountService>())
+                {
+                    var channel = fact.CreateChannel();
+                    tb_UserAccount userAccount = channel.QuerySingle(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(userAccountInfoQuery.loginId) || t.uid == userAccountInfoQuery.uid }).Cast<tb_UserAccount>();
+                    isSucceed = isSucceed && channel.Delete(userAccount);
+                }
+                using (var fact = Wcf<UserAccountInfoService>())
+                {
+                    var channel = fact.CreateChannel();
+                    tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.loginId.Equals(userAccountInfoQuery.loginId) || t.uid == userAccountInfoQuery.uid }).Cast<tb_UserAccountInfo>();
+                    isSucceed = isSucceed && channel.Delete(userAccountInfo);
+                }
+            });
+
+            if (!isSucceed)
+            {
+                throw new Exception("delete faild !");
+            }
+            return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("delete succeed !"));
         }
 
         /**
@@ -158,7 +192,7 @@ namespace QX_Frame.WebAPI.Controllers
         /// </summary>
         /// <param name="loginId"></param>
         /// <returns></returns>
-        public static tb_UserAccount GetUserByLoginId(string loginId)
+        public static tb_UserAccount GetUserByloginId(string loginId)
         {
             using (var fact = Wcf<UserAccountService>())
             {

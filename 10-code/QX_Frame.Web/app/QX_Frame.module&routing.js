@@ -5,18 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-const core_1 = require('@angular/core');
-const platform_browser_1 = require('@angular/platform-browser');
-const router_1 = require('@angular/router');
-const platform_browser_dynamic_1 = require('@angular/platform-browser-dynamic');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const platform_browser_1 = require("@angular/platform-browser");
+const router_1 = require("@angular/router");
+const platform_browser_dynamic_1 = require("@angular/platform-browser-dynamic");
 /* common app component-> 00-* */
-const app_component_1 = require('./00-main/app.component'); //the root component
-const index_component_1 = require('./01-index/index.component'); //the index component
+const app_component_1 = require("./00-main/app.component"); //the root component
+const index_component_1 = require("./01-index/index.component"); //the index component
 /* start define components --there we add in ->-------------- 01 */
-const example_component_1 = require('./02-example/example.component');
+const example_component_1 = require("./02-example/example.component");
 /* end define components */
 const appRoutes = [
     {
@@ -44,6 +42,7 @@ const appComponents = [
     index_component_1.IndexComponent,
     /* start define components -- there we add in ->------------ 03 */
     example_component_1.exampleComponent
+    /* end define components */
 ];
 /**
  * !!! do not edit the flowing must existing items --qixiao
@@ -56,8 +55,7 @@ QX_Frame_AppModule = __decorate([
         imports: [platform_browser_1.BrowserModule, exports.routing],
         declarations: appComponents,
         bootstrap: [app_component_1.AppComponent]
-    }), 
-    __metadata('design:paramtypes', [])
+    })
 ], QX_Frame_AppModule);
 exports.QX_Frame_AppModule = QX_Frame_AppModule;
 const platform = platform_browser_dynamic_1.platformBrowserDynamic();

@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QX_Frame.Data.Options
+﻿namespace QX_Frame.Data.Options
 {
     /*2016-11-12 20:02:47 author：qixiao*/
-    public enum opt_AccountLimits:int
+    public enum opt_AccountRoleLevel:int
     {
         /// <summary>
         /// general user

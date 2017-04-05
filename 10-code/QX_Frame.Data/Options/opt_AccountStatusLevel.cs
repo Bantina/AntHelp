@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace QX_Frame.Data.Options
+﻿namespace QX_Frame.Data.Options
 {
-    public enum opt_AccountStatus:int
+    public enum opt_AccountStatusLevel:int
     {
         /// <summary>
         /// normal status (default)

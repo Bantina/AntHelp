@@ -63,22 +63,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\UserViewModel.cs" />
+    <Compile Include="DTO\UserAccountInfoViewModel.cs" />
     <Compile Include="Entities\QX_Frame\db_qx_frame.cs" />
-    <Compile Include="Entities\QX_Frame\tb_token.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userAccount.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userFunction.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userFunctionAttribute.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userInfo.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userPasswordProtectionQuestion.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userRole.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userRoleAttribute.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userStatus.cs" />
-    <Compile Include="Entities\QX_Frame\tb_userStatusAttribute.cs" />
-    <Compile Include="Options\opt_AccountLimits.cs" />
-    <Compile Include="Options\opt_AccountStatus.cs" />
+    <Compile Include="Entities\QX_Frame\tb_Authentication.cs" />
+    <Compile Include="Entities\QX_Frame\tb_BloodType.cs" />
+    <Compile Include="Entities\QX_Frame\tb_Sex.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserAccount.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserAccountInfo.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserFunction.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserPasswordProtectionQuestion.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserRole.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserRoleAttribute.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserStatus.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserStatusAttribute.cs" />
+    <Compile Include="Options\opt_AccountRoleLevel.cs" />
+    <Compile Include="Options\opt_AccountStatusLevel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QueryObject\UserAccountQueryObject.cs" />
+    <Compile Include="QueryObject\tb_AuthenticationQueryObject.cs" />
+    <Compile Include="QueryObject\tb_BloodTypeQueryObject.cs" />
+    <Compile Include="QueryObject\tb_SexQueryObject.cs" />
+    <Compile Include="QueryObject\tb_UserAccountInfoQueryObject.cs" />
+    <Compile Include="QueryObject\tb_UserAccountQueryObject.cs" />
+    <Compile Include="QueryObject\tb_UserFunctionQueryObject.cs" />
+    <Compile Include="QueryObject\tb_UserPasswordProtectionQuestionQueryObject.cs" />
+    <Compile Include="QueryObject\tb_UserRoleAttributeQueryObject.cs" />
+    <Compile Include="QueryObject\tb_UserRoleQueryObject.cs" />
+    <Compile Include="QueryObject\tb_UserStatusAttributeQueryObject.cs" />
+    <Compile Include="QueryObject\tb_UserStatusQueryObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configs\" />

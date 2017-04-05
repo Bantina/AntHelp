@@ -68,9 +68,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QX_Frame\TokenService.cs" />
+    <Compile Include="QX_Frame\AuthenticationService.cs" />
+    <Compile Include="QX_Frame\BloodTypeService.cs" />
+    <Compile Include="QX_Frame\SexService.cs" />
+    <Compile Include="QX_Frame\UserAccountInfoService.cs" />
     <Compile Include="QX_Frame\UserAccountService.cs" />
-    <Compile Include="QX_Frame\UserService.cs" />
+    <Compile Include="QX_Frame\UserFunctionService.cs" />
+    <Compile Include="QX_Frame\UserPasswordProtectionQuestionService.cs" />
+    <Compile Include="QX_Frame\UserRoleAttributeService.cs" />
+    <Compile Include="QX_Frame\UserRoleService.cs" />
+    <Compile Include="QX_Frame\UserStatusAttributeService.cs" />
+    <Compile Include="QX_Frame\UserStatusService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

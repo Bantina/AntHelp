@@ -1,17 +1,18 @@
 namespace QX_Frame.Data.Entities.QX_Frame
 {
+    using global::QX_Frame.App.Base;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tb_userStatusAttribute
+    public partial class tb_UserStatusAttribute : Entity<db_qx_frame, tb_UserStatusAttribute>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_userStatusAttribute()
+        public tb_UserStatusAttribute()
         {
-            tb_userStatus = new HashSet<tb_userStatus>();
+            tb_UserStatus = new HashSet<tb_UserStatus>();
         }
 
         [Key]
@@ -27,6 +28,6 @@ namespace QX_Frame.Data.Entities.QX_Frame
         public string description { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_userStatus> tb_userStatus { get; set; }
+        public virtual ICollection<tb_UserStatus> tb_UserStatus { get; set; }
     }
 }

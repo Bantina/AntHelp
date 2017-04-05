@@ -12,7 +12,17 @@ namespace QX_Frame.ConsoleApp
         public ClassRegisters()
         {
             //register region --
+            AppBase.Register(c => new AuthenticationService());
+            AppBase.Register(c => new BloodTypeService());
+            AppBase.Register(c => new SexService());
+            AppBase.Register(c => new UserAccountInfoService());
             AppBase.Register(c => new UserAccountService());
+            AppBase.Register(c => new UserFunctionService());
+            AppBase.Register(c => new UserPasswordProtectionQuestionService());
+            AppBase.Register(c => new UserRoleAttributeService());
+            AppBase.Register(c => new UserRoleService());
+            AppBase.Register(c => new UserStatusAttributeService());
+            AppBase.Register(c => new UserStatusService());
 
 
 

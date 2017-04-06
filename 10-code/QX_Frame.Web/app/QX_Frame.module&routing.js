@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
+const http_1 = require("@angular/http");
 const router_1 = require("@angular/router");
 const platform_browser_dynamic_1 = require("@angular/platform-browser-dynamic");
 /* common app component-> 00-* */
@@ -58,7 +59,7 @@ let QX_Frame_AppModule = class QX_Frame_AppModule {
 };
 QX_Frame_AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, exports.routing],
+        imports: [platform_browser_1.BrowserModule, exports.routing, http_1.HttpModule],
         declarations: appComponents,
         bootstrap: [app_component_1.AppComponent]
     })

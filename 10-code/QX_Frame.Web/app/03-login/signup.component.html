@@ -12,25 +12,25 @@
             <form action="" id="signupform" class="signup-form">
                 <div class="form-group">
                     <label for="true" class="avail-user">用户名</label>
-                    <input type="text" placeholder="John" class="form-control small-control" id="username">
+                    <input type="text" placeholder="John" class="form-control small-control" id="username" value="{{userAccountViewModel.loginId}}">
                 </div>
                 <div class="form-group">
                     <label for="true">邮箱</label>
-                    <input type="text" placeholder="John@123.com" class="form-control small-control" id="email">
+                    <input type="text" placeholder="John@123.com" class="form-control small-control" id="email" value="{{userAccountViewModel.email}}">
                 </div>
                 <div class="form-group">
                     <label for="true">密码</label>
-                    <input type="text" placeholder="********" class="form-control small-control" id="password">
+                    <input type="password" placeholder="********" class="form-control small-control" id="password" value={{userAccountViewModel.pwd}}>
                 </div>
                 <div class="form-group">
                     <label for="true">确认密码</label>
-                    <input type="text" placeholder="********" class="form-control small-control" id="repassword">
+                    <input type="password" placeholder="********" class="form-control small-control" id="repassword">
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="signup-btn no-top-margin" value="注           册">
+                    <input type="button" class="signup-btn no-top-margin" value="注           册" (click)="addAccount()">
                 </div>
                 <div class="form-group">
-                    <label class="col-md-6" ng-bind="msg"></label>
+                    <label class="col-md-6">{{msg}}</label>
                     <label class="col-md-6" ng-bind="description"></label>
                 </div>
             </form>

@@ -1,6 +1,6 @@
-﻿import { NgModule } from '@angular/core';
+﻿import { NgModule, ModuleWithProviders } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ModuleWithProviders } from '@angular/core';
+import {  HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
@@ -10,8 +10,6 @@ import { IndexComponent } from './01-index/index.component';    //the index comp
 /* start define components --there we add in ->-------------- 01 */
 import { exampleComponent } from './02-example/example.component';
 import { SignUpComponent } from './03-login/signup.component';
-
-
 
 /* end define components */
 
@@ -67,7 +65,7 @@ const appComponents: any[] = [
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
 
 @NgModule({
-    imports: [BrowserModule, routing],
+    imports: [BrowserModule, routing, HttpModule],
     declarations: appComponents,
     bootstrap: [AppComponent]
 })

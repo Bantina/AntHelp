@@ -24,13 +24,13 @@ namespace QX_Frame.WebAPI.Controllers
 		// GET: api/Account
 		public IHttpActionResult Get([FromBody]dynamic query)
 		{
-			return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode(""));
+			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(""));
 		}
 
 		// GET: api/Account/5
 		public IHttpActionResult Get(string id, [FromBody]dynamic query)
 		{
-			return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode(""));
+			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(""));
 		}
 
 		// POST: api/Account    //account register api
@@ -76,19 +76,19 @@ namespace QX_Frame.WebAPI.Controllers
              * 站内页面初始化时候获取链接上的参数，带着参数请求注册地址，然后返回结果展示注册结果
              * */
 
-            return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！"));
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！"));
 		}
 
 		// PUT: api/Account
 		public IHttpActionResult Put([FromBody]dynamic query)
 		{
-			return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode(""));
+			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(""));
 		}
 
 		// DELETE: api/Account
 		public IHttpActionResult Delete([FromBody]dynamic query)
 		{
-			return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode(""));
+			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(""));
 		}
 	}
 }

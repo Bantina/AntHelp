@@ -30,7 +30,7 @@ namespace QX_Frame.WebAPI.Filters
             var obj = Convert_Helper_DG.Json_To_T<object>(result);
             var ll = obj;
             HttpContext.Current.Session[""] = 1;
-            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.OK, Return_Helper_DG.Error_EMsg_Ecode_Elevel_HttpCode( "the user not login", 1));
+            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.OK, Return_Helper_DG.Error_Msg_Ecode_Elevel_HttpCode( "the user not login"));
         }
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {

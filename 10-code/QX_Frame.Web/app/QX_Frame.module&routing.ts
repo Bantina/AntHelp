@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {  HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { FormsModule } from '@angular/forms';
 
 /* common app component-> 00-* */
 import { AppComponent } from './00-main/app.component';         //the root component
@@ -65,7 +66,7 @@ const appComponents: any[] = [
 export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
 
 @NgModule({
-    imports: [BrowserModule, routing, HttpModule],
+    imports: [BrowserModule, routing, HttpModule, FormsModule],
     declarations: appComponents,
     bootstrap: [AppComponent]
 })

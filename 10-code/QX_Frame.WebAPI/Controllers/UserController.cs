@@ -68,7 +68,7 @@ namespace QX_Frame.WebAPI.Controllers
                     personalizedDescription = userAccountInfo.personalizedDescription
                 };
 
-                return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("get user by loginId or uid", userAccountInfoViewModel, totalCount));
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user by loginId or uid", userAccountInfoViewModel, totalCount));
             }
         }
 
@@ -128,7 +128,7 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception("register error!");
             }
             
-            return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("register user succeed!", new { loginId = userAccount.loginId }));
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("register user succeed!", new { loginId = userAccount.loginId }));
         }
 
         // PUT: api/User
@@ -193,7 +193,7 @@ namespace QX_Frame.WebAPI.Controllers
             {
                 throw new Exception("delete faild !");
             }
-            return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("delete succeed !"));
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete succeed !"));
         }
     }
 }

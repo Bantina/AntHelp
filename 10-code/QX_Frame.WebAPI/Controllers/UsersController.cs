@@ -95,23 +95,23 @@ namespace QX_Frame.WebAPI.Controllers
                             personalizedDescription = item.personalizedDescription
                         });
                 }
-                return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("get user info must paging by pageindex=num,pagesize=num,isdesc=1/0", userAccountInfoViewModelList, count));
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user info must paging by pageindex=num,pagesize=num,isdesc=1/0", userAccountInfoViewModelList, count));
             }
         }
         //address:http://localhost:3999/api/Users Post Method
         public IHttpActionResult Post()
         {
-            return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("put"));
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("put"));
         }
         //address:http://localhost:3999/api/Users Put Method
         public IHttpActionResult Put()
         {
-            return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("put"));
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("put"));
         }
         //address:http://localhost:3999/api/Users Delete Method
         public IHttpActionResult Delete()
         {
-            return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("delete"));
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete"));
         }
     }
 }

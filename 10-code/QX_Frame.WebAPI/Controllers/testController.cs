@@ -136,7 +136,7 @@ namespace QX_Frame.WebAPI.Controllers
 
                 //var result = new { TFMark = true, Msg = "this is HttpDELETE Method", list = list };
                 //return Json<dynamic>(result);
-                return Json<dynamic>(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("this is HttpDELETE Method", list, list.Count));
+                return Json<dynamic>(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("this is HttpDELETE Method", list, list.Count));
             }
             catch (Exception ex)
             {

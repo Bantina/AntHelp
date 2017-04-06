@@ -8,9 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const signup_service_1 = require("./signup.service");
+const core_1 = require('@angular/core');
+const signup_service_1 = require('./signup.service');
 let SignUpComponent = class SignUpComponent {
     constructor(signupService) {
         this.signupService = signupService;
@@ -46,8 +45,8 @@ SignUpComponent = __decorate([
         templateUrl: 'app/03-login/signup.component.html',
         styleUrls: ['app/03-login/signup.component.css'],
         providers: [signup_service_1.SignupService]
-    }),
-    __metadata("design:paramtypes", [signup_service_1.SignupService])
+    }), 
+    __metadata('design:paramtypes', [signup_service_1.SignupService])
 ], SignUpComponent);
 exports.SignUpComponent = SignUpComponent;
 //# sourceMappingURL=signup.component.js.map

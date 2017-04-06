@@ -41,7 +41,7 @@ namespace QX_Frame.WebAPI.Filters
                 },
                 () =>
                 {
-                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Redirect, Return_Helper_DG.Error_EMsg_Ecode_Elevel_HttpCode("Invalid Token !",1));
+                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Redirect, Return_Helper_DG.Error_Msg_Ecode_Elevel_HttpCode("Invalid Token !",1));
                 }, "Filter_AuthAuth_By_query_Filter");
         }
     }

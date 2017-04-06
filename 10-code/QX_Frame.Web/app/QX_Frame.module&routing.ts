@@ -9,6 +9,7 @@ import { AppComponent } from './00-main/app.component';         //the root compo
 import { IndexComponent } from './01-index/index.component';    //the index component
 /* start define components --there we add in ->-------------- 01 */
 import { exampleComponent } from './02-example/example.component';
+import { SignUpComponent } from './03-login/signup.component';
 
 
 
@@ -29,6 +30,10 @@ const appRoutes: Routes = [
         path: 'example',
         component: exampleComponent
     },
+    {
+        path: 'signup',
+        component: SignUpComponent
+    },
 
 
 
@@ -44,7 +49,8 @@ const appComponents: any[] = [
     AppComponent,       //the root website
     IndexComponent,     //the index website
     /* start define components -- there we add in ->------------ 03 */
-    exampleComponent
+    exampleComponent,
+    SignUpComponent
 
 
 

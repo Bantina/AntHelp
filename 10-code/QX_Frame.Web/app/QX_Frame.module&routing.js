@@ -15,6 +15,7 @@ const app_component_1 = require("./00-main/app.component"); //the root component
 const index_component_1 = require("./01-index/index.component"); //the index component
 /* start define components --there we add in ->-------------- 01 */
 const example_component_1 = require("./02-example/example.component");
+const signup_component_1 = require("./03-login/signup.component");
 /* end define components */
 const appRoutes = [
     {
@@ -30,6 +31,10 @@ const appRoutes = [
         path: 'example',
         component: example_component_1.exampleComponent
     },
+    {
+        path: 'signup',
+        component: signup_component_1.SignUpComponent
+    },
     /* end define components */
     {
         path: '**',
@@ -41,7 +46,8 @@ const appComponents = [
     app_component_1.AppComponent,
     index_component_1.IndexComponent,
     /* start define components -- there we add in ->------------ 03 */
-    example_component_1.exampleComponent
+    example_component_1.exampleComponent,
+    signup_component_1.SignUpComponent
     /* end define components */
 ];
 /**

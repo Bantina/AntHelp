@@ -1,0 +1,16 @@
+﻿export class UserAccountViewModel {
+    public loginId: string;
+    public email: string;
+    public pwd: string;
+}
+
+export class UserAccountModel {
+    public loginId: string;
+    public pwd: string;
+}
+export class UserAccountInfoModel {
+    public loginId: string;
+    public email: string;
+    ///...
+}
+

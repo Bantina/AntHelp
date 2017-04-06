@@ -161,17 +161,31 @@ namespace QX_Frame.WebAPI.Controllers
             //transaction delete multiple tb
             Transaction_Helper_DG.Transaction(() =>
             {
+                tb_UserAccount userAccount;
                 using (var fact = Wcf<UserAccountService>())
                 {
                     var channel = fact.CreateChannel();
-                    tb_UserAccount userAccount = channel.QuerySingle(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(userAccountInfoQuery.loginId) || t.uid == userAccountInfoQuery.uid }).Cast<tb_UserAccount>();
+                    userAccount = channel.QuerySingle(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(userAccountInfoQuery.loginId) || t.uid == userAccountInfoQuery.uid }).Cast<tb_UserAccount>();
                     isSucceed = isSucceed && channel.Delete(userAccount);
                 }
                 using (var fact = Wcf<UserAccountInfoService>())
                 {
                     var channel = fact.CreateChannel();
-                    tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.loginId.Equals(userAccountInfoQuery.loginId) || t.uid == userAccountInfoQuery.uid }).Cast<tb_UserAccountInfo>();
+                    tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid ==userAccount.uid }).Cast<tb_UserAccountInfo>();
                     isSucceed = isSucceed && channel.Delete(userAccountInfo);
+                }
+                
+                using (var fact = Wcf<UserRoleService>())
+                {
+                    var channel = fact.CreateChannel();
+                    tb_UserRole userRole = channel.QuerySingle(new tb_UserRoleQueryObject { QueryCondition = t => t.uid == userAccount.uid }).Cast<tb_UserRole>();
+                    isSucceed = isSucceed && channel.Delete(userRole);
+                }
+                using (var fact = Wcf<UserStatusService>())
+                {
+                    var channel = fact.CreateChannel();
+                    tb_UserStatus userStatus = channel.QuerySingle(new tb_UserStatusQueryObject { QueryCondition = t => t.uid == userAccount.uid }).Cast<tb_UserStatus>();
+                    isSucceed = isSucceed && channel.Delete(userStatus);
                 }
             });
 
@@ -180,25 +194,6 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception("delete faild !");
             }
             return Json(Return_Helper_DG.Success_Desc_Data_DCount_HttpCode("delete succeed !"));
-        }
-
-        /**
-         * author:qixiao
-         * time:2017-4-4 21:58:14
-         * User Account Helper
-         **/
-        /// <summary>
-        /// get userAccount by login id
-        /// </summary>
-        /// <param name="loginId"></param>
-        /// <returns></returns>
-        public static tb_UserAccount GetUserByloginId(string loginId)
-        {
-            using (var fact = Wcf<UserAccountService>())
-            {
-                var channel = fact.CreateChannel();
-                return channel.QuerySingle(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_UserAccount>();
-            }
         }
     }
 }

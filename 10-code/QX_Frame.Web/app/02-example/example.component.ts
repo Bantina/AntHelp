@@ -4,7 +4,7 @@ import { OnInit } from '@angular/core';
 import { LinkModel } from './example.model';
 import { DomainModel } from './example.model';
 import { UsefullLinkService } from './example.service';
-import { appBase } from '../00-AQX_Frame.commons/appBase.base';
+import { appBase } from '../00-AQX_Frame.commons/appBase';
 import { Http } from '@angular/http';
 
 @Component({

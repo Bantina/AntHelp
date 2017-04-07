@@ -11,13 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const example_service_1 = require("./example.service");
-const appBase_base_1 = require("../00-AQX_Frame.commons/appBase.base");
+const appBase_1 = require("../00-AQX_Frame.commons/appBase");
 let exampleComponent = class exampleComponent {
     constructor(linkService) {
         this.linkService = linkService;
         this.domain = { domainApi: "" };
         this._usefullLinkService = linkService;
-        this.domain.domainApi = appBase_base_1.appBase.DomainApi;
+        this.domain.domainApi = appBase_1.appBase.DomainApi;
         //this.http.post("", {});
     }
     get LinkList() { return this._linkList; }

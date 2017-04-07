@@ -4,10 +4,10 @@
   "license": "MIT",
   "version": "1.4.2",
   "devDependencies": {
+    "ts-md5": "^1.2.0",
     "typescript": "2.0.6",
     "typings": "1.4.0"
   },
-
   "dependencies": {
     "@angular/common": "2.1.1",
     "@angular/compiler": "2.1.1",
@@ -26,7 +26,6 @@
     "angular2-in-memory-web-api": "0.0.21",
     "bootstrap": "3.3.7"
   },
-
   "scripts": {
     "postinstall": "typings install",
     "typings": "typings",

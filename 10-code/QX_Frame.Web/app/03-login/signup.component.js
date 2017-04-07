@@ -10,31 +10,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-const signup_service_1 = require("./signup.service");
+const appBase_1 = require("../00-AQX_Frame.commons/appBase");
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let SignUpComponent = class SignUpComponent {
-    constructor(signupService) {
-        this.signupService = signupService;
-        this.msg = "status";
+    constructor() {
         this.userAccountViewModel = {
             loginId: "",
             pwd: "",
             email: ""
         };
+        this.msg = "this is a message";
     }
     addAccount() {
         var self = this;
-        self.requestResult = self.signupService.AddAccount(self.userAccountViewModel)
-            .then(function (response) {
-            var data = response.json();
-            console.log(data);
-            if (data.isSuccess) {
-                self.msg = data.msg;
+        //Md5.hashStr('123456').toString();
+        //self.requestResult = self.signupService.AddAccount(self.userAccountViewModel)
+        //    .then(function (response) {
+        //        var data = response.json();
+        //        console.log(data);
+        //        if (data.isSuccess) {
+        //            self.msg = data.msg;
+        //        }
+        //        else {
+        //            self.msg = data.msg;
+        //        }
+        //        self.msg = data.msg;
+        //    })
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Account",
+            type: "post",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                loginId: this.userAccountViewModel.loginId,
+                pwd: this.userAccountViewModel.pwd,
+                email: this.userAccountViewModel.email
+            }),
+            success(data) {
+                this.msg = data.msg;
+                if (data.isSuccess) {
+                    console.log(JSON.stringify(data));
+                }
+                else {
+                    console.log(JSON.stringify(data));
+                }
+            },
+            error(data) {
+                alert(JSON.stringify(data));
             }
-            else {
-                self.msg = data.msg;
-            }
-            self.msg = data.msg;
         });
     }
     ////the final execute ...
@@ -46,9 +69,9 @@ SignUpComponent = __decorate([
         selector: 'signup',
         templateUrl: 'app/03-login/signup.component.html',
         styleUrls: ['app/03-login/signup.component.css'],
-        providers: [signup_service_1.SignupService] //元数据中申明依赖
+        providers: [] //元数据中申明依赖
     }),
-    __metadata("design:paramtypes", [signup_service_1.SignupService])
+    __metadata("design:paramtypes", [])
 ], SignUpComponent);
 exports.SignUpComponent = SignUpComponent;
 //# sourceMappingURL=signup.component.js.map

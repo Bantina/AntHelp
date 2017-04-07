@@ -5,6 +5,7 @@ using QX_Frame.Helper_DG_Framework;
 using QX_Frame.WebAPI.config;
 using QX_Frame.WebAPI.Helpers;
 using System;
+using System.Web;
 using System.Web.Http;
 
 namespace QX_Frame.WebAPI.Controllers
@@ -69,6 +70,7 @@ namespace QX_Frame.WebAPI.Controllers
 
             Cache_Helper_DG.Cache_Add($"{loginId}", $"{pwd},{email}", null, DateTime.Now.AddMinutes(10));   //add loginId pwd into cache 10 minutes later expired
 
+            
             Mail_Helper.SendMail(email,$"{ControllerConfigs.AppDomain}api/User?loginId={loginId}");
 
             /**

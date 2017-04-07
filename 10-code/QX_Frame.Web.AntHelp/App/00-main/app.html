@@ -1,0 +1,70 @@
+﻿<h1>{{title}}</h1>
+<!--<nav>
+    <a routerLink="/">Index</a>
+    <a routerLink="/example">Example</a>
+</nav>-->
+<!-- BEGIN menu -->
+<header class="header_silverbackground">
+    <div class="menu">
+        <!-- BEGIN logo -->
+        <a class="logo" href="index.html"></a>
+        <!-- /END logo -->
+
+        <div class="blockeasing-wrapp">
+            <h6 class="blockeasing-header">Menu</h6>
+            <ul class="blockeasing">
+                <li class="current">
+                    <a routerLink="/">首页</a>
+                    <ul>
+                        <li>
+                            <a href="index.html">SLIDE 1</a>
+                            <ul>
+                                <li><a href="index_layout_v1.html">HOME LAYOUT V1</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index1.html">SLIDE 2</a>
+                            <ul>
+                                <li><a href="index1_layout_v1.html">HOME LAYOUT V1</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="index2.html">SLIDE 3</a>
+                            <ul>
+                                <li><a href="index2_layout_v1.html">HOME LAYOUT V1</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a routerLink="/example">example</a></li>
+                <li>
+                    <a href="blog.html">今日新单</a>
+                    <ul>
+                        <li><a href="blog_post.html">POST EXAMPLE</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="services.html">积分商城</a>
+                    <ul>
+                        <li><a href="services_page.html">SERVICES PAGE</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html">专题推荐</a></li>
+                <li>
+                    <a href="#">今日话题</a>
+                    <ul>
+                        <li><a href="icons.html">ICONS</a></li>
+                        <li><a href="elements.html">ELEMENTS</a></li>
+                        <li><a href="columns.html">COLUMNS</a></li>
+                        <li><a href="typography.html">TYPOGRAPHY</a></li>
+                    </ul>
+                </li>
+                <li><a routerLink="/signup">联系我们</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+</header>
+<!-- /END menu -->
+<router-outlet></router-outlet>
+

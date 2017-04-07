@@ -1,5 +1,16 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+//export class UserAccountViewModel {
+//    public loginId: string;
+//    public email: string;
+//    public pwd: string;
+//}
 class UserAccountViewModel {
+    constructor(loginId, email, pwd) {
+        this.loginId = loginId;
+        this.email = email;
+        this.pwd = pwd;
+    }
 }
 exports.UserAccountViewModel = UserAccountViewModel;
 class UserAccountModel {

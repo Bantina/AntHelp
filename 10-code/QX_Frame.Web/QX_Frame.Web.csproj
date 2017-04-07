@@ -227,7 +227,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="app\00-AQX_Frame.services\logger.service.ts" />
-    <TypeScriptCompile Include="app\00-AQX_Frame.commons\appBase.base.ts" />
+    <TypeScriptCompile Include="app\00-AQX_Frame.commons\appBase.ts" />
     <TypeScriptCompile Include="app\01-index\index.component.ts" />
     <TypeScriptCompile Include="app\01-index\index.model.ts" />
     <TypeScriptCompile Include="app\01-index\index.service.ts" />
@@ -237,7 +237,6 @@
     <TypeScriptCompile Include="app\02-example\example.service.ts" />
     <TypeScriptCompile Include="app\03-login\signup.component.ts" />
     <TypeScriptCompile Include="app\03-login\signup.model.ts" />
-    <TypeScriptCompile Include="app\03-login\signup.service.ts" />
     <TypeScriptCompile Include="app\QX_Frame.module&amp;routing.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>

@@ -1,20 +1,17 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { UserAccountViewModel } from './signup.model'
-import { SignupService } from './signup.service';
+import { UserAccountViewModel } from './signup.model';
+import { Md5 } from "ts-md5/dist/md5";
+import { appBase } from '../00-AQX_Frame.commons/appBase';
 
-
+//注入器的两种：NgModule/Component(只在当前及子组件中生效)
 @Component({
     selector: 'signup',
     templateUrl: 'app/03-login/signup.component.html',
     styleUrls: ['app/03-login/signup.component.css'],
-    providers: [SignupService]
+    providers: []   //元数据中申明依赖
 })
 
 export class SignUpComponent implements OnInit {
-
-    requestResult: Promise<any>;    //request requestResult
-    msg: any = "status";
-    description: string; //decription message
 
     userAccountViewModel: UserAccountViewModel = {
         loginId: "",
@@ -22,22 +19,57 @@ export class SignUpComponent implements OnInit {
         email: ""
     };
 
-    constructor(private signupService: SignupService) { }
+    msg: string = "this is a message";
+
+    constructor() { }
 
     addAccount(): void {
+
+
         var self = this;
-        self.requestResult = self.signupService.AddAccount(self.userAccountViewModel)
-            .then(function (response) {
-                var data = response.json();
-                console.log(data);
+
+        //Md5.hashStr('123456').toString();
+        
+        //self.requestResult = self.signupService.AddAccount(self.userAccountViewModel)
+        //    .then(function (response) {
+        //        var data = response.json();
+        //        console.log(data);
+        //        if (data.isSuccess) {
+        //            self.msg = data.msg;
+        //        }
+        //        else {
+        //            self.msg = data.msg;
+        //        }
+        //        self.msg = data.msg;
+        //    })
+
+        $.ajax({
+            url: appBase.DomainApi + "api/Account",
+            type: "post",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(
+                {
+                    loginId: this.userAccountViewModel.loginId,
+                    pwd: this.userAccountViewModel.pwd,
+                    email: this.userAccountViewModel.email
+                }),
+            success(data)
+            {
+                this.msg = data.msg;
                 if (data.isSuccess) {
-                    self.msg = data.msg;
+                    console.log(JSON.stringify(data));
                 }
-                else {
-                    self.msg = data.msg;
+                else
+                {
+                    console.log(JSON.stringify(data));
                 }
-                self.description = data.msg;
-            })
+            },
+            error(data)
+            {
+                alert(JSON.stringify(data));
+            }
+        });
 
     }
 

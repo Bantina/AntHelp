@@ -9,29 +9,28 @@
     </div>
     <div class="col-md-6">
         <div class="signup-right">
-            <form action="" id="signupform" class="signup-form" name="">
+            <form action="" id="signupform" class="signup-form">
+                <div class="form-group">
+                    <p class="col-md-12" style="color:#e72015;height:30px;line-height:30px;" >{{msg}}</p>
+                </div>
                 <div class="form-group">
                     <label for="true" class="avail-user">用户名</label>
-                    <input type="text" placeholder="John" class="form-control small-control" id="username" [(ngModel)]="userAccountViewModel.loginId">
+                    <input type="text" placeholder="John" class="form-control small-control" id="username" [(ngModel)]="userAccountViewModel.loginId" name="loginId">
                 </div>
                 <div class="form-group">
                     <label for="true">邮箱</label>
-                    <input type="text" placeholder="John@123.com" class="form-control small-control" id="email" [(ngModel)]="userAccountViewModel.email">
+                    <input type="text" placeholder="John@123.com" class="form-control small-control" id="email" [(ngModel)]="userAccountViewModel.email" name="email">
                 </div>
                 <div class="form-group">
                     <label for="true">密码</label>
-                    <input type="password" placeholder="********" class="form-control small-control" id="password" [(ngModel)]="userAccountViewModel.pwd">
+                    <input type="password" placeholder="********" class="form-control small-control" id="password" [(ngModel)]="userAccountViewModel.pwd" name="pwd">
                 </div>
                 <div class="form-group">
                     <label for="true">确认密码</label>
-                    <input type="password" placeholder="********" class="form-control small-control" id="repassword">
+                    <input type="password" placeholder="********" class="form-control small-control" id="repassword" name="repassword">
                 </div>
                 <div class="form-group">
-                    <input type="button" class="signup-btn no-top-margin" value="注           册" (click)="addAccount()">
-                </div>
-                <div class="form-group">
-                    <label class="col-md-6">{{msg}}</label>
-                    <label class="col-md-6" ng-bind="description"></label>
+                    <input type="button" class="signup-btn no-top-margin" value="注           册" (click)="addAccount()" name="btn_register">
                 </div>
             </form>
         </div>

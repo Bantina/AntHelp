@@ -1,40 +1,50 @@
-﻿<!--start signup--> 
-<div>
-    <div class="col-md-6">
-        <div class="signup-left">
-            <div class="signup-left-data">
-                <img src="../../Images/03-login/sign01.png" />
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>signup</title>
+</head>
+<body>
+
+    <!--start signup-->
+    <div>
+        <div class="col-md-6">
+            <div class="signup-left">
+                <div class="signup-left-data">
+                    <img src="../../Images/03-login/sign01.png" />
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="signup-right">
+                <form action="" id="signupform" class="signup-form" name="">
+                    <div class="form-group">
+                        <label for="true" class="avail-user">用户名</label>
+                        <input type="text" placeholder="John" class="form-control small-control" id="username" [(ngModel)]="userAccountViewModel.loginId">
+                    </div>
+                    <div class="form-group">
+                        <label for="true">邮箱</label>
+                        <input type="text" placeholder="John@123.com" class="form-control small-control" id="email" [(ngModel)]="userAccountViewModel.email">
+                    </div>
+                    <div class="form-group">
+                        <label for="true">密码</label>
+                        <input type="password" placeholder="********" class="form-control small-control" id="password" [(ngModel)]="userAccountViewModel.pwd">
+                    </div>
+                    <div class="form-group">
+                        <label for="true">确认密码</label>
+                        <input type="password" placeholder="********" class="form-control small-control" id="repassword">
+                    </div>
+                    <div class="form-group">
+                        <input type="button" class="signup-btn no-top-margin" value="注           册" (click)="addAccount()">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-6">{{msg}}</label>
+                        <label class="col-md-6" ng-bind="description"></label>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <div class="col-md-6">
-        <div class="signup-right">
-            <form action="" id="signupform" class="signup-form" name="">
-                <div class="form-group">
-                    <label for="true" class="avail-user">用户名</label>
-                    <input type="text" placeholder="John" class="form-control small-control" id="username" [(ngModel)]="userAccountViewModel.loginId">
-                </div>
-                <div class="form-group">
-                    <label for="true">邮箱</label>
-                    <input type="text" placeholder="John@123.com" class="form-control small-control" id="email" [(ngModel)]="userAccountViewModel.email">
-                </div>
-                <div class="form-group">
-                    <label for="true">密码</label>
-                    <input type="password" placeholder="********" class="form-control small-control" id="password" [(ngModel)]="userAccountViewModel.pwd">
-                </div>
-                <div class="form-group">
-                    <label for="true">确认密码</label>
-                    <input type="password" placeholder="********" class="form-control small-control" id="repassword">
-                </div>
-                <div class="form-group">
-                    <input type="button" class="signup-btn no-top-margin" value="注           册" (click)="addAccount()">
-                </div>
-                <div class="form-group">
-                    <label class="col-md-6">{{msg}}</label>
-                    <label class="col-md-6" ng-bind="description"></label>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!--end signup--> 
+    <!--end signup-->
+</body>
+</html>

@@ -1,7 +1,14 @@
-﻿export class UserAccountViewModel {
-    public loginId: string;
-    public email: string;
-    public pwd: string;
+﻿//export class UserAccountViewModel {
+//    public loginId: string;
+//    public email: string;
+//    public pwd: string;
+//}
+export class UserAccountViewModel {
+    constructor(
+        public loginId: string,
+        public email: string,
+        public pwd: string
+    ) { }
 }
 
 export class UserAccountModel {

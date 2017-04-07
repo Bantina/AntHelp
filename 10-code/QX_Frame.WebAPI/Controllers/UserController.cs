@@ -174,7 +174,6 @@ namespace QX_Frame.WebAPI.Controllers
                     tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid ==userAccount.uid }).Cast<tb_UserAccountInfo>();
                     isSucceed = isSucceed && channel.Delete(userAccountInfo);
                 }
-                
                 using (var fact = Wcf<UserRoleService>())
                 {
                     var channel = fact.CreateChannel();

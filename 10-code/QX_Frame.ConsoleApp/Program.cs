@@ -13,7 +13,7 @@ namespace QX_Frame.ConsoleApp
         {
             new ClassRegisters();   //register classes
 
-            UserAccountQueryObject query = new UserAccountQueryObject();
+            tb_UserAccountQueryObject query = new tb_UserAccountQueryObject();
             query.loginId = "123";
 
             using (var fact = Wcf<UserAccountService>())
@@ -21,7 +21,7 @@ namespace QX_Frame.ConsoleApp
 
                 var channel = fact.CreateChannel();
                 int count;
-                List<tb_userAccount> list = channel.QueryAll(query).Cast<List<tb_userAccount>>(out count);
+                List<tb_UserAccount> list = channel.QueryAll(query).Cast<List<tb_UserAccount>>(out count);
                 Console.WriteLine($"count={count}");
                 foreach (var item in list)
                 {

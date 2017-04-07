@@ -1,0 +1,907 @@
+﻿/*--------------------------global start---------------------------------*/
+body {
+    background-color: #fff;
+    font-family: 'Segoe UI Regular';
+    font-size: 16px;
+}
+
+
+/* Set width on the form input elements since they're 100% wide by default */
+input, select, textarea {
+    font-family: 'Segoe UI Regular' !important;
+    font-size: 16px !important;
+}
+
+button {
+    margin-left: 5px !important;
+    margin-right: 5px;
+    outline: none !important;
+}
+
+a {
+    outline: none !important;
+}
+
+
+form label {
+    font-weight: normal;
+    font-family: 'Segoe UI Historic';
+    font-size: 16px;
+    color: #666252;
+    padding-right: 10px !important;
+}
+
+@font-face {
+    font-family: 'Segoe UI Regular';
+    src: url('../fonts/segoeui.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/segoeui.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/segoeui.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/segoeui.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/segoeui.svg#Segoe UI Regular') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'Segoe UI Bold';
+    src: url('../fonts/segoeuib.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/segoeuib.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/segoeuib.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/segoeuib.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/segoeuib.svg#Segoe UI Bold') format('svg'); /* Legacy iOS */
+}
+
+@font-face {
+    font-family: 'Segoe UI Semibold';
+    src: url('../fonts/seguisb.ttf');
+    src: url('../fonts/seguisb.eot'); /* IE9 Compat Modes */
+    src: url('../fonts/seguisb.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/seguisb.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/seguisb.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/seguisb.svg#Segoe UI Semibold') format('svg'); /* Legacy iOS */
+}
+/*--------------------------global end---------------------------------*/
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    min-width: 1240px;
+}
+
+.page-wrapper {
+    background-color: #fff;
+}
+
+.table-form {
+}
+
+table a {
+    text-decoration: underline;
+}
+
+.table-form td {
+    border: 0 !important;
+    vertical-align: middle !important;
+}
+
+.table-form .title {
+    text-align: left;
+}
+
+.table-form .input {
+    text-align: left;
+}
+
+.table-search-form {
+    margin-bottom: 0 !important;
+    color: #666252;
+}
+
+    .table-search-form tr {
+        border-bottom-color: rgb(210, 210, 210);
+        border-bottom-width: 1px;
+        border-bottom-style: dashed;
+    }
+
+    .table-search-form td {
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+    }
+
+    .table-search-form .title {
+        text-align: left;
+    }
+
+    .table-search-form .input {
+        text-align: left;
+        padding-left: 10px !important;
+    }
+
+    .table-search-form input {
+        width: auto !important;
+        margin-left: 5px !important;
+    }
+
+.panel-body-form .btn-area {
+    text-align: center;
+}
+
+    .panel-body-form .btn-area button {
+        margin: 15px !important;
+    }
+
+.search-condition {
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+}
+
+.fieldset .panel .input input {
+    width: 100%;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+
+
+
+
+/* Set padding to display errors that occur during databinding */
+
+
+.panel-body-form {
+    padding: 0px 20px;
+    text-align: right;
+}
+
+.fieldset {
+    padding: 10px 15px 20px 15px;
+    margin: 0 2px;
+    border: 1px solid #bce8f1;
+}
+
+
+.legend {
+    padding: 5px;
+    font-size: 19px;
+    line-height: inherit;
+    color: #333;
+    width: auto;
+    border-bottom: 0;
+    margin-bottom: 0px;
+}
+
+
+
+@media only screen and (max-width: 767px) {
+    .nofloat {
+        float: none;
+        padding: 10px 15px;
+    }
+}
+
+/*-----------------------------tool box start-------------------------------------*/
+.toolbox {
+}
+
+    .toolbox label {
+        font-family: "Segoe UI" !important;
+        color: #0b6099 !important;
+        font-size: 18px;
+    }
+
+    .toolbox .container-fluid {
+        border: 1px dotted #dcdcdc !important;
+        line-height: 60px !important;
+        background-color: #edf6fa !important;
+    }
+
+    .toolbox .dropdown {
+        padding-top: 15px !important;
+        padding-right: 15px !important;
+        padding-bottom: 15px !important;
+    }
+
+    .toolbox .dropdown-toggle {
+        padding: 0 !important;
+    }
+
+    .toolbox .btn {
+        color: white !important;
+    }
+
+    .toolbox .title {
+        font-family: "Segoe UI Semibold" !important;
+        color: #0b6099 !important;
+    }
+
+.group-arrow {
+    top: 50%;
+    right: 0px;
+    margin-top: -5px;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #000;
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.group-arrow {
+    display: none;
+}
+
+.list-group li.active .group-arrow {
+    top: 40%;
+    right: -16px;
+    margin-top: -5px;
+    border-width: 10px;
+    border-left-color: #88cef2 !important;
+    position: absolute !important;
+    width: 0px;
+    height: 0px;
+    border-color: transparent;
+    border-style: solid;
+    display: block;
+}
+/*-----------------------------tool box end-------------------------------------*/
+
+/*-----------------------------span flag start-------------------------------------*/
+.span_yellow {
+    color: #faa701 !important;
+}
+.span_yellow .flag {
+    font-size:20px;
+}
+
+.span_blue {
+    color: #0b6099 !important;
+}
+
+.span_red {
+    color: #e60012 !important;
+}
+/*-----------------------------span flag end-------------------------------------*/
+
+/*--------------------------bootstrap override start---------------------*/
+.form-control {
+    height: 30px !important;
+    color: #00479d;
+    width:200px !important;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 15px;
+}
+
+.col-non {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.col-auto-width {
+    width: auto;
+}
+
+.nav-tabs {
+    font-size: 18px !important;
+}
+
+    .nav-tabs li {
+        border-top: 1px solid #c8c9cc;
+        border-left: 1px solid #c8c9cc;
+        border-right: 1px solid #c8c9cc;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        margin-right: 2px !important;
+    }
+
+    .nav-tabs .active {
+        font-weight: bold !important;
+        border: none;
+    }
+
+        .nav-tabs .active a {
+            background-color: #88cef2 !important;
+        }
+
+.tab-content {
+    border: 1px solid #88cef2 !important;
+}
+
+.tab-content-scroll {
+    overflow: auto;
+    position: relative;
+    height: 800px;
+}
+
+.tab-content .subcontent {
+    /*border-color: #dcdcdc !important;*/
+    border-width: 0 !important;
+    width: 1000px;
+}
+
+.tab-content table.property-grid {
+    margin-bottom: 15px !important;
+}
+
+.subcontent .tab-pane .row {
+    margin-top: 0 !important;
+}
+
+.panel {
+    border-radius: 0;
+    margin-bottom: 15px !important;
+}
+
+.panel-info {
+    border: solid 1px #dcdcdc;
+}
+
+    .panel-info .k-grid-header, .panel-info .k-header {
+        background-color: #eeeeee !important;
+    }
+
+    .panel-info .k-header {
+        height: 30px !important;
+    }
+
+    .panel-info .k-grid-content > table > tr {
+        height: 30px !important;
+    }
+
+.panel-heading {
+    font-weight: bold !important;
+    font-size: 16px !important;
+    color: black !important;
+    min-height: 40px !important;
+    background-color: #edf6fa !important;
+    background-image: none !important;
+    padding: 5px 10px 5px 10px !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+    border-color: #dcdcdc !important;
+}
+
+    .panel-heading .title {
+        float: left;
+        background-image: url("../../../Content/Images/tittle.png");
+        background-repeat: no-repeat;
+        padding-left: 20px;
+        background-position-y: 5px;
+        margin-left: -5px;
+    }
+
+    .panel-heading .btn-group {
+        float: right;
+        padding: 0 !important;
+    }
+
+.panel-body-grid {
+    padding: 0;
+}
+
+    .panel-body-grid > .k-grid {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+        .panel-body-grid > .k-grid td, .panel-body-grid > .k-grid th {
+            height: 30px !important;
+            border-top: solid 1px #dcdcdc !important;
+            border-right: solid 1px #dcdcdc !important;
+        }
+
+        .panel-body-grid > .k-grid tr:last-child > td {
+            border-bottom: solid 1px #dcdcdc !important;
+        }
+
+.dl-horizontal dt {
+}
+
+.modal {
+    padding-top: 160px;
+}
+
+.modal-lg {
+    width: auto;
+    max-width: 800px;
+}
+
+.modal-header {
+    padding: 5px 0 5px 15px;
+    border-bottom: 1px solid #e5e5e5;
+    font-family: Segoe UI Semibold;
+    color: #261f00;
+    min-width: 34px;
+    background-color: #88cef2;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+    .modal-header .modal-title {
+        font-size: 16px;
+    }
+
+.modal-footer {
+    padding: 15px;
+    text-align: center;
+    border-top: 0 solid #e5e5e5;
+}
+
+    .modal-footer .btn {
+        height: 40px;
+        font-family: "Segoe UI Bold";
+    }
+
+.modal-content {
+    border-radius: 4px;
+}
+
+.btn {
+    font-weight: bold !important;
+    border: none !important;
+    font-family: 'Segoe UI Regular';
+    color: black !important;
+    background: #88CEF2 !important;
+    border-radius: 4px !important;
+}
+
+.btn-add {
+    background-color: #32a5de !important;
+    color: white !important;
+}
+
+.btn-edit {
+    background-color: #32a5de !important;
+    color: white !important;
+}
+
+.btn-delete {
+    background-color: #f75a53 !important;
+    color: white !important;
+}
+
+.btn-cancel {
+    background-color: #d2d2d2 !important;
+}
+
+.btn-sm {
+    font-size: 16px;
+    min-height: 30px;
+    min-width: 90px;
+}
+
+.btn-lg {
+    min-width: 120px;
+    font-family: 'Segoe UI Bold' !important;
+}
+
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover {
+    background-color: #88cef2 !important;
+}
+
+.list-group {
+    width: 200px;
+    background-color: #edf6fa;
+    font-size: 18px;
+    position: relative !important;
+    width:100% !important;
+}
+
+.tab-content-scroll .tab-pane .col-sm-3 {
+    width: 230px;
+}
+
+.list-group > li {
+    border-top: 0 !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    margin-right: 0 !important;
+}
+
+.list-group > .active {
+    font-weight: normal !important;
+}
+
+.nav-stacked > li + li {
+    margin-top: 0px;
+}
+
+.list-group .list-group-item {
+    border-radius: 0;
+    background-color: #edf6fa;
+    border-color: #d3e4eb !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+    font-family: Segoe UI;
+}
+
+
+/*--------------------------bootstrap override end---------------------*/
+
+
+/*---------------------------kendo override start--------------------------*/
+.k-dropdown-wrap {
+    height: 30px !important;
+    min-height: 30px !important;
+}
+
+    .k-dropdown-wrap .k-input {
+        color: #0b6099 !important;
+    }
+
+.k-input {
+    height: 26px !important;
+    min-height: 26px !important;
+}
+
+.k-select .k-icon {
+    /*background-position-y: -35px !important;*/
+}
+.k-numeric-wrap .k-input, .k-picker-wrap .k-input {
+    box-sizing: content-box !important;
+    width: 100%!important;
+}
+
+.k-header {
+    background-color: #d3e4eb;
+    border-width: 0 !important;
+}
+
+    .k-header .k-link {
+        font-weight: bold !important;
+        min-height: 40px !important;
+        line-height: 40px !important;
+    }
+
+.panel-body-grid .k-grid th.k-header {
+    padding: 0 10px !important;
+}
+
+
+.k-grid {
+    border: none;
+}
+
+
+.k-grid-header {
+    background-color: #d3e4eb;
+    border-width: 0 !important;
+    font-family: "Segoe UI Semibold" !important;
+    color: #261f00;
+}
+
+    .k-grid-header .k-header {
+        color: #261f00;
+    }
+
+    .k-grid-header th.k-header > .k-link {
+        padding: 0 !important;
+    }
+
+.k-grid-content td, .panel-body-grid .k-grid th, .k-grid td {
+    min-height: 30px !important;
+    border-right-width: 1px !important;
+    border-bottom-width: 0px !important;
+    border-top-width: 0px !important;
+    border-left-width: 0px !important;
+    border-right-style: solid !important;
+    border-right-color: #d3e4eb !important;
+    padding: 0 10px !important;
+}
+
+.k-grid > .k-grid-content tr:last-child > td {
+    border-bottom: solid 1px #d3e4eb !important;
+}
+
+.k-grid .k-alt {
+    background-color: #f2f8fa /*!important*/;
+}
+
+.k-grid-noheader .k-grid-header {
+    display: none !important;
+}
+
+.k-grid td.k-state-selected:hover, .k-grid tr:hover td, .k-grid tr.k-state-selected:hover td, .k-grid tr.k-state-selected, .k-grid .k-state-selected {
+    background-color: #88cef2;
+}
+
+.k-draghandle.k-state-selected:hover, .k-ghost-splitbar-horizontal, .k-ghost-splitbar-vertical, .k-list > .k-state-highlight, .k-list > .k-state-selected, .k-marquee-color, .k-panel > .k-state-selected, .k-scheduler .k-scheduler-toolbar .k-state-selected, .k-scheduler .k-today.k-state-selected, .k-state-selected, .k-state-selected:link, .k-state-selected:visited {
+    color: #261f00 !important;
+    background-color: #88cef2 !important;
+    border-color: #88cef2 !important;
+}
+
+.k-grid .col-right {
+    text-align: right;
+}
+
+.k-grid-norecords {
+    line-height: 10 !important;
+}
+.k-autocomplete .k-input, .k-dropdown-wrap .k-input, .k-numeric-wrap .k-input, .k-picker-wrap .k-input, .k-selectbox .k-input, .k-textbox > input {
+    line-height: normal !important;
+}
+/*---------------------------kendo override end--------------------------*/
+
+/*---------------------------properties grid start--------------------------*/
+.ngdialog .ngdialog-content {
+    padding: 0 !important;
+    font-family: "Segoe UI Regular" !important;
+    font-size: 16px !important;
+}
+
+    .ngdialog .ngdialog-content .modal-body {
+        margin-left: 15px;
+        margin-right: 15px;
+        padding-bottom: 0;
+    }
+
+.modal-dialog.ppgpop .modal-body {
+    margin: 0;
+    padding-top: 0px;
+}
+
+    .modal-dialog.ppgpop .modal-body table td {
+        border: 0px !important;
+        height: 34px !important;
+    }
+
+.modal-dialog.ppgpop .k-grid td.k-state-selected:hover, .modal-dialog.ppgpop .k-grid tr:hover td, .modal-dialog.ppgpop .k-grid tr.k-state-selected:hover td, .modal-dialog.ppgpop .k-grid tr.k-state-selected, .modal-dialog.ppgpop .k-grid .k-state-selected {
+    background-color: #eeeeee;
+}
+
+.modal-dialog.ppgpop .k-draghandle.k-state-selected:hover, .modal-dialog.ppgpop .k-ghost-splitbar-horizontal, .modal-dialog.ppgpop .k-ghost-splitbar-vertical, .k-list > .k-state-highlight, .modal-dialog.ppgpop .k-list > .k-state-selected, .modal-dialog.ppgpop .k-marquee-color, .modal-dialog.ppgpop .k-panel > .k-state-selected, .modal-dialog.ppgpop .k-scheduler .k-scheduler-toolbar .k-state-selected, .modal-dialog.ppgpop .k-scheduler .k-today.k-state-selected, .modal-dialog.ppgpop .k-state-selected, .modal-dialog.ppgpop .k-state-selected:link, .modal-dialog.ppgpop .k-state-selected:visited {
+    color: #261f00 !important;
+    background-color: #eeeeee !important;
+    border-color: #eeeeee !important;
+}
+.form-dialog .modal-body{
+    padding-bottom:0px;
+}
+.form-dialog .table{
+    width:auto;
+    margin:auto;
+    margin-bottom:0px;
+}
+.form-dialog form .input{
+    width:50%;
+}
+
+input.ng-invalid {
+    /*border: 1px solid #f75a53;*/
+}
+
+input.ng-valid {
+    /*border: 1px solid green;*/
+}
+
+input.ng-pristine {
+    /*border: 1px solid #f75a53;*/
+}
+
+input.ng-dirty {
+    /*border: 1px solid #f75a53;*/
+}
+
+.invalid {
+    font-family: "Segoe UI Regular";
+    font-size: 14px;
+    color: #f75a53;
+}
+
+.valid {
+    font-family: "Segoe UI Regular";
+    font-size: 14px;
+    color: green;
+}
+/*---------------------------kendo override end--------------------------*/
+
+/*---------------------------kendo grid pager start--------------------------*/
+    .k-pager-numbers .k-link, .k-pager-numbers .k-state-selected, .k-pager-wrap > .k-link {
+        min-width: 25px;
+        width: 25px !important;
+        height: 25px !important;
+        line-height: 25px !important;
+        border-color:  #d3e4eb !important;
+    }
+
+    .k-pager-wrap .k-pager-nav.k-pager-last {
+        /*border-radius: 50% !important;*/
+    }
+
+    .k-pager-nav {
+        margin: 2px!important;
+    }
+
+    .k-pager-numbers {
+        margin: 2px!important;
+    }
+
+    .k-pager-wrap.k-grid-pager {
+        height: 30px !important;
+        line-height: 25px !important;
+    }
+
+    .k-grid.k-pager-numbers {
+        height: 30px;
+    }
+
+    .k-pager-sizes,.k-pager-info {
+        display:none;
+    }
+
+    .k-pager-sizer.k-widget.k-dropdown {
+        margin-top: 0 !important;
+    }
+
+    .k-pager-wrap .k-i-seek-w, .k-pager-wrap .k-i-seek-e, .k-pager-wrap .k-icon.k-i-arrow-w, .k-pager-wrap .k-icon.k-i-arrow-e {
+        margin: 0 2px 4px 2px !important;
+    }
+
+    .k-pager-wrap .k-icon.k-i-arrow-s {
+        margin: 0 0 8px 0 !important;
+    }
+
+    .k-pager-sizes .k-dropdown-wrap .k-input {
+        line-height: 25px;
+    }
+    .k-pager-info {
+        font-size:15px;
+    }
+/*---------------------------kendo grid pager end--------------------------*/
+
+/*---------------------------properties grid start--------------------------*/
+
+
+
+.property-grid {
+    width: 100%;
+    color: #261f00;
+    font-family: 'Segoe UI Regular';
+    margin-bottom: 10px;
+}
+
+.ppg-header {
+    border: solid 1px #dcdcdc;
+    background-color: #edf6fa;
+    height: 30px;
+    font-family: 'Segoe UI Semibold';
+    cursor: hand;
+}
+
+    .ppg-header td:first-child {
+        width: 24px;
+        text-align: center;
+    }
+
+.ppg-group {
+    width: 100%;
+}
+
+.ppg-row {
+    height: 30px;
+    cursor: hand;
+}
+
+.ppg-editable {
+    color: #0b6099;
+}
+
+.ppg-readonly {
+    color: #261f00;
+}
+
+
+.ppg-row td {
+    border-top: solid 1px #dcdcdc;
+    border-bottom: solid 1px #dcdcdc;
+    padding-left: 10px;
+}
+
+    .ppg-row td:first-child {
+        width: 60%;
+        border-left: solid 1px #dcdcdc;
+        border-right: solid 1px #dcdcdc;
+    }
+
+    .ppg-row td:last-child {
+        border-right: solid 1px #dcdcdc;
+    }
+
+.ppg-row .btn-edit {
+    background-color: #88cef2 !important;
+    color: #00479d !important;
+    font-size: 16px !important;
+    padding: 0 !important;
+}
+
+.ppg-selected {
+    background-color: #88cef2;
+}
+
+
+/*---------------------------properties grid end--------------------------*/
+
+/*---------------------------tree grid start--------------------------*/
+       /*.k-checkbox-wrapper {
+        position: absolute !important;
+        right: 10px !important;
+    }
+
+        .k-checkbox-wrapper input {
+            width: auto !important;
+        }
+
+        .k-top:hover {background-color:#eeeeee;}
+        .k-mid:hover {background-color:#eeeeee;}
+        .k-last:hover {background-color:#eeeeee;}
+        .k-state-hover {background-color: #eeeeee  !important;}
+
+    .k-treeview .k-in {
+        line-height: 17px;
+        margin: 1px 0 1px 0;
+        padding: 7px 3px 7px 10px;
+    }
+
+    .k-minus, .k-minus-disabled {
+        background-position: 0 !important;
+        background-image: url(../../../Content/Images/minus.png);
+    }
+
+    .k-plus {
+        background-position: 0 !important;
+        background-image: url(../../../Content/Images/plus.png);
+    }
+
+    .k-treeview .k-item {
+        margin-left: 0;
+        padding: 0;
+    }
+
+    .k-treeview .k-item > .k-group {
+            padding-left: 0;
+        }
+
+    .k-treeview > .k-group {
+        padding-left: 25px;
+    }
+
+    .k-checkbox-label {
+        position: relative;
+        padding-left: 5px;
+        vertical-align: middle;
+        line-height: 14px;
+        cursor: pointer;
+        padding: 10px;
+        margin-top: 8px;
+    }
+
+    span.k-in {
+        cursor: default;
+        font-size: 16px;
+        color: #261f00;
+    }
+     .k-in.k-state-selected {
+        background-color: #eeeeee !important;
+        border-style: hidden !important; 
+    }
+    .k-treeview .k-state-selected, .k-state-focused {
+       
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }*/
+ /*---------------------------tree grid end--------------------------*/
+
+
+.height95 {
+    height:95%;
+}
+.height100 {
+    height:100%;
+}

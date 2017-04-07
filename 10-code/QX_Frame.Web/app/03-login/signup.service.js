@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const http_1 = require('@angular/http');
-const appBase_base_1 = require('../00-AQX_Frame.commons/appBase.base');
-require('rxjs/add/operator/toPromise');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const http_1 = require("@angular/http");
+const appBase_base_1 = require("../00-AQX_Frame.commons/appBase.base");
+require("rxjs/add/operator/toPromise");
 let SignupService = class SignupService {
     constructor(http) {
         this.http = http;
@@ -27,8 +28,8 @@ let SignupService = class SignupService {
     }
 };
 SignupService = __decorate([
-    core_1.Injectable(), 
-    __metadata('design:paramtypes', [http_1.Http])
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
 ], SignupService);
 exports.SignupService = SignupService;
 //# sourceMappingURL=signup.service.js.map

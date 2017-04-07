@@ -36,7 +36,7 @@ export class SignUpComponent implements OnInit {
                 else {
                     self.msg = data.msg;
                 }
-                self.description = data.msg;
+                self.msg = data.msg;
             })
 
     }

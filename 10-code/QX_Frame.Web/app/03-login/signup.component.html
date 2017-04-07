@@ -11,6 +11,9 @@
         <div class="signup-right">
             <form action="" id="signupform" class="signup-form" name="">
                 <div class="form-group">
+                    <p class="col-md-12" style="color:#e72015;height:30px;line-height:30px;">{{msg}}</p>
+                </div>
+                <div class="form-group">
                     <label for="true" class="avail-user">用户名</label>
                     <input type="text" placeholder="John" class="form-control small-control" id="username" [(ngModel)]="userAccountViewModel.loginId">
                 </div>
@@ -28,10 +31,6 @@
                 </div>
                 <div class="form-group">
                     <input type="button" class="signup-btn no-top-margin" value="注           册" (click)="addAccount()">
-                </div>
-                <div class="form-group">
-                    <label class="col-md-6">{{msg}}</label>
-                    <label class="col-md-6" ng-bind="description"></label>
                 </div>
             </form>
         </div>

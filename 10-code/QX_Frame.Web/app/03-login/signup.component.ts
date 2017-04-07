@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { UserAccountViewModel } from './signup.model';
-import { Md5 } from "ts-md5/dist/md5";
+import { Md5 } from "../00-AQX_Frame.services/Md5.service";
 import { appBase } from '../00-AQX_Frame.commons/appBase';
 
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
@@ -27,8 +27,6 @@ export class SignUpComponent implements OnInit {
 
 
         var self = this;
-
-        //Md5.hashStr('123456').toString();
         
         //self.requestResult = self.signupService.AddAccount(self.userAccountViewModel)
         //    .then(function (response) {
@@ -51,7 +49,7 @@ export class SignUpComponent implements OnInit {
             data: JSON.stringify(
                 {
                     loginId: this.userAccountViewModel.loginId,
-                    pwd: this.userAccountViewModel.pwd,
+                    pwd: Md5.hashStr(this.userAccountViewModel.pwd).toString(),
                     email: this.userAccountViewModel.email
                 }),
             success(data)

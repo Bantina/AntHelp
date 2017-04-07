@@ -237,6 +237,7 @@
     <TypeScriptCompile Include="app\02-example\example.service.ts" />
     <TypeScriptCompile Include="app\03-login\signup.component.ts" />
     <TypeScriptCompile Include="app\03-login\signup.model.ts" />
+    <TypeScriptCompile Include="app\00-AQX_Frame.services\Md5.service.ts" />
     <TypeScriptCompile Include="app\QX_Frame.module&amp;routing.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>

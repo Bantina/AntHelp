@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const signup_service_1 = require("./signup.service");
+//注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let SignUpComponent = class SignUpComponent {
     constructor(signupService) {
         this.signupService = signupService;
@@ -45,7 +46,7 @@ SignUpComponent = __decorate([
         selector: 'signup',
         templateUrl: 'app/03-login/signup.component.html',
         styleUrls: ['app/03-login/signup.component.css'],
-        providers: [signup_service_1.SignupService]
+        providers: [signup_service_1.SignupService] //元数据中申明依赖
     }),
     __metadata("design:paramtypes", [signup_service_1.SignupService])
 ], SignUpComponent);

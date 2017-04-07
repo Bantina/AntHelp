@@ -5,7 +5,7 @@ import { UserAccountViewModel } from './signup.model';
 import 'rxjs/add/operator/toPromise';
 
 
-@Injectable()
+@Injectable()   //标志 类 可以被一个注入器 实例化。
 export class SignupService {
 
     constructor(private http: Http) { }

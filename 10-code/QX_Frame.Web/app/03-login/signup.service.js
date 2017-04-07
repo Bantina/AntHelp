@@ -28,7 +28,8 @@ let SignupService = class SignupService {
     }
 };
 SignupService = __decorate([
-    core_1.Injectable(),
+    core_1.Injectable() //标志 类 可以被一个注入器 实例化。
+    ,
     __metadata("design:paramtypes", [http_1.Http])
 ], SignupService);
 exports.SignupService = SignupService;

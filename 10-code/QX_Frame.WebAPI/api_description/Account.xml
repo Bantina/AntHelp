@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApiList>
+  
+  <Api name="用户注册接口1">
+    <Router>api/Account</Router>
+    <Method>POST</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "loginId":"qixiao123",
+      "pwd":"e10adc3949ba59abbe56e057f20f883e",
+      "email":"wd8622088@foxmail.com",
+      "emailHtmlRoute":"api/User"
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！","httpCode":200,"data":null,"dataCount":0}
+      </Success>
+      <Error>
+        {
+        "isSuccess": false,
+        "msg": "loginId must be provide\r\nParameter name: loginId",
+        "httpCode": 405,
+        "errorCode": 0,
+        "errorLevel": 0
+        }
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1002" errorLevel="0">loginId must be provide</Error>
+      <Error errorCode="1003" errorLevel="0">pwd must be provide</Error>
+      <Error errorCode="1004" errorLevel="0">email must be provide</Error>
+      <Error errorCode="1005" errorLevel="0">emailHtmlRoute must be provide</Error>
+      <Error errorCode="2001" errorLevel="0">pwd must be Encrypt By Md5</Error>
+      <Error errorCode="2002" errorLevel="0">email format error</Error>
+      <Error errorCode="3002" errorLevel="0">the loginId has been exist</Error>
+    </Errors>
+  </Api>
+  
+</ApiList>

@@ -31,8 +31,7 @@ namespace QX_Frame.Data.Entities.QX_Frame
 
         public int sexId { get; set; } = 0;
 
-        [StringLength(50)]
-        public string birthday { get; set; }
+        public DateTime? birthday { get; set; }
 
         public int bloodTypeId { get; set; } = 0;
 
@@ -59,6 +58,8 @@ namespace QX_Frame.Data.Entities.QX_Frame
 
         [StringLength(200)]
         public string personalizedDescription { get; set; }
+
+        public DateTime? registerTime { get; set; }
 
         public virtual tb_BloodType tb_BloodType { get; set; }
 

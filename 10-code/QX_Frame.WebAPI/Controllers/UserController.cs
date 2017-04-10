@@ -4,6 +4,7 @@ using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
 using QX_Frame.Helper_DG_Framework;
+using QX_Frame.Helper_DG_Framework.Extends;
 using System;
 using System.Linq.Expressions;
 using System.Web.Http;
@@ -21,31 +22,22 @@ namespace QX_Frame.WebAPI.Controllers
         {
             if (query == null)
             {
-                throw new ArgumentNullException("uid/loginId", "uid or loginId must be provide");
+                throw new Exception_DG("arguments must be provide", 1001);
+            }
+
+            string loginId = query.loginId;
+
+            if (string.IsNullOrEmpty(loginId))
+            {
+                throw new Exception_DG("loginId must be provide", 1002);
             }
 
             using (var fact = Wcf<UserAccountService>())
             {
                 var channel = fact.CreateChannel();
 
-                tb_UserAccountInfo userAccountInfoQuery = tb_UserAccountInfo.Build();
-                userAccountInfoQuery.uid = query.uid;
-                userAccountInfoQuery.loginId = query.loginId;
-
-
-                Expression<Func<tb_UserAccountInfo, bool>> func = t => false;
-
-                if (userAccountInfoQuery.uid != null)
-                {
-                    func = func.Or(t => t.uid.Equals(userAccountInfoQuery.uid));
-                }
-                if (string.IsNullOrEmpty(userAccountInfoQuery.loginId))
-                {
-                    func = func.Or(t => t.loginId.Equals(userAccountInfoQuery.loginId));
-                }
-
                 int totalCount = 0;
-                tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = func }).Cast<tb_UserAccountInfo>(out totalCount);
+                tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_UserAccountInfo>(out totalCount);
                 UserAccountInfoViewModel userAccountInfoViewModel = new UserAccountInfoViewModel
                 {
                     uid = userAccountInfo.uid,
@@ -65,10 +57,11 @@ namespace QX_Frame.WebAPI.Controllers
                     constellation = userAccountInfo.constellation,
                     chineseZodiac = userAccountInfo.chineseZodiac,
                     personalizedSignature = userAccountInfo.personalizedSignature,
-                    personalizedDescription = userAccountInfo.personalizedDescription
+                    personalizedDescription = userAccountInfo.personalizedDescription,
+                    registerTime=userAccountInfo.registerTime
                 };
 
-                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user by loginId or uid", userAccountInfoViewModel, totalCount));
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user by loginId", userAccountInfoViewModel, totalCount));
             }
         }
 
@@ -77,7 +70,7 @@ namespace QX_Frame.WebAPI.Controllers
         {
             if (string.IsNullOrEmpty(loginId))
             {
-                throw new ArgumentNullException("loginId", "loginId must be provide");
+                throw new Exception_DG("loginId", "loginId must be provide.", 1002);
             }
 
             bool addSuccess = true;
@@ -88,9 +81,9 @@ namespace QX_Frame.WebAPI.Controllers
 
             object pwd_mail_cache = Cache_Helper_DG.Cache_Get(loginId);//get pwd and mail from cache
 
-            if (pwd_mail_cache==null)
+            if (pwd_mail_cache == null)
             {
-                throw new NullReferenceException("register info expired ! please register renew !");
+                throw new Exception_DG("register info expired,please register renew.", 3003);
             }
 
             userAccount.pwd = pwd_mail_cache.ToString().Split(',')[0];
@@ -107,7 +100,7 @@ namespace QX_Frame.WebAPI.Controllers
                 using (var fact = Wcf<UserAccountInfoService>())
                 {
                     var channel = fact.CreateChannel();
-                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId,email=pwd_mail_cache.ToString().Split(',')[1]});
+                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId, email = pwd_mail_cache.ToString().Split(',')[1] ,registerTime=DateTime.Now});
                 }
                 //add tb_UserRole
                 using (var fact = Wcf<UserRoleService>())
@@ -125,16 +118,57 @@ namespace QX_Frame.WebAPI.Controllers
 
             if (!addSuccess)
             {
-                throw new Exception("register error!");
+                throw new Exception_DG("register error.", 3004);
             }
-            
+
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("register user succeed!", new { loginId = userAccount.loginId }));
         }
 
         // PUT: api/User
-        public IHttpActionResult Put()
+        public IHttpActionResult Put(dynamic query)
         {
-            return null;
+            if (query == null)
+            {
+                throw new Exception_DG("arguments must be provide", 1001);
+            }
+
+            string loginId = query.loginId;
+
+            if (string.IsNullOrEmpty(loginId))
+            {
+                throw new Exception_DG("loginId must be provide", 1002);
+            }
+
+            using (var fact=Wcf<UserAccountInfoService>())
+            {
+                var channel = fact.CreateChannel();
+                tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.location.Equals(loginId) }).Cast<tb_UserAccountInfo>();
+
+                if (userAccountInfo==null)
+                {
+                    throw new Exception_DG("no user account found by loginId",3001);
+                }
+
+                userAccountInfo.nickName = query.nickName;
+                userAccountInfo.phone = query.phone;
+                userAccountInfo.headImageUrl = query.headImageUrl;
+                userAccountInfo.age = Convert.ToInt32(query.age);
+                userAccountInfo.sexId = Convert.ToInt32(query.sexId);
+                userAccountInfo.birthday = query.birthday;
+                userAccountInfo.bloodTypeId = Convert.ToInt32(query.bloodTypeId);
+                userAccountInfo.position = query.position;
+                userAccountInfo.school = query.school;
+                userAccountInfo.location = query.location;
+                userAccountInfo.company = query.company;
+                userAccountInfo.constellation = query.constellation;
+                userAccountInfo.chineseZodiac = query.chineseZodiac;
+                userAccountInfo.personalizedSignature = query.personalizedSignature;
+                userAccountInfo.personalizedDescription = query.personalizedDescription;
+
+                channel.Update(userAccountInfo);
+            }
+
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("update user account info secceed"));
         }
 
         // DELETE: api/User
@@ -142,7 +176,7 @@ namespace QX_Frame.WebAPI.Controllers
         {
             if (query == null)
             {
-                throw new ArgumentNullException("loginId/uid", "uid or loginId must be provide");
+                throw new Exception_DG("arguments must be provide", 1001);
             }
 
             tb_UserAccountInfo userAccountInfoQuery = tb_UserAccountInfo.Build();
@@ -153,7 +187,7 @@ namespace QX_Frame.WebAPI.Controllers
             }
             if (query.uid != null)
             {
-                userAccountInfoQuery.uid = query.uid;
+                userAccountInfoQuery.uid =Guid.Parse(query.uid);
             }
 
             bool isSucceed = true;
@@ -171,7 +205,7 @@ namespace QX_Frame.WebAPI.Controllers
                 using (var fact = Wcf<UserAccountInfoService>())
                 {
                     var channel = fact.CreateChannel();
-                    tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid ==userAccount.uid }).Cast<tb_UserAccountInfo>();
+                    tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid == userAccount.uid }).Cast<tb_UserAccountInfo>();
                     isSucceed = isSucceed && channel.Delete(userAccountInfo);
                 }
                 using (var fact = Wcf<UserRoleService>())
@@ -190,7 +224,7 @@ namespace QX_Frame.WebAPI.Controllers
 
             if (!isSucceed)
             {
-                throw new Exception("delete faild !");
+                throw new Exception_DG("delete faild.", 3005);
             }
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete succeed !"));
         }

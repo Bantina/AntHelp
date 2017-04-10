@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QX_Frame.Helper_DG_Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,8 @@ namespace QX_Frame.WebAPI.config
     public class ControllerConfigs
     {
         //the webapi app domain
-        public static readonly string AppDomain = "http://localhost:3999/"; 
+        public static readonly string AppDomain = Config_Helper_DG.AppSetting_Get("AppDomain");
+        //the web app domain
+        public static readonly string WebAppDomain = Config_Helper_DG.AppSetting_Get("WebAppDomain");
     }
 }

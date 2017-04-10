@@ -2,10 +2,11 @@ using QX_Frame.App.Web;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
 using QX_Frame.Helper_DG_Framework;
+using QX_Frame.Helper_DG_Framework.Extends;
 using QX_Frame.WebAPI.config;
 using QX_Frame.WebAPI.Helpers;
 using System;
-using System.Web;
+using System.Text.RegularExpressions;
 using System.Web.Http;
 
 namespace QX_Frame.WebAPI.Controllers
@@ -25,72 +26,92 @@ namespace QX_Frame.WebAPI.Controllers
 		// GET: api/Account
 		public IHttpActionResult Get([FromBody]dynamic query)
 		{
-			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(""));
+			throw new Exception_DG("The interface is not available",9999);
 		}
 
 		// GET: api/Account/5
 		public IHttpActionResult Get(string id, [FromBody]dynamic query)
 		{
-			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(""));
+			throw new Exception_DG("The interface is not available", 9999);
 		}
 
 		// POST: api/Account    //account register api
+		/// <summary>
+		/// account register api
+		/// </summary>
+		/// <param name="query">{loginId:"",pwd:"",email:""}</param>
+		/// <returns>return json{}</returns>
 		public IHttpActionResult Post([FromBody]dynamic query)
 		{
-            if (query == null)
-            {
-                throw new ArgumentNullException("loginId/pwd", "loginId and pwd must be provide");
-            }
-            if (query.loginId==null)
-            {
-                throw new ArgumentNullException("loginId","loginId must be provide");
-            }
-            if (query.pwd==null)
-            {
-                throw new ArgumentNullException("pwd", "pwd must be provide");
-            }
-            if (query.email==null)
-            {
-                throw new ArgumentNullException("email", "email must be provide");
-            }
+			if (query == null)
+			{
+				throw new Exception_DG("arguments must be provide",1001);
+			}
+			if (query.loginId==null)
+			{
+				throw new Exception_DG("loginId","loginId must be provide",1002);
+			}
+			if (query.pwd==null)
+			{
+				throw new Exception_DG("pwd", "pwd must be provide",1003);
+			}
+			if (query.email==null)
+			{
+				throw new Exception_DG("email", "email must be provide",1004);
+			}
+			if (query.emailHtmlRoute==null)
+			{
+				throw new Exception_DG("emailHtmlRoute", "emailHtmlRoute must be provide", 1005);
+			}
 
-            string loginId = query.loginId;
-            string pwd = query.pwd; //pwd must be MD5 encrypt
-            string email = query.email;
+			string loginId = query.loginId;
+			string pwd = query.pwd; //pwd must be MD5 encrypt
+			string email = query.email;
 
-            using (var fact = Wcf<UserAccountService>())
-            {
-                var channel = fact.CreateChannel();
-                int userAccountCountByloginId = channel.QueryCount(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(loginId) });
-                if (userAccountCountByloginId > 0)
-                {
-                    throw new MemberAccessException("the loginId has been exist!");
-                }
-            }
+			if (string.IsNullOrEmpty(loginId))
+			{
+				throw new Exception_DG("loginId", "loginId must be provide", 1002);
+			}
 
-            Cache_Helper_DG.Cache_Add($"{loginId}", $"{pwd},{email}", null, DateTime.Now.AddMinutes(10));   //add loginId pwd into cache 10 minutes later expired
+			if (pwd.Length<32)
+			{
+				throw new Exception_DG("pwd", "pwd must be encrypt By Md5", 2001);
+			}
 
-            
-            Mail_Helper.SendMail(email,$"{ControllerConfigs.AppDomain}api/User?loginId={loginId}");
+			Regex r = new Regex("^\\s*([A-Za-z0-9_-]+(\\.\\w+)*@(\\w+\\.)+\\w{2,5})\\s*$");//email match
+			if (!r.IsMatch(email))
+			{
+				throw new Exception_DG("email", "email format error", 2002);
+			}
 
-            /**
-             * 页面输入点击 请求到本地址，然后本接口发送邮件， 用户点击邮件内链接跳转到 站内页面
-             * 站内页面初始化时候获取链接上的参数，带着参数请求注册地址，然后返回结果展示注册结果
-             * */
+			using (var fact = Wcf<UserAccountService>())
+			{
+				var channel = fact.CreateChannel();
+				int userAccountCountByloginId = channel.QueryCount(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(loginId) });
+				if (userAccountCountByloginId > 0)
+				{
+					throw new Exception_DG("the loginId has been exist!",3002);
+				}
+			}
 
-            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！"));
+			Cache_Helper_DG.Cache_Add($"{loginId}", $"{pwd},{email}", null, DateTime.Now.AddMinutes(10));   //add loginId pwd into cache 10 minutes later expired
+
+			string _link=$"{ControllerConfigs.WebAppDomain}{query.emailHtmlRoute}?loginId="+loginId;
+			Mail_Helper.SendMail(email,_link);  //send mail
+
+			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！"));
 		}
 
 		// PUT: api/Account
 		public IHttpActionResult Put([FromBody]dynamic query)
 		{
-			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(""));
+			throw new Exception_DG("The interface is not available", 9999);
 		}
 
 		// DELETE: api/Account
 		public IHttpActionResult Delete([FromBody]dynamic query)
 		{
-			return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode(""));
+			throw new Exception_DG("The interface is not available", 9999);
 		}
 	}
 }

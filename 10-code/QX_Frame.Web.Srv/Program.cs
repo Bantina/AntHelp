@@ -62,6 +62,7 @@ namespace QX_Frame.Web.Srv
 
             new ClassRegisters(); //register ioc menbers
 
+            SwaggerConfig.Register(config);
             appBuilder.UseWebApi(config);
         }
     }

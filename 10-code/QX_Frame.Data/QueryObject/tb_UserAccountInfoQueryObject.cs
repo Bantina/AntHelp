@@ -47,11 +47,11 @@ namespace QX_Frame.Data.QueryObject
 		// 
 		public Int32 sexId { get;set; }
 
-		// 
-		public String birthday { get;set; }
+        // 
+        public DateTime? birthday { get; set; }
 
-		// 
-		public Int32 bloodTypeId { get;set; }
+        // 
+        public Int32 bloodTypeId { get;set; }
 
 		// 
 		public String position { get;set; }
@@ -77,20 +77,22 @@ namespace QX_Frame.Data.QueryObject
 		// 个人说明
 		public String personalizedDescription { get;set; }
 
-		//query condition // null default
-		public override Expression<Func<tb_UserAccountInfo, bool>> QueryCondition { get => base.QueryCondition; set => base.QueryCondition = value; }
+        public DateTime? registerTime { get; set; }
+
+        //query condition // null default
+        public override Expression<Func<tb_UserAccountInfo, bool>> QueryCondition { get => base.QueryCondition; set => base.QueryCondition = value; }
 
 		//query condition func // true default //if QueryCondition != null this will be override !!!
 		protected override Expression<Func<tb_UserAccountInfo, bool>> QueryConditionFunc()
 		{
 			Expression<Func<tb_UserAccountInfo, bool>> func = t => true;
 
-			if (!string.IsNullOrEmpty(""))
-			{
-				func = func.And(t => true);
-			}
+            if (!string.IsNullOrEmpty(this.loginId))
+            {
+                func = func.And(t => t.loginId.Contains(this.loginId));
+            }
 
-			return func;
+            return func;
 		}
 	}
 }

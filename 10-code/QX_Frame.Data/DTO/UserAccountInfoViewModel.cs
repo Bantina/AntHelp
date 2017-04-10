@@ -21,7 +21,7 @@ namespace QX_Frame.Data.DTO
         // 
         public string sexName { get; set; }
         // 
-        public String birthday { get; set; }
+        public DateTime? birthday { get; set; }
         // 
         public string  bloodTypeName { get; set; }
         // 
@@ -40,5 +40,7 @@ namespace QX_Frame.Data.DTO
         public String personalizedSignature { get; set; }
         // 个人说明
         public String personalizedDescription { get; set; }
+        public DateTime? registerTime { get; set; }
+
     }
 }

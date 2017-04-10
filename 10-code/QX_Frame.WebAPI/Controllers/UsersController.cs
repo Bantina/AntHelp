@@ -4,9 +4,9 @@ using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
 using QX_Frame.Helper_DG_Framework;
+using QX_Frame.Helper_DG_Framework.Extends;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using System.Web.Http;
 
 namespace QX_Frame.WebAPI.Controllers
@@ -26,47 +26,27 @@ namespace QX_Frame.WebAPI.Controllers
         //address:http://localhost:3999/api/Users Get Method
         public IHttpActionResult Get(dynamic query)
         {
+            if (query == null)
+            {
+                throw new Exception_DG("arguments must be provide", 1001);
+            }
+
+            tb_UserAccountInfoQueryObject queryObject = new tb_UserAccountInfoQueryObject();
+
+            queryObject.loginId = query.loginId;
+
+            if (query.pageIndex == null || query.pageSize == null || query.isDesc == null)
+            {
+                throw new Exception_DG("pageIndex,pageSize,isDesc must be provide", 1008);
+            }
+            queryObject.PageIndex = Convert.ToInt32(query.pageIndex);
+            queryObject.PageSize = Convert.ToInt32(query.pageSize);
+            queryObject.IsDESC = Convert.ToBoolean(query.isDesc);
+
             using (var fact = Wcf<UserAccountService>())
             {
                 var channel = fact.CreateChannel();
-                //tb_UserAccountInfo instance add properties...
-                tb_UserAccountInfo userAccountInfoQuery = tb_UserAccountInfo.Build();
 
-                if (query != null)
-                {
-                    userAccountInfoQuery.loginId = query.loginid;
-                }
-
-                Expression<Func<tb_UserAccountInfo, bool>> func = t => true;
-
-                if (!string.IsNullOrEmpty(userAccountInfoQuery.loginId))
-                {
-                    func = func.And(t => t.loginId.Contains(userAccountInfoQuery.loginId));
-                }
-
-                //queryObject
-                tb_UserAccountInfoQueryObject queryObject = new tb_UserAccountInfoQueryObject();
-                queryObject.QueryCondition = func;
-
-                if (query != null)
-                {
-                    queryObject.PageIndex = Convert.ToInt32(query.pageindex);
-                    queryObject.PageSize = Convert.ToInt32(query.pagesize);
-                    string isdesc = query.isdesc;
-                    if (isdesc.Equals("1"))
-                    {
-                        queryObject.IsDESC = true;
-                    }
-                    else if (isdesc.Equals("0"))
-                    {
-                        queryObject.IsDESC = false;
-                    }
-                }
-                if (queryObject.PageIndex <= 0 || queryObject.PageIndex <= 0)
-                {
-                    queryObject.PageIndex = 1;
-                    queryObject.PageSize = 10;
-                }
                 int count;
                 List<tb_UserAccountInfo> userAccountInfoList = channel.QueryAllPaging<tb_UserAccountInfo, string>(queryObject, t => t.loginId).Cast<List<tb_UserAccountInfo>>(out count);
                 List<UserAccountInfoViewModel> userAccountInfoViewModelList = new List<UserAccountInfoViewModel>();
@@ -92,7 +72,8 @@ namespace QX_Frame.WebAPI.Controllers
                             constellation = item.constellation,
                             chineseZodiac = item.chineseZodiac,
                             personalizedSignature = item.personalizedSignature,
-                            personalizedDescription = item.personalizedDescription
+                            personalizedDescription = item.personalizedDescription,
+                            registerTime = item.registerTime
                         });
                 }
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user info must paging by pageindex=num,pagesize=num,isdesc=1/0", userAccountInfoViewModelList, count));
@@ -101,17 +82,17 @@ namespace QX_Frame.WebAPI.Controllers
         //address:http://localhost:3999/api/Users Post Method
         public IHttpActionResult Post()
         {
-            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("put"));
+            throw new Exception_DG("The interface is not available", 9999);
         }
         //address:http://localhost:3999/api/Users Put Method
         public IHttpActionResult Put()
         {
-            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("put"));
+            throw new Exception_DG("The interface is not available", 9999);
         }
         //address:http://localhost:3999/api/Users Delete Method
         public IHttpActionResult Delete()
         {
-            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete"));
+            throw new Exception_DG("The interface is not available", 9999);
         }
     }
 }

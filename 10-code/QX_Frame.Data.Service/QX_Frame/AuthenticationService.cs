@@ -1,7 +1,6 @@
 using QX_Frame.App.Base;
 using QX_Frame.Data.Contract.QX_Frame;
 using QX_Frame.Data.Entities.QX_Frame;
-using System;
 
 namespace QX_Frame.Data.Service.QX_Frame
 {
@@ -9,7 +8,7 @@ namespace QX_Frame.Data.Service.QX_Frame
 	/// copyright qixiao code builder ->
 	/// version:4.2.0
 	/// author:qixiao(柒小)
-	/// time:2017-04-04 16:43:49
+	/// time:2017-04-08 18:45:06
 	/// </summary>
 
 	/// <summary>
@@ -30,15 +29,15 @@ namespace QX_Frame.Data.Service.QX_Frame
 		}
 		public bool Add(tb_Authentication tb_Authentication)
 		{
-			return tb_Authentication.Add();
+			return tb_Authentication.Add(tb_Authentication);
 		}
 		public bool Update(tb_Authentication tb_Authentication)
 		{
-			return tb_Authentication.Update();
+			return tb_Authentication.Update(tb_Authentication);
 		}
 		public bool Delete(tb_Authentication tb_Authentication)
 		{
-			return tb_Authentication.Delete();
+			return tb_Authentication.Delete(tb_Authentication);
 		}
 	}
 }

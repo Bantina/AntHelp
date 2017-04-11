@@ -6,7 +6,6 @@ using QX_Frame.Data.Service.QX_Frame;
 using QX_Frame.Helper_DG_Framework;
 using QX_Frame.Helper_DG_Framework.Extends;
 using System;
-using System.Linq.Expressions;
 using System.Web.Http;
 using static QX_Frame.Helper_DG_Framework.Encrypt_Helper_DG;
 
@@ -275,6 +274,34 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception_DG("delete faild.", 3005);
             }
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete succeed !"));
+        }
+
+
+        /// <summary>
+        /// Get UserAccount By LoginId
+        /// </summary>
+        /// <param name="loginId">loginId</param>
+        /// <returns></returns>
+        public tb_UserAccount GetUserAccountByLoginId(string loginId)
+        {
+            tb_UserAccount userAccount = Cache_Helper_DG.Cache_Get(loginId) as tb_UserAccount ;
+
+            if (userAccount!=null)
+            {
+                return userAccount;
+            }
+
+            using (var fact = Wcf<UserAccountService>())
+            {
+                var channel = fact.CreateChannel();
+                userAccount = channel.QuerySingle(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(loginId.Trim()) }).Cast<tb_UserAccount>();
+                if (userAccount== null)
+                {
+                    throw new Exception_DG("no user account found by loginId", 3001);
+                }
+                Cache_Helper_DG.Cache_Add(loginId, userAccount);
+                return userAccount;
+            }
         }
     }
 }

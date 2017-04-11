@@ -30,10 +30,10 @@ namespace QX_Frame.Data.QueryObject
 		public String sexName { get;set; }
 
 		//query condition // null default
-		public override Expression<Func<tb_Sex, bool>> QueryCondition { get => base.QueryCondition; set => base.QueryCondition = value; }
+		public override Expression<Func<tb_Sex, bool>> QueryCondition { get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
-		//query condition func // true default //if QueryCondition != null this will be override !!!
-		protected override Expression<Func<tb_Sex, bool>> QueryConditionFunc()
+        //query condition func // true default //if QueryCondition != null this will be override !!!
+        protected override Expression<Func<tb_Sex, bool>> QueryConditionFunc()
 		{
 			Expression<Func<tb_Sex, bool>> func = t => true;
 

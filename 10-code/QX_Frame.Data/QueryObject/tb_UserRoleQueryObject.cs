@@ -30,10 +30,10 @@ namespace QX_Frame.Data.QueryObject
 		public Int32 roleLevel { get;set; }
 
 		//query condition // null default
-		public override Expression<Func<tb_UserRole, bool>> QueryCondition { get => base.QueryCondition; set => base.QueryCondition = value; }
+		public override Expression<Func<tb_UserRole, bool>> QueryCondition { get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
-		//query condition func // true default //if QueryCondition != null this will be override !!!
-		protected override Expression<Func<tb_UserRole, bool>> QueryConditionFunc()
+        //query condition func // true default //if QueryCondition != null this will be override !!!
+        protected override Expression<Func<tb_UserRole, bool>> QueryConditionFunc()
 		{
 			Expression<Func<tb_UserRole, bool>> func = t => true;
 

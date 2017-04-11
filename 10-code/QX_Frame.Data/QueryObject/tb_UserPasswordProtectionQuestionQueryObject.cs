@@ -36,10 +36,10 @@ namespace QX_Frame.Data.QueryObject
 		public String answer { get;set; }
 
 		//query condition // null default
-		public override Expression<Func<tb_UserPasswordProtectionQuestion, bool>> QueryCondition { get => base.QueryCondition; set => base.QueryCondition = value; }
+		public override Expression<Func<tb_UserPasswordProtectionQuestion, bool>> QueryCondition { get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
-		//query condition func // true default //if QueryCondition != null this will be override !!!
-		protected override Expression<Func<tb_UserPasswordProtectionQuestion, bool>> QueryConditionFunc()
+        //query condition func // true default //if QueryCondition != null this will be override !!!
+        protected override Expression<Func<tb_UserPasswordProtectionQuestion, bool>> QueryConditionFunc()
 		{
 			Expression<Func<tb_UserPasswordProtectionQuestion, bool>> func = t => true;
 

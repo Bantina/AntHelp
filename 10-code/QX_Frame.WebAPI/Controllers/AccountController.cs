@@ -71,7 +71,11 @@ namespace QX_Frame.WebAPI.Controllers
 			if (string.IsNullOrEmpty(loginId))
 			{
 				throw new Exception_DG("loginId", "loginId must be provide", 1002);
-			}
+                if (loginId.Length<3)
+                {
+                    throw new Exception_DG("loginId", "loginId cannot be less than three", 2003);
+                }
+            }
 
 			if (pwd.Length<32)
 			{

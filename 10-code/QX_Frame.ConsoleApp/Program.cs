@@ -2,8 +2,10 @@
 using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
+using QX_Frame.Helper_DG_Framework;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Web;
 
 namespace QX_Frame.ConsoleApp
@@ -22,7 +24,7 @@ namespace QX_Frame.ConsoleApp
 
             //    var channel = fact.CreateChannel();
             //    int count;
-            //    List<tb_UserAccount> list = channel.QueryAll(query).Cast<List<tb_UserAccount>>(out count);
+            //     List<tb_UserAccount> list = channel.QueryAll(query).Cast<List<tb_UserAccount>>(out count);
             //    Console.WriteLine($"count={count}");
             //    foreach (var item in list)
             //    {
@@ -30,9 +32,13 @@ namespace QX_Frame.ConsoleApp
             //    }
             //}
 
-            string url = $"http://localhost:3999/api/User{HttpUtility.UrlEncode("?loginId=123")}";
+            // string url = $"http://localhost:3999/api/User{HttpUtility.UrlEncode("?loginId=123")}";
 
-            Console.WriteLine(url);
+            Console.WriteLine(DateTime_Helper_DG.GetCurrentTimeStamp());
+
+            Thread.Sleep(3000);
+
+            Console.WriteLine(DateTime_Helper_DG.GetCurrentTimeStamp());
 
 
             Console.WriteLine("any key to exit ...");

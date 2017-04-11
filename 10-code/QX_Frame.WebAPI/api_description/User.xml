@@ -32,7 +32,7 @@
     </Arguments-Data>
     <ReturnExample>
       <Success>
-        {"isSuccess":true,"msg":"register user succeed!","httpCode":200,"data":{"loginId":"qixiao123"},"dataCount":0}
+        {"isSuccess":true,"msg":"register user succeed!","httpCode":200,"data":{"loginId":"qixiao123","pwd":"123"},"dataCount":0}
       </Success>
       <Error>
         {"isSuccess":false,"msg":"register info expired,please register renew.","httpCode":500,"errorCode":1010,"errorLevel":0}

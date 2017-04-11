@@ -8,6 +8,7 @@ using QX_Frame.Helper_DG_Framework.Extends;
 using System;
 using System.Linq.Expressions;
 using System.Web.Http;
+using static QX_Frame.Helper_DG_Framework.Encrypt_Helper_DG;
 
 namespace QX_Frame.WebAPI.Controllers
 {
@@ -58,7 +59,7 @@ namespace QX_Frame.WebAPI.Controllers
                     chineseZodiac = userAccountInfo.chineseZodiac,
                     personalizedSignature = userAccountInfo.personalizedSignature,
                     personalizedDescription = userAccountInfo.personalizedDescription,
-                    registerTime=userAccountInfo.registerTime
+                    registerTime = userAccountInfo.registerTime
                 };
 
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user by loginId", userAccountInfoViewModel, totalCount));
@@ -100,7 +101,7 @@ namespace QX_Frame.WebAPI.Controllers
                 using (var fact = Wcf<UserAccountInfoService>())
                 {
                     var channel = fact.CreateChannel();
-                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId, email = pwd_mail_cache.ToString().Split(',')[1] ,registerTime=DateTime.Now});
+                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId, nickName = loginId, email = pwd_mail_cache.ToString().Split(',')[1], registerTime = DateTime.Now ,birthday=DateTime.MinValue});
                 }
                 //add tb_UserRole
                 using (var fact = Wcf<UserRoleService>())
@@ -121,7 +122,54 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception_DG("register error.", 3004);
             }
 
-            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("register user succeed!", new { loginId = userAccount.loginId }));
+            long timeStamp = DateTime_Helper_DG.GetCurrentTimeStamp() * 1000;
+            int random = new Random().Next(100, 999);
+            //get rsa keys
+            RSA_Keys rsa_Keys = RSA_GetKeys();
+
+            tb_Authentication authentication;
+            using (var fact = Wcf<AuthenticationService>())
+            {
+                var channel = fact.CreateChannel();
+
+                authentication = channel.QuerySingle(new tb_AuthenticationQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_Authentication>();
+
+                if (authentication == null)
+                {
+                    authentication = tb_Authentication.Build();
+                    //secretKey=MD5[loginid+MD5[pwd]+timestamp]
+                    authentication.secretkey = MD5_Encrypt($"{loginId}{userAccount.pwd}{timeStamp}");
+                    authentication.rsa_publicKey = rsa_Keys.publicKey;
+                    authentication.rsa_privateKey = rsa_Keys.privateKey;
+                    authentication.loginId = loginId;
+                    //tokenSign=MD5[loginid+logintimestamp+random]
+                    authentication.tokensign = MD5_Encrypt($"{loginId}{timeStamp}{random}");
+                    if (channel.Add(authentication))
+                    {
+                        authentication = channel.QuerySingle(new tb_AuthenticationQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_Authentication>();
+                    }
+                }
+                else
+                {
+                    //secretKey=MD5[loginid+MD5[pwd]+timestamp]
+                    authentication.secretkey = MD5_Encrypt($"{loginId}{userAccount.pwd}{timeStamp}");
+                    authentication.rsa_publicKey = rsa_Keys.publicKey;
+                    authentication.rsa_privateKey = rsa_Keys.privateKey;
+                    authentication.loginId = loginId;
+                    //tokenSign=MD5[loginid+logintimestamp+random]
+                    authentication.tokensign = MD5_Encrypt($"{loginId}{timeStamp}{random}");
+                    channel.Update(authentication);
+                }
+            }
+
+            int Auth_Token_ExpireTime_days = Config_Helper_DG.AppSetting_Get("Auth_Token_ExpireTime_days").ToInt();
+            int Auth_Token_ExpireTime_hours = Config_Helper_DG.AppSetting_Get("Auth_Token_ExpireTime_hours").ToInt();
+            int Auth_Token_ExpireTime_minutes = Config_Helper_DG.AppSetting_Get("Auth_Token_ExpireTime_minutes").ToInt();
+            long expireTimeStamp = DateTime_Helper_DG.GetTimeStampByDateTimeUtc(DateTime.UtcNow.AddDays(Auth_Token_ExpireTime_days).AddHours(Auth_Token_ExpireTime_hours).AddMinutes(Auth_Token_ExpireTime_minutes));
+            //token=RSA_publicKey[uid+loginid+expiretimestamp+tokensign]
+            string token = RSA_Encrypt($"{userAccount.uid}&{userAccount.loginId}&{expireTimeStamp}&{authentication.tokensign}", authentication.rsa_publicKey);
+            //send appkey,secretkey,token,userInfo to client
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("register user succeed , login succeed", new { loginId = userAccount.loginId, appKey = authentication.appkey, secretKey = authentication.secretkey, token = token },1));
         }
 
         // PUT: api/User
@@ -139,14 +187,14 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception_DG("loginId must be provide", 1002);
             }
 
-            using (var fact=Wcf<UserAccountInfoService>())
+            using (var fact = Wcf<UserAccountInfoService>())
             {
                 var channel = fact.CreateChannel();
                 tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.location.Equals(loginId) }).Cast<tb_UserAccountInfo>();
 
-                if (userAccountInfo==null)
+                if (userAccountInfo == null)
                 {
-                    throw new Exception_DG("no user account found by loginId",3001);
+                    throw new Exception_DG("no user account found by loginId", 3001);
                 }
 
                 userAccountInfo.nickName = query.nickName;
@@ -187,7 +235,7 @@ namespace QX_Frame.WebAPI.Controllers
             }
             if (query.uid != null)
             {
-                userAccountInfoQuery.uid =Guid.Parse(query.uid);
+                userAccountInfoQuery.uid = Guid.Parse(query.uid);
             }
 
             bool isSucceed = true;

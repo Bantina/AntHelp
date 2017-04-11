@@ -42,7 +42,7 @@ namespace QX_Frame.Data.QueryObject
 		public String tokensign { get;set; }
 
 		//query condition // null default
-		public override Expression<Func<tb_Authentication, bool>> QueryCondition { get => base.QueryCondition; set => base.QueryCondition = value; }
+		public override Expression<Func<tb_Authentication, bool>> QueryCondition { get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
 		//query condition func // true default //if QueryCondition != null this will be override !!!
 		protected override Expression<Func<tb_Authentication, bool>> QueryConditionFunc()

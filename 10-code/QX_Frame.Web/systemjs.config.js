@@ -25,6 +25,8 @@
             'rxjs': 'npm:rxjs',
             'angular2-in-memory-web-api': 'npm:angular2-in-memory-web-api'
         },
+        //emitDecoratorMetadata:TypeScript会为代码的每个类生成元数据。如果不指定此选项，将生成大量未使用的元数据，这会影响文件大小和对应用程序运行时的影响
+        typescriptOptions: { emitDecoratorMetadata: true },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
             app: {

@@ -1,0 +1,32 @@
+﻿<!--start login--> 
+<div>
+    <div class="col-md-6">
+        <div class="signup-left">
+            <div class="signup-left-data">
+                <img src="../../Images/03-login/sign01.png" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="signup-right">
+            <form action="" id="loginform" class="signup-form loginForm">
+                <div class="form-group">
+                    <p class="col-md-12 errortip" *ngIf="msg.length>0">{{msg}}</p>
+                    <p class="col-md-12 successtip" *ngIf="sucMsg.length>0">{{sucMsg}}</p>
+                </div>
+                <div class="form-group">
+                    <label for="true" class="avail-user">用户名</label>
+                    <input type="text" placeholder="John" class="form-control small-control" id="username" [(ngModel)]="loginUserModel.loginId" name="loginId">
+                </div>
+                <div class="form-group">
+                    <label for="true">密码</label>
+                    <input type="password" placeholder="********" class="form-control small-control" id="password" [(ngModel)]="loginUserModel.pwd" name="pwd">
+                </div>
+                <div class="form-group">
+                    <input type="button" class="signup-btn no-top-margin" value="登           录" (click)="loginAccount()" name="btn_login">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end login--> 

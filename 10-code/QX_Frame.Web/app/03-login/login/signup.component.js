@@ -10,16 +10,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-const Md5_service_1 = require("../00-AQX_Frame.services/Md5.service");
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+const Md5_service_1 = require("../../00-AQX_Frame.services/Md5.service");
+const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let SignUpComponent = class SignUpComponent {
     constructor() {
         this.userAccountViewModel = {
             loginId: "",
             pwd: "",
-            email: "",
-            emailHtmlRoute: "signupVerify"
+            email: ""
         };
         this.repassword = "";
         this.isEmail = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -44,9 +43,6 @@ let SignUpComponent = class SignUpComponent {
         self.sucMsg = "";
         if (self.userAccountViewModel.loginId == "") {
             self.msg = "用户名不能为空！";
-        }
-        else if (self.userAccountViewModel.loginId.length < 3) {
-            self.msg = "用户名不能小于3位！";
         }
         else if (self.userAccountViewModel.email == "") {
             self.msg = "邮箱不能为空！";
@@ -73,17 +69,11 @@ let SignUpComponent = class SignUpComponent {
                 data: JSON.stringify({
                     loginId: self.userAccountViewModel.loginId,
                     pwd: Md5_service_1.Md5.hashStr(self.userAccountViewModel.pwd).toString(),
-                    email: self.userAccountViewModel.email,
-                    emailHtmlRoute: self.userAccountViewModel.emailHtmlRoute
+                    email: self.userAccountViewModel.email
                 }),
                 success(data) {
                     if (data.isSuccess) {
                         self.sucMsg = "注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！";
-                        //set cookie2
-                        document.cookie = "loginId=" + escape(data.loginId);
-                        document.cookie = "appKey=" + data.appKey;
-                        document.cookie = "secretKey=" + data.secretKey;
-                        document.cookie = "token=" + data.token;
                     }
                     else {
                         self.msg = "服务器请求出错，请稍后重试~";

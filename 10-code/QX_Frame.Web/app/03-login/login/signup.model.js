@@ -6,22 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //    public pwd: string;
 //}
 class UserAccountViewModel {
-    constructor(loginId, email, pwd, emailHtmlRoute) {
+    constructor(loginId, email, pwd) {
         this.loginId = loginId;
         this.email = email;
         this.pwd = pwd;
-        this.emailHtmlRoute = emailHtmlRoute;
     }
 }
 exports.UserAccountViewModel = UserAccountViewModel;
-//login
-class LoginUserModel {
-    constructor(loginId, pwd) {
-        this.loginId = loginId;
-        this.pwd = pwd;
-    }
-}
-exports.LoginUserModel = LoginUserModel;
 class UserAccountModel {
 }
 exports.UserAccountModel = UserAccountModel;

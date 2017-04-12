@@ -1,41 +1,20 @@
 ﻿@charset "utf-8";
 /* CSS Document */
+/* signup css*/
 .signup-left{
 		width:100%;
 		height: 100%;
 		display: table;
 		background: url(../../Images/03-signup/sign01.png) no-repeat;
-		/*background-size: 100%;*/
 }
 .signup-left-data img{
     width:100%;
 }
-/*.signup-left-data{
-  display: table-cell;
-  vertical-align: middle;
-  height: 100%;
-  padding: 0 43px;
-}
-    .signup-left-data p {
-        font-size: 25px;
-        line-height: 26px;
-        color: #fff;
-        text-align: center;
-        margin-bottom: 10px;
-        letter-spacing: 0.5px;
-        margin-bottom: 30px;
-    }
-.signup-left-data p span{
-  color: #fff;
-  font-size: 20px;
-  font-weight: 100;
-}*/
 .signup-right{
   display: block;
   position: absolute;
   left: 0%;
   width: 85%;
- /* max-width: 422px;*/
   height: 100%;
 }
 .signup-form{
@@ -45,6 +24,18 @@
   padding: 0 20px;
   text-align: center;
   padding-top: 20px;
+}
+.errortip{
+    color:#e72015;
+    height:30px;
+    line-height:30px;
+    border:solid 1px #e72015;
+}
+.successtip{
+    color:#4caf50;
+    height:30px;
+    line-height:30px;
+    border:solid 1px #419245;
 }
 .no-margin-bottom{
   margin-bottom: 0 !important;
@@ -96,4 +87,19 @@
 }
 .signup-btn:hover, .signup-btn:focus {
     background-color: #303137;
+}
+
+
+/*login css*/
+.loginForm{
+  padding: 100px 20px;
+}
+
+/*verify css*/
+.verrify_msg{
+    font-size:24px;
+
+}
+.verifyForm{
+    padding: 160px 20px;
 }

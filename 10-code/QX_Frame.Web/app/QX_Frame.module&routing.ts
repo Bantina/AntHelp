@@ -10,7 +10,9 @@ import { AppComponent } from './00-main/app.component';         //the root compo
 import { IndexComponent } from './01-index/index.component';    //the index component
 /* start define components --there we add in ->-------------- 01 */
 import { exampleComponent } from './02-example/example.component';
-import { SignUpComponent } from './03-login/signup.component';
+import { SignUpComponent } from './03-login/signup.component'; 
+import { LoginComponent } from './03-login/login/login.component';
+import { SignupVerifyComponent } from './03-login/signupVerify/signupVerify.component';
 
 /* end define components */
 
@@ -32,8 +34,15 @@ const appRoutes: Routes = [
     {
         path: 'signup',
         component: SignUpComponent
+    }, 
+    {
+        path: 'login',
+        component: LoginComponent
+    }, 
+    {
+        path: 'signupVerify',
+        component: SignupVerifyComponent
     },
-
 
 
     /* end define components */
@@ -49,7 +58,9 @@ const appComponents: any[] = [
     IndexComponent,     //the index website
     /* start define components -- there we add in ->------------ 03 */
     exampleComponent,
-    SignUpComponent
+    SignUpComponent,
+    LoginComponent,
+    SignupVerifyComponent
 
 
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http.Controllers;
+using Newtonsoft.Json;
 
 namespace QX_Frame.WebAPI
 {
@@ -21,9 +22,7 @@ namespace QX_Frame.WebAPI
             //ignore the xml return it`s setting let json return only 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             GlobalConfiguration.Configuration.Formatters.Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
-
-            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerSelector),
-            new WebApiControllerSelector(GlobalConfiguration.Configuration));
+            GlobalConfiguration.Configuration.Services.Replace(typeof(IHttpControllerSelector), new WebApiControllerSelector(GlobalConfiguration.Configuration));
         }
     }
     /// <summary>

@@ -1,6 +1,7 @@
 namespace QX_Frame.Data.Entities
 {
     using global::QX_Frame.App.Base;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -22,7 +23,7 @@ namespace QX_Frame.Data.Entities
 
         public Guid publisherUid { get; set; }
 
-        public DateTime publishTime { get; set; } = DateTime.Now;
+        public DateTime publishTime { get; set; } = DateTime.Now.ToLocalTime();
 
         public int clickCount { get; set; } = 0;
 
@@ -33,7 +34,8 @@ namespace QX_Frame.Data.Entities
         [Required]
         [StringLength(1000)]
         public string imagesUrls { get; set; }
-
+        //解决json循环引用问题
+        [JsonIgnore]
         public virtual tb_ArticleCategory tb_ArticleCategory { get; set; }
     }
 }

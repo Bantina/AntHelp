@@ -1,6 +1,7 @@
 namespace QX_Frame.Data.Entities
 {
     using global::QX_Frame.App.Base;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -34,8 +35,12 @@ namespace QX_Frame.Data.Entities
 
         public int evaluateId { get; set; }
 
+        //解决json循环引用问题
+        [JsonIgnore]
         public virtual tb_OrderEvaluate tb_OrderEvaluate { get; set; }
 
+        //解决json循环引用问题
+        [JsonIgnore]
         public virtual tb_OrderStatus tb_OrderStatus { get; set; }
     }
 }

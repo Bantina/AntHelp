@@ -16,7 +16,6 @@ namespace QX_Frame.Data.Entities
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ArticleCategoryId { get; set; }
 
         [Required]

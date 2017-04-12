@@ -30,19 +30,19 @@ namespace QX_Frame.Data.Entities.QX_Frame
                 .Property(e => e.bloodTypeName)
                 .IsFixedLength();
 
-            //modelBuilder.Entity<tb_BloodType>()
-            //    .HasMany(e => e.tb_UserAccountInfo)
-            //    .WithRequired(e => e.tb_BloodType)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<tb_BloodType>()
+                .HasMany(e => e.tb_UserAccountInfo)
+                .WithRequired(e => e.tb_BloodType)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<tb_Sex>()
                 .Property(e => e.sexName)
                 .IsFixedLength();
 
-            //modelBuilder.Entity<tb_Sex>()
-            //    .HasMany(e => e.tb_UserAccountInfo)
-            //    .WithRequired(e => e.tb_Sex)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<tb_Sex>()
+                .HasMany(e => e.tb_UserAccountInfo)
+                .WithRequired(e => e.tb_Sex)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<tb_UserAccountInfo>()
                 .Property(e => e.constellation)

@@ -7,6 +7,15 @@ export class UserAccountViewModel {
     constructor(
         public loginId: string,
         public email: string,
+        public pwd: string,
+        public emailHtmlRoute: string
+    ) { }
+}
+
+//login
+export class LoginUserModel {
+    constructor(
+        public loginId: string,
         public pwd: string
     ) { }
 }

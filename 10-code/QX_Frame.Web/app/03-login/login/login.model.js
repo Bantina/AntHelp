@@ -5,19 +5,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //    public email: string;
 //    public pwd: string;
 //}
-class UserAccountViewModel {
-    constructor(loginId, email, pwd, emailHtmlRoute) {
+class LoginUserModel {
+    constructor(loginId, email, pwd) {
         this.loginId = loginId;
         this.email = email;
-        this.pwd = pwd;
-        this.emailHtmlRoute = emailHtmlRoute;
-    }
-}
-exports.UserAccountViewModel = UserAccountViewModel;
-//login
-class LoginUserModel {
-    constructor(loginId, pwd) {
-        this.loginId = loginId;
         this.pwd = pwd;
     }
 }
@@ -28,4 +19,4 @@ exports.UserAccountModel = UserAccountModel;
 class UserAccountInfoModel {
 }
 exports.UserAccountInfoModel = UserAccountInfoModel;
-//# sourceMappingURL=signup.model.js.map
+//# sourceMappingURL=login.model.js.map

@@ -76,8 +76,10 @@
     <Content Include="app\00-main\app.component.html" />
     <Content Include="app\02-example\example.component.css" />
     <Content Include="app\02-example\example.component.html" />
+    <Content Include="app\03-login\login\login.component.html" />
     <Content Include="app\03-login\signup.component.css" />
     <Content Include="app\03-login\signup.component.html" />
+    <Content Include="app\03-login\signupVerify\signupVerify.component.html" />
     <Content Include="Content\css\columns.css" />
     <Content Include="Content\css\hover.css" />
     <Content Include="Content\css\hover_image.css" />
@@ -91,6 +93,8 @@
     <Content Include="Images\01-index\home\top1.jpg" />
     <Content Include="Images\01-index\home\top2.jpg" />
     <Content Include="Images\01-index\home\top3.jpg" />
+    <Content Include="Images\03-login\emo_fail.png" />
+    <Content Include="Images\03-login\emo_suc.png" />
     <Content Include="Images\03-login\sign01.png" />
     <Content Include="Images\blog\1.jpg" />
     <Content Include="Images\blog\2.jpg" />
@@ -226,6 +230,7 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="app\00-AQX_Frame.services\appService.ts" />
     <TypeScriptCompile Include="app\00-AQX_Frame.services\logger.service.ts" />
     <TypeScriptCompile Include="app\00-AQX_Frame.commons\appBase.ts" />
     <TypeScriptCompile Include="app\01-index\index.component.ts" />
@@ -235,14 +240,15 @@
     <TypeScriptCompile Include="app\02-example\example.component.ts" />
     <TypeScriptCompile Include="app\02-example\example.model.ts" />
     <TypeScriptCompile Include="app\02-example\example.service.ts" />
+    <TypeScriptCompile Include="app\03-login\login\login.component.ts" />
     <TypeScriptCompile Include="app\03-login\signup.component.ts" />
     <TypeScriptCompile Include="app\03-login\signup.model.ts" />
     <TypeScriptCompile Include="app\00-AQX_Frame.services\Md5.service.ts" />
+    <TypeScriptCompile Include="app\03-login\signupVerify\signupVerify.component.ts" />
     <TypeScriptCompile Include="app\QX_Frame.module&amp;routing.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\03-login\login\" />
     <Folder Include="Files\" />
     <Folder Include="Images\00-main\" />
     <Folder Include="Scripts\plugin\" />

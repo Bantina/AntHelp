@@ -1,0 +1,25 @@
+﻿<!--start signupVerify--> 
+<div>
+    <div class="col-md-6">
+        <div class="signup-left">
+            <div class="signup-left-data">
+                <img src="../../Images/03-login/sign01.png" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="signup-right">
+            <form action="" class="signup-form verifyForm">
+                <div class="form-group" *ngIf="msg.length>0">
+                    <img src="../../../Images/03-login/emo_fail.png" />
+                    <span class="verrify_msg">{{msg}}</span>
+                </div>
+                <div class="form-group" *ngIf="sucMsg.length>0">
+                    <img src="../../../Images/03-login/emo_suc.png" />
+                    <span class="verrify_msg">{{sucMsg}}</span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--end signupVerify--> 

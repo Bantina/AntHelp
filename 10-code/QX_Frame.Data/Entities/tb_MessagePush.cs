@@ -1,6 +1,7 @@
 namespace QX_Frame.Data.Entities
 {
     using global::QX_Frame.App.Base;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -27,8 +28,11 @@ namespace QX_Frame.Data.Entities
         public int messagePushStatusId { get; set; }
 
         public Guid pushToUserUid { get; set; }
-
+        //解决json循环引用问题
+        [JsonIgnore]
         public virtual tb_MessagePushStatus tb_MessagePushStatus { get; set; }
+        //解决json循环引用问题
+        [JsonIgnore]
 
         public virtual tb_MessagePushCategory tb_MessagePushCategory { get; set; }
     }

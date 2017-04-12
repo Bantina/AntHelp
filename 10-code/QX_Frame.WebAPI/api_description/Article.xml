@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApiList>
+
+  <Api name="获得文章列表">
+    <Router>api/Article</Router>
+    <Method>GET</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "articleTitle":"人名",
+      "pageIndex":1,
+      "pageSize":3,
+      "isDesc":false
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"get Article fuzzy query by articleTitle","httpCode":200,"data":[{"articleUid":"df50ea49-3070-4d1c-9077-353fe711beff","articleTitle":"人名的名义","articleContent":"中农","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T17:35:28.547","clickCount":0,"praiseCount":0,"ArticleCategoryId":1,"imagesUrls":"/"},{"articleUid":"16ec8a88-cea8-493c-8827-579fd94b16b8","articleTitle":"人名的名义2","articleContent":"贫下中农的崛起之路","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T18:44:27.42","clickCount":0,"praiseCount":0,"ArticleCategoryId":1,"imagesUrls":"/"},{"articleUid":"14c77f2a-8ec6-4f68-b2ae-67ebe24735f6","articleTitle":"人名的名义3","articleContent":"贫下中农的崛起之路","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T18:44:30.95","clickCount":0,"praiseCount":0,"ArticleCategoryId":1,"imagesUrls":"/"}],"dataCount":4}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"pageIndex,pageSize,isDesc can not be null","httpCode":500,"errorCode":1014,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1014" errorLevel="0">pageIndex,pageSize,isDesc can not be null</Error>
+    </Errors>
+  </Api>
+
+  <Api name="获得单个文章详细信息,参数为ArticleUid">
+    <Router>api/Article/01736a54-74bd-4cb3-b51f-149fd71a27fe</Router>
+    <Method>GET</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"get Article by articleUid","httpCode":200,"data":{"articleUid":"01736a54-74bd-4cb3-b51f-149fd71a27fe","articleTitle":"人名的名义4","articleContent":"贫下中农的崛起之路","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T18:44:33.91","clickCount":0,"praiseCount":0,"ArticleCategoryId":1,"imagesUrls":"/"},"dataCount":1}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"login Id can not be null","httpCode":500,"errorCode":1007,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="3013" errorLevel="0">no article found by articleUid</Error>
+      <Error errorCode="1012" errorLevel="0">id must be provide</Error>
+    </Errors>
+  </Api>
+
+  <Api name="增加文章接口">
+    <Router>api/Article</Router>
+    <Method>POST</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "articleTitle":"人名的名义2",
+      "articleContent":"贫下中农的崛起之路",
+      "ArticleCategoryId":1,
+      "publisherLoginId":"qixiao123",
+      "imagesUrls":"/"
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"article publish succeed","httpCode":200,"data":{"articleUid":"65514a6e-77e6-480a-9900-04dd5feac982","articleTitle":"人名的名义2","articleContent":"贫下中农的崛起之路","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T17:44:09.1405843+08:00","clickCount":0,"praiseCount":0,"ArticleCategoryId":1,"imagesUrls":"/","tb_ArticleCategory":null},"dataCount":1}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"arguments must be provide","httpCode":500,"errorCode":1001,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+    </Errors>
+  </Api>
+
+  <Api name="修改文章信息">
+    <Router>api/Article/1</Router>
+    <Method>PUT</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "articleUid":"65514a6e-77e6-480a-9900-04dd5feac982",
+      "articleTitle":"人名的名义2",
+      "articleContent":"贫下中农的崛起之路xxxxxxxxxx",
+      "ArticleCategoryId":1,
+      "imagesUrls":"/"
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"update article succeed","httpCode":200,"data":{"articleUid":"65514a6e-77e6-480a-9900-04dd5feac982","articleTitle":"人名的名义2","articleContent":"贫下中农的崛起之路xxxxxxxxxx","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T18:39:35.0668164+08:00","clickCount":13,"praiseCount":2,"ArticleCategoryId":1,"imagesUrls":"/"},"dataCount":1}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"login Id can not be null","httpCode":500,"errorCode":1007,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1002" errorLevel="0">loginId must be provide</Error>
+      <Error errorCode="3001" errorLevel="0">no user account found by loginId</Error>
+    </Errors>
+  </Api>
+
+  <Api name="增加点击量">
+    <Router>api/Article/2</Router>
+    <Method>PUT</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "articleUid":"65514a6e-77e6-480a-9900-04dd5feac982"
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"update article succeed","httpCode":200,"data":{"articleUid":"65514a6e-77e6-480a-9900-04dd5feac982","articleTitle":"人名的名义2","articleContent":"贫下中农的崛起之路","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T17:44:09.14","clickCount":13,"praiseCount":1,"ArticleCategoryId":1,"imagesUrls":"/"},"dataCount":1}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"login Id can not be null","httpCode":500,"errorCode":1007,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1002" errorLevel="0">loginId must be provide</Error>
+      <Error errorCode="3001" errorLevel="0">no user account found by loginId</Error>
+    </Errors>
+  </Api>
+
+  <Api name="添加点赞量">
+    <Router>api/Article/3</Router>
+    <Method>PUT</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "articleUid":"65514a6e-77e6-480a-9900-04dd5feac982"
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"update article succeed","httpCode":200,"data":{"articleUid":"65514a6e-77e6-480a-9900-04dd5feac982","articleTitle":"人名的名义2","articleContent":"贫下中农的崛起之路","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T17:44:09.14","clickCount":13,"praiseCount":1,"ArticleCategoryId":1,"imagesUrls":"/"},"dataCount":1}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"login Id can not be null","httpCode":500,"errorCode":1007,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1002" errorLevel="0">loginId must be provide</Error>
+      <Error errorCode="3001" errorLevel="0">no user account found by loginId</Error>
+    </Errors>
+  </Api>
+
+
+
+  <Api name="删除文章信息">
+    <Router>api/Article</Router>
+    <Method>DELETE</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "articleUid":"65514a6e-77e6-480a-9900-04dd5feac982"
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"delete article succeed","httpCode":200,"data":{"articleUid":"744d1143-518e-4514-a316-d48d1b0f2e56","articleTitle":"人名的名义2","articleContent":"贫下中农的崛起之路","publisherUid":"ed487e2a-5d70-450c-a34c-fe325d684b48","publishTime":"2017-04-12T17:42:40.557","clickCount":0,"praiseCount":0,"ArticleCategoryId":1,"imagesUrls":"/"},"dataCount":1}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"login Id can not be null","httpCode":500,"errorCode":1007,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="3005" errorLevel="0">delete faild</Error>
+      <Error errorCode="3013" errorLevel="0">no article found by articleUid</Error>
+    </Errors>
+  </Api>
+
+</ApiList>

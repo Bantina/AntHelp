@@ -1,6 +1,7 @@
 namespace QX_Frame.Data.Entities.QX_Frame
 {
     using global::QX_Frame.App.Base;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,8 @@ namespace QX_Frame.Data.Entities.QX_Frame
 
         public int roleLevel { get; set; }
 
+        //解决json循环引用问题
+        [JsonIgnore]
         public virtual tb_UserRoleAttribute tb_UserRoleAttribute { get; set; }
     }
 }

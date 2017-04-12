@@ -12,7 +12,7 @@ namespace QX_Frame.Data.Entities.QX_Frame
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_BloodType()
         {
-            //tb_UserAccountInfo = new HashSet<tb_UserAccountInfo>();
+            tb_UserAccountInfo = new HashSet<tb_UserAccountInfo>();
         }
 
         [Key]
@@ -23,7 +23,7 @@ namespace QX_Frame.Data.Entities.QX_Frame
         [StringLength(10)]
         public string bloodTypeName { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<tb_UserAccountInfo> tb_UserAccountInfo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_UserAccountInfo> tb_UserAccountInfo { get; set; }
     }
 }

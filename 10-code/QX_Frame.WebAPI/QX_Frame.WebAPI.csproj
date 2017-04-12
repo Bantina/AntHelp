@@ -107,6 +107,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="api_description\Account.xml" />
+    <Content Include="api_description\Article.xml" />
     <Content Include="api_description\User.xml" />
     <Content Include="api_description\Login.xml" />
     <Content Include="api_description\00-ErrorCodeList.xml">

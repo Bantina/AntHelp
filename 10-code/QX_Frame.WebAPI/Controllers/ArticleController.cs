@@ -85,7 +85,8 @@ namespace QX_Frame.WebAPI.Controllers
             article.articleTitle = query.articleTitle;
             article.articleContent = query.articleContent;
             article.ArticleCategoryId = query.ArticleCategoryId;
-            article.publisherUid = UserController.GetUserAccountByLoginId(query.loginId);
+            string loginId = query.publisherLoginId;
+            article.publisherUid = UserController.GetUserAccountByLoginId(loginId).uid;
             article.ArticleCategoryId = query.ArticleCategoryId;
             article.imagesUrls = query.imagesUrls;
 
@@ -119,8 +120,6 @@ namespace QX_Frame.WebAPI.Controllers
                 {
                     article.articleTitle = query.articleTitle;
                     article.articleContent = query.articleContent;
-                    article.ArticleCategoryId = query.ArticleCategoryId;
-                    article.publisherUid = UserController.GetUserAccountByLoginId(query.loginId);
                     article.ArticleCategoryId = query.ArticleCategoryId;
                     article.publishTime = DateTime.Now;
                     article.imagesUrls = query.imagesUrls;
@@ -164,7 +163,7 @@ namespace QX_Frame.WebAPI.Controllers
                 }
                 if (!channel.Delete(article))
                 {
-                    throw new Exception_DG("update article faild", 3014);
+                    throw new Exception_DG("delete faild", 3005);
                 }
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete article succeed", article, 1));
             }

@@ -1,6 +1,7 @@
 namespace QX_Frame.Data.Entities.QX_Frame
 {
     using global::QX_Frame.App.Base;
+    using Newtonsoft.Json;
     using System;
     using System.ComponentModel.DataAnnotations;
 
@@ -11,6 +12,8 @@ namespace QX_Frame.Data.Entities.QX_Frame
 
         public int statusLevel { get; set; }
 
+        //解决json循环引用问题
+        [JsonIgnore]
         public virtual tb_UserStatusAttribute tb_UserStatusAttribute { get; set; }
     }
 }

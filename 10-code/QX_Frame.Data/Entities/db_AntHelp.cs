@@ -10,6 +10,8 @@ namespace QX_Frame.Data.Entities
         public db_AntHelp()
             : base("name=db_AntHelp")
         {
+            //this.Configuration.LazyLoadingEnabled = false;
+            //this.Configuration.ProxyCreationEnabled = false;
         }
 
         public virtual DbSet<tb_Article> tb_Article { get; set; }

@@ -69,7 +69,9 @@
     <Compile Include="QX_Frame\IUserStatusAttributeService.cs" />
     <Compile Include="QX_Frame\IUserStatusService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QX_Frame.Data\QX_Frame.Data.csproj">
       <Project>{38486536-3824-4e1b-8106-3159b31caca7}</Project>

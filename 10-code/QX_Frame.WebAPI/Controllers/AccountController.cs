@@ -24,13 +24,13 @@ namespace QX_Frame.WebAPI.Controllers
 	public class AccountController:WebApiControllerBase
 	{
 		// GET: api/Account
-		public IHttpActionResult Get([FromBody]dynamic query)
+		public IHttpActionResult Get()
 		{
 			throw new Exception_DG("The interface is not available",9999);
 		}
 
 		// GET: api/Account/5
-		public IHttpActionResult Get(string id, [FromBody]dynamic query)
+		public IHttpActionResult Get(string id)
 		{
 			throw new Exception_DG("The interface is not available", 9999);
 		}

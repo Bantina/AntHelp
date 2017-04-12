@@ -1,6 +1,7 @@
 namespace QX_Frame.Data.Entities.QX_Frame
 {
     using global::QX_Frame.App.Base;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -61,8 +62,12 @@ namespace QX_Frame.Data.Entities.QX_Frame
 
         public DateTime? registerTime { get; set; }
 
+        //解决json循环引用问题
+        [JsonIgnore]
         public virtual tb_BloodType tb_BloodType { get; set; }
 
+        //解决json循环引用问题
+        [JsonIgnore]
         public virtual tb_Sex tb_Sex { get; set; }
     }
 }

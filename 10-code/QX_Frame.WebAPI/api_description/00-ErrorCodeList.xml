@@ -26,9 +26,9 @@
   <!--Execute Result-->
   <Error errorCode="3001" errorLevel="0">no user account found by loginId</Error>
   <Error errorCode="3002" errorLevel="0">the loginId has been exist</Error>
-  <Error errorCode="3003" errorLevel="0">register info expired,please register renew.</Error>
-  <Error errorCode="3004" errorLevel="0">register error.</Error>
-  <Error errorCode="3005" errorLevel="0">delete faild.</Error>
+  <Error errorCode="3003" errorLevel="0">register info expired,please register renew</Error>
+  <Error errorCode="3004" errorLevel="0">register error</Error>
+  <Error errorCode="3005" errorLevel="0">delete faild</Error>
   <Error errorCode="3006" errorLevel="0">request expired</Error>
   <Error errorCode="3007" errorLevel="0">request multiple</Error>
   <Error errorCode="3008" errorLevel="0">the request has been tampered also mains account or pwd error</Error>

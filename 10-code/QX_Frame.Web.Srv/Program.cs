@@ -1,4 +1,5 @@
 ﻿using Microsoft.Owin.Hosting;
+using Newtonsoft.Json;
 using Owin;
 using QX_Frame.App.Web.Extends;
 using QX_Frame.WebAPI.config;
@@ -42,8 +43,6 @@ namespace QX_Frame.Web.Srv
         public void Configuration(IAppBuilder appBuilder)
         {
             HttpConfiguration config = new HttpConfiguration();
-
-            // Web API configuration and services
             //跨域配置 //need reference from nuget
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
             //enabing attribute routing
@@ -62,7 +61,7 @@ namespace QX_Frame.Web.Srv
 
             new ClassRegisters(); //register ioc menbers
 
-            SwaggerConfig.Register(config);
+            //SwaggerConfig.Register(config);
             appBuilder.UseWebApi(config);
         }
     }

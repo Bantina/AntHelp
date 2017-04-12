@@ -24,34 +24,8 @@ namespace QX_Frame.WebAPI.Controllers
     public class LoginController : WebApiControllerBase
     {
         // GET: api/Login
-        public IHttpActionResult Get([FromBody]dynamic query)
+        public IHttpActionResult Get(int appKey,int random,long timeStamp,string token)
         {
-            if (query == null)
-            {
-                throw new Exception_DG("arguments must be provide", 1001);
-            }
-            if (query.appKey ==null)
-            {
-                throw new Exception_DG("appKey", "appKey must be provide", 1010);
-            }
-            if (query.random == null)
-            {
-                throw new Exception_DG("random must be provide", 1006);
-            }
-            if (query.timeStamp == null)
-            {
-                throw new Exception_DG("timeStamp must be provide", 1007);
-            }
-            if (query.token==null)
-            {
-                throw new Exception_DG("token", "token must be provide", 1011);
-            }
-
-            int random = query.random;
-            long timeStamp = query.timeStamp;
-            string token = query.token;
-            int appKey = query.appKey;
-
             //timeStamp verification
             bool isTimeStampValid = (DateTime_Helper_DG.GetCurrentTimeStamp() - timeStamp / 1000) <= Config_Helper_DG.AppSetting_Get("RequestExpireTime").ToInt() * 60;
             if (!isTimeStampValid)
@@ -64,7 +38,6 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception_DG("request multiple", 3007);
             }
             Cache_Helper_DG.Cache_Add($"{random}{timeStamp}", 1);//add [random+timestamp] into cache
-
 
             tb_Authentication authentication = AuthenticationController.GetAuthenticationByAppKey(appKey);
 
@@ -85,12 +58,6 @@ namespace QX_Frame.WebAPI.Controllers
             }
 
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("account has been login",new { loginId=authentication.loginId},1));
-        }
-
-        // GET: api/Login/5
-        public IHttpActionResult Get(string id, [FromBody]dynamic query)
-        {
-            throw new Exception_DG("The interface is not available", 9999);
         }
 
         // POST: api/Login

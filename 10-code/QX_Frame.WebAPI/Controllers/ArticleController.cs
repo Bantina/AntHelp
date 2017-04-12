@@ -23,24 +23,14 @@ namespace QX_Frame.WebAPI.Controllers
     public class ArticleController : WebApiControllerBase
     {
         // GET: api/Article
-        public IHttpActionResult Get([FromBody]dynamic query)
-        {
-            if (query == null)
-            {
-                throw new Exception_DG("arguments must be provide", 1001);
-            }
-
+        public IHttpActionResult Get(string articleTitle,int pageIndex,int pageSize,bool isDesc)
+        {   
             tb_ArticleQueryObject queryObject = new tb_ArticleQueryObject();
 
-            queryObject.articleTitle = query.articleTitle;//fuzzy query
-
-            if (query.pageIndex == null || query.pageSize == null || query.isDesc == null)
-            {
-                throw new Exception_DG("pageIndex,pageSize,isDesc must be provide", 1008);
-            }
-            queryObject.PageIndex = Convert.ToInt32(query.pageIndex);
-            queryObject.PageSize = Convert.ToInt32(query.pageSize);
-            queryObject.IsDESC = Convert.ToBoolean(query.isDesc);
+            queryObject.articleTitle = articleTitle;//fuzzy query
+            queryObject.PageIndex = pageIndex;
+            queryObject.PageSize = pageSize;
+            queryObject.IsDESC = isDesc;
 
             using (var fact = Wcf<ArticleService>())
             {
@@ -52,7 +42,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // GET: api/Article/5
-        public IHttpActionResult Get(string id, [FromBody]dynamic query)
+        public IHttpActionResult Get(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -85,7 +75,8 @@ namespace QX_Frame.WebAPI.Controllers
             article.articleTitle = query.articleTitle;
             article.articleContent = query.articleContent;
             article.ArticleCategoryId = query.ArticleCategoryId;
-            article.publisherUid = UserController.GetUserAccountByLoginId(query.loginId);
+            string loginId = query.publisherLoginId;
+            article.publisherUid = UserController.GetUserAccountByLoginId(loginId).uid;
             article.ArticleCategoryId = query.ArticleCategoryId;
             article.imagesUrls = query.imagesUrls;
 
@@ -119,8 +110,6 @@ namespace QX_Frame.WebAPI.Controllers
                 {
                     article.articleTitle = query.articleTitle;
                     article.articleContent = query.articleContent;
-                    article.ArticleCategoryId = query.ArticleCategoryId;
-                    article.publisherUid = UserController.GetUserAccountByLoginId(query.loginId);
                     article.ArticleCategoryId = query.ArticleCategoryId;
                     article.publishTime = DateTime.Now;
                     article.imagesUrls = query.imagesUrls;
@@ -164,7 +153,7 @@ namespace QX_Frame.WebAPI.Controllers
                 }
                 if (!channel.Delete(article))
                 {
-                    throw new Exception_DG("update article faild", 3014);
+                    throw new Exception_DG("delete faild", 3005);
                 }
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete article succeed", article, 1));
             }

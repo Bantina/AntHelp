@@ -80,6 +80,10 @@
     <Content Include="app\03-login\signup.component.css" />
     <Content Include="app\03-login\signup.component.html" />
     <Content Include="app\03-login\signupVerify\signupVerify.component.html" />
+    <Content Include="app\70-community\71-topic\topic.css" />
+    <Content Include="app\70-community\71-topic\topic.html" />
+    <Content Include="app\70-community\72-friends\friends.css" />
+    <Content Include="app\70-community\72-friends\friends.html" />
     <Content Include="Content\css\columns.css" />
     <Content Include="Content\css\hover.css" />
     <Content Include="Content\css\hover_image.css" />
@@ -245,11 +249,17 @@
     <TypeScriptCompile Include="app\03-login\signup.model.ts" />
     <TypeScriptCompile Include="app\00-AQX_Frame.services\Md5.service.ts" />
     <TypeScriptCompile Include="app\03-login\signupVerify\signupVerify.component.ts" />
+    <TypeScriptCompile Include="app\70-community\71-topic\topic.ts" />
+    <TypeScriptCompile Include="app\70-community\71-topic\topic.model.ts" />
+    <TypeScriptCompile Include="app\70-community\72-friends\friends.model.ts" />
+    <TypeScriptCompile Include="app\70-community\72-friends\friends.ts" />
     <TypeScriptCompile Include="app\QX_Frame.module&amp;routing.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\70-community\73-friendInformation\" />
     <Folder Include="Files\" />
+    <Folder Include="fonts\" />
     <Folder Include="Images\00-main\" />
     <Folder Include="Scripts\plugin\" />
   </ItemGroup>

@@ -107,7 +107,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="api_description\Account.xml" />
-    <Content Include="api_description\Users.xml" />
     <Content Include="api_description\User.xml" />
     <Content Include="api_description\Login.xml" />
     <Content Include="api_description\00-ErrorCodeList.xml">
@@ -130,7 +129,6 @@
     <Compile Include="Controllers\Test2Controller.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Filters\TokenAttribute_DG.cs" />
     <Compile Include="Filters\LimitsAttribute_DG.cs" />
     <Compile Include="Filters\RequestValidation_DG.cs" />

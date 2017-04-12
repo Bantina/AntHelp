@@ -7,9 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
+const appService_1 = require("../00-AQX_Frame.services/appService");
 let AppComponent = class AppComponent {
     constructor() {
         this.title = 'Ant Help';
+        this.loginResult = appService_1.appService.IsLogin();
     }
 };
 AppComponent = __decorate([

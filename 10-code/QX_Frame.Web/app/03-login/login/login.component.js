@@ -9,6 +9,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const Md5_service_1 = require("../../00-AQX_Frame.services/Md5.service");
 const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../../00-AQX_Frame.services/appService");
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let LoginComponent = class LoginComponent {
     //注入器的两种：NgModule/Component(只在当前及子组件中生效)
@@ -49,10 +50,16 @@ let LoginComponent = class LoginComponent {
                     if (data.isSuccess) {
                         self.sucMsg = "您已登录成功~";
                         //set cookie
-                        document.cookie = "loginId=" + escape(self.loginUserModel.loginId);
-                        document.cookie = "appKey=" + data.appKey;
-                        document.cookie = "secretKey=" + data.secretKey;
-                        document.cookie = "token=" + data.token;
+                        appService_1.appService.setCookie("loginId", self.loginUserModel.loginId, 7);
+                        appService_1.appService.setCookie("appKey", data.appKey, 7);
+                        appService_1.appService.setCookie("secretKey", data.secretKey, 7);
+                        appService_1.appService.setCookie("token", data.token, 7);
+                        //document.cookie = "loginId=" + escape(self.loginUserModel.loginId);
+                        //document.cookie = "appKey=" + data.appKey;
+                        //document.cookie = "secretKey=" + data.secretKey;
+                        //document.cookie = "token=" + data.token;
+                        //页面跳转
+                        window.location.href = appBase_1.appBase.WebUrlDomain;
                     }
                     else {
                         if (data.errorCode == 3001) {

@@ -7,37 +7,45 @@
 <header class="header_silverbackground">
     <div class="menu">
         <!-- BEGIN fixed-menu -->
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default navbar-fixed-top fixed_navbar">
             <div class="container">
-                <div class="col-md-2">
-                    <a>{{title}}</a>
+                <div class="col-md-4 col-md-offset-2 app_title">
+                    <a routerLink="/">{{title}}</a>
                 </div>
-                <ul class="col-md-6 nav navbar-nav">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
-                        <ul class="dropdown-menu dropdown-menu-left left-pointer">
-                            <li><a>我的账户</a></li>
-                            <li><a>我的订单</a></li>
-                            <li><a>我的评价</a></li>
-                            <li><a>抵用券</a></li>
-                        </ul>
-                    </li>
-                    <li><a>抵用券</a></li>
-                    <li><a>抵用券</a></li>
-                    <li><a>抵用券</a></li>
-                </ul>
-                <ul class="col-md-4 nav navbar-nav navbar-right">
+                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="!loginResult.isLogin">
                     <li><a routerLink="/login">登录</a></li>
                     <li><a routerLink="/signup">注册</a></li>
+                </ul>
+                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="loginResult.isLogin">
+                    <div style="padding-top:5px;">欢迎~ {{loginResult.loginId}}</div>
+                </ul>
+                <ul class="col-md-4 nav navbar-nav mynavbar navbar-right">
+                    <li><a>抵用券</a></li>
+                    <li><a>活动中心</a></li>
+                    <li><a routerLink="/topic">社区</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            个人中心
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a href="#">我的账户</a></li>
+                            <li><a href="#">我的订单</a></li>
+                            <li><a href="#">我的评价</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">抵用券</a></li>
+                        </ul>
+                    </li>
+                    
                 </ul>
             </div>
         </nav>
         <!-- /END fixed-menu -->
         <!-- BEGIN logo -->
-        <a class="logo" href="index.html"></a>
+        <div style="margin-top:30px;"></div>
         <!-- /END logo -->
 
-        <div class="blockeasing-wrapp">
+        <!--<div class="blockeasing-wrapp" style="margin-top:30px;">
             <h6 class="blockeasing-header">Menu</h6>
             <ul class="blockeasing">
                 <li class="current">
@@ -89,7 +97,7 @@
                 <li><a routerLink="/signup">联系我们</a></li>
                 <li><a routerLink="/login">登录</a></li>
             </ul>
-        </div>
+        </div>-->
         <div class="clear"></div>
     </div>
 </header>

@@ -79,11 +79,6 @@ let SignUpComponent = class SignUpComponent {
                 success(data) {
                     if (data.isSuccess) {
                         self.sucMsg = "注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！";
-                        //set cookie2
-                        document.cookie = "loginId=" + escape(data.loginId);
-                        document.cookie = "appKey=" + data.appKey;
-                        document.cookie = "secretKey=" + data.secretKey;
-                        document.cookie = "token=" + data.token;
                     }
                     else if (data.errorCode == 3002) {
                         self.msg = "该用户已注册过，请直接登录~";

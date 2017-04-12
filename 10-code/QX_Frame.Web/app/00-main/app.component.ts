@@ -1,4 +1,5 @@
 ﻿import { Component } from '@angular/core';
+import { appService } from "../00-AQX_Frame.services/appService";
 
 @Component({
     selector: 'my-app',
@@ -9,4 +10,5 @@
 
 export class AppComponent {
     title = 'Ant Help'
+    loginResult = appService.IsLogin();
 }

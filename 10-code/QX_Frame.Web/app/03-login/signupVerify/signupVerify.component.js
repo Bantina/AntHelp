@@ -40,17 +40,22 @@ let SignupVerifyComponent = class SignupVerifyComponent {
                         self.msg = "验证失败，请重新验证~";
                     }
                     else {
-                        self.sucMsg = '邮箱验证成功，<span style="color:#e72015">' + initSec + '</span>S后自动登录~';
+                        self.sucMsg = initSec.toString();
                         timer = setInterval(function () {
                             if (initSec > 0) {
                                 initSec--;
-                                self.sucMsg = '邮箱验证成功，<span style="color:#e72015">' + initSec + '</span>S后自动登录~';
+                                self.sucMsg = initSec.toString();
                             }
                             else {
                                 clearInterval(timer);
                                 window.location.href = appBase_1.appBase.WebUrlDomain;
                             }
                         }, 1000);
+                        //set cookie2
+                        appService_1.appService.setCookie("loginId", data.data.loginId, 7);
+                        appService_1.appService.setCookie("appKey", data.data.appKey, 7);
+                        appService_1.appService.setCookie("secretKey", data.data.secretKey, 7);
+                        appService_1.appService.setCookie("token", data.data.token, 7);
                     }
                 }
                 else {

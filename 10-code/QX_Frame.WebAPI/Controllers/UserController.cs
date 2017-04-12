@@ -19,24 +19,15 @@ namespace QX_Frame.WebAPI.Controllers
     public class UserController : WebApiControllerBase
     {
         // GET: api/User
-        public IHttpActionResult Get([FromBody]dynamic query)
+        public IHttpActionResult Get(string loginId,int pageIndex, int pageSize, bool isDesc)
         {
-            if (query == null)
-            {
-                throw new Exception_DG("arguments must be provide", 1001);
-            }
 
             tb_UserAccountInfoQueryObject queryObject = new tb_UserAccountInfoQueryObject();
 
-            queryObject.loginId = query.loginId;
-
-            if (query.pageIndex == null || query.pageSize == null || query.isDesc == null)
-            {
-                throw new Exception_DG("pageIndex,pageSize,isDesc must be provide", 1008);
-            }
-            queryObject.PageIndex = Convert.ToInt32(query.pageIndex);
-            queryObject.PageSize = Convert.ToInt32(query.pageSize);
-            queryObject.IsDESC = Convert.ToBoolean(query.isDesc);
+            queryObject.loginId = loginId;
+            queryObject.PageIndex = pageIndex;
+            queryObject.PageSize =pageSize;
+            queryObject.IsDESC = isDesc;
 
             using (var fact = Wcf<UserAccountService>())
             {
@@ -76,13 +67,8 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // GET: api/User/id
-        public IHttpActionResult Get(string id,[FromBody]dynamic query)
+        public IHttpActionResult Get(string id)
         {
-            if (query == null)
-            {
-                throw new Exception_DG("arguments must be provide", 1001);
-            }
-
             string loginId = id;
 
             if (string.IsNullOrEmpty(loginId))

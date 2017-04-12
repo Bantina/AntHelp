@@ -5,14 +5,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-const core_1 = require('@angular/core');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
 const Md5_service_1 = require("../../00-AQX_Frame.services/Md5.service");
-const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
+const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../../00-AQX_Frame.services/appService");
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let LoginComponent = class LoginComponent {
+    //注入器的两种：NgModule/Component(只在当前及子组件中生效)
     constructor() {
         this.loginUserModel = {
             loginId: "",
@@ -50,10 +50,16 @@ let LoginComponent = class LoginComponent {
                     if (data.isSuccess) {
                         self.sucMsg = "您已登录成功~";
                         //set cookie
-                        document.cookie = "loginId=" + escape(self.loginUserModel.loginId);
-                        document.cookie = "appKey=" + data.appKey;
-                        document.cookie = "secretKey=" + data.secretKey;
-                        document.cookie = "token=" + data.token;
+                        appService_1.appService.setCookie("loginId", self.loginUserModel.loginId, 7);
+                        appService_1.appService.setCookie("appKey", data.appKey, 7);
+                        appService_1.appService.setCookie("secretKey", data.secretKey, 7);
+                        appService_1.appService.setCookie("token", data.token, 7);
+                        //document.cookie = "loginId=" + escape(self.loginUserModel.loginId);
+                        //document.cookie = "appKey=" + data.appKey;
+                        //document.cookie = "secretKey=" + data.secretKey;
+                        //document.cookie = "token=" + data.token;
+                        //页面跳转
+                        window.location.href = appBase_1.appBase.WebUrlDomain;
                     }
                     else {
                         if (data.errorCode == 3001) {
@@ -89,8 +95,7 @@ LoginComponent = __decorate([
         templateUrl: 'app/03-login/login/login.component.html',
         styleUrls: ['app/03-login/signup.component.css'],
         providers: [] //元数据中申明依赖
-    }), 
-    __metadata('design:paramtypes', [])
+    })
 ], LoginComponent);
 exports.LoginComponent = LoginComponent;
 //# sourceMappingURL=login.component.js.map

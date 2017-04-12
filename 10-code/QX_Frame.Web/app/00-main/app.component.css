@@ -104,4 +104,35 @@ ul.blockeasing li li ul {
 	left: 175px;
 }
 
+
+
+.app_title{
+    font-size:22px;
+}
+.app_title:first-letter{
+    color: #e72015;
+}
+.fixed_navbar{
+    min-height:20px;
+}
+.mynavbar>li>a{
+    padding:5px 15px;
+}
+.mynavbar>li>a:hover{
+    color:#fff;
+}
+.mynavbar>li:not(:last-child){
+    border-right:solid 1px #e6dede;
+}
+.mynavbar>li:hover{
+    background-color:#2db8ad;
+}
+.fixed_navbar .navbar-nav>.active>a, .fixed_navbar .navbar-nav>.open>a{
+    box-shadow:none;
+    background-image:none;
+}
+.fixed_navbar .navbar-nav>li>a:focus, .fixed_navbar .navbar-nav>li>a:hover{
+    background-color:#2db8ad;
+    color:#fff;
+}
 /*menu style end*/

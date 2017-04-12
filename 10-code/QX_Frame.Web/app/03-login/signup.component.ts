@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { UserAccountViewModel } from './signup.model';
 import { Md5 } from "../00-AQX_Frame.services/Md5.service";
+import { appService } from '../00-AQX_Frame.services/appService';
 import { appBase } from '../00-AQX_Frame.commons/appBase';
 
 declare function escape(s: string): string;
@@ -84,11 +85,6 @@ export class SignUpComponent implements OnInit {
                 success(data) {
                     if (data.isSuccess) {
                         self.sucMsg = "注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！";
-                        //set cookie2
-                        document.cookie = "loginId=" + escape(data.loginId);
-                        document.cookie = "appKey=" + data.appKey;
-                        document.cookie = "secretKey=" + data.secretKey;
-                        document.cookie = "token=" + data.token;
                     }
                     else if (data.errorCode == 3002) {
                         self.msg = "该用户已注册过，请直接登录~";

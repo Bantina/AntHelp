@@ -3,7 +3,7 @@
     <div class="col-md-6">
         <div class="signup-left">
             <div class="signup-left-data">
-                <img src="../../Images/03-login/sign01.png" />
+                <img src="../../../Images/03-login/sign01.png" />
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
             <form action="" class="signup-form verifyForm">
                 <div class="form-group" *ngIf="msg.length>0">
                     <img src="../../../Images/03-login/emo_fail.png" />
-                    <span class="verrify_msg">{{msg}}</span>
+                    <span class="verrify_msg">邮箱验证成功，<span style="color:#e72015">{{msg}}</span>s后自动登录~</span>
                 </div>
                 <div class="form-group" *ngIf="sucMsg.length>0">
                     <img src="../../../Images/03-login/emo_suc.png" />

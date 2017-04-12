@@ -67,6 +67,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArticleCategoryService.cs" />
+    <Compile Include="ArticleService.cs" />
+    <Compile Include="CommentReplyService.cs" />
+    <Compile Include="ComplainStatusService.cs" />
+    <Compile Include="FavorableActivityService.cs" />
+    <Compile Include="MessagePushCategoryService.cs" />
+    <Compile Include="MessagePushService.cs" />
+    <Compile Include="MessagePushStatusService.cs" />
+    <Compile Include="OrderComplainService.cs" />
+    <Compile Include="OrderEvaluateService.cs" />
+    <Compile Include="OrderService.cs" />
+    <Compile Include="OrderStatusService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QX_Frame\AuthenticationService.cs" />
     <Compile Include="QX_Frame\BloodTypeService.cs" />
@@ -79,6 +91,10 @@
     <Compile Include="QX_Frame\UserRoleService.cs" />
     <Compile Include="QX_Frame\UserStatusAttributeService.cs" />
     <Compile Include="QX_Frame\UserStatusService.cs" />
+    <Compile Include="RelationStatusService.cs" />
+    <Compile Include="SelfMessageService.cs" />
+    <Compile Include="UserRelationService.cs" />
+    <Compile Include="VoucherService.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

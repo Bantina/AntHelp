@@ -9,25 +9,36 @@
   <Error errorCode="1006" errorLevel="0">random must be provide</Error>
   <Error errorCode="1007" errorLevel="0">timeStamp must be provide</Error>
   <Error errorCode="1008" errorLevel="0">pageIndex,pageSize,isDesc must be provide</Error>
+  <Error errorCode="1009" errorLevel="0">secretString must be provide</Error>
+  <Error errorCode="1010" errorLevel="0">appKey must be provide</Error>
+  <Error errorCode="1011" errorLevel="0">token must be provide</Error>
+  <Error errorCode="1012" errorLevel="0">id must be provide</Error>
   <Error errorCode="10" errorLevel="0"></Error>
-  <Error errorCode="10" errorLevel="0"></Error>
-  <Error errorCode="10" errorLevel="0"></Error>
-  
+
   <!--Arguments Format Error-->
   <Error errorCode="2001" errorLevel="0">pwd must be Encrypt By Md5</Error>
   <Error errorCode="2002" errorLevel="0">email format error</Error>
+  <Error errorCode="2003" errorLevel="0">loginId cannot be less than three</Error>
+  <Error errorCode="2004" errorLevel="0">appKey error,cannot find any info by this appKey</Error>
+  <Error errorCode="2005" errorLevel="0">unsupported media type</Error>
   <Error errorCode="20" errorLevel="0"></Error>
-  <Error errorCode="20" errorLevel="0"></Error>
-  <Error errorCode="20" errorLevel="0"></Error>
-  
+
   <!--Execute Result-->
   <Error errorCode="3001" errorLevel="0">no user account found by loginId</Error>
   <Error errorCode="3002" errorLevel="0">the loginId has been exist</Error>
   <Error errorCode="3003" errorLevel="0">register info expired,please register renew.</Error>
   <Error errorCode="3004" errorLevel="0">register error.</Error>
   <Error errorCode="3005" errorLevel="0">delete faild.</Error>
-  <Error errorCode="30" errorLevel="0"></Error>
-  <Error errorCode="30" errorLevel="0"></Error>
+  <Error errorCode="3006" errorLevel="0">request expired</Error>
+  <Error errorCode="3007" errorLevel="0">request multiple</Error>
+  <Error errorCode="3008" errorLevel="0">the request has been tampered also mains account or pwd error</Error>
+  <Error errorCode="3009" errorLevel="0">login faild</Error>
+  <Error errorCode="3010" errorLevel="0">the request has been tampered</Error>
+  <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
+  <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
+  <Error errorCode="3013" errorLevel="0">no article found by articleUid</Error>
+  <Error errorCode="3014" errorLevel="0">update article faild</Error>
+  <Error errorCode="3015" errorLevel="0">the error id provid</Error>
   <Error errorCode="30" errorLevel="0"></Error>
 
 
@@ -41,4 +52,19 @@ if (query == null)
 throw new Exception_DG("arguments must be provide",1001);
 }
 
+
+token validate
+
+  <Error errorCode="1010" errorLevel="0">appKey must be provide</Error>
+  <Error errorCode="1011" errorLevel="0">token must be provide</Error>
+  <Error errorCode="3006" errorLevel="0">request expired</Error>
+  <Error errorCode="3007" errorLevel="0">request multiple</Error>
+  <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
+  <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
+
+request validate
+
+
+  <Error errorCode="3010" errorLevel="0">the request has been tampered</Error>
+  
 -->

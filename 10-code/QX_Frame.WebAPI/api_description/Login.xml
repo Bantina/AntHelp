@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApiList>
+
+  <Api name="判断用户是否已经登录">
+    <Router>api/Login</Router>
+    <Method>GET</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "appKey":"1001",
+      "random":"125",
+      "timeStamp":"1491922512000",
+      "token":"BTeEd4GnQeGSSkgf5gJiITpz/vxFqX0bHUMWgO3Lu7ulG2JvBZI8SUCYYmzx2JkifZfzJgdP0Fz1d0MKct1gruaZesIZY38jpfjprGJgaDgQU3nWHGYeit8FYw81FhSqLUYZEpk7SUF7luOQPp7gfdNMHT3J2KgV0LPdj3nuPWE="
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"account has been login","httpCode":200,"data":{"loginId":"jp123"},"dataCount":0}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"xxx","httpCode":500,"errorCode":0,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1002" errorLevel="0">loginId must be provide</Error>
+      <Error errorCode="1006" errorLevel="0">random must be provide</Error>
+      <Error errorCode="1007" errorLevel="0">timeStamp must be provide</Error>
+      <Error errorCode="1011" errorLevel="0">token must be provide</Error>
+      <Error errorCode="3006" errorLevel="0">request expired</Error>
+      <Error errorCode="3007" errorLevel="0">request multiple</Error>
+      <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
+      <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
+    </Errors>
+  </Api>
+  
+  <Api name="用户登录接口">
+    <Router>api/Login</Router>
+    <Method>POST</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "loginId":"jp123",
+      "random":123,
+      "timeStamp":36456456,
+      "secretString":"MD5[loginId+MD5[pwd]+ramdom+timestamp]"
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"login succeed","httpCode":200,"data":{"loginId":"jp123","appKey":1001,"secretKey":"57cab2c8e2da89ae425a8f5210490dd3","token":"rvoBsTWXbs/lE2MsHC/y7yUq75gcbbG8MSorSDZnGgZSXL2YW8KBfrbJ3hODTRo3ExkaDY/AchggzxCtZ3SlNNi4s7Mme8oJYOsIe08fOjOelfs3EhlxHeSHiiIVKxI6TbD5D6x7pgONPvjysu1VAeVLOLT1P+cwyUoi/ea0Avc="},"dataCount":1}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"Input string was not in a correct format.","httpCode":500,"errorCode":0,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1002" errorLevel="0">loginId must be provide</Error>
+      <Error errorCode="1006" errorLevel="0">random must be provide</Error>
+      <Error errorCode="1007" errorLevel="0">timeStamp must be provide</Error>
+      <Error errorCode="1009" errorLevel="0">secretString must be provide</Error>
+      <Error errorCode="3001" errorLevel="0">no user account found by loginId</Error>
+      <Error errorCode="3006" errorLevel="0">request expired</Error>
+      <Error errorCode="3007" errorLevel="0">request multiple</Error>
+      <Error errorCode="3008" errorLevel="0">the request has been tampered also mains account or pwd error</Error>
+    </Errors>
+  </Api>
+  
+</ApiList>

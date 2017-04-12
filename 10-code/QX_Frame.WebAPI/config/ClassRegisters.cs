@@ -1,4 +1,5 @@
 ﻿using QX_Frame.App.Web;
+using QX_Frame.Data.Service;
 using QX_Frame.Data.Service.QX_Frame;
 
 namespace QX_Frame.WebAPI.config
@@ -24,6 +25,24 @@ namespace QX_Frame.WebAPI.config
             WebApiControllerBase.Register(c => new UserRoleService());
             WebApiControllerBase.Register(c => new UserStatusAttributeService());
             WebApiControllerBase.Register(c => new UserStatusService());
+
+            WebApiControllerBase.Register(c => new ArticleCategoryService());
+            WebApiControllerBase.Register(c => new ArticleService());
+            WebApiControllerBase.Register(c => new CommentReplyService());
+            WebApiControllerBase.Register(c => new ComplainStatusService());
+            WebApiControllerBase.Register(c => new FavorableActivityService());
+            WebApiControllerBase.Register(c => new MessagePushCategoryService());
+            WebApiControllerBase.Register(c => new MessagePushService());
+            WebApiControllerBase.Register(c => new MessagePushStatusService());
+            WebApiControllerBase.Register(c => new OrderComplainService());
+            WebApiControllerBase.Register(c => new OrderEvaluateService());
+            WebApiControllerBase.Register(c => new OrderService());
+            WebApiControllerBase.Register(c => new OrderStatusService());
+            WebApiControllerBase.Register(c => new RelationStatusService());
+            WebApiControllerBase.Register(c => new SelfMessageService());
+            WebApiControllerBase.Register(c => new UserRelationService());
+            WebApiControllerBase.Register(c => new VoucherService());
+
 
 
             //end register region --

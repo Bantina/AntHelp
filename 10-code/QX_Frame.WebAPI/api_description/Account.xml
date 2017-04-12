@@ -36,6 +36,7 @@
       <Error errorCode="2001" errorLevel="0">pwd must be Encrypt By Md5</Error>
       <Error errorCode="2002" errorLevel="0">email format error</Error>
       <Error errorCode="3002" errorLevel="0">the loginId has been exist</Error>
+      <Error errorCode="2003" errorLevel="0">loginId cannot be less than three</Error>
     </Errors>
   </Api>
   

@@ -12,9 +12,9 @@
                 <div class="col-md-2">
                     <a>{{title}}</a>
                 </div>
-                <ul class="col-md-6 nav navbar-nav navbar-right">
+                <ul class="col-md-6 nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle">个人中心</a>
+                        <a class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">个人中心<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-menu-left left-pointer">
                             <li><a>我的账户</a></li>
                             <li><a>我的订单</a></li>
@@ -27,8 +27,8 @@
                     <li><a>抵用券</a></li>
                 </ul>
                 <ul class="col-md-4 nav navbar-nav navbar-right">
-                    <li><a>登录</a></li>
-                    <li><a>注册</a></li>
+                    <li><a routerLink="/login">登录</a></li>
+                    <li><a routerLink="/signup">注册</a></li>
                 </ul>
             </div>
         </nav>

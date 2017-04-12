@@ -17,9 +17,13 @@ const app_component_1 = require("./00-main/app.component"); //the root component
 const index_component_1 = require("./01-index/index.component"); //the index component
 /* start define components --there we add in ->-------------- 01 */
 const example_component_1 = require("./02-example/example.component");
+/*bantina add start*/
 const signup_component_1 = require("./03-login/signup.component");
 const login_component_1 = require("./03-login/login/login.component");
 const signupVerify_component_1 = require("./03-login/signupVerify/signupVerify.component");
+/*bantina add end*/
+/*zyq add start*/
+/*zyq add end*/
 /* end define components */
 const appRoutes = [
     {
@@ -35,6 +39,7 @@ const appRoutes = [
         path: 'example',
         component: example_component_1.exampleComponent
     },
+    /*bantina add start*/
     {
         path: 'signup',
         component: signup_component_1.SignUpComponent
@@ -47,6 +52,9 @@ const appRoutes = [
         path: 'signupVerify',
         component: signupVerify_component_1.SignupVerifyComponent
     },
+    /*bantina add end*/
+    /*zyq add start*/
+    /*zyq add end*/
     /* end define components */
     {
         path: '**',
@@ -59,9 +67,13 @@ const appComponents = [
     index_component_1.IndexComponent,
     /* start define components -- there we add in ->------------ 03 */
     example_component_1.exampleComponent,
+    /*bantina add start*/
     signup_component_1.SignUpComponent,
     login_component_1.LoginComponent,
     signupVerify_component_1.SignupVerifyComponent
+    /*bantina add end*/
+    /*zyq add start*/
+    /*zyq add end*/
     /* end define components */
 ];
 /**

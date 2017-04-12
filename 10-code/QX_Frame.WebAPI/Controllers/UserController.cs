@@ -158,7 +158,7 @@ namespace QX_Frame.WebAPI.Controllers
                 using (var fact = Wcf<UserAccountInfoService>())
                 {
                     var channel = fact.CreateChannel();
-                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId, nickName = loginId, email = pwd_mail_cache.ToString().Split(',')[1], registerTime = DateTime.Now ,birthday=DateTime.MinValue});
+                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId, nickName = loginId, email = pwd_mail_cache.ToString().Split(',')[1], registerTime = DateTime.Now ,birthday=DateTime.Now});
                 }
                 //add tb_UserRole
                 using (var fact = Wcf<UserRoleService>())

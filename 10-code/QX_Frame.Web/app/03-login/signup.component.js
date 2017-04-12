@@ -85,6 +85,9 @@ let SignUpComponent = class SignUpComponent {
                         document.cookie = "secretKey=" + data.secretKey;
                         document.cookie = "token=" + data.token;
                     }
+                    else if (data.errorCode == 3002) {
+                        self.msg = "该用户已注册过，请直接登录~";
+                    }
                     else {
                         self.msg = "服务器请求出错，请稍后重试~";
                     }

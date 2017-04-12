@@ -10,9 +10,14 @@ import { AppComponent } from './00-main/app.component';         //the root compo
 import { IndexComponent } from './01-index/index.component';    //the index component
 /* start define components --there we add in ->-------------- 01 */
 import { exampleComponent } from './02-example/example.component';
+ /*bantina add start*/
 import { SignUpComponent } from './03-login/signup.component'; 
 import { LoginComponent } from './03-login/login/login.component';
 import { SignupVerifyComponent } from './03-login/signupVerify/signupVerify.component';
+ /*bantina add end*/
+
+ /*zyq add start*/
+ /*zyq add end*/
 
 /* end define components */
 
@@ -31,6 +36,7 @@ const appRoutes: Routes = [
         path: 'example',
         component: exampleComponent
     },
+     /*bantina add start*/
     {
         path: 'signup',
         component: SignUpComponent
@@ -43,7 +49,11 @@ const appRoutes: Routes = [
         path: 'signupVerify',
         component: SignupVerifyComponent
     },
+     /*bantina add end*/
 
+
+    /*zyq add start*/
+    /*zyq add end*/
 
     /* end define components */
     {
@@ -58,11 +68,15 @@ const appComponents: any[] = [
     IndexComponent,     //the index website
     /* start define components -- there we add in ->------------ 03 */
     exampleComponent,
+    /*bantina add start*/
     SignUpComponent,
     LoginComponent,
     SignupVerifyComponent
 
+    /*bantina add end*/
 
+    /*zyq add start*/
+    /*zyq add end*/
 
     /* end define components */
 ];

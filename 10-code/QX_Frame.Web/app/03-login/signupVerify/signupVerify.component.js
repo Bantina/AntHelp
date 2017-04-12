@@ -40,11 +40,11 @@ let SignupVerifyComponent = class SignupVerifyComponent {
                         self.msg = "验证失败，请重新验证~";
                     }
                     else {
-                        self.sucMsg = "邮箱验证成功，" + initSec + "S后自动登录~";
+                        self.sucMsg = '邮箱验证成功，<span style="color:#e72015">' + initSec + '</span>S后自动登录~';
                         timer = setInterval(function () {
                             if (initSec > 0) {
                                 initSec--;
-                                self.sucMsg = "邮箱验证成功，" + initSec + "S后自动登录~";
+                                self.sucMsg = '邮箱验证成功，<span style="color:#e72015">' + initSec + '</span>S后自动登录~';
                             }
                             else {
                                 clearInterval(timer);

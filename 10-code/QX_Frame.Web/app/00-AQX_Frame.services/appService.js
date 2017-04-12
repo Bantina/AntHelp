@@ -9,6 +9,13 @@ class appService {
             return unescape(r[2]);
         return null;
     }
+    //Cookie设置
+    static setCookie(c_name, value, expiredays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + expiredays);
+        // document.cookie = c_name + "=" + escape(value) +
+        //((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+    }
     //判断用户是否登录
     static IsLogin(loginId, appKey, secretKey, token) {
         $.ajax({

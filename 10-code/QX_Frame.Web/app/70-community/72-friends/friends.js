@@ -11,11 +11,22 @@ const core_1 = require("@angular/core");
 let Friends = class Friends {
     ////the final execute ...
     ngOnInit() {
+        var size_li = $("#myList li").length;
+        var x = 1;
+        $('#myList li:lt(' + x + ')').show();
+        $('#loadMore').click(function () {
+            x = (x + 1 <= size_li) ? x + 1 : size_li;
+            $('#myList li:lt(' + x + ')').show();
+        });
+        $('#showLess').click(function () {
+            x = (x - 1 < 0) ? 1 : x - 1;
+            $('#myList li').not(':lt(' + x + ')').hide();
+        });
     }
 };
 Friends = __decorate([
     core_1.Component({
-        selector: 'signup',
+        selector: 'friends',
         templateUrl: 'app/70-community/72-friends/friends.html',
         styleUrls: ['app/70-community/72-friends/friends.css'],
         providers: [] //元数据中申明依赖

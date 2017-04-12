@@ -1,5 +1,5 @@
 ﻿<!--start friends--> 
-<<div class="main">
+<div class="main">
     <h1>好友</h1>
     <div class="invite">
         <h2>My Friends</h2>
@@ -8,45 +8,45 @@
                 <li>
                     <div class="load-grids">
                         <div class="load-grid">
-                            <img src="images/pic1.png" alt="" />
+                            <img src="../../Images/70-index/pic1.png" alt="" />
                             <p><a href="#">Abel M.</a></p>
                             <div class="delete_checkbox" data-toggle="modal" data-target="#deleteFriend">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="load-grid">
-                            <img src="images/pic2.png" alt="" />
-                            <p><a href="friendInformation.html">Adelina B.</a></p>
+                            <img src="../../Images/70-index/pic2.png" alt="" />
+                            <p><a href="friendsInformation">Adelina B.</a></p>
                             <div class="delete_checkbox" data-toggle="modal" data-target="#deleteFriend">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="load-grid">
-                            <img src="images/pic3.png" alt="" />
+                            <img src="../../Images/70-index/pic3.png" alt="" />
                             <p><a href="#">Alexandra D.</a></p>
                             <div class="delete_checkbox" data-toggle="modal" data-target="#deleteFriend">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="load-grid">
-                            <img src="images/pic4.png" alt="" />
+                            <img src="../../Images/70-index/pic4.png" alt="" />
                             <p><a href="#">Bodgan G.</a></p>
                             <div class="delete_checkbox">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="load-grid">
-                            <img src="images/pic5.png" alt="" />
+                            <img src="../../Images/70-index/pic5.png" alt="" />
                             <p><a href="#">Carmen M.</a></p>
                             <div class="delete_checkbox">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="load-grid">
-                            <img src="images/pic6.png" alt="" />
+                            <img src="../../Images/70-index/pic6.png" alt="" />
                             <p><a href="#">Dariana S.</a></p>
                             <div class="delete_checkbox">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -55,45 +55,30 @@
                 <li>
                     <div class="load-grids">
                         <div class="load-grid g_r">
-                            <img src="images/pic1.png" alt="" />
+                            <img src="../../Images/70-index/pic1.png" alt="" />
                             <p><a href="#">Abel M.</a></p>
                             <div class="delete_checkbox">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="load-grid g_r">
-                            <img src="images/pic2.png" alt="" />
+                            <img src="../../Images/70-index/pic2.png" alt="" />
                             <p><a href="#">Adelina B.</a></p>
                             <div class="delete_checkbox">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="load-grid g_r">
-                            <img src="images/pic3.png" alt="" />
+                            <img src="../../Images/70-index/pic3.png" alt="" />
                             <p><a href="#">Alexandra D.</a></p>
                             <div class="delete_checkbox">
-                                <span class="glyphicon glyphicon-remove"></span>
+                                <span class="delete-friends"></span>
                             </div>
                         </div>
                         <div class="clear"></div>
                     </div>
                 </li>
             </ul>
-            <script>
-						$(document).ready(function () {
-							size_li = $("#myList li").size();
-							x=1;
-							$('#myList li:lt('+x+')').show();
-							$('#loadMore').click(function () {
-								x= (x+1 <= size_li) ? x+1 : size_li;
-								$('#myList li:lt('+x+')').show();
-							});
-							$('#showLess').click(function () {
-								x=(x-1<0) ? 1 : x-1;
-								$('#myList li').not(':lt('+x+')').hide();
-							});
-						});
-            </script>
             <p class="show" id="loadMore">Show all friends</p>
         </div>
         <div class="invite-but">
@@ -104,7 +89,7 @@
         <ul>
             <!--动态内容-->
             <li>
-                <div class="trend-picture"><img src="images/pic1.png" alt=""></div>
+                <div class="trend-picture"><img src="../../Images/70-index/pic1.png" alt=""></div>
                 <div class="trend-font"><span class="trend-name">Abel M.:</span>今天天气很好，和好朋友玩的很开心</div>
                 <div class="clear"></div>
             </li>
@@ -121,7 +106,7 @@
         </ul>
     </div>
     <div class="clear"></div>
-    <p class="footer">蚂蚁热帮 <a href="index.html" target="_blank">返回</a></p>
+    <p class="footer">蚂蚁热帮 <a href="topic" target="_blank">返回</a></p>
 </div>
 <!--模态框-->
 <!-- 查找好友 -->
@@ -130,7 +115,7 @@
         <div class="modal-content">
             <!--搜索框-->
             <div class="search">
-                <div class="search-icon"><span><span class="glyphicon glyphicon-user"></span></span></div>
+                <div class="search-icon"><span></span></div>
                 <div class="search-form">
                     <form>
                         <input type="text" class="fb-ico" placeholder="Search Friends">

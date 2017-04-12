@@ -37,7 +37,7 @@ let Topic = class Topic {
 };
 Topic = __decorate([
     core_1.Component({
-        selector: 'signup',
+        selector: 'topic',
         templateUrl: 'app/70-community/71-topic/topic.html',
         styleUrls: ['app/70-community/71-topic/topic.css'],
         providers: [] //元数据中申明依赖

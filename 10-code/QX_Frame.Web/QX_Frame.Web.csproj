@@ -80,10 +80,14 @@
     <Content Include="app\03-login\signup.component.css" />
     <Content Include="app\03-login\signup.component.html" />
     <Content Include="app\03-login\signupVerify\signupVerify.component.html" />
+    <Content Include="app\70-community\71-topic\detail\detail.css" />
+    <Content Include="app\70-community\71-topic\detail\detail.html" />
     <Content Include="app\70-community\71-topic\topic.css" />
     <Content Include="app\70-community\71-topic\topic.html" />
     <Content Include="app\70-community\72-friends\friends.css" />
     <Content Include="app\70-community\72-friends\friends.html" />
+    <Content Include="app\70-community\72-friends\friendsInformation\friendsInformation.css" />
+    <Content Include="app\70-community\72-friends\friendsInformation\friendsInformation.html" />
     <Content Include="Content\css\columns.css" />
     <Content Include="Content\css\hover.css" />
     <Content Include="Content\css\hover_image.css" />
@@ -100,6 +104,17 @@
     <Content Include="Images\03-login\emo_fail.png" />
     <Content Include="Images\03-login\emo_suc.png" />
     <Content Include="Images\03-login\sign01.png" />
+    <Content Include="Images\70-index\banner.jpg" />
+    <Content Include="Images\70-index\bg40.jpg" />
+    <Content Include="Images\70-index\delete.png" />
+    <Content Include="Images\70-index\pic1.png" />
+    <Content Include="Images\70-index\pic2.png" />
+    <Content Include="Images\70-index\pic3.png" />
+    <Content Include="Images\70-index\pic4.png" />
+    <Content Include="Images\70-index\pic5.png" />
+    <Content Include="Images\70-index\pic6.png" />
+    <Content Include="Images\70-index\search.png" />
+    <Content Include="Images\70-index\woman-1254453_640.jpg" />
     <Content Include="Images\blog\1.jpg" />
     <Content Include="Images\blog\2.jpg" />
     <Content Include="Images\blog\3.jpg" />
@@ -249,15 +264,19 @@
     <TypeScriptCompile Include="app\03-login\signup.model.ts" />
     <TypeScriptCompile Include="app\00-AQX_Frame.services\Md5.service.ts" />
     <TypeScriptCompile Include="app\03-login\signupVerify\signupVerify.component.ts" />
+    <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.model.ts" />
+    <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\topic.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\topic.model.ts" />
     <TypeScriptCompile Include="app\70-community\72-friends\friends.model.ts" />
     <TypeScriptCompile Include="app\70-community\72-friends\friends.ts" />
+    <TypeScriptCompile Include="app\70-community\72-friends\friendsInformation\friendsInformation.model.ts" />
+    <TypeScriptCompile Include="app\70-community\72-friends\friendsInformation\friendsInformation.ts" />
     <TypeScriptCompile Include="app\QX_Frame.module&amp;routing.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\70-community\73-friendInformation\" />
+    <Folder Include="app\70-community\73-information\" />
     <Folder Include="Files\" />
     <Folder Include="fonts\" />
     <Folder Include="Images\00-main\" />

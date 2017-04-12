@@ -18,7 +18,9 @@ import { SignupVerifyComponent } from './03-login/signupVerify/signupVerify.comp
 
  /*zyq add start*/
 import { Topic } from './70-community/71-topic/topic';
+import { Detail } from './70-community/71-topic/detail/detail';
 import { Friends } from './70-community/72-friends/friends';
+import { FriendsInformation } from './70-community/72-friends/friendsInformation/friendsInformation';
  /*zyq add end*/
 
 /* end define components */
@@ -60,8 +62,16 @@ const appRoutes: Routes = [
         component: Topic
     },
     {
+        path: 'detail',
+        component: Detail
+    },
+    {
         path: 'friends',
         component: Friends
+    },
+    {
+        path: 'friendsInformation',
+        component: FriendsInformation
     },
     /*zyq add end*/
 
@@ -87,7 +97,9 @@ const appComponents: any[] = [
 
     /*zyq add start*/
     Topic,
+    Detail,
     Friends,
+    FriendsInformation
     /*zyq add end*/
 
     /* end define components */

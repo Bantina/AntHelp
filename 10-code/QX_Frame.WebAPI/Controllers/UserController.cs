@@ -95,7 +95,8 @@ namespace QX_Frame.WebAPI.Controllers
                 var channel = fact.CreateChannel();
 
                 int totalCount = 0;
-                tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_UserAccountInfo>(out totalCount);
+                tb_UserAccount userAccount = GetUserAccountByLoginId(loginId);
+                tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid==userAccount.uid }).Cast<tb_UserAccountInfo>(out totalCount);
                 UserAccountInfoViewModel userAccountInfoViewModel = new UserAccountInfoViewModel
                 {
                     uid = userAccountInfo.uid,
@@ -144,6 +145,17 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception_DG("register info expired,please register renew.", 3003);
             }
 
+            using (var fact = Wcf<UserAccountService>())
+            {
+                var channel = fact.CreateChannel();
+                int userAccountCountByloginId = channel.QueryCount(new tb_UserAccountQueryObject { QueryCondition = t => t.loginId.Equals(loginId) });
+                if (userAccountCountByloginId > 0)
+                {
+                    throw new Exception_DG("the loginId has been exist!", 3002);
+                }
+            }
+
+
             userAccount.pwd = pwd_mail_cache.ToString().Split(',')[0];
 
             Transaction_Helper_DG.Transaction(() =>
@@ -158,7 +170,7 @@ namespace QX_Frame.WebAPI.Controllers
                 using (var fact = Wcf<UserAccountInfoService>())
                 {
                     var channel = fact.CreateChannel();
-                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId, nickName = loginId, email = pwd_mail_cache.ToString().Split(',')[1], registerTime = DateTime.Now ,birthday=DateTime.MinValue});
+                    addSuccess = addSuccess && channel.Add(new tb_UserAccountInfo { uid = userAccount.uid, loginId = userAccount.loginId, nickName = loginId, email = pwd_mail_cache.ToString().Split(',')[1], registerTime = DateTime.Now ,birthday=DateTime.Now});
                 }
                 //add tb_UserRole
                 using (var fact = Wcf<UserRoleService>())

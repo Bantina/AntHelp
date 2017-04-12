@@ -57,7 +57,7 @@
     </Arguments-Data>
     <ReturnExample>
       <Success>
-        {"isSuccess":true,"msg":"register user succeed!","httpCode":200,"data":{"loginId":"qixiao123","pwd":"123"},"dataCount":0}
+        {"isSuccess":true,"msg":"register succeed","httpCode":200,"data":{"loginId":"jp123","appKey":1001,"secretKey":"57cab2c8e2da89ae425a8f5210490dd3","token":"rvoBsTWXbs/lE2MsHC/y7yUq75gcbbG8MSorSDZnGgZSXL2YW8KBfrbJ3hODTRo3ExkaDY/AchggzxCtZ3SlNNi4s7Mme8oJYOsIe08fOjOelfs3EhlxHeSHiiIVKxI6TbD5D6x7pgONPvjysu1VAeVLOLT1P+cwyUoi/ea0Avc="},"dataCount":1}
       </Success>
       <Error>
         {"isSuccess":false,"msg":"register info expired,please register renew.","httpCode":500,"errorCode":1010,"errorLevel":0}
@@ -66,6 +66,7 @@
     <Errors>
       <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
       <Error errorCode="1002" errorLevel="0">loginId must be provide</Error>
+      <Error errorCode="3002" errorLevel="0">the loginId has been exist</Error>
       <Error errorCode="3003" errorLevel="0">register info expired,please register renew.</Error>
       <Error errorCode="3004" errorLevel="0">register error.</Error>
     </Errors>

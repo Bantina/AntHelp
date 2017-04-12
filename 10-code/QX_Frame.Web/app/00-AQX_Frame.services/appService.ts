@@ -34,7 +34,7 @@ export class appService {
     }
 
     //判断用户是否登录
-    static IsLogin(): object {
+    static IsLogin(): any {
         var appKey = appService.getCookie("appKey");
         var token = appService.getCookie("token");
         var _random = Math.ceil(Math.random() * 1000);

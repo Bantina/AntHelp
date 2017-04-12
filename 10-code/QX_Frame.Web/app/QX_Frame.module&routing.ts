@@ -17,6 +17,8 @@ import { SignupVerifyComponent } from './03-login/signupVerify/signupVerify.comp
  /*bantina add end*/
 
  /*zyq add start*/
+import { Topic } from './70-community/71-topic/topic';
+import { Friends } from './70-community/72-friends/friends';
  /*zyq add end*/
 
 /* end define components */
@@ -53,13 +55,21 @@ const appRoutes: Routes = [
 
 
     /*zyq add start*/
+    {
+        path: 'topic',
+        component: Topic
+    },
+    {
+        path: 'friends',
+        component: Friends
+    },
     /*zyq add end*/
 
     /* end define components */
     {
         path: '**',  // otherwise route.
         component: IndexComponent
-    },
+    }
 ];
 
 const appComponents: any[] = [
@@ -71,11 +81,13 @@ const appComponents: any[] = [
     /*bantina add start*/
     SignUpComponent,
     LoginComponent,
-    SignupVerifyComponent
+    SignupVerifyComponent,
 
     /*bantina add end*/
 
     /*zyq add start*/
+    Topic,
+    Friends,
     /*zyq add end*/
 
     /* end define components */

@@ -1,12 +1,4 @@
-/*--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
---*/
-
 /* reset */
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
 article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
 ol,ul{list-style:none;margin:0px;padding:0px;}
 blockquote,q{quotes:none;}
@@ -29,17 +21,16 @@ nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
 img{max-width:100%;}
 /*end reset*/
 
-body{
+.main{
 padding:0;
 margin:0;
 font-family: 'Lato', sans-serif !important;
-background: url('../images/banner.jpg') no-repeat; 
+background: url('../../Images/70-index/banner.jpg') no-repeat; 
 background-size:cover;
 -webkit-background-size: cover;
 -o-background-size: cover;
 -ms-background-size: cover;
 -moz-background-size: cover;
-min-height:799px;
 }
 
 h1,h2,h3,h4,h5,h6{
@@ -70,7 +61,7 @@ label{
 .invite{
 	background:#fff;
 	padding:17px 25px;
-	width:28%;
+	width:35%;
 	float: left;
 	margin-left: 10%;
 }
@@ -128,7 +119,7 @@ label{
     float: left;	
 }
 .search form input[type="submit"]{
-    background: url('../images/search.png') no-repeat 12px 13px;
+    background: url('../../Images/70-index/search.png') no-repeat 12px 13px;
     color: #dbdbe3;
     font-weight: 600;
     font-size: 15px;
@@ -232,86 +223,6 @@ span.col_checkbox {
 .checkbox-grid-left input[type="checkbox"]+label{
 	display:inline-block;
 }
-
-input[type=checkbox].css-checkbox1 + label.css-label1 {
-    height: 24px;
-    width: 24px;
-    display: inline-block;
-    line-height: 18px;
-    background-repeat: no-repeat;
-    background-position: 0 -37px;
-    cursor: pointer;
-    background: url(../images/img_sprite.png) no-repeat -315px -81px;
-}
-input[type=checkbox].css-checkbox1:checked + label.css-label1 {
-	background: url(../images/img_sprite.png) no-repeat -283px -81px;
-}
-input[type=checkbox].css-checkbox2 + label.css-label2 {
-    height: 24px;
-    width: 24px;
-    display: inline-block;
-    line-height: 18px;
-    background-repeat: no-repeat;
-    background-position: 0 -37px;
-    cursor: pointer;
-    background: url(../images/img_sprite.png) no-repeat -315px -81px;
-}
-input[type=checkbox].css-checkbox2:checked + label.css-label2 {
-	background: url(../images/img_sprite.png) no-repeat -283px -81px;
-}
-input[type=checkbox].css-checkbox3 + label.css-label3 {
-    height: 24px;
-    width: 24px;
-    display: inline-block;
-    line-height: 18px;
-    background-repeat: no-repeat;
-    background-position: 0 -37px;
-    cursor: pointer;
-    background: url(../images/img_sprite.png) no-repeat -315px -81px;
-}
-input[type=checkbox].css-checkbox3:checked + label.css-label3 {
-	background: url(../images/img_sprite.png) no-repeat -283px -81px;
-}
-input[type=checkbox].css-checkbox4 + label.css-label4 {
-    height: 24px;
-    width: 24px;
-    display: inline-block;
-    line-height: 18px;
-    background-repeat: no-repeat;
-    background-position: 0 -37px;
-    cursor: pointer;
-    background: url(../images/img_sprite.png) no-repeat -315px -81px;
-}
-input[type=checkbox].css-checkbox4:checked + label.css-label4 {
-	background: url(../images/img_sprite.png) no-repeat -283px -81px;
-}
-input[type=checkbox].css-checkbox5 + label.css-label5 {
-    height: 24px;
-    width: 24px;
-    display: inline-block;
-    line-height: 18px;
-    background-repeat: no-repeat;
-    background-position: 0 -37px;
-    cursor: pointer;
-    background: url(../images/img_sprite.png) no-repeat -315px -81px;
-}
-input[type=checkbox].css-checkbox5:checked + label.css-label5 {
-	background: url(../images/img_sprite.png) no-repeat -283px -81px;
-}
-input[type=checkbox].css-checkbox6 + label.css-label6 {
-    height: 24px;
-    width: 24px;
-    display: inline-block;
-    line-height: 18px;
-    background-repeat: no-repeat;
-    background-position: 0 -37px;
-    cursor: pointer;
-    background: url(../images/img_sprite.png) no-repeat -315px -81px;
-}
-input[type=checkbox].css-checkbox6:checked + label.css-label6 {
-	background: url(../images/img_sprite.png) no-repeat -283px -81px;
-}
-
 p.show{
 	font-size:16px;
 	color:#b2b4c3;
@@ -357,92 +268,6 @@ text-decoration:none;
 p.footer a:hover{
 	color:#fff;
 }
-/* Rectangle In */
-a.hvr-rectangle-in {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  background: url('../images/twitt.png') no-repeat 48px 13px #9BC5EC;
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  color: #fff;
-}
-a.hvr-rectangle-in:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:url('../images/twitt.png') no-repeat 48px 13px #b6dcff;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-a.hvr-rectangle-in:hover,a.hvr-rectangle-in:focus,a.hvr-rectangle-in:active {
-  color: white;
-}
-a.hvr-rectangle-in:hover:before,a.hvr-rectangle-in:focus:before,a.hvr-rectangle-in:active:before {
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-
-/* Rectangle Out */
-a.hvr-rectangle-out {
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  background:url('../images/fb.png') no-repeat 162px 15px #374f8a;
-  -webkit-transition-property: color;
-  transition-property: color;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  color: #fff;
-}
-a.hvr-rectangle-out:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('../images/fb.png') no-repeat 162px 15px #617BBB;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-a.hvr-rectangle-out:hover,a.hvr-rectangle-out:focus,a.hvr-rectangle-out:active {
-  color: white;
-}
-a.hvr-rectangle-out:hover:before,a.hvr-rectangle-out:focus:before,a.hvr-rectangle-out:active:before {
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
 /*-- responsive media queries --*/
 @media (max-width: 1440px){
 	.invite {
@@ -465,19 +290,6 @@ a.hvr-rectangle-out:hover:before,a.hvr-rectangle-out:focus:before,a.hvr-rectangl
 @media (max-width: 1080px){
 	.main h1 {
 		font-size: 32px;
-	}	
-	a.hvr-rectangle-out {
-		background: url('../images/fb.png') no-repeat 138px 15px #374f8a;
-	}
-	a.hvr-rectangle-out:before{
-		background: url('../images/fb.png') no-repeat 138px 15px #617BBB;
-		
-	}
-	a.hvr-rectangle-in {
-		background: url('../images/twitt.png') no-repeat 26px 13px #9BC5EC;
-	}
-	a.hvr-rectangle-in:before{
-		background: url('../images/twitt.png') no-repeat 26px 13px #b6dcff;
 	}
 	.search-form {
 		float: left;
@@ -618,18 +430,6 @@ p.show:before, p.show:after {
 @media (max-width: 414px){
 .invite {
     padding: 20px;
-}	
-a.hvr-rectangle-out {
-    background: url('../images/fb.png') no-repeat 114px 15px #374f8a;
-}
-a.hvr-rectangle-out:before {
-    background: url('../images/fb.png') no-repeat 114px 15px #617BBB;
-}
-a.hvr-rectangle-in {
-    background: url('../images/twitt.png') no-repeat 16px 13px #9BC5EC;
-}
-a.hvr-rectangle-in:before {
-    background: url('../images/twitt.png') no-repeat 16px 13px #b6dcff;
 }
 .invite {
     width: 78%;
@@ -708,9 +508,6 @@ p.footer {
 		width: 33px;
 		height:33px;
 	}
-	.search-icon span {
-		background: url('../images/fb.png') no-repeat 9px 9px #374f8a;
-	}
 	.search-form {
 		float: left;
 		width: 85.1%;
@@ -722,7 +519,7 @@ p.footer {
 		width: 78%;
 	}
 	.search form input[type="submit"] {
-		background: url('../images/search.png') no-repeat 6px 6px;
+		background: url('../../Images/70-index/search.png') no-repeat 6px 6px;
 		width: 32px;
 		height: 31px;
 	}
@@ -730,29 +527,17 @@ p.footer {
 		font-size: 14px;
 		padding: 8px 0px;
 	}
-	a.hvr-rectangle-in {
-		background: url('../images/twitt.png') no-repeat 10px 7px #9BC5EC;
-	}
-	a.hvr-rectangle-in:before {
-		background: url('../images/twitt.png') no-repeat 10px 7px #b6dcff;
-	}
 	.fb-icons p {
 		font-size: 12px;
 		padding: 5px 4px;
-	}
-	a.hvr-rectangle-out {
-		background: url('../images/fb.png') no-repeat 96px 9px #374f8a;
-	}
-	a.hvr-rectangle-out:before {
-		background: url('../images/fb.png') no-repeat 96px 9px #617BBB;
 	}
 }
 .delete_checkbox{
 	background-color: #4ab468;
 	height: 25px;
 	width: 25px;
-	padding-top: 4px;
-    padding-left: 4px;
+	padding-top: 6px;
+    padding-left: 5px;
 	position: absolute;
 	border-radius: 20px;
 	right: 1px;
@@ -799,9 +584,20 @@ p.footer {
 }
 .trend-conmment{
 	margin-left: 94px;
+    color: black;
 }
 .modal-content{
 	margin: 20px 30px;
 	font-size: 18px;
 	padding: 10px 20px;
+}
+.delete-friends {
+    background: url('../../Images/70-index/delete.png') no-repeat;
+    height: 15px;
+    width: 15px;
+    display: block;
+    background-size: cover;
+}
+.modal-dialog {
+    margin:10px auto;
 }

@@ -26,7 +26,9 @@ const signupVerify_component_1 = require('./03-login/signupVerify/signupVerify.c
 /*bantina add end*/
 /*zyq add start*/
 const topic_1 = require('./70-community/71-topic/topic');
+const detail_1 = require('./70-community/71-topic/detail/detail');
 const friends_1 = require('./70-community/72-friends/friends');
+const friendsInformation_1 = require('./70-community/72-friends/friendsInformation/friendsInformation');
 /*zyq add end*/
 /* end define components */
 const appRoutes = [
@@ -63,8 +65,16 @@ const appRoutes = [
         component: topic_1.Topic
     },
     {
+        path: 'detail',
+        component: detail_1.Detail
+    },
+    {
         path: 'friends',
         component: friends_1.Friends
+    },
+    {
+        path: 'friendsInformation',
+        component: friendsInformation_1.FriendsInformation
     },
     /*zyq add end*/
     /* end define components */
@@ -86,7 +96,9 @@ const appComponents = [
     /*bantina add end*/
     /*zyq add start*/
     topic_1.Topic,
+    detail_1.Detail,
     friends_1.Friends,
+    friendsInformation_1.FriendsInformation
 ];
 /**
  * !!! do not edit the flowing must existing items --qixiao

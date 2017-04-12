@@ -27,4 +27,4 @@ exports.UserAccountModel = UserAccountModel;
 class UserAccountInfoModel {
 }
 exports.UserAccountInfoModel = UserAccountInfoModel;
-//# sourceMappingURL=signup.model.js.map
+//# sourceMappingURL=topic.model.js.map

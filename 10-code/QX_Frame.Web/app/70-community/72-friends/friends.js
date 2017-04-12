@@ -9,18 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
-let AppComponent = class AppComponent {
-    constructor() {
-        this.title = 'Ant Help';
+//注入器的两种：NgModule/Component(只在当前及子组件中生效)
+let Friends = class Friends {
+    ////the final execute ...
+    ngOnInit() {
     }
 };
-AppComponent = __decorate([
+Friends = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'app/00-main/app.component.html',
-        styleUrls: ['app/00-main/app.component.css'],
+        selector: 'signup',
+        templateUrl: 'app/70-community/72-friends/friends.html',
+        styleUrls: ['app/70-community/72-friends/friends.css'],
+        providers: [] //元数据中申明依赖
     }), 
     __metadata('design:paramtypes', [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], Friends);
+exports.Friends = Friends;
+//# sourceMappingURL=friends.js.map

@@ -1,0 +1,169 @@
+﻿<!--start friends--> 
+<<div class="main">
+    <h1>好友</h1>
+    <div class="invite">
+        <h2>My Friends</h2>
+        <div class="fb-frnds checkbox-grid-left">
+            <ul id="myList">
+                <li>
+                    <div class="load-grids">
+                        <div class="load-grid">
+                            <img src="images/pic1.png" alt="" />
+                            <p><a href="#">Abel M.</a></p>
+                            <div class="delete_checkbox" data-toggle="modal" data-target="#deleteFriend">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="load-grid">
+                            <img src="images/pic2.png" alt="" />
+                            <p><a href="friendInformation.html">Adelina B.</a></p>
+                            <div class="delete_checkbox" data-toggle="modal" data-target="#deleteFriend">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="load-grid">
+                            <img src="images/pic3.png" alt="" />
+                            <p><a href="#">Alexandra D.</a></p>
+                            <div class="delete_checkbox" data-toggle="modal" data-target="#deleteFriend">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="load-grid">
+                            <img src="images/pic4.png" alt="" />
+                            <p><a href="#">Bodgan G.</a></p>
+                            <div class="delete_checkbox">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="load-grid">
+                            <img src="images/pic5.png" alt="" />
+                            <p><a href="#">Carmen M.</a></p>
+                            <div class="delete_checkbox">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="load-grid">
+                            <img src="images/pic6.png" alt="" />
+                            <p><a href="#">Dariana S.</a></p>
+                            <div class="delete_checkbox">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </li>
+                <li>
+                    <div class="load-grids">
+                        <div class="load-grid g_r">
+                            <img src="images/pic1.png" alt="" />
+                            <p><a href="#">Abel M.</a></p>
+                            <div class="delete_checkbox">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="load-grid g_r">
+                            <img src="images/pic2.png" alt="" />
+                            <p><a href="#">Adelina B.</a></p>
+                            <div class="delete_checkbox">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="load-grid g_r">
+                            <img src="images/pic3.png" alt="" />
+                            <p><a href="#">Alexandra D.</a></p>
+                            <div class="delete_checkbox">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </li>
+            </ul>
+            <script>
+						$(document).ready(function () {
+							size_li = $("#myList li").size();
+							x=1;
+							$('#myList li:lt('+x+')').show();
+							$('#loadMore').click(function () {
+								x= (x+1 <= size_li) ? x+1 : size_li;
+								$('#myList li:lt('+x+')').show();
+							});
+							$('#showLess').click(function () {
+								x=(x-1<0) ? 1 : x-1;
+								$('#myList li').not(':lt('+x+')').hide();
+							});
+						});
+            </script>
+            <p class="show" id="loadMore">Show all friends</p>
+        </div>
+        <div class="invite-but">
+            <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">Invite friends</a>
+        </div>
+    </div>
+    <div class="trend">
+        <ul>
+            <!--动态内容-->
+            <li>
+                <div class="trend-picture"><img src="images/pic1.png" alt=""></div>
+                <div class="trend-font"><span class="trend-name">Abel M.:</span>今天天气很好，和好朋友玩的很开心</div>
+                <div class="clear"></div>
+            </li>
+            <!--回复内容-->
+            <li>
+                <div class="trend-conmment"><span class="trend-name">Adelina B.:</span>你去哪里玩了</div>
+            </li>
+            <!--回复框-->
+            <li>
+                <input type="text" class="form-control trend-reply" id="trendReply" placeholder="我。。。。。。">
+                <button class="btn btn-default trend-btn">回复</button>
+                <div class="clear"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+    <p class="footer">蚂蚁热帮 <a href="index.html" target="_blank">返回</a></p>
+</div>
+<!--模态框-->
+<!-- 查找好友 -->
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <!--搜索框-->
+            <div class="search">
+                <div class="search-icon"><span><span class="glyphicon glyphicon-user"></span></span></div>
+                <div class="search-form">
+                    <form>
+                        <input type="text" class="fb-ico" placeholder="Search Friends">
+                        <input type="submit" value=" ">
+                        <div class="clear"></div>
+                    </form>
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="modal-content">
+                <ul>
+                    <li><a href="">316919385</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 删除好友提示框 -->
+<div class="modal fade" id="deleteFriend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">提示框</h4>
+            </div>
+            <div class="modal-body">
+                你确定要删除该好友吗?删除之后将不能看到他/她/它的动态呦！
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end friends-->

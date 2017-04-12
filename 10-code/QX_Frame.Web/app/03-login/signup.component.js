@@ -8,10 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
+const core_1 = require('@angular/core');
 const Md5_service_1 = require("../00-AQX_Frame.services/Md5.service");
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+const appBase_1 = require('../00-AQX_Frame.commons/appBase');
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let SignUpComponent = class SignUpComponent {
     constructor() {
@@ -108,8 +107,8 @@ SignUpComponent = __decorate([
         templateUrl: 'app/03-login/signup.component.html',
         styleUrls: ['app/03-login/signup.component.css'],
         providers: [] //元数据中申明依赖
-    }),
-    __metadata("design:paramtypes", [])
+    }), 
+    __metadata('design:paramtypes', [])
 ], SignUpComponent);
 exports.SignUpComponent = SignUpComponent;
 //# sourceMappingURL=signup.component.js.map

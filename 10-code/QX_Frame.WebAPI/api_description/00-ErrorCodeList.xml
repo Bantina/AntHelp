@@ -12,7 +12,7 @@
   <Error errorCode="1009" errorLevel="0">secretString must be provide</Error>
   <Error errorCode="1010" errorLevel="0">appKey must be provide</Error>
   <Error errorCode="1011" errorLevel="0">token must be provide</Error>
-  <Error errorCode="10" errorLevel="0"></Error>
+  <Error errorCode="1012" errorLevel="0">id must be provide</Error>
   <Error errorCode="10" errorLevel="0"></Error>
 
   <!--Arguments Format Error-->
@@ -36,9 +36,9 @@
   <Error errorCode="3010" errorLevel="0">the request has been tampered</Error>
   <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
   <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
-  <Error errorCode="30" errorLevel="0"></Error>
-  <Error errorCode="30" errorLevel="0"></Error>
-  <Error errorCode="30" errorLevel="0"></Error>
+  <Error errorCode="3013" errorLevel="0">no article found by articleUid</Error>
+  <Error errorCode="3014" errorLevel="0">update article faild</Error>
+  <Error errorCode="3015" errorLevel="0">the error id provid</Error>
   <Error errorCode="30" errorLevel="0"></Error>
 
 

@@ -58,9 +58,9 @@ namespace QX_Frame.Data.QueryObject
 		{
 			Expression<Func<tb_Article, bool>> func = t => true;
 
-			if (!string.IsNullOrEmpty(""))
+			if (!string.IsNullOrEmpty(this.articleTitle))
 			{
-				func = func.And(t => true);
+				func = func.And(t => t.articleTitle.Contains(this.articleTitle));
 			}
 
 			return func;

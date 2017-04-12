@@ -28,9 +28,9 @@ namespace QX_Frame.WebAPI.Controllers
             }
             string root = "Files"; //HttpContext.Current.Server.MapPath($"~/Files/{folderName}/");//指定要将文件存入的服务器物理位置  
 
-            IO_Helper_DG.CreateDirectoryIfNotExist(root + "\\temp");
+            IO_Helper_DG.CreateDirectoryIfNotExist(root + "/temp");
 
-            var provider = new MultipartFormDataStreamProvider(root + "\\temp");
+            var provider = new MultipartFormDataStreamProvider(root + "/temp");
 
             // Read the form data.  
             await Request.Content.ReadAsMultipartAsync(provider);
@@ -51,7 +51,7 @@ namespace QX_Frame.WebAPI.Controllers
                     //new fileName
                     string fileName = file.Headers.ContentDisposition.FileName.Substring(1, file.Headers.ContentDisposition.FileName.Length - 2);
                     string newFileName = Guid.NewGuid() + "." + fileName.Split('.')[1];
-                    string newFullFileName = newRoot + "\\" + newFileName;
+                    string newFullFileName = newRoot + "/" + newFileName;
                     File.Move(file.LocalFileName, newFullFileName);
                     fileNameList.Add(AppDomain + newFullFileName);
                     Trace.WriteLine("1 file copied , filePath=" + newFullFileName);

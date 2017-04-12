@@ -23,24 +23,14 @@ namespace QX_Frame.WebAPI.Controllers
     public class ArticleController : WebApiControllerBase
     {
         // GET: api/Article
-        public IHttpActionResult Get([FromBody]dynamic query)
-        {
-            if (query == null)
-            {
-                throw new Exception_DG("arguments must be provide", 1001);
-            }
-
+        public IHttpActionResult Get(string articleTitle,int pageIndex,int pageSize,bool isDesc)
+        {   
             tb_ArticleQueryObject queryObject = new tb_ArticleQueryObject();
 
-            queryObject.articleTitle = query.articleTitle;//fuzzy query
-
-            if (query.pageIndex == null || query.pageSize == null || query.isDesc == null)
-            {
-                throw new Exception_DG("pageIndex,pageSize,isDesc must be provide", 1008);
-            }
-            queryObject.PageIndex = Convert.ToInt32(query.pageIndex);
-            queryObject.PageSize = Convert.ToInt32(query.pageSize);
-            queryObject.IsDESC = Convert.ToBoolean(query.isDesc);
+            queryObject.articleTitle = articleTitle;//fuzzy query
+            queryObject.PageIndex = pageIndex;
+            queryObject.PageSize = pageSize;
+            queryObject.IsDESC = isDesc;
 
             using (var fact = Wcf<ArticleService>())
             {
@@ -52,7 +42,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // GET: api/Article/5
-        public IHttpActionResult Get(string id, [FromBody]dynamic query)
+        public IHttpActionResult Get(string id)
         {
             if (string.IsNullOrEmpty(id))
             {

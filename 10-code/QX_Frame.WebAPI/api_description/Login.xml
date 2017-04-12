@@ -22,11 +22,6 @@
       </Error>
     </ReturnExample>
     <Errors>
-      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
-      <Error errorCode="1002" errorLevel="0">loginId must be provide</Error>
-      <Error errorCode="1006" errorLevel="0">random must be provide</Error>
-      <Error errorCode="1007" errorLevel="0">timeStamp must be provide</Error>
-      <Error errorCode="1011" errorLevel="0">token must be provide</Error>
       <Error errorCode="3006" errorLevel="0">request expired</Error>
       <Error errorCode="3007" errorLevel="0">request multiple</Error>
       <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>

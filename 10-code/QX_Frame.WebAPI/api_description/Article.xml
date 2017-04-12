@@ -22,8 +22,6 @@
       </Error>
     </ReturnExample>
     <Errors>
-      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
-      <Error errorCode="1014" errorLevel="0">pageIndex,pageSize,isDesc can not be null</Error>
     </Errors>
   </Api>
 

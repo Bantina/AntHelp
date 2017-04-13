@@ -80,6 +80,8 @@
     <Content Include="app\03-login\signup.component.css" />
     <Content Include="app\03-login\signup.component.html" />
     <Content Include="app\03-login\signupVerify\signupVerify.component.html" />
+    <Content Include="app\30-order\publish\publish.component.css" />
+    <Content Include="app\30-order\publish\publish.component.html" />
     <Content Include="app\70-community\71-topic\detail\detail.css" />
     <Content Include="app\70-community\71-topic\detail\detail.html" />
     <Content Include="app\70-community\71-topic\topic.css" />
@@ -264,6 +266,9 @@
     <TypeScriptCompile Include="app\03-login\signup.model.ts" />
     <TypeScriptCompile Include="app\00-AQX_Frame.services\Md5.service.ts" />
     <TypeScriptCompile Include="app\03-login\signupVerify\signupVerify.component.ts" />
+    <TypeScriptCompile Include="app\20-management_center\management.model.ts" />
+    <TypeScriptCompile Include="app\30-order\order.model.ts" />
+    <TypeScriptCompile Include="app\30-order\publish\publish.component.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.model.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\topic.ts" />
@@ -276,10 +281,19 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="app\20-management_center\administrator\allAccount\" />
+    <Folder Include="app\20-management_center\administrator\allComplaint\" />
+    <Folder Include="app\20-management_center\administrator\allOrder\" />
+    <Folder Include="app\20-management_center\personal\myAccount\" />
+    <Folder Include="app\20-management_center\personal\myOrder\" />
+    <Folder Include="app\20-management_center\personal\myPublish\" />
+    <Folder Include="app\30-order\detail\" />
+    <Folder Include="app\30-order\payment\" />
     <Folder Include="app\70-community\73-information\" />
     <Folder Include="Files\" />
     <Folder Include="fonts\" />
     <Folder Include="Images\00-main\" />
+    <Folder Include="Images\30-order\" />
     <Folder Include="Scripts\plugin\" />
   </ItemGroup>
   <PropertyGroup>

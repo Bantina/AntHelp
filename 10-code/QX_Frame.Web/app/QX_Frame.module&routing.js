@@ -21,6 +21,7 @@ const example_component_1 = require("./02-example/example.component");
 const signup_component_1 = require("./03-login/signup.component");
 const login_component_1 = require("./03-login/login/login.component");
 const signupVerify_component_1 = require("./03-login/signupVerify/signupVerify.component");
+const publish_component_1 = require("./30-order/publish/publish.component");
 /*bantina add end*/
 /*zyq add start*/
 const topic_1 = require("./70-community/71-topic/topic");
@@ -55,6 +56,10 @@ const appRoutes = [
     {
         path: 'signupVerify',
         component: signupVerify_component_1.SignupVerifyComponent
+    },
+    {
+        path: 'publish',
+        component: publish_component_1.PublishComponent
     },
     /*bantina add end*/
     /*zyq add start*/
@@ -91,6 +96,7 @@ const appComponents = [
     signup_component_1.SignUpComponent,
     login_component_1.LoginComponent,
     signupVerify_component_1.SignupVerifyComponent,
+    publish_component_1.PublishComponent,
     /*bantina add end*/
     /*zyq add start*/
     topic_1.Topic,

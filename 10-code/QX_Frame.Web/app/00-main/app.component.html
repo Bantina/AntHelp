@@ -13,30 +13,31 @@
                     <a routerLink="/">{{title}}</a>
                 </div>
                 <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="!loginResult.isLogin">
-                    <li><a routerLink="/login">登录</a></li>
-                    <li><a routerLink="/signup">注册</a></li>
+                    <li><a routerLink="/login">登 录</a></li>
+                    <li><a routerLink="/signup">注 册</a></li>
                 </ul>
                 <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="loginResult.isLogin">
                     <div style="padding-top:5px;">欢迎~ {{loginResult.loginId}}</div>
                 </ul>
                 <ul class="col-md-4 nav navbar-nav mynavbar navbar-right">
-                    <li><a>抵用券</a></li>
+                    <li><a routerLink="/topic">社 区</a></li>
                     <li><a>活动中心</a></li>
-                    <li><a routerLink="/topic">社区</a></li>
+                    <li><a>发 布</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             个人中心
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><a href="#">我的账户</a></li>
+                            <li><a href="#">我的积分</a></li>
                             <li><a href="#">我的订单</a></li>
-                            <li><a href="#">我的评价</a></li>
+                            <li><a href="#">我的账户</a></li>
+                            <li><a href="#">我的发布</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="#">抵用券</a></li>
+                            <li><a href="#">投   诉</a></li>
                         </ul>
                     </li>
-                    
+                    <li><a>消息(1)</a></li>                    
                 </ul>
             </div>
         </nav>

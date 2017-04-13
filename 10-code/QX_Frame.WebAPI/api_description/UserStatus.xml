@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ApiList>
 
-  <Api name="获得用户状态列表（管理员least）">
-    <Router>api/UserStatus</Router>
+  <Api name="获得用户角色列表（管理员least）">
+    <Router>api/UserRole</Router>
     <Method>GET</Method>
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
@@ -37,8 +37,8 @@
     </Errors>
   </Api>
 
-  <Api name="修改用户状态">
-    <Router>api/UserStatus</Router>
+  <Api name="修改用户角色">
+    <Router>api/UserRole</Router>
     <Method>PUT</Method>
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
@@ -46,7 +46,7 @@
       "appKey":1001,
       "token":"",
       "loginId":"qixiao123",
-      "statusLevel":1
+      "roleLevel":1
       }
     </Arguments-Data>
     <ReturnExample>

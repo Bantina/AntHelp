@@ -51,15 +51,19 @@ namespace QX_Frame.WebAPI.Controllers
         // PUT: api/UserStatus
         public IHttpActionResult Put([FromBody]dynamic query)
         {
-            int appKey = query.appKey;
-            string token = query.token;
-            Guid uid = AuthenticationController.GetTokenInfoByAppKeyToken(appKey, token).Item1;
+            Guid uid;
+            string loginId = query.loginId;
+            using (var fact = Wcf<UserAccountService>())
+            {
+                var channel = fact.CreateChannel();
+                uid = channel.GetUserAccountByLoginId(loginId).uid;
+            }
 
             using (var fact = Wcf<UserStatusService>())
             {
                 var channel = fact.CreateChannel();
                 tb_UserStatus userStatus = channel.QuerySingle(new tb_UserStatusQueryObject { QueryCondition = t => t.uid == uid }).Cast<tb_UserStatus>();
-                userStatus.statusLevel = query.StatusLevel;
+                userStatus.statusLevel = query.statusLevel;
                 if (channel.Update(userStatus))
                 {
                     return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("update user status success"));

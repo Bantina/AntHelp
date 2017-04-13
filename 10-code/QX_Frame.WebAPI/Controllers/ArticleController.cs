@@ -82,7 +82,11 @@ namespace QX_Frame.WebAPI.Controllers
                 article.articleContent = query.articleContent;
                 article.ArticleCategoryId = query.ArticleCategoryId;
                 string loginId = query.publisherLoginId;
-                article.publisherUid = channel.GetUserAccountByLoginId(loginId).uid;
+                using (var fact2 = Wcf<UserAccountService>())
+                {
+                    var channel2 = fact2.CreateChannel();
+                    article.publisherUid = channel2.GetUserAccountByLoginId(loginId).uid;
+                }
                 article.ArticleCategoryId = query.ArticleCategoryId;
                 article.imagesUrls = query.imagesUrls;
 

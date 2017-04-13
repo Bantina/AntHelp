@@ -123,6 +123,10 @@
     <Content Include="api_description\Files.xml" />
     <Content Include="api_description\Account.xml" />
     <Content Include="api_description\Article.xml" />
+    <Content Include="api_description\00-example.xml" />
+    <Content Include="api_description\UserStatusAttribute.xml" />
+    <Content Include="api_description\UserRoleAttribute.xml" />
+    <Content Include="api_description\UserStatus.xml" />
     <Content Include="api_description\UserRole.xml" />
     <Content Include="api_description\User.xml" />
     <Content Include="api_description\Login.xml" />

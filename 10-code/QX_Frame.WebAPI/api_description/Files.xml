@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ApiList>
-  
+
   <Api name="文件上传接口">
     <Router>api/Files</Router>
     <Method>POST</Method>
@@ -39,6 +39,7 @@
       </Error>
     </ReturnExample>
     <Errors>
+      <Error errorCode="2005" errorLevel="0">unsupported media type</Error>
     </Errors>
   </Api>
 
@@ -66,5 +67,5 @@
     <Errors>
     </Errors>
   </Api>
-  
+
 </ApiList>

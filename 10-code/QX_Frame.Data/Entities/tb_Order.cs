@@ -35,13 +35,11 @@ namespace QX_Frame.Data.Entities
 
         public int evaluateId { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string address { get; set; }
 
         public int phone { get; set; }
 
-        [Required]
         [StringLength(200)]
         public string imagesUrls { get; set; }
 

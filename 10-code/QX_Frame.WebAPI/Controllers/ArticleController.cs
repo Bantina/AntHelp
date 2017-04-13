@@ -2,6 +2,7 @@ using QX_Frame.App.Web;
 using QX_Frame.Data.Entities;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service;
+using QX_Frame.Data.Service.QX_Frame;
 using QX_Frame.Helper_DG_Framework;
 using QX_Frame.Helper_DG_Framework.Extends;
 using System;
@@ -23,8 +24,8 @@ namespace QX_Frame.WebAPI.Controllers
     public class ArticleController : WebApiControllerBase
     {
         // GET: api/Article
-        public IHttpActionResult Get(string articleTitle,int pageIndex,int pageSize,bool isDesc)
-        {   
+        public IHttpActionResult Get(string articleTitle, int pageIndex, int pageSize, bool isDesc)
+        {
             tb_ArticleQueryObject queryObject = new tb_ArticleQueryObject();
 
             queryObject.articleTitle = articleTitle;//fuzzy query
@@ -70,21 +71,27 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception_DG("arguments must be provide", 1001);
             }
 
-            tb_Article article = tb_Article.Build();
-            article.articleUid = Guid.NewGuid();
-            article.articleTitle = query.articleTitle;
-            article.articleContent = query.articleContent;
-            article.ArticleCategoryId = query.ArticleCategoryId;
-            string loginId = query.publisherLoginId;
-            article.publisherUid = UserController.GetUserAccountByLoginId(loginId).uid;
-            article.ArticleCategoryId = query.ArticleCategoryId;
-            article.imagesUrls = query.imagesUrls;
-
-            using (var fact = Wcf<ArticleService>())
+            using (var fact = Wcf<UserAccountInfoService>())
             {
                 var channel = fact.CreateChannel();
-                bool isAdd = channel.Add(article);
-                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("article publish succeed", article, 1));
+
+
+                tb_Article article = tb_Article.Build();
+                article.articleUid = Guid.NewGuid();
+                article.articleTitle = query.articleTitle;
+                article.articleContent = query.articleContent;
+                article.ArticleCategoryId = query.ArticleCategoryId;
+                string loginId = query.publisherLoginId;
+                article.publisherUid = channel.GetUserAccountByLoginId(loginId).uid;
+                article.ArticleCategoryId = query.ArticleCategoryId;
+                article.imagesUrls = query.imagesUrls;
+
+                using (var fact2 = Wcf<ArticleService>())
+                {
+                    var channel2 = fact2.CreateChannel();
+                    bool isAdd = channel2.Add(article);
+                    return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("article publish succeed", article, 1));
+                }
             }
         }
 

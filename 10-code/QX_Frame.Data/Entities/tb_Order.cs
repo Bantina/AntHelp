@@ -35,6 +35,14 @@ namespace QX_Frame.Data.Entities
 
         public int evaluateId { get; set; }
 
+        [StringLength(50)]
+        public string address { get; set; }
+
+        public int phone { get; set; }
+
+        [StringLength(200)]
+        public string imagesUrls { get; set; }
+
         //解决json循环引用问题
         [JsonIgnore]
         public virtual tb_OrderEvaluate tb_OrderEvaluate { get; set; }

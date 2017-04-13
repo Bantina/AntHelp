@@ -60,9 +60,20 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.0.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.0.2\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=2.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.2.0.2\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="QX_Frame.App.Base, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -86,6 +97,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -106,8 +120,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="api_description\Files.xml" />
     <Content Include="api_description\Account.xml" />
     <Content Include="api_description\Article.xml" />
+    <Content Include="api_description\UserRole.xml" />
     <Content Include="api_description\User.xml" />
     <Content Include="api_description\Login.xml" />
     <Content Include="api_description\00-ErrorCodeList.xml">
@@ -121,15 +137,19 @@
   <ItemGroup>
     <Compile Include="config\ClassRegisters.cs" />
     <Compile Include="config\ControllerConfigs.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\QX_Frame\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
-    <Compile Include="Controllers\AuthenticationController.cs" />
-    <Compile Include="Controllers\FilesController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\Test1Controller.cs" />
-    <Compile Include="Controllers\Test2Controller.cs" />
-    <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\QX_Frame\AuthenticationController.cs" />
+    <Compile Include="Controllers\QX_Frame\FilesController.cs" />
+    <Compile Include="Controllers\QX_Frame\LoginController.cs" />
+    <Compile Include="Controllers\QX_Frame\UserRoleAttributeController.cs" />
+    <Compile Include="Controllers\QX_Frame\UserRoleController.cs" />
+    <Compile Include="Controllers\QX_Frame\UserStatusAttributeController.cs" />
+    <Compile Include="Controllers\QX_Frame\UserStatusController.cs" />
+    <Compile Include="Controllers\Test\Test1Controller.cs" />
+    <Compile Include="Controllers\Test\Test2Controller.cs" />
+    <Compile Include="Controllers\Test\TestController.cs" />
+    <Compile Include="Controllers\QX_Frame\UserController.cs" />
     <Compile Include="Filters\TokenAttribute_DG.cs" />
     <Compile Include="Filters\LimitsAttribute_DG.cs" />
     <Compile Include="Filters\RequestValidation_DG.cs" />

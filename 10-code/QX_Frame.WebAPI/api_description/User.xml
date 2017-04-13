@@ -7,6 +7,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "loginId":"123",//模糊查询,为""查全部
       "pageIndex":1,
       "pageSize":10,
@@ -32,7 +34,10 @@
     <Method>GET</Method>
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
-
+      {
+      "appKey":1001,
+      "token":""
+      }
     </Arguments-Data>
     <ReturnExample>
       <Success>
@@ -78,6 +83,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "loginId":"qixiao123",
       "nickName":"",
       "phone":"",
@@ -117,6 +124,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "loginId":"qixiao123"
       }
     </Arguments-Data>

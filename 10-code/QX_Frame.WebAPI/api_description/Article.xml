@@ -7,6 +7,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "articleTitle":"人名",
       "pageIndex":1,
       "pageSize":3,
@@ -52,6 +54,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "articleTitle":"人名的名义2",
       "articleContent":"贫下中农的崛起之路",
       "ArticleCategoryId":1,
@@ -78,6 +82,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "articleUid":"65514a6e-77e6-480a-9900-04dd5feac982",
       "articleTitle":"人名的名义2",
       "articleContent":"贫下中农的崛起之路xxxxxxxxxx",
@@ -106,6 +112,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "articleUid":"65514a6e-77e6-480a-9900-04dd5feac982"
       }
     </Arguments-Data>
@@ -130,6 +138,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "articleUid":"65514a6e-77e6-480a-9900-04dd5feac982"
       }
     </Arguments-Data>
@@ -156,6 +166,8 @@
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
+      "appKey":1001,
+      "token":"",
       "articleUid":"65514a6e-77e6-480a-9900-04dd5feac982"
       }
     </Arguments-Data>

@@ -54,10 +54,16 @@ namespace QX_Frame.Data.QueryObject
 		public Int32 voucherMax { get;set; }
 
 		// 
-		public Int32 evaluateId { get;set; }
+		public Int32 evaluateId { get; set; }
+        
+        public string address { get; set; }
 
-		//query condition // null default
-		public override Expression<Func<tb_Order, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
+        public int phone { get; set; }
+
+        public string imagesUrls { get; set; }
+
+        //query condition // null default
+        public override Expression<Func<tb_Order, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
 		//query condition func // true default //if QueryCondition != null this will be override !!!
 		protected override Expression<Func<tb_Order, bool>> QueryConditionFunc()

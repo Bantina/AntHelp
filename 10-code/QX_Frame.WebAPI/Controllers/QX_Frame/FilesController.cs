@@ -3,10 +3,12 @@ using QX_Frame.Helper_DG_Framework.Extends;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
@@ -19,6 +21,23 @@ namespace QX_Frame.WebAPI.Controllers
      * */
     public class FilesController : ApiController
     {
+        //GET : api/Files/id
+        public string Get(string id)
+        {
+            try
+            {
+                string imageName = id;
+                string root = "Files/";
+                var path = Path.Combine(root, imageName);
+                var bytes = File.ReadAllBytes(path);
+                var base64 = Convert.ToBase64String(bytes);
+                return "data:image/jpeg;base64," + base64;
+            }
+            catch (Exception)
+            {
+                return "#";
+            }
+        }
         //POST : api/Files
         public async Task<IHttpActionResult> Post()
         {
@@ -53,7 +72,7 @@ namespace QX_Frame.WebAPI.Controllers
                     string newFileName = Guid.NewGuid() + "." + fileName.Split('.')[1];
                     string newFullFileName = newRoot + "/" + newFileName;
                     File.Move(file.LocalFileName, newFullFileName);
-                    fileNameList.Add(AppDomain + newFullFileName);
+                    fileNameList.Add(newFileName);
                     Trace.WriteLine("1 file copied , filePath=" + newFullFileName);
                 }
             }

@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApiList>
+  
+  <Api name="文件上传接口">
+    <Router>api/Files</Router>
+    <Method>POST</Method>
+    <ContentType></ContentType>
+    <Arguments-Data>
+      var appDomain="http://localhost:3999/";
+      var formData = new FormData($( "#uploadForm" )[0]);
+      $.ajax({
+      url: appDomain+'api/Files' ,
+      type: 'POST',
+      data: formData,
+      async: false,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (data) {
+      $("#result").html(JSON.stringify(data));
+      },
+      error: function (data) {
+      $("#result").html(JSON.stringify(data));
+      }
+      });
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"file upload success","httpCode":200,"data":["5059eba5-4c22-41de-97e9-c5cbeb6ed067.jpg","ba529f6e-0f12-4166-b52f-afe3e206cee3.jpg","b452b553-8151-465c-9ae2-eb07384a5c83.jpg","1c21e46b-74c6-4c79-b7bb-bd2b735016e5.jpg"],"dataCount":4}
+      </Success>
+      <Error>
+        {
+        "isSuccess": false,
+        "msg": "xx",
+        "httpCode": 405,
+        "errorCode": 0,
+        "errorLevel": 0
+        }
+      </Error>
+    </ReturnExample>
+    <Errors>
+    </Errors>
+  </Api>
+
+  <Api name="图片获取接口">
+    <Router>api/Files</Router>
+    <Method>GET</Method>
+    <ContentType></ContentType>
+    <Arguments-Data>
+      $.ajax({
+      url: appDomain+'api/Files/7343cf1e-30e1-4bc8-9322-767054c909ab.jpg',
+      type: "GET",
+      success: function (data) {
+      $('#testimg').attr('src', data);
+      $('#testimg').attr('style', 'display: block;');
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        image->src = data
+      </Success>
+      <Error>
+        image->src = #
+      </Error>
+    </ReturnExample>
+    <Errors>
+    </Errors>
+  </Api>
+  
+</ApiList>

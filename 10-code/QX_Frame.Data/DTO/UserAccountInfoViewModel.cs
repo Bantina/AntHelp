@@ -18,10 +18,15 @@ namespace QX_Frame.Data.DTO
         public String headImageUrl { get; set; }
         // 
         public Int32 age { get; set; }
+        public int sexId { get; set; }
+
         // 
         public string sexName { get; set; }
         // 
         public DateTime? birthday { get; set; }
+
+        public int bloodTypeId { get; set; }
+
         // 
         public string  bloodTypeName { get; set; }
         // 

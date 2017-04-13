@@ -2,6 +2,7 @@
 import { LoginUserModel } from './../signup.model';
 import { Md5 } from "../../00-AQX_Frame.services/Md5.service";
 import { appBase } from '../../00-AQX_Frame.commons/appBase';
+import { appService } from '../../00-AQX_Frame.services/appService';
 
 declare function escape(s: string): string;
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
@@ -53,10 +54,16 @@ export class LoginComponent implements OnInit {
                     if (data.isSuccess) {
                         self.sucMsg = "您已登录成功~";
                         //set cookie
-                        document.cookie = "loginId=" + escape(self.loginUserModel.loginId);
-                        document.cookie = "appKey=" + data.appKey;
-                        document.cookie = "secretKey=" + data.secretKey;
-                        document.cookie = "token=" + data.token;
+                        appService.setCookie("loginId", self.loginUserModel.loginId,7);
+                        appService.setCookie("appKey", data.appKey,7);
+                        appService.setCookie("secretKey", data.secretKey,7);
+                        appService.setCookie("token", data.token, 7);
+                        //document.cookie = "loginId=" + escape(self.loginUserModel.loginId);
+                        //document.cookie = "appKey=" + data.appKey;
+                        //document.cookie = "secretKey=" + data.secretKey;
+                        //document.cookie = "token=" + data.token;
+                        //页面跳转
+                        window.location.href = appBase.WebUrlDomain;
                     }
                     else {
                         if (data.errorCode == 3001) {

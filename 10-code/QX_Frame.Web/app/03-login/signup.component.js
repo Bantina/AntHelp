@@ -8,9 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
 const Md5_service_1 = require("../00-AQX_Frame.services/Md5.service");
-const appBase_1 = require('../00-AQX_Frame.commons/appBase');
+const appBase_1 = require("../00-AQX_Frame.commons/appBase");
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let SignUpComponent = class SignUpComponent {
     constructor() {
@@ -78,11 +79,6 @@ let SignUpComponent = class SignUpComponent {
                 success(data) {
                     if (data.isSuccess) {
                         self.sucMsg = "注册邮件已发送到您的邮箱，请查收并点击邮箱中的连接完成注册！";
-                        //set cookie2
-                        document.cookie = "loginId=" + escape(data.loginId);
-                        document.cookie = "appKey=" + data.appKey;
-                        document.cookie = "secretKey=" + data.secretKey;
-                        document.cookie = "token=" + data.token;
                     }
                     else if (data.errorCode == 3002) {
                         self.msg = "该用户已注册过，请直接登录~";
@@ -107,8 +103,8 @@ SignUpComponent = __decorate([
         templateUrl: 'app/03-login/signup.component.html',
         styleUrls: ['app/03-login/signup.component.css'],
         providers: [] //元数据中申明依赖
-    }), 
-    __metadata('design:paramtypes', [])
+    }),
+    __metadata("design:paramtypes", [])
 ], SignUpComponent);
 exports.SignUpComponent = SignUpComponent;
 //# sourceMappingURL=signup.component.js.map

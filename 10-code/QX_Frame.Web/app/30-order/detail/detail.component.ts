@@ -10,7 +10,6 @@ import { PublishAidModel } from './../order.model';
 })
 
 export class OrderDetailComponent implements OnInit {
-    
   
     ////the final execute ...
     ngOnInit(): void {

@@ -18,8 +18,8 @@ namespace QX_Frame.Web.Srv
     {
         static void Main(string[] args)
         {
-            //string baseAddress = "http://localhost:3999/";    //localhost visit
-            string baseAddress = "http://+:3999/";              //all internet environment visit  
+            //string baseAddress = "http://localhost:4999/";    //localhost visit
+            string baseAddress = "http://+:4999/";              //all internet environment visit  
             try
             {
                 WebApp.Start<StartUp>(url: baseAddress);

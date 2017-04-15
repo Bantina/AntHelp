@@ -21,21 +21,7 @@
     <!-- 我的账户 -->
     <div class="r rightCon" *ngIf="navStatus==0">
         <div class="cfix topTit">
-            <h3 class="l fs20 c-black">我的账户信息</h3>
-        </div>
-        <div class="cfix tabBox">
-            <ul class="l cfix tabs">
-                <li class="on"><a href="?t=0">全部</a></li>
-                <li class=""><a href="?t=1">进行中</a></li>
-                <li class=""><a href="?t=2">即将揭晓</a></li>
-                <li class=""><a href="?t=3">已揭晓</a></li>
-            </ul>
-            <div class="r filter cfix">
-                <span class="txt l">筛选：</span>
-                <div class="selBox l">
-
-                </div>
-            </div>
+            <h3 class="l fs20 c-black">我的信息完善</h3>
         </div>
     </div>
     <!-- 我的订单 -->
@@ -68,6 +54,25 @@
 
     </div>
     <!-- 我的发布 -->
+    <div class="r rightCon" *ngIf="navStatus==2">
+        <div class="cfix topTit">
+            <h3 class="l fs20 c-black">我的发布记录</h3>
+        </div>
+        <div class="cfix tabBox">
+            <ul class="l cfix tabs">
+                <li class="on"><a href="?t=0">全部</a></li>
+                <li class=""><a href="?t=1">进行中</a></li>
+                <li class=""><a href="?t=2">即将揭晓</a></li>
+                <li class=""><a href="?t=3">已揭晓</a></li>
+            </ul>
+            <div class="r filter cfix">
+                <span class="txt l">筛选：</span>
+                <div class="selBox l">
+
+                </div>
+            </div>
+        </div>
+    </div>
    
 </div>
 <!--end management-->

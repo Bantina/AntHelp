@@ -7,24 +7,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-let IndexComponent = class IndexComponent {
+let ManagementComponent = class ManagementComponent {
     ////the final execute ...
     ngOnInit() {
-        var defaults = {
-            thumbSize: 20,
-            slideSpeed: 1500,
-            auto: true,
-            loop: true
-        };
-        $('.index_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 3, effect: 'flipud', reverse: true, rewind: 75 }));
     }
 };
-IndexComponent = __decorate([
+ManagementComponent = __decorate([
     core_1.Component({
-        selector: 'index',
-        templateUrl: 'app/01-index/index.component.html',
-        styleUrls: ['app/01-index/index.component.css'],
+        selector: 'management',
+        templateUrl: 'app/20-management_center/management.component.html',
+        styleUrls: ['app/20-management_center/management.component.css'],
+        providers: []
     })
-], IndexComponent);
-exports.IndexComponent = IndexComponent;
-//# sourceMappingURL=index.component.js.map
+], ManagementComponent);
+exports.ManagementComponent = ManagementComponent;
+//# sourceMappingURL=management.component.js.map

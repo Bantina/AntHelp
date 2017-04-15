@@ -1,4 +1,5 @@
-﻿export class ManagementModel {
+﻿//发布分类；
+export class ManagementModel {
     constructor(
         public loginId: string,
         public email: string,

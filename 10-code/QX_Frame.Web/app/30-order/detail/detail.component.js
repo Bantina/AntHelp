@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-let IndexComponent = class IndexComponent {
+let OrderDetailComponent = class OrderDetailComponent {
     ////the final execute ...
     ngOnInit() {
         var defaults = {
@@ -16,15 +16,16 @@ let IndexComponent = class IndexComponent {
             auto: true,
             loop: true
         };
-        $('.index_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 3, effect: 'flipud', reverse: true, rewind: 75 }));
+        $('.orderDetail_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 1, effect: 'updown', cssSpeed: 500, backReverse: true }));
     }
 };
-IndexComponent = __decorate([
+OrderDetailComponent = __decorate([
     core_1.Component({
-        selector: 'index',
-        templateUrl: 'app/01-index/index.component.html',
-        styleUrls: ['app/01-index/index.component.css'],
+        selector: 'orderDetail',
+        templateUrl: 'app/30-order/detail/detail.component.html',
+        styleUrls: ['app/30-order/detail/detail.component.css'],
+        providers: []
     })
-], IndexComponent);
-exports.IndexComponent = IndexComponent;
-//# sourceMappingURL=index.component.js.map
+], OrderDetailComponent);
+exports.OrderDetailComponent = OrderDetailComponent;
+//# sourceMappingURL=detail.component.js.map

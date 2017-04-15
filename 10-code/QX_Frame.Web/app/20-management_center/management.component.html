@@ -1,0 +1,73 @@
+﻿<!--start management-->
+<div class="wrap cfix">
+    <div class="l leftCon">
+        <div class="userbox tac">
+            <div class="uimg">
+                <img class="j_usr_img" src="../../../Images/03-login/portraint01.png" width="100" height="100" alt="" />
+            </div>
+
+            <p class="p1"><span class="fs14 td-n j_usr_name"><span class="myname" title="">用户名</span>
+                <!--<a href="#" target="_blank" class="ico-edit"></a>-->
+            </span> </p>
+            <p class="p2">(用户ID: 10011)</p>
+            <p><span class="fs14 vam"> 余额 : <strong class="c-red">888</strong></span></p>
+        </div>
+        <ul class="sidenav manageCenterUl">
+            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,0)"><span class="ico_luck" (click)="sidenavSpanClick($event,0)">我的账户</span> </a></li>
+            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,1)"><span class="ico_buy" (click)="sidenavSpanClick($event,1)">我的订单</span></a></li>
+            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,2)"><span class="ico_db" (click)="sidenavSpanClick($event,2)">我的发布</span></a></li>
+        </ul>
+    </div>    
+    <!-- 我的账户 -->
+    <div class="r rightCon" *ngIf="navStatus==0">
+        <div class="cfix topTit">
+            <h3 class="l fs20 c-black">我的账户信息</h3>
+        </div>
+        <div class="cfix tabBox">
+            <ul class="l cfix tabs">
+                <li class="on"><a href="?t=0">全部</a></li>
+                <li class=""><a href="?t=1">进行中</a></li>
+                <li class=""><a href="?t=2">即将揭晓</a></li>
+                <li class=""><a href="?t=3">已揭晓</a></li>
+            </ul>
+            <div class="r filter cfix">
+                <span class="txt l">筛选：</span>
+                <div class="selBox l">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 我的订单 -->
+    <div class="r rightCon"  *ngIf="navStatus==1">
+        <div class="cfix topTit">
+            <h3 class="l fs20 c-black">我的订单记录</h3>
+        </div>
+        <div class="cfix tabBox">
+            <ul class="l cfix tabs">
+                <li class="on"><a href="?t=0">全部</a></li>
+                <li class=""><a href="?t=1">进行中</a></li>
+                <li class=""><a href="?t=2">即将揭晓</a></li>
+                <li class=""><a href="?t=3">已揭晓</a></li>
+            </ul>
+            <div class="r filter cfix">
+                <span class="txt l">筛选：</span>
+                <div class="selBox l">
+
+                </div>
+            </div>
+        </div>
+        <div class="row myorderBlock">
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3 btn">
+                <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
+                <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
+            </div>
+        </div>
+
+    </div>
+    <!-- 我的发布 -->
+   
+</div>
+<!--end management-->

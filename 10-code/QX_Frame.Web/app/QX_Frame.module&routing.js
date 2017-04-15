@@ -22,6 +22,8 @@ const signup_component_1 = require("./03-login/signup.component");
 const login_component_1 = require("./03-login/login/login.component");
 const signupVerify_component_1 = require("./03-login/signupVerify/signupVerify.component");
 const publish_component_1 = require("./30-order/publish/publish.component");
+const detail_component_1 = require("./30-order/detail/detail.component");
+const management_component_1 = require("./20-management_center/management.component");
 /*bantina add end*/
 /*zyq add start*/
 const topic_1 = require("./70-community/71-topic/topic");
@@ -61,6 +63,14 @@ const appRoutes = [
         path: 'publish',
         component: publish_component_1.PublishComponent
     },
+    {
+        path: 'orderDetail',
+        component: detail_component_1.OrderDetailComponent
+    },
+    {
+        path: 'managementCenter',
+        component: management_component_1.ManagementComponent
+    },
     /*bantina add end*/
     /*zyq add start*/
     {
@@ -97,6 +107,8 @@ const appComponents = [
     login_component_1.LoginComponent,
     signupVerify_component_1.SignupVerifyComponent,
     publish_component_1.PublishComponent,
+    detail_component_1.OrderDetailComponent,
+    management_component_1.ManagementComponent,
     /*bantina add end*/
     /*zyq add start*/
     topic_1.Topic,

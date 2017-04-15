@@ -1,0 +1,47 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* order detail css*/
+.orderDetail{
+    min-height:600px;
+}
+.slider-wrap {
+    background: white;
+    padding: 10px;
+    height: 450px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+
+.orderDetail_slider {
+    /*width: 940px;*/
+    height: 400px;
+    /*margin:0 auto;*/
+}
+
+    .orderDetail_slider strong {
+        color: #F0E10E;
+    }
+
+.orderDetail_right {
+    padding: 100px 30px 10px 0;
+}
+.detail_title{
+    text-align: right;
+}
+    .orderDetail_right p {
+        font-size: 18px;
+    }
+
+.orderDetail_right .getorder_btn{
+    height:40px;
+  font-size:22px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 28px;
+  float: left;
+  margin-bottom:20px;
+}
+.orderDetail_right .getorder_btn:hover,.orderDetail_right .getorder_btn:focus {
+    background-color: #ef5048;
+}

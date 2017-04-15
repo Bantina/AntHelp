@@ -1,0 +1,1 @@
+{"version":3,"file":"management.component.js","sourceRoot":"","sources":["management.component.ts"],"names":[],"mappings":";;;;;;;;AAAA,wCAAkD;AAWlD,IAAa,mBAAmB,GAAhC;IAGI,yBAAyB;IACzB,QAAQ;IACR,CAAC;CACJ,CAAA;AANY,mBAAmB;IAP/B,gBAAS,CAAC;QACP,QAAQ,EAAE,YAAY;QACtB,WAAW,EAAE,oDAAoD;QACjE,SAAS,EAAE,CAAC,mDAAmD,CAAC;QAChE,SAAS,EAAE,EAAE;KAChB,CAAC;GAEW,mBAAmB,CAM/B;AANY,kDAAmB"}

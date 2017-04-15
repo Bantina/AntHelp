@@ -1,0 +1,82 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* management css*/
+.l{float: left;}
+.r{float: right;}
+.cfix:after,.cf:after,.clear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+.tac{text-align: center;}
+
+.ico-edit {
+    background: url('../../../Images/20-management/edit.png') no-repeat;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.ico-edit:hover,
+a:hover .ico-edit{background-position:0 -27px;}
+
+.wrap{width:1200px;min-width:1200px;margin:0 auto;padding:33px 0 0}
+.leftCon{border:1px solid #e2e2e2;width:228px;display:inline;margin:9px 0 0}
+.userbox{padding:17px}
+.userbox .uimg{margin:0 0 10px}
+.userbox .uimg img{border-radius:50%;border:solid 2px #807f7f;}
+.userbox .p2{margin:3px 0 8px}
+.userbox .myname{display:inline-block;vertical-align:middle;margin-right:10px;}
+.btn-recharge{width:36px;height:18px}
+.msgbub,
+.msgbub i{display:inline-block;height:16px;overflow:hidden;background:url(images/zone/bg_1.png) no-repeat}
+.msgbub{padding-right:4px;background-position:right -84px}
+.msgbub i{padding-left:4px;background-position:left -68px;font-style:normal;line-height:16px;color:#fff}
+.sidenav li{border-top:1px solid #e6ecec}
+.sidenav li a{display:block;padding:15px 0 37px 54px;height:47px;color:#444;}
+.sidenav li a:hover{text-decoration:none;color:#e73c31}
+    .sidenav li a span {
+        font-size: 18px;
+        padding-left: 30px;
+        background-image: url('../../../Images/20-management/bg_sidenav.png');
+        background-repeat: no-repeat;
+        vertical-align: middle;
+    }
+    .sidenav li.on a span, .sidenav li a:hover span {
+        background-image: url('../../../Images/20-management/bg_sidenav_hover.png');
+    }
+.sidenav .ico_db{background-position:0 4px}
+.sidenav .ico_luck{background-position:0 -48px}
+.sidenav .ico_buy{background-position:0 -100px}
+.sidenav .ico_locate{background-position:0 -155px}
+.sidenav li.on a,.sidenav li.on a:hover{background:#fcfcfc;text-decoration:none;color:#e73c31}
+.sidenav li .msgbub{margin-left:5px}
+
+.rightCon{width:940px}
+.topTit{margin:0 0 15px}
+.tabBox{border-bottom:2px solid #f6f6f6;height:37px;margin:0 0 20px}
+.tabBox .tabs li{float:left;padding:0 20px;font-size:16px;color:#000;height:37px;line-height:28px;}
+.tabBox .tabs li.on{color:#e73c31;border-bottom:2px solid #e43e38;cursor:default}
+.tabBox .tabs li a:hover{text-decoration:none;color:#e73c31}
+.tabBox .tabs .num{font-size:14px;margin-left:5px}
+.filter .txt{font-size:14px;line-height:27px;color:#000}
+.filter .selBox{width:106px}
+
+
+/*orderBlock*/
+.myorderBlock{
+	margin-bottom: 20px;
+	border: 1px solid #e2e2e2;
+}
+.myorderBlock .btn input{
+  width:150px;
+  height:30px;
+  display: block;
+  font-size:16px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 28px;
+  margin-bottom:20px;
+}
+.myorderBlock .btn input:hover,.myorderBlock .btn input:focus {
+    background-color: #ef5048;
+}

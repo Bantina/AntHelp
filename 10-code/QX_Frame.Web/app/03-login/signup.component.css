@@ -85,9 +85,10 @@
   float: left;
   margin-bottom:20px;
 }
-.signup-btn:hover, .signup-btn:focus {
-    background-color: #303137;
+.signup-form .signup-btn:hover,.signup-form .signup-btn:focus {
+    background-color: #ef5048;
 }
+
 
 
 /*login css*/

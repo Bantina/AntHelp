@@ -52,9 +52,9 @@ namespace QX_Frame.Data.QueryObject
 		{
 			Expression<Func<tb_FavorableActivity, bool>> func = t => true;
 
-			if (!string.IsNullOrEmpty(""))
+			if (!string.IsNullOrEmpty(actTitle))
 			{
-				func = func.And(t => true);
+				func = func.And(t =>t.actTitle.Contains(this.actTitle));
 			}
 
 			return func;

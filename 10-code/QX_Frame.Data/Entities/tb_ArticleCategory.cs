@@ -7,7 +7,7 @@ namespace QX_Frame.Data.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tb_ArticleCategory : Entity<db_AntHelp, tb_ArticleCategory>
+    public partial class tb_ArticleCategory: Entity<db_AntHelp, tb_ArticleCategory>
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_ArticleCategory()
@@ -16,7 +16,7 @@ namespace QX_Frame.Data.Entities
         }
 
         [Key]
-        public int ArticleCategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         [Required]
         [StringLength(20)]

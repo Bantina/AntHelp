@@ -16,7 +16,7 @@ namespace QX_Frame.Data.Entities
         }
 
         [Key]
-        public int evaluateId { get; set; }
+        public Guid evaluateUid { get; set; }
 
         public int publisherScore { get; set; }
 

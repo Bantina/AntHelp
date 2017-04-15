@@ -141,6 +141,11 @@
   <ItemGroup>
     <Compile Include="config\ClassRegisters.cs" />
     <Compile Include="config\ControllerConfigs.cs" />
+    <Compile Include="Controllers\CommentReplyController.cs" />
+    <Compile Include="Controllers\ComplainController.cs" />
+    <Compile Include="Controllers\FavorableActivityController.cs" />
+    <Compile Include="Controllers\MessagePushController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\QX_Frame\AccountController.cs" />
     <Compile Include="Controllers\ArticleController.cs" />
     <Compile Include="Controllers\QX_Frame\AuthenticationController.cs" />
@@ -154,6 +159,7 @@
     <Compile Include="Controllers\Test\Test2Controller.cs" />
     <Compile Include="Controllers\Test\TestController.cs" />
     <Compile Include="Controllers\QX_Frame\UserController.cs" />
+    <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Filters\TokenAttribute_DG.cs" />
     <Compile Include="Filters\LimitsAttribute_DG.cs" />
     <Compile Include="Filters\RequestValidation_DG.cs" />

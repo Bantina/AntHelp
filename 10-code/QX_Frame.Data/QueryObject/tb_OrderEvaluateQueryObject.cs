@@ -23,11 +23,11 @@ namespace QX_Frame.Data.QueryObject
 		public tb_OrderEvaluateQueryObject()
 		{}
 
-		// PK（identity）  
-		public Int32 evaluateId { get;set; }
+        // PK（identity）  
+        public Guid evaluateUid { get; set; }
 
-		// 
-		public Int32 publisherScore { get;set; }
+        // 
+        public Int32 publisherScore { get;set; }
 
 		// 
 		public Int32 receiveScore { get;set; }

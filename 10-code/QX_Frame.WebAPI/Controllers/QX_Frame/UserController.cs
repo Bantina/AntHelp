@@ -18,10 +18,10 @@ namespace QX_Frame.WebAPI.Controllers
      * author:qixiao
      * time:2017-4-4 21:58:32
      * */
-    [LimitsAttribute_DG(RoleLevel = 0)]
     public class UserController : WebApiControllerBase
     {
         // GET: api/User
+        [LimitsAttribute_DG(RoleLevel = 0)]
         public IHttpActionResult Get(string loginId, int pageIndex, int pageSize, bool isDesc)
         {
             tb_UserAccountInfoQueryObject queryObject = new tb_UserAccountInfoQueryObject();
@@ -71,6 +71,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // GET: api/User/id
+        [LimitsAttribute_DG(RoleLevel = 0)]
         public IHttpActionResult Get(string id)
         {
             string loginId = id;
@@ -243,6 +244,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // PUT: api/User
+        [LimitsAttribute_DG(RoleLevel = 0)]
         public IHttpActionResult Put(dynamic query)
         {
             if (query == null)
@@ -299,13 +301,14 @@ namespace QX_Frame.WebAPI.Controllers
 
                 channel.Update(userAccountInfo);
 
-                Cache_Helper_DG.Cache_Add(loginId + "Info",userAccountInfo);
+                Cache_Helper_DG.Cache_Add(loginId + "Info", userAccountInfo);
             }
 
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("update user account info secceed"));
         }
 
         // DELETE: api/User
+        [LimitsAttribute_DG(RoleLevel = 0)]
         public IHttpActionResult Delete(dynamic query)
         {
             if (query == null)
@@ -371,5 +374,42 @@ namespace QX_Frame.WebAPI.Controllers
             }
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete succeed !"));
         }
+
+        public static tb_UserAccountInfo GetUserAccountInfoByUid(Guid uid)
+        {
+            using (var fact = Wcf<UserAccountInfoService>())
+            {
+                var channel = fact.CreateChannel();
+                return channel.GetUserAccountInfoByUid(uid);
+            }
+        }
+
+        public static tb_UserAccountInfo GetUserAccountInfoByUidAllowNull(Guid uid)
+        {
+            using (var fact = Wcf<UserAccountInfoService>())
+            {
+                var channel = fact.CreateChannel();
+                return channel.GetUserAccountInfoByUidAllowNull(uid);
+            }
+        }
+
+        public static tb_UserAccountInfo GetUserAccountInfoByLoginId(string loginId)
+        {
+            using (var fact=Wcf<UserAccountInfoService>())
+            {
+                var channel = fact.CreateChannel();
+                return channel.GetUserAccountInfoByLoginId(loginId);
+            }
+        }
+
+        public static tb_UserAccountInfo GetUserAccountInfoByLoginIdAllowNull(string loginId)
+        {
+            using (var fact = Wcf<UserAccountInfoService>())
+            {
+                var channel = fact.CreateChannel();
+                return channel.GetUserAccountInfoByLoginIdAllowNull(loginId);
+            }
+        }
+
     }
 }

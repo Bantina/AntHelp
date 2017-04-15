@@ -48,7 +48,8 @@
     <Compile Include="IMessagePushCategoryService.cs" />
     <Compile Include="IMessagePushService.cs" />
     <Compile Include="IMessagePushStatusService.cs" />
-    <Compile Include="IOrderComplainService.cs" />
+    <Compile Include="IOrderCategoryService.cs" />
+    <Compile Include="IComplainService.cs" />
     <Compile Include="IOrderEvaluateService.cs" />
     <Compile Include="IOrderService.cs" />
     <Compile Include="IOrderStatusService.cs" />

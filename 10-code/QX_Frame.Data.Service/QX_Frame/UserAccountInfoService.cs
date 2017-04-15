@@ -64,6 +64,50 @@ namespace QX_Frame.Data.Service.QX_Frame
             return userAccountInfo;
         }
 
+        public tb_UserAccountInfo GetUserAccountInfoByUidAllowNull(Guid uid)
+        {
+            tb_UserAccountInfo userAccountInfo = Cache_Helper_DG.Cache_Get(uid.ToString()) as tb_UserAccountInfo;
+            if (userAccountInfo != null)
+            {
+                return userAccountInfo;
+            }
+            userAccountInfo = QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid == uid }).Cast<tb_UserAccountInfo>();
+            return userAccountInfo;
+        }
+        public tb_UserAccountInfo GetUserAccountInfoByLoginId(string loginId)
+        {
+            if (string .IsNullOrEmpty(loginId))
+            {
+                throw new Exception_DG("loginId must be provide",1002);
+            }
+            tb_UserAccountInfo userAccountInfo = Cache_Helper_DG.Cache_Get(loginId+"Info") as tb_UserAccountInfo;
+            if (userAccountInfo != null)
+            {
+                return userAccountInfo;
+            }
+            userAccountInfo = QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_UserAccountInfo>();
+            if (userAccountInfo == null)
+            {
+                throw new Exception_DG("no user account found by loginId , account not exist", 3001);
+            }
+            Cache_Helper_DG.Cache_Add(loginId + "Info", userAccountInfo);
+            return userAccountInfo;
+        }
 
+        public tb_UserAccountInfo GetUserAccountInfoByLoginIdAllowNull(string loginId)
+        {
+            if (string.IsNullOrEmpty(loginId))
+            {
+                throw new Exception_DG("loginId must be provide", 1002);
+            }
+            tb_UserAccountInfo userAccountInfo = Cache_Helper_DG.Cache_Get(loginId + "Info") as tb_UserAccountInfo;
+            if (userAccountInfo != null)
+            {
+                return userAccountInfo;
+            }
+            userAccountInfo = QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_UserAccountInfo>();
+            Cache_Helper_DG.Cache_Add(loginId + "Info", userAccountInfo);
+            return userAccountInfo;
+        }
     }
 }

@@ -1,4 +1,5 @@
 using QX_Frame.App.Web;
+using QX_Frame.Data.DTO;
 using QX_Frame.Data.Entities;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service;
@@ -38,7 +39,25 @@ namespace QX_Frame.WebAPI.Controllers
                 int count = 0;
                 var channel = fact.CreateChannel();
                 List<tb_Article> articleList = channel.QueryAllPaging<tb_Article, string>(queryObject, t => t.articleTitle).Cast<List<tb_Article>>(out count);
-                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Article fuzzy query by articleTitle", articleList, count));
+                List<ArticleViewModel> articleViewModelList = new List<ArticleViewModel>();
+                foreach (var item in articleList)
+                {
+                    ArticleViewModel articleViewModel = new ArticleViewModel();
+                    articleViewModel.articleUid = item.articleUid;
+                    articleViewModel.articleTitle = item.articleTitle;
+                    articleViewModel.articleContent = item.articleContent;
+                    articleViewModel.publisherUid = item.publisherUid;
+                    articleViewModel.publisherInfo = UserController.GetUserAccountInfoByUid(item.publisherUid);
+                    articleViewModel.publishTime = item.publishTime;
+                    articleViewModel.clickCount = item.clickCount;
+                    articleViewModel.praiseCount = item.praiseCount;
+                    articleViewModel.ArticleCategoryId = item.ArticleCategoryId;
+                    articleViewModel.articleCategory = item.tb_ArticleCategory;
+                    articleViewModel.imagesUrls = item.imagesUrls;
+                    articleViewModelList.Add(articleViewModel);
+                }
+
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Article fuzzy query by articleTitle", articleViewModelList, count));
             }
         }
 
@@ -60,7 +79,19 @@ namespace QX_Frame.WebAPI.Controllers
                 {
                     throw new Exception_DG("no article found by articleUid", 3013);
                 }
-                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Article by articleUid", article, 1));
+                ArticleViewModel articleViewModel = new ArticleViewModel();
+                articleViewModel.articleUid = article.articleUid;
+                articleViewModel.articleTitle = article.articleTitle;
+                articleViewModel.articleContent = article.articleContent;
+                articleViewModel.publisherUid = article.publisherUid;
+                articleViewModel.publisherInfo = UserController.GetUserAccountInfoByUid(article.publisherUid);
+                articleViewModel.publishTime = article.publishTime;
+                articleViewModel.clickCount = article.clickCount;
+                articleViewModel.praiseCount = article.praiseCount;
+                articleViewModel.ArticleCategoryId = article.ArticleCategoryId;
+                articleViewModel.articleCategory = article.tb_ArticleCategory;
+                articleViewModel.imagesUrls = article.imagesUrls;
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Article by articleUid", articleViewModel, 1));
             }
         }
         // POST: api/Article
@@ -71,31 +102,25 @@ namespace QX_Frame.WebAPI.Controllers
                 throw new Exception_DG("arguments must be provide", 1001);
             }
 
-            using (var fact = Wcf<UserAccountInfoService>())
+            tb_Article article = tb_Article.Build();
+            article.articleUid = Guid.NewGuid();
+            article.articleTitle = query.articleTitle;
+            article.articleContent = query.articleContent;
+            article.ArticleCategoryId = query.ArticleCategoryId;
+            string loginId = query.publisherLoginId;
+            using (var fact2 = Wcf<UserAccountService>())
             {
-                var channel = fact.CreateChannel();
+                var channel2 = fact2.CreateChannel();
+                article.publisherUid = channel2.GetUserAccountByLoginId(loginId).uid;
+            }
+            article.ArticleCategoryId = query.ArticleCategoryId;
+            article.imagesUrls = query.imagesUrls;
 
-
-                tb_Article article = tb_Article.Build();
-                article.articleUid = Guid.NewGuid();
-                article.articleTitle = query.articleTitle;
-                article.articleContent = query.articleContent;
-                article.ArticleCategoryId = query.ArticleCategoryId;
-                string loginId = query.publisherLoginId;
-                using (var fact2 = Wcf<UserAccountService>())
-                {
-                    var channel2 = fact2.CreateChannel();
-                    article.publisherUid = channel2.GetUserAccountByLoginId(loginId).uid;
-                }
-                article.ArticleCategoryId = query.ArticleCategoryId;
-                article.imagesUrls = query.imagesUrls;
-
-                using (var fact2 = Wcf<ArticleService>())
-                {
-                    var channel2 = fact2.CreateChannel();
-                    bool isAdd = channel2.Add(article);
-                    return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("article publish succeed", article, 1));
-                }
+            using (var fact2 = Wcf<ArticleService>())
+            {
+                var channel2 = fact2.CreateChannel();
+                bool isAdd = channel2.Add(article);
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("article publish succeed", article, 1));
             }
         }
 

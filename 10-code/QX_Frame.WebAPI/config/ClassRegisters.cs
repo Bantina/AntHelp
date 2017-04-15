@@ -34,7 +34,7 @@ namespace QX_Frame.WebAPI.config
             WebApiControllerBase.Register(c => new MessagePushCategoryService());
             WebApiControllerBase.Register(c => new MessagePushService());
             WebApiControllerBase.Register(c => new MessagePushStatusService());
-            WebApiControllerBase.Register(c => new OrderComplainService());
+            WebApiControllerBase.Register(c => new ComplainService());
             WebApiControllerBase.Register(c => new OrderEvaluateService());
             WebApiControllerBase.Register(c => new OrderService());
             WebApiControllerBase.Register(c => new OrderStatusService());

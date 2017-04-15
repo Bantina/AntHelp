@@ -76,7 +76,8 @@
     <Compile Include="MessagePushCategoryService.cs" />
     <Compile Include="MessagePushService.cs" />
     <Compile Include="MessagePushStatusService.cs" />
-    <Compile Include="OrderComplainService.cs" />
+    <Compile Include="OrderCategoryService.cs" />
+    <Compile Include="ComplainService.cs" />
     <Compile Include="OrderEvaluateService.cs" />
     <Compile Include="OrderService.cs" />
     <Compile Include="OrderStatusService.cs" />

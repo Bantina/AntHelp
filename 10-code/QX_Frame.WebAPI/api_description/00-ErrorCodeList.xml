@@ -47,6 +47,7 @@
   <Error errorCode="3018" errorLevel="0">account has been frozen</Error>
   <Error errorCode="3019" errorLevel="0">account disabled</Error>
   <Error errorCode="3020" errorLevel="0">do not have enough of permission</Error>
+  <Error errorCode="3021" errorLevel="0">no result found by this query condition</Error>
   <Error errorCode="30" errorLevel="0"></Error>
   <Error errorCode="30" errorLevel="0"></Error>
   <Error errorCode="30" errorLevel="0"></Error>

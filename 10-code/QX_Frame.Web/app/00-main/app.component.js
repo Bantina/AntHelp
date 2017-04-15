@@ -8,10 +8,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const appService_1 = require("../00-AQX_Frame.services/appService");
+const appBase_1 = require("../00-AQX_Frame.commons/appBase");
 let AppComponent = class AppComponent {
     constructor() {
         this.title = 'Ant Help';
         this.loginResult = appService_1.appService.IsLogin();
+    }
+    //个人中心菜单点击 切换
+    setCenterStatus(num) {
+        appBase_1.appBase.AppObject.centerStatus = num;
+        //window.location.href = appBase.WebUrlDomain + "managementCenter";
+        var manageCenterUl = $(".manageCenterUl li");
+        manageCenterUl.removeClass("on");
+        manageCenterUl.eq(appBase_1.appBase.AppObject.centerStatus).addClass("on");
+        //内容切换；
+        //manageCenterUl.eq(appBase.AppObject.centerStatus).click(event, appBase.AppObject.centerStatus);
+        //manageCenterUl.eq(num).trigger('click', {event,num});
     }
 };
 AppComponent = __decorate([

@@ -1,3 +1,11 @@
 ﻿@charset "utf-8";
 /* CSS Document */
-
+.index_slider-wrap {
+  background: #182a35;
+  height: 490px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+.index_slider {
+  height: 450px;
+}
+.index_slider strong { color: #F0E10E; }

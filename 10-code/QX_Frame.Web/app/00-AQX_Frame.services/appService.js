@@ -1,6 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+const appBase_1 = require('../00-AQX_Frame.commons/appBase');
 class appService {
     //获取url请求参数name值；
     static GetQueryString(name) {
@@ -64,15 +63,6 @@ class appService {
                         loginResult.isLogin = true;
                         loginResult.loginId = data.data.loginId;
                     }
-                    else {
-                        if (data.errorCode == 3011) {
-                            alert('登录已过期，请重新登录~');
-                            appService.setCookie('appKey', '', 7);
-                            appService.setCookie('secretKey', '', 7);
-                            appService.setCookie('loginId', '', 7);
-                            appService.setCookie('token', '', 7);
-                        }
-                    }
                 },
                 error(data) {
                 }
@@ -83,6 +73,7 @@ class appService {
     static GetAppKeyToken() {
         this.appKeyTokenModel.appKey = appService.getCookie("appKey");
         this.appKeyTokenModel.token = appService.getCookie("token");
+        this.appKeyTokenModel.loginId = appService.getCookie("loginId");
         return this.appKeyTokenModel;
     }
 }

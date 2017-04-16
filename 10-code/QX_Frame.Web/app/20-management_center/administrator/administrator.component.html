@@ -1,0 +1,143 @@
+﻿<!--start management-->
+<div class="wrap cfix">
+    <div class="l leftCon">
+        <div class="userbox tac">
+            <div class="uimg">
+                <img class="j_usr_img" src="../../../Images/03-login/portraint01.png" width="100" height="100" alt="" />
+            </div>
+
+            <p class="p1"><span class="fs14 td-n j_usr_name"><span class="myname" title="">昵 称：{{userInfoModel.nickName}}</span>
+                <!--<a href="#" target="_blank" class="ico-edit"></a>-->
+            </span> </p>
+            <p class="p2">(管理员ID: {{userInfoModel.loginId}})</p>
+            <p><span class="fs14 vam"> 余额 : <strong class="c-red">888</strong></span></p>
+        </div>
+        <ul class="sidenav manageCenterUl">
+            <li><a routerLink="/administrator" (click)="sidenavClick_admin($event,0)"><span class="ico_db" (click)="sidenavSpanClick_admin($event,0)">用户管理</span> </a></li>
+            <li><a routerLink="/administrator" (click)="sidenavClick_admin($event,1)"><span class="ico_buy" (click)="sidenavSpanClick_admin($event,1)">订单管理</span></a></li>
+            <li><a routerLink="/administrator" (click)="sidenavClick_admin($event,2)"><span class="ico_luck" (click)="sidenavSpanClick_admin($event,2)">投诉管理</span></a></li>
+        </ul>
+    </div>   
+    <!-- 未登陆 -->
+    <div class="r rightCon" *ngIf="navStatus==-1">
+        <div class="col-md-7 black_login">
+            <img src="../../Images/03-login/blank_bg.png" />
+        </div>
+        <div class="col-md-4 black_login_r">
+            <h3>您尚未登录，请先登录~</h3>
+            <a routerLink="/login">登    录</a>
+        </div>
+    </div>
+        <!-- 账户管理 -->
+        <div class="r rightCon" *ngIf="navStatus==0">
+            <div class="cfix topTit">
+                <div class="col-md-5"><h3 class="l fs20 c-black">所有用户信息</h3></div>
+                <div class="col-md-7">
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search loginId">
+                        </div>
+                        <button type="submit" class="btn btn-primary">查 询</button>
+                    </form>
+                </div>
+            </div>
+            <div class="cfix tabBox">
+                <ul class="l cfix tabs">
+                    <li class="on"><a href="?t=0">全部</a></li>
+                    <li class=""><a href="?t=1">普通用户</a></li>
+                    <li class=""><a href="?t=2">管理员</a></li>
+                </ul>
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-addr">
+                    <tr>
+                        <th class="th30"><span class="pl10">用户ID</span></th>
+                        <th class="th60"><span class="pl10">昵称</span></th>
+                        <th class="th120">联系电话</th>
+                        <th class="th200">地址</th>
+                        <th class="th120">邮箱</th>
+                        <th class="th120">用户状态</th>
+                        <th class="th120">用户角色</th>
+                        <th class="operate th200">操作</th>
+                    </tr>
+
+                    <tr data-id="" class="address-add">
+                        <td class="th30"><span class="c-black fs14">33</span></td>
+                        <td class="th60"><span class="c-black fs14">33</span></td>
+                        <td class="th120"><span class="c-black fs14">333</span></td>
+                        <td class="th200"><span class="c-black fs14">33</span></td>
+                        <td class="th120"><span class="c-black fs14">33</span></td>
+                        <td class="th120">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" role="button" id="userStatusMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    正常
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="userStatusMenu">
+                                    <li><a href="javascript:void(0);">正常</a></li>
+                                    <li><a href="javascript:void(0);">停用</a></li>
+                                    <li><a href="javascript:void(0);">冻结</a></li>
+                                    <li><a href="javascript:void(0);">废弃</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                        <td class="th120">
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" role="button" id="userRoleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    普通用户
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="userRoleMenu">
+                                    <li><a href="javascript:void(0);">普通用户</a></li>
+                                    <li><a href="javascript:void(0);">管理员</a></li>
+                                </ul>
+                            </div>
+                        </td>
+
+                        <td class="operate">
+                        <a href="javascript:void(0)" class="fs14 a-edit">编辑</a><em>｜</em>
+                        <a href="javascript:void(0)" class="fs14 a-detele">删除</a></td>
+                           
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <!-- 订单管理 -->
+        <div class="r rightCon" *ngIf="navStatus==1">
+            <div class="cfix topTit">
+                <h3 class="l fs20 c-black">所有订单记录</h3>
+            </div>
+            <div class="cfix tabBox">
+                <ul class="l cfix tabs">
+                    <li class="on"><a href="?t=0">全部</a></li>
+                    <li class=""><a href="?t=1">进行中</a></li>
+                    <li class=""><a href="?t=2">即将揭晓</a></li>
+                    <li class=""><a href="?t=3">已揭晓</a></li>
+                </ul>
+            </div>
+            <div class="row myorderBlock">
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3 btn">
+                    <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
+                    <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
+                </div>
+            </div>
+
+        </div>
+        <!-- 投诉管理 -->
+        <div class="r rightCon" *ngIf="navStatus==2">
+            <div class="cfix topTit">
+                <h3 class="l fs20 c-black">所有投诉记录</h3>
+            </div>
+            <div class="cfix tabBox">
+                <ul class="l cfix tabs">
+                    <li class="on"><a href="?t=0">全部</a></li>
+                    <li class=""><a href="?t=1">进行中</a></li>
+                    <li class=""><a href="?t=2">即将揭晓</a></li>
+                    <li class=""><a href="?t=3">已揭晓</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+<!--end management-->

@@ -7,9 +7,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../00-AQX_Frame.services/appService");
-let ManagementComponent = class ManagementComponent {
+const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../../00-AQX_Frame.services/appService");
+let AdministratorComponent = class AdministratorComponent {
     constructor() {
         //模型绑定;
         this.userInfoModel = {
@@ -49,24 +49,14 @@ let ManagementComponent = class ManagementComponent {
     }
     //左菜单点击事件；
     sidenavClick(event, num) {
-        if (!this.loginId || this.loginId == "undefined") {
-            this.navStatus == -1;
-        }
-        else {
-            this.navStatus = num;
-        }
+        this.navStatus = num;
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
         this.sidenavFun();
     }
     sidenavSpanClick(event, num) {
-        if (!this.loginId || this.loginId == "undefined") {
-            this.navStatus == -1;
-        }
-        else {
-            this.navStatus = num;
-        }
+        this.navStatus = num;
         var $targetP = $(event.target || event.srcElement).parent().parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
@@ -204,12 +194,6 @@ let ManagementComponent = class ManagementComponent {
         });
     }
     ////我的订单
-    //条件帅选 点击；
-    tabBoxClick_myorder(event) {
-        var $targetP = $(event.target || event.srcElement).parent();
-        $targetP.siblings().removeClass("on");
-        $targetP.addClass("on");
-    }
     ////我的发布
     //the final execute ...
     ngOnInit() {
@@ -219,13 +203,13 @@ let ManagementComponent = class ManagementComponent {
         this.getUserInfo();
     }
 };
-ManagementComponent = __decorate([
+AdministratorComponent = __decorate([
     core_1.Component({
         selector: 'managementCenter',
         templateUrl: 'app/20-management_center/management.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
     })
-], ManagementComponent);
-exports.ManagementComponent = ManagementComponent;
-//# sourceMappingURL=management.component.js.map
+], AdministratorComponent);
+exports.AdministratorComponent = AdministratorComponent;
+//# sourceMappingURL=admin.component.js.map

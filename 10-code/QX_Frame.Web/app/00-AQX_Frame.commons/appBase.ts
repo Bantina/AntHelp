@@ -5,6 +5,6 @@
 
     public static AppObject: any = { //the app global object
         centerStatus: 0, //personal center status
-        managerStatus: 0 //manager status
+        administratorStatus: 0 //manager status
     } //personal center 
 }

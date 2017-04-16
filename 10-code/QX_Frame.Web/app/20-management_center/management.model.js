@@ -1,12 +1,27 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class ManagementModel {
-    constructor(loginId, email, pwd, emailHtmlRoute) {
-        this.loginId = loginId;
+class UserInfoModel {
+    constructor(email, appKey, token, loginId, nickName, phone, headImageUrl, age, sexId, birthday, bloodTypeId, position, school, location, company, constellation, chineseZodiac, personalizedSignature, personalizedDescription) {
         this.email = email;
-        this.pwd = pwd;
-        this.emailHtmlRoute = emailHtmlRoute;
+        this.appKey = appKey;
+        this.token = token;
+        this.loginId = loginId;
+        this.nickName = nickName;
+        this.phone = phone;
+        this.headImageUrl = headImageUrl;
+        this.age = age;
+        this.sexId = sexId;
+        this.birthday = birthday;
+        this.bloodTypeId = bloodTypeId;
+        this.position = position;
+        this.school = school;
+        this.location = location;
+        this.company = company;
+        this.constellation = constellation;
+        this.chineseZodiac = chineseZodiac;
+        this.personalizedSignature = personalizedSignature;
+        this.personalizedDescription = personalizedDescription;
     }
 }
-exports.ManagementModel = ManagementModel;
+exports.UserInfoModel = UserInfoModel;
 //# sourceMappingURL=management.model.js.map

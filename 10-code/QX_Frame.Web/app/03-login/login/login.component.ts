@@ -55,9 +55,9 @@ export class LoginComponent implements OnInit {
                         self.sucMsg = "您已登录成功~";
                         //set cookie
                         appService.setCookie("loginId", self.loginUserModel.loginId,7);
-                        appService.setCookie("appKey", data.appKey,7);
-                        appService.setCookie("secretKey", data.secretKey,7);
-                        appService.setCookie("token", data.token, 7);
+                        appService.setCookie("appKey", data.data.appKey,7);
+                        appService.setCookie("secretKey", data.data.secretKey,7);
+                        appService.setCookie("token", data.data.token, 7);
                         //document.cookie = "loginId=" + escape(self.loginUserModel.loginId);
                         //document.cookie = "appKey=" + data.appKey;
                         //document.cookie = "secretKey=" + data.secretKey;

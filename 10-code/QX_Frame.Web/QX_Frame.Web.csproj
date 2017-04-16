@@ -118,6 +118,7 @@
     <Content Include="Images\20-management\bg_sidenav.png" />
     <Content Include="Images\20-management\bg_sidenav_hover.png" />
     <Content Include="Images\20-management\edit.png" />
+    <Content Include="Images\20-management\user_default_img.png" />
     <Content Include="Images\30-order\addpic.png" />
     <Content Include="Images\30-order\bg1.png" />
     <Content Include="Images\30-order\bg2.png" />

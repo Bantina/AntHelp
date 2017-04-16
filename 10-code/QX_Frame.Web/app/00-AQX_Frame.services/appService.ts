@@ -35,16 +35,16 @@ export class appService {
 
     //判断用户是否登录
     static IsLogin(): any {
-        var appKey = appService.getCookie("appKey");
+        var appKey = Number(appService.getCookie("appKey"));
         var token = appService.getCookie("token");
         var _random = Math.ceil(Math.random() * 1000);
-        var _timeStamp = (new Date()).valueOf();
+        var _timeStamp = Number((new Date()).valueOf());
         var loginResult = {
             isLogin: false,
             loginId:""
         }
         //当cookie值为空时，未登录；
-        if (appKey == "" || appKey=="undefined") return loginResult;
+        if (appKey == 0 || appKey == null || appKey == NaN) return loginResult;
 
         else {
             $.ajax({
@@ -53,12 +53,12 @@ export class appService {
                 type: "get",
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
-                data: JSON.stringify({
+                data: {
                     appKey: appKey,
                     random: _random,
                     timeStamp: _timeStamp,
                     token: token
-                }),
+                },
                 success(data) {
                     //timer=setInterval 
                     if (data.isSuccess) {
@@ -73,5 +73,21 @@ export class appService {
         }
         return loginResult;
     }
+
+    //使用imageURL获取图片二进制流；
+    //static getImageData(url): string {
+    //    var imgData = '0';
+    //    $.ajax({
+    //        url: appBase.DomainApi + 'api/Files/' + url,
+    //        type: "GET",
+    //        success: function (data) {
+    //            imgData = data;
+    //        },
+    //        error: function (data) {
+    //            return imgData;
+    //        }
+    //    });
+    //    return imgData;
+    //}
  
 }

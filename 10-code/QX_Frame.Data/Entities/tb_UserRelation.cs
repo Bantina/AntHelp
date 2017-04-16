@@ -19,10 +19,5 @@ namespace QX_Frame.Data.Entities
 
         public DateTime relationTime { get; set; }
 
-        public int relationStatusId { get; set; }
-
-        //解决json循环引用问题
-        [JsonIgnore]
-        public virtual tb_RelationStatus tb_RelationStatus { get; set; }
     }
 }

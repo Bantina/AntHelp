@@ -5,7 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const platform_browser_1 = require("@angular/platform-browser");
 const http_1 = require("@angular/http");
@@ -115,8 +114,6 @@ const appComponents = [
     detail_1.Detail,
     friends_1.Friends,
     friendsInformation_1.FriendsInformation
-    /*zyq add end*/
-    /* end define components */
 ];
 /**
  * !!! do not edit the flowing must existing items --qixiao

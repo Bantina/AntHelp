@@ -1,4 +1,5 @@
 ﻿import { appBase } from '../00-AQX_Frame.commons/appBase';
+import { AppKeyTokenModel } from '../00-AQX_Frame.models/AppKeyTokenModel';
 
 declare function escape(s: string): string;
 declare function unescape(s: string): string;
@@ -74,20 +75,13 @@ export class appService {
         return loginResult;
     }
 
-    //使用imageURL获取图片二进制流；
-    //static getImageData(url): string {
-    //    var imgData = '0';
-    //    $.ajax({
-    //        url: appBase.DomainApi + 'api/Files/' + url,
-    //        type: "GET",
-    //        success: function (data) {
-    //            imgData = data;
-    //        },
-    //        error: function (data) {
-    //            return imgData;
-    //        }
-    //    });
-    //    return imgData;
-    //}
+    //get token from cookie
+    private static appKeyTokenModel: AppKeyTokenModel;
+    static GetAppKeyToken(): AppKeyTokenModel
+    {
+        this.appKeyTokenModel.appKey = appService.getCookie("appKey");
+        this.appKeyTokenModel.token = appService.getCookie("token");
+        return this.appKeyTokenModel;
+    }
  
 }

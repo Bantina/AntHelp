@@ -261,7 +261,7 @@ namespace QX_Frame.WebAPI.Controllers
 
             //-------- permission check
             int appKey = query.appKey;
-            string token = query.Token;
+            string token = query.token;
 
             var tokenInfo = AuthenticationController.GetTokenInfoByAppKeyToken(appKey, token);
             Guid uid = tokenInfo.Item1;

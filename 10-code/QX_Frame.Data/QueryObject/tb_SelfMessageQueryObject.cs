@@ -1,6 +1,7 @@
 using QX_Frame.App.Base;
 using QX_Frame.Data.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace QX_Frame.Data.QueryObject
@@ -44,18 +45,20 @@ namespace QX_Frame.Data.QueryObject
 		// 
 		public String imagesUrls { get;set; }
 
-		//query condition // null default
-		public override Expression<Func<tb_SelfMessage, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
+        public List<Guid> friendUidList { get; set; }
+
+        //query condition // null default
+        public override Expression<Func<tb_SelfMessage, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
 		//query condition func // true default //if QueryCondition != null this will be override !!!
 		protected override Expression<Func<tb_SelfMessage, bool>> QueryConditionFunc()
 		{
-			Expression<Func<tb_SelfMessage, bool>> func = t => true;
+			Expression<Func<tb_SelfMessage, bool>> func = t => false;
 
-			if (!string.IsNullOrEmpty(""))
-			{
-				func = func.And(t => true);
-			}
+            foreach (var item in this.friendUidList)
+            {
+                func = func.Or(t => t.publisherUid == item);
+            }
 
 			return func;
 		}

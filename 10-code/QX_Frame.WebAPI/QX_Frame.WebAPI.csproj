@@ -120,6 +120,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="api_description\UserRelation.xml" />
+    <Content Include="api_description\CommentReply.xml" />
+    <Content Include="api_description\SelfMessage.xml" />
     <Content Include="api_description\Files.xml" />
     <Content Include="api_description\Account.xml" />
     <Content Include="api_description\Article.xml" />
@@ -141,6 +144,9 @@
   <ItemGroup>
     <Compile Include="config\ClassRegisters.cs" />
     <Compile Include="config\ControllerConfigs.cs" />
+    <Compile Include="config\DefaultImageStream.cs" />
+    <Compile Include="Controllers\UserRelationController.cs" />
+    <Compile Include="Controllers\SelfMessageController.cs" />
     <Compile Include="Controllers\CommentReplyController.cs" />
     <Compile Include="Controllers\ComplainController.cs" />
     <Compile Include="Controllers\FavorableActivityController.cs" />

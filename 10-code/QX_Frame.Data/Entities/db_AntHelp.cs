@@ -63,11 +63,6 @@ namespace QX_Frame.Data.Entities
                 .HasMany(e => e.tb_Order)
                 .WithRequired(e => e.tb_OrderStatus)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<tb_RelationStatus>()
-                .HasMany(e => e.tb_UserRelation)
-                .WithRequired(e => e.tb_RelationStatus)
-                .WillCascadeOnDelete(false);
         }
     }
 }

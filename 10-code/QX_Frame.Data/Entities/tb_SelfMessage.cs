@@ -20,9 +20,9 @@ namespace QX_Frame.Data.Entities
 
         public Guid publisherUid { get; set; }
 
-        public int clickCount { get; set; }
+        public int clickCount { get; set; } = 0;
 
-        public int praiseCount { get; set; }
+        public int praiseCount { get; set; } = 0;
 
         [Required]
         [StringLength(1000)]

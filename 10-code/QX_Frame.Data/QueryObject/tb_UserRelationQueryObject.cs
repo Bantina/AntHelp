@@ -36,8 +36,6 @@ namespace QX_Frame.Data.QueryObject
 		public DateTime relationTime { get;set; }
 
 		// 
-		public Int32 relationStatusId { get;set; }
-
 		//query condition // null default
 		public override Expression<Func<tb_UserRelation, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
@@ -50,6 +48,8 @@ namespace QX_Frame.Data.QueryObject
 			{
 				func = func.And(t => true);
 			}
+
+            func = func.And(t => t.myUid == this.myUid);
 
 			return func;
 		}

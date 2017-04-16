@@ -13,12 +13,12 @@ export class OrderDetailComponent implements OnInit {
   
     ////the final execute ...
     ngOnInit(): void {
-        var defaults = {
-            thumbSize: 20,
-            slideSpeed: 1500,
-            auto: true,
-            loop: true
-        };
-        $('.orderDetail_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 1, effect: 'updown', cssSpeed: 500, backReverse: true }));
+        //var defaults = {
+        //    thumbSize: 20,
+        //    slideSpeed: 1500,
+        //    auto: true,
+        //    loop: true
+        //};
+        //$('.orderDetail_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 1, effect: 'updown', cssSpeed: 500, backReverse: true }));
     }
 }

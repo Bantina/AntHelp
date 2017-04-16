@@ -81,6 +81,7 @@ export class appService {
     {
         this.appKeyTokenModel.appKey = appService.getCookie("appKey");
         this.appKeyTokenModel.token = appService.getCookie("token");
+        this.appKeyTokenModel.loginId = appService.getCookie("loginId");
         return this.appKeyTokenModel;
     }
  

@@ -2,4 +2,5 @@
 {
     public appKey: string;
     public token: string;
+    public loginId: string;
 }

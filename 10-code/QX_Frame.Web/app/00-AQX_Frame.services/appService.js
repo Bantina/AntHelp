@@ -1,5 +1,5 @@
 "use strict";
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+const appBase_1 = require('../00-AQX_Frame.commons/appBase');
 class appService {
     //获取url请求参数name值；
     static GetQueryString(name) {
@@ -73,6 +73,7 @@ class appService {
     static GetAppKeyToken() {
         this.appKeyTokenModel.appKey = appService.getCookie("appKey");
         this.appKeyTokenModel.token = appService.getCookie("token");
+        this.appKeyTokenModel.loginId = appService.getCookie("loginId");
         return this.appKeyTokenModel;
     }
 }

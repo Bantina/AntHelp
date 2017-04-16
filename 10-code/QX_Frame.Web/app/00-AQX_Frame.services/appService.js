@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 const appBase_1 = require("../00-AQX_Frame.commons/appBase");
 class appService {
     //获取url请求参数name值；
@@ -70,6 +69,11 @@ class appService {
             });
         }
         return loginResult;
+    }
+    static GetAppKeyToken() {
+        this.appKeyTokenModel.appKey = appService.getCookie("appKey");
+        this.appKeyTokenModel.token = appService.getCookie("token");
+        return this.appKeyTokenModel;
     }
 }
 exports.appService = appService;

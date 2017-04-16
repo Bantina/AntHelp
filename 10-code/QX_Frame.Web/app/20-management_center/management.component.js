@@ -5,9 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+const core_1 = require('@angular/core');
+const appBase_1 = require('../00-AQX_Frame.commons/appBase');
 let ManagementComponent = class ManagementComponent {
     constructor() {
         this.navStatus = appBase_1.appBase.AppObject.centerStatus;
@@ -42,7 +44,8 @@ ManagementComponent = __decorate([
         templateUrl: 'app/20-management_center/management.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    })
+    }), 
+    __metadata('design:paramtypes', [])
 ], ManagementComponent);
 exports.ManagementComponent = ManagementComponent;
 //# sourceMappingURL=management.component.js.map

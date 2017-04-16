@@ -1,4 +1,5 @@
 ﻿import { appBase } from '../00-AQX_Frame.commons/appBase';
+import { AppKeyTokenModel } from '../00-AQX_Frame.models/AppKeyTokenModel';
 
 declare function escape(s: string): string;
 declare function unescape(s: string): string;
@@ -72,6 +73,15 @@ export class appService {
             });
         }
         return loginResult;
+    }
+
+    //get token from cookie
+    private static appKeyTokenModel: AppKeyTokenModel;
+    static GetAppKeyToken(): AppKeyTokenModel
+    {
+        this.appKeyTokenModel.appKey = appService.getCookie("appKey");
+        this.appKeyTokenModel.token = appService.getCookie("token");
+        return this.appKeyTokenModel;
     }
  
 }

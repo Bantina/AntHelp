@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 //发布分类；
 class KindModel {
     constructor(loginId, email, pwd, emailHtmlRoute) {
@@ -22,4 +21,7 @@ class PublishAidModel {
     }
 }
 exports.PublishAidModel = PublishAidModel;
+class Order {
+}
+exports.Order = Order;
 //# sourceMappingURL=order.model.js.map

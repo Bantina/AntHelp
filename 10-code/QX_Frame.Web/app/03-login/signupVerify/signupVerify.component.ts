@@ -64,7 +64,11 @@ export class SignupVerifyComponent implements OnInit {
                     }
                 }
                 else {
-                    self.msg = "邮箱验证失败，请重新注册~";
+                    if (data.errorCode == 3002) {
+                        self.msg = "邮箱验证失败，该用户已完成过邮箱验证~";
+                    } else {
+                        self.msg = "邮箱验证失败，请重新注册~";
+                    }
                 }
             },
             error(data) {

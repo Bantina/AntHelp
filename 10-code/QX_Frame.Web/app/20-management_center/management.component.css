@@ -59,6 +59,40 @@ a:hover .ico-edit{background-position:0 -27px;}
 .filter .txt{font-size:14px;line-height:27px;color:#000}
 .filter .selBox{width:106px}
 
+/*personalDetail*/
+.prePotrait{
+  width:130px;
+  height: 130px;
+  padding:10px;
+  border:1px solid #e2e2e2;
+  overflow:hidden;
+}
+.prePotrait img{
+    width:100%;
+    height:100%;
+}
+.personalDetail_right .form-group label{
+     font-size: 18px;
+}
+#personalHead_upload{
+  margin:50px 0 20px 20px;
+}
+
+.userInfoSave_btn{
+    height:40px;
+  font-size:22px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 28px;
+  float: left;
+  margin-bottom:20px;
+}
+.userInfoSave_btn:hover,.userInfoSave_btn:focus {
+    background-color: #ef5048;
+}
+
 
 /*orderBlock*/
 .myorderBlock{
@@ -80,3 +114,4 @@ a:hover .ico-edit{background-position:0 -27px;}
 .myorderBlock .btn input:hover,.myorderBlock .btn input:focus {
     background-color: #ef5048;
 }
+

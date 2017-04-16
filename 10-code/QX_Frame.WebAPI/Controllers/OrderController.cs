@@ -167,15 +167,13 @@ namespace QX_Frame.WebAPI.Controllers
                     }
                     if (id == 1)
                     {
-                        Guid receiverUid = query.receiverUid;//argument
-                        order.receiverUid = receiverUid;
+                        string loginId = query.receiverLoginId;//argument
+                        order.receiverUid = UserController.GetUserAccountInfoByLoginId(loginId).uid;
                         order.receiveTime = DateTime.Now;
                     }
                     else if (id == 2)
                     {
                         order.orderStatusId = query.orderStatusId;//argument
-
-
                     }
                     channel.Update(order);
                 }

@@ -16,19 +16,19 @@
         <div class="col-md-5 orderDetail_right">
             <div class="row">
                 <p class="col-md-3 detail_title">发布者 :</p>
-                <p class="col-md-9 detail_content">Jhon dan</p>
+                <p class="col-md-9 detail_content">{{orderPlus.publisherInfo.loginId}}</p>
             </div>
             <div class="row">
                 <p class="col-md-3 detail_title">价  格 :</p>
-                <p class="col-md-9 detail_content"><span style="color:tomato;font-size:22px;">￥</span>18</p>
+                <p class="col-md-9 detail_content"><span style="color:tomato;font-size:22px;">￥</span>{{order.orderDescription}}</p>
             </div>
             <div class="row">
                 <p class="col-md-3 detail_title">分  类 :</p>
-                <p class="col-md-9 detail_content">其他服务</p>
+                <p class="col-md-9 detail_content" >{{order.orderDescription}}</p>
             </div>
             <div class="row">
                 <p class="col-md-3 detail_title">简  介 :</p>
-                <p class="col-md-9 detail_content">hock pork loin brisket pastrami frankfurter andouillehock pork loin brisket pastrami frankfurter andouille</p>
+                <p class="col-md-9 detail_content">{{order.orderDescription}}</p>
             </div>
             <div class="row">
                 <input type="button" class="col-md-10 col-md-offset-1 getorder_btn no-top-margin" value="立  即  抢  单" (click)="getOrder()" name="">

@@ -20,6 +20,7 @@ namespace QX_Frame.Data.Entities
         [Required]
         [StringLength(200)]
         public string orderDescription { get; set; }
+        [ForeignKey("tb_OrderCategory")]
 
         public int orderCategoryId { get; set; }
 

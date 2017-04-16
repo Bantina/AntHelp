@@ -1,5 +1,6 @@
 ﻿using QX_Frame.Helper_DG_Framework;
 using QX_Frame.Helper_DG_Framework.Extends;
+using QX_Frame.WebAPI.config;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,7 +36,7 @@ namespace QX_Frame.WebAPI.Controllers
             }
             catch (Exception)
             {
-                return "#";
+                return DefaultImageStream.errorImageStream;
             }
         }
         //POST : api/Files

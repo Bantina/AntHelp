@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ApiList>
 
-  <Api name="获得...（管理员least）">
+  <Api name="获得SelfMessage">
     <Router>api/Example</Router>
     <Method>GET</Method>
     <ContentType>application/json; charset=utf-8</ContentType>
@@ -37,14 +37,15 @@
     </Errors>
   </Api>
 
-  <Api name="获得单个xx,id为">
+  <Api name="获得单个SelfMessage,id为">
     <Router>api/Example/id</Router>
     <Method>GET</Method>
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
       {
       "appKey":1001,
-      "token":""
+      "token":"",
+      "id":"0000-0000-xxxxxxxxxxxxx"(selfMessageUid)
       }
     </Arguments-Data>
     <ReturnExample>
@@ -76,7 +77,10 @@
     <Arguments-Data>
       {
       "appKey":1001,
-      "token":""
+      "token":"",
+      "selfMessageContent":"",
+      "loginId":"",
+      "imagesUrls":""
       }
 
     </Arguments-Data>
@@ -111,7 +115,8 @@
       {
       "appKey":1001,
       "token":"",
-      "",""
+      "id","2", (id 2 = add clickCount , 3 = praiseCount)
+      "selfMessageUid":"xxxx"
       }
     </Arguments-Data>
     <ReturnExample>
@@ -145,7 +150,7 @@
       {
       "appKey":1001,
       "token":"",
-      "",""
+      "selfMessageUid":"xxxx"
       }
     </Arguments-Data>
     <ReturnExample>

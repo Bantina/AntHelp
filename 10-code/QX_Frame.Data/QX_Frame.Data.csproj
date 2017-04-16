@@ -71,7 +71,9 @@
     <Compile Include="DTO\ComplainViewModel.cs" />
     <Compile Include="DTO\MessagePushViewModel.cs" />
     <Compile Include="DTO\OrderViewModel.cs" />
+    <Compile Include="DTO\SelfMessageViewModel.cs" />
     <Compile Include="DTO\UserAccountInfoViewModel.cs" />
+    <Compile Include="DTO\UserRelationViewModel.cs" />
     <Compile Include="Entities\db_AntHelp.cs" />
     <Compile Include="Entities\QX_Frame\db_qx_frame.cs" />
     <Compile Include="Entities\QX_Frame\tb_Authentication.cs" />

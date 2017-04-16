@@ -267,7 +267,7 @@ namespace QX_Frame.WebAPI.Controllers
             Guid uid = tokenInfo.Item1;
             string currentLoginId = tokenInfo.Item2;
             tb_UserRole userRole = UserRoleController.GetUserRoleByUid(uid);
-            if ((userRole.roleLevel < opt_AccountRoleLevel.ADMINISTRATOR.ToInt()) && (!currentLoginId.Equals(loginId)))
+            if (!currentLoginId.Equals(loginId))
             {
                 throw new Exception_DG("do not have enough of permission", 3020);
             }
@@ -276,7 +276,7 @@ namespace QX_Frame.WebAPI.Controllers
             using (var fact = Wcf<UserAccountInfoService>())
             {
                 var channel = fact.CreateChannel();
-                tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.location.Equals(loginId) }).Cast<tb_UserAccountInfo>();
+                tb_UserAccountInfo userAccountInfo = channel.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_UserAccountInfo>();
 
                 if (userAccountInfo == null)
                 {

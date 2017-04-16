@@ -66,6 +66,15 @@ export class appService {
                         loginResult.isLogin = true;
                         loginResult.loginId = data.data.loginId;
                     }
+                    else {
+                        if (data.errorCode == 3011) {
+                            alert('登录已过期，请重新登录~');
+                            appService.setCookie('appKey', '', 7);
+                            appService.setCookie('secretKey', '', 7);
+                            appService.setCookie('loginId', '', 7);
+                            appService.setCookie('token', '', 7);
+                        }
+                    }
                 },
                 error(data) {
 

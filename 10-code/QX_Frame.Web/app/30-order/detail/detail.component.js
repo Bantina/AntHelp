@@ -5,17 +5,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 let OrderDetailComponent = class OrderDetailComponent {
     ////the final execute ...
     ngOnInit() {
-        //var defaults = {
-        //    thumbSize: 20,
-        //    slideSpeed: 1500,
-        //    auto: true,
-        //    loop: true
-        //};
-        //$('.orderDetail_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 1, effect: 'updown', cssSpeed: 500, backReverse: true }));
+        var defaults = {
+            thumbSize: 20,
+            slideSpeed: 1500,
+            auto: true,
+            loop: true
+        };
+        $('.orderDetail_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 1, effect: 'updown', cssSpeed: 500, backReverse: true }));
     }
 };
 OrderDetailComponent = __decorate([

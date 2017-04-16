@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 //export class UserAccountViewModel {
 //    public loginId: string;
 //    public email: string;

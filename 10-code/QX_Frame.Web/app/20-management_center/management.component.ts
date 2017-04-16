@@ -13,18 +13,18 @@ import { UserInfoModel } from './management.model';
 export class ManagementComponent implements OnInit {
     //模型绑定;
     userInfoModel: UserInfoModel = {
-        loginId: "admin123",
-        nickName: "admin",
+        loginId: appService.getCookie('loginId'),
+        nickName: '',
         headImageUrl: "../../Images/20-management/user_default_img.png",
         email: "4527875@foxmail.com",
         phone: "18254688788",
         position: "天津市西青区",
         appKey: Number(appService.getCookie('appKey')),
         token: appService.getCookie('token'),
-        age: '',
-        sexId: '',
-        birthday: '',
-        bloodTypeId: '',
+        age: 21,
+        sexId: 0,
+        birthday: '2017-04-16',
+        bloodTypeId: 0,
         school: '',
         location: '',
         company: '',
@@ -46,14 +46,22 @@ export class ManagementComponent implements OnInit {
 
     //左菜单点击事件；
     sidenavClick(event, num): void { //a
-        this.navStatus = num;
+        if (!this.loginId || this.loginId == "undefined") {
+            this.navStatus == -1;
+        } else {
+            this.navStatus = num;
+        }
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
         this.sidenavFun();
     }
     sidenavSpanClick(event, num): void { //span
-        this.navStatus = num;
+        if (!this.loginId || this.loginId == "undefined") {
+            this.navStatus == -1;
+        } else {
+            this.navStatus = num;
+        }
         var $targetP = $(event.target || event.srcElement).parent().parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
@@ -91,7 +99,8 @@ export class ManagementComponent implements OnInit {
                             url: appBase.DomainApi + 'api/Files/' + json.data[i],
                             type: "GET",
                             success: function (data) {
-                                $(".prePotrait img").eq(0).attr('src', data);
+                                //$(".prePotrait img").eq(0).attr('src', data);
+                                self.userInfoModel.headImageUrl = data;
                                 $(".j_usr_img").attr('src', data);
                             },
                             error: function (data) {
@@ -137,7 +146,9 @@ export class ManagementComponent implements OnInit {
                                 url: appBase.DomainApi + 'api/Files/' + json.data.headImageUrl,
                                 type: "GET",
                                 success: function (data) {
-                                    self.userInfoModel.headImageUrl = data.data;
+                                    //$(".prePotrait img").eq(0).attr('src', data);
+                                    self.userInfoModel.headImageUrl = data;
+                                    $(".j_usr_img").attr('src', data);
                                 },
                                 error: function (data) {
                                     self.uploadFlag = false;
@@ -200,6 +211,12 @@ export class ManagementComponent implements OnInit {
     }
 
     ////我的订单
+    //条件帅选 点击；
+    tabBoxClick_myorder(event): void {
+        var $targetP = $(event.target || event.srcElement).parent();
+        $targetP.siblings().removeClass("on");
+        $targetP.addClass("on");
+    }
 
     ////我的发布
 

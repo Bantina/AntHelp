@@ -131,7 +131,9 @@
     <Content Include="api_description\UserRoleAttribute.xml" />
     <Content Include="api_description\UserStatus.xml" />
     <Content Include="api_description\UserRole.xml" />
-    <Content Include="api_description\User.xml" />
+    <Content Include="api_description\User.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="api_description\Login.xml" />
     <Content Include="api_description\00-ErrorCodeList.xml">
       <SubType>Designer</SubType>

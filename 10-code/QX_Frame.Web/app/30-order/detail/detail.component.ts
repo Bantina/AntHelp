@@ -40,6 +40,11 @@ export class OrderDetailComponent implements OnInit {
         orderEvaluate: {}
     }
 
+    //立即抢单
+    getOrder(): void {
+
+    }
+
     ////the final execute ...
     ngOnInit(): void {
         //var defaults = {

@@ -15,12 +15,12 @@ namespace QX_Frame.Data.QueryObject
 	/// <summary>
 	///class tb_OrderComplainQueryObject
 	/// </summary>
-	public class tb_OrderComplainQueryObject:WcfQueryObject<db_AntHelp,tb_OrderComplain>
+	public class tb_ComplainQueryObject:WcfQueryObject<db_AntHelp,tb_Complain>
 	{
 		/// <summary>
 		/// construction method
 		/// </summary>
-		public tb_OrderComplainQueryObject()
+		public tb_ComplainQueryObject()
 		{}
 
 		// PK（identity）  
@@ -39,12 +39,12 @@ namespace QX_Frame.Data.QueryObject
 		public Int32 complainStatusId { get;set; }
 
 		//query condition // null default
-		public override Expression<Func<tb_OrderComplain, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
+		public override Expression<Func<tb_Complain, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
 		//query condition func // true default //if QueryCondition != null this will be override !!!
-		protected override Expression<Func<tb_OrderComplain, bool>> QueryConditionFunc()
+		protected override Expression<Func<tb_Complain, bool>> QueryConditionFunc()
 		{
-			Expression<Func<tb_OrderComplain, bool>> func = t => true;
+			Expression<Func<tb_Complain, bool>> func = t => true;
 
 			if (!string.IsNullOrEmpty(""))
 			{

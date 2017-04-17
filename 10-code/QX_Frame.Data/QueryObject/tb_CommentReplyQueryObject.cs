@@ -51,6 +51,8 @@ namespace QX_Frame.Data.QueryObject
 				func = func.And(t => true);
 			}
 
+            func = func.And(t => t.articleIdOrCommentId == articleIdOrCommentId);
+
 			return func;
 		}
 	}

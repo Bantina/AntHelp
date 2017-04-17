@@ -14,8 +14,8 @@ namespace QX_Frame.Data.Entities
         public Guid messageUid { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string messageTitle { get; set; }
+        [StringLength(500)]
+        public string messageContent { get; set; }
 
         [Required]
         [StringLength(50)]

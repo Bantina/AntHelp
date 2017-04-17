@@ -27,7 +27,7 @@
 
 
 /* default styling */
-body {margin:0; word-wrap:break-word; color:#807f7f; font:14px "PT Sans", sans-serif; background:url(images/background.png) repeat;}
+body {margin:0; word-wrap:break-word; color:#807f7f; font:14px "PT Sans", sans-serif;}
 a {text-decoration:none; color: #1886a9;border:0;}
 img{border:0; max-width:100%;}
 h1,h2,h3,h4,h5,h6 {font-family:'BebasNeueRegular'; font-weight: normal; color:#353535; margin:10px 0px;}

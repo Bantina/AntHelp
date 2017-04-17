@@ -1,0 +1,195 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* management css*/
+.l{float: left;}
+.r{float: right;}
+.cfix:after,.cf:after,.clear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+.tac{text-align: center;}
+.c-black, .c-black a{color:#3a3a3a;}
+.fs14{font-size:14px;}
+.ico-edit {
+    background: url('../../../Images/20-management/edit.png') no-repeat;
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+}
+.ico-edit:hover,
+a:hover .ico-edit{background-position:0 -27px;}
+
+.wrap{width:1200px;min-width:1200px;margin:0 auto;padding:33px 0 0}
+.leftCon{border:1px solid #e2e2e2;width:228px;display:inline;margin:9px 0 0}
+.userbox{padding:17px}
+.userbox .uimg{margin:0 0 10px}
+.userbox .uimg img{border-radius:50%;border:solid 2px #807f7f;}
+.userbox .p2{margin:3px 0 8px}
+.userbox .myname{display:inline-block;vertical-align:middle;margin-right:10px;}
+.btn-recharge{width:36px;height:18px}
+.msgbub,
+.msgbub i{display:inline-block;height:16px;overflow:hidden;background:url(images/zone/bg_1.png) no-repeat}
+.msgbub{padding-right:4px;background-position:right -84px}
+.msgbub i{padding-left:4px;background-position:left -68px;font-style:normal;line-height:16px;color:#fff}
+.sidenav li{border-top:1px solid #e6ecec}
+.sidenav li a{display:block;padding:15px 0 37px 54px;height:47px;color:#444;}
+.sidenav li a:hover{text-decoration:none;color:#e73c31}
+    .sidenav li a span {
+        font-size: 18px;
+        padding-left: 30px;
+        background-image: url('../../../Images/20-management/bg_sidenav.png');
+        background-repeat: no-repeat;
+        vertical-align: middle;
+    }
+    .sidenav li.on a span, .sidenav li a:hover span {
+        background-image: url('../../../Images/20-management/bg_sidenav_hover.png');
+    }
+.sidenav .ico_db{background-position:0 4px}
+.sidenav .ico_luck{background-position:0 -48px}
+.sidenav .ico_buy{background-position:0 -100px}
+.sidenav .ico_locate{background-position:0 -155px}
+.sidenav li.on a,.sidenav li.on a:hover{background:#fcfcfc;text-decoration:none;color:#e73c31}
+.sidenav li .msgbub{margin-left:5px}
+
+.rightCon{width:940px}
+.topTit{margin:0 0 15px}
+.tabBox{border-bottom:2px solid #f6f6f6;height:37px;margin:0 0 20px}
+.tabBox .tabs li{float:left;padding:0 20px;font-size:16px;color:#000;height:37px;line-height:28px;}
+.tabBox .tabs li.on{color:#e73c31;border-bottom:2px solid #e43e38;cursor:default}
+.tabBox .tabs li.on a,.tabBox .tabs li a:hover{text-decoration:none;color:#e73c31}
+.tabBox .tabs .num{font-size:14px;margin-left:5px}
+.filter .txt{font-size:14px;line-height:27px;color:#000}
+.filter .selBox{width:106px}
+
+/* table */
+.table{width:100%}
+.table th{background:#f2f2f2;height:36px;font-weight:normal;font-size:14px;color:#000;text-align:center;vertical-align:middle;}
+.table td{padding:10px 5px;border-bottom:1px solid #f2f2f2;text-align:center}
+.table th:first-child,
+/*.table td:first-child{text-align:left}*/
+.table td:first-child{padding-left:0}
+.table td:last-child{padding-right:0}
+.table .operate p{margin:5px 0 0}
+.table .proinfo{width:320px;position: relative;}
+.table .proinfo .pic img{border:1px solid #e6ecec;width:53px;height:53px;margin:5px 0 0}
+.table .proinfo .info{margin-left:65px;width:285px}
+.table .proinfo .pname{display:block;width:100%;line-height:24px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.table .proinfo .txt{line-height:20px;color:#6a6a6a}
+.table .tr_dis{color:#999}
+.table .tr_dis .txt{color:#999}
+.table .tr_dis .proinfo .pname{color:#999;}
+.table .tr_dis .pic img{filter:alpha(opacity=gray);opacity:gray}
+.table .grayBox  td{padding-bottom:15px}
+.table .grayBox div{width:100%;height:31px;background:#fff;margin-top:-31px}
+.table .grayBox p{position:absolute;padding:7px 20px;background:#F4F4F4;left:65px;width:835px}
+.table .grayBox p .sep{margin:0 6px}
+.tabel .th30{width:30px;}
+.tabel .th60{width:60px;}
+.tabel .th80{width:80px;}
+.tabel .th100{width:100px;}
+.tabel .th120{width:120px;}
+.tabel .th140{width:140px;}
+.tabel .th160{width:160px;}
+.tabel .th180{width:180px;}
+.tabel .th200{width:200px;}
+/* */
+.table-dbhis .issue{width:205px}
+.table-dbhis .count{width:80px}
+.table-dbhis .state{width:198px}
+.table-dbhis .operate{width:69px}
+.table-buy .proinfo{width:265px}
+.table-buy .proinfo .pic img{margin:0}
+.table-buy .proinfo .info{width:200px}
+.table-buy .proinfo .info .pname{line-height:24px;white-space:normal;height:48px}
+.table-buy .count{width:85px}
+.table-buy .price{width:82px}
+.table-buy .total{width:120px}
+.table-buy .state{width:198px}
+
+.addAddr{margin:60px 0 0}
+.table-addr .addr_default{display:inline-block;border:1px solid #e43e38;background:#fef5f5;width:76px;height:21px;text-align:center;line-height:21px;color:#e73c31}
+.table-addr .address-add .uname{width:92px; padding-left: 10px;}
+/*.table-addr td.uname span{padding-left:10px}*/
+.table-addr .uaddr{width:380px}
+.table-addr .phone{width:96px}
+.table-addr .auto{padding-right:0;text-align: right}
+.table-addr .operate{width:100px}
+
+
+.black_login_r{
+    margin-top:200px;
+}
+.black_login_r a{
+    display:block;
+    width:200px;
+    height:40px;
+    line-height:40px;
+  font-size:20px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 28px;
+  float: left;
+  margin-bottom:20px;
+  text-align:center;
+}
+.black_login_r a:hover,.black_login_r a:focus {
+    background-color: #ef5048;
+}
+
+
+/*personalDetail*/
+.prePotrait{
+  width:130px;
+  height: 130px;
+  padding:10px;
+  border:1px solid #e2e2e2;
+  overflow:hidden;
+}
+.prePotrait img{
+    width:100%;
+    height:100%;
+}
+.personalDetail_right .form-group label{
+     font-size: 18px;
+}
+#personalHead_upload{
+  margin:50px 0 20px 20px;
+}
+.userInfoSave_btn{
+    height:40px;
+  font-size:20px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 28px;
+  float: left;
+  margin-bottom:20px;
+}
+.userInfoSave_btn:hover,.userInfoSave_btn:focus {
+    background-color: #ef5048;
+}
+
+
+/*orderBlock*/
+.myorderBlock{
+	margin-bottom: 20px;
+	border: 1px solid #e2e2e2;
+}
+.myorderBlock .btn input{
+  width:150px;
+  height:30px;
+  display: block;
+  font-size:16px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 28px;
+  margin-bottom:20px;
+}
+.myorderBlock .btn input:hover,.myorderBlock .btn input:focus {
+    background-color: #ef5048;
+}
+

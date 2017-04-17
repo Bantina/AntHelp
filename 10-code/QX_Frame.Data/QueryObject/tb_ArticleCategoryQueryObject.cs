@@ -23,11 +23,10 @@ namespace QX_Frame.Data.QueryObject
 		public tb_ArticleCategoryQueryObject()
 		{}
 
-		// PK（identity）  
-		public Int32 ArticleCategoryId { get;set; }
-
-		// 
-		public String CategoryName { get;set; }
+        // PK（identity）  
+        public int CategoryId { get; set; }
+        // 
+        public String CategoryName { get;set; }
 
 		//query condition // null default
 		public override Expression<Func<tb_ArticleCategory, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }

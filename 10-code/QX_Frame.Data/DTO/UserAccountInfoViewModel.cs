@@ -18,12 +18,16 @@ namespace QX_Frame.Data.DTO
         public String headImageUrl { get; set; }
         // 
         public Int32 age { get; set; }
+
+        public int sexId { get; set; }
         // 
         public string sexName { get; set; }
         // 
         public DateTime? birthday { get; set; }
+
+        public int bloodTypeId { get; set; }
         // 
-        public string  bloodTypeName { get; set; }
+        public string bloodTypeName { get; set; }
         // 
         public String position { get; set; }
         // 
@@ -40,7 +44,15 @@ namespace QX_Frame.Data.DTO
         public String personalizedSignature { get; set; }
         // 个人说明
         public String personalizedDescription { get; set; }
+
         public DateTime? registerTime { get; set; }
 
+        public int statusId { get; set; }
+
+        public string statusName { get; set; }
+
+        public int roleId { get; set; }
+
+        public string roleName { get; set; }
     }
 }

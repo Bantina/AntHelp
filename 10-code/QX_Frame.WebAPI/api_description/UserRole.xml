@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApiList>
+
+  <Api name="获得用户状态列表（管理员least）">
+    <Router>api/UserStatus</Router>
+    <Method>GET</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "appKey":1001,
+      "token":"",
+      "pageIndex":1,
+      "pageSize":10,
+      "isDesc":true
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"get user info must paging by pageindex=num,pagesize=num,isdesc=1/0","httpCode":200,"data":[{"uid":"ac1948f8-5a3d-47d7-9091-3084a41b0005","loginId":"zyq123","nickName":"NIKE47364","email":null,"phone":null,"headImageUrl":null,"age":0,"sexName":"UnDefine","birthday":null,"bloodTypeName":"UnDefine","position":null,"school":null,"location":null,"company":null,"constellation":null,"chineseZodiac":null,"personalizedSignature":null,"personalizedDescription":null,"registerTime":null},{"uid":"ed487e2a-5d70-450c-a34c-fe325d684b48","loginId":"qixiao123","nickName":"NIKE11176","email":"wd8622088@foxmail.com","phone":null,"headImageUrl":null,"age":0,"sexName":"UnDefine","birthday":null,"bloodTypeName":"UnDefine","position":null,"school":null,"location":null,"company":null,"constellation":null,"chineseZodiac":null,"personalizedSignature":null,"personalizedDescription":null,"registerTime":null},{"uid":"9480f9ea-27cc-4ded-a105-1590f96dcdc0","loginId":"jp123","nickName":"NIKE89249","email":"wd8622088@foxmail.com","phone":null,"headImageUrl":null,"age":0,"sexName":"UnDefine","birthday":null,"bloodTypeName":"UnDefine","position":null,"school":null,"location":null,"company":null,"constellation":null,"chineseZodiac":null,"personalizedSignature":null,"personalizedDescription":null,"registerTime":null}],"dataCount":3}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"pageIndex,pageSize,isDesc can not be null","httpCode":500,"errorCode":1014,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1013" errorLevel="0">appKey and token must be provide</Error>
+      <Error errorCode="1010" errorLevel="0">appKey must be provide</Error>
+      <Error errorCode="1011" errorLevel="0">token must be provide</Error>
+      <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
+      <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
+      <Error errorCode="3017" errorLevel="0">account abandoned</Error>
+      <Error errorCode="3018" errorLevel="0">account has been frozen</Error>
+      <Error errorCode="3019" errorLevel="0">account disabled</Error>
+      <Error errorCode="3020" errorLevel="0">do not have enough of permission</Error>
+      <Error errorCode="1014" errorLevel="0">pageIndex,pageSize,isDesc can not be null</Error>
+    </Errors>
+  </Api>
+
+  <Api name="修改用户状态">
+    <Router>api/UserStatus</Router>
+    <Method>PUT</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "appKey":1001,
+      "token":"",
+      "loginId":"qixiao123",
+      "statusLevel":1
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"update user account info secceed","httpCode":200,"data":null,"dataCount":0}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"update faild","httpCode":500,"errorCode":3014,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1013" errorLevel="0">appKey and token must be provide</Error>
+      <Error errorCode="1010" errorLevel="0">appKey must be provide</Error>
+      <Error errorCode="1011" errorLevel="0">token must be provide</Error>
+      <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
+      <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
+      <Error errorCode="3017" errorLevel="0">account abandoned</Error>
+      <Error errorCode="3018" errorLevel="0">account has been frozen</Error>
+      <Error errorCode="3019" errorLevel="0">account disabled</Error>
+      <Error errorCode="3020" errorLevel="0">do not have enough of permission</Error>
+      <Error errorCode="3014" errorLevel="0">update faild</Error>
+    </Errors>
+  </Api>
+
+</ApiList>

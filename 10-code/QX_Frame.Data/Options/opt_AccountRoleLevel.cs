@@ -4,7 +4,7 @@
     public enum opt_AccountRoleLevel:int
     {
         /// <summary>
-        /// general user
+        /// general user(default)
         /// </summary>
         USER = 0,
         /// <summary>
@@ -16,7 +16,7 @@
         /// </summary>
         ROOT=2,
         /// <summary>
-        /// all ip can visit the application (default)
+        /// all ip can visit the application
         /// </summary>
         ALL = 3
     }

@@ -33,16 +33,16 @@ class appService {
     }
     //判断用户是否登录
     static IsLogin() {
-        var appKey = appService.getCookie("appKey");
+        var appKey = Number(appService.getCookie("appKey"));
         var token = appService.getCookie("token");
         var _random = Math.ceil(Math.random() * 1000);
-        var _timeStamp = (new Date()).valueOf();
+        var _timeStamp = Number((new Date()).valueOf());
         var loginResult = {
             isLogin: false,
             loginId: ""
         };
         //当cookie值为空时，未登录；
-        if (appKey == "" || appKey == "undefined")
+        if (appKey == 0 || appKey == null || appKey == NaN)
             return loginResult;
         else {
             $.ajax({
@@ -51,17 +51,26 @@ class appService {
                 type: "get",
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
-                data: JSON.stringify({
+                data: {
                     appKey: appKey,
                     random: _random,
                     timeStamp: _timeStamp,
                     token: token
-                }),
+                },
                 success(data) {
                     //timer=setInterval 
                     if (data.isSuccess) {
                         loginResult.isLogin = true;
                         loginResult.loginId = data.data.loginId;
+                    }
+                    else {
+                        if (data.errorCode == 3011) {
+                            alert('登录已过期，请重新登录~');
+                            appService.setCookie('appKey', '', 7);
+                            appService.setCookie('secretKey', '', 7);
+                            appService.setCookie('loginId', '', 7);
+                            appService.setCookie('token', '', 7);
+                        }
                     }
                 },
                 error(data) {
@@ -69,6 +78,12 @@ class appService {
             });
         }
         return loginResult;
+    }
+    static GetAppKeyToken() {
+        this.appKeyTokenModel.appKey = appService.getCookie("appKey");
+        this.appKeyTokenModel.token = appService.getCookie("token");
+        this.appKeyTokenModel.loginId = appService.getCookie("loginId");
+        return this.appKeyTokenModel;
     }
 }
 exports.appService = appService;

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApiList>
+
+  <Api name="获得评论列表">
+    <Router>api/Example</Router>
+    <Method>GET</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "appKey":1001,
+      "token":"",
+      "pageIndex":1,
+      "pageSize":10,
+      "isDesc":true,
+      "articleUid":xxxx-xxxx
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"get user info must paging by pageindex=num,pagesize=num,isdesc=1/0","httpCode":200,"data":[{"uid":"ac1948f8-5a3d-47d7-9091-3084a41b0005","loginId":"zyq123","nickName":"NIKE47364","email":null,"phone":null,"headImageUrl":null,"age":0,"sexName":"UnDefine","birthday":null,"bloodTypeName":"UnDefine","position":null,"school":null,"location":null,"company":null,"constellation":null,"chineseZodiac":null,"personalizedSignature":null,"personalizedDescription":null,"registerTime":null},{"uid":"ed487e2a-5d70-450c-a34c-fe325d684b48","loginId":"qixiao123","nickName":"NIKE11176","email":"wd8622088@foxmail.com","phone":null,"headImageUrl":null,"age":0,"sexName":"UnDefine","birthday":null,"bloodTypeName":"UnDefine","position":null,"school":null,"location":null,"company":null,"constellation":null,"chineseZodiac":null,"personalizedSignature":null,"personalizedDescription":null,"registerTime":null},{"uid":"9480f9ea-27cc-4ded-a105-1590f96dcdc0","loginId":"jp123","nickName":"NIKE89249","email":"wd8622088@foxmail.com","phone":null,"headImageUrl":null,"age":0,"sexName":"UnDefine","birthday":null,"bloodTypeName":"UnDefine","position":null,"school":null,"location":null,"company":null,"constellation":null,"chineseZodiac":null,"personalizedSignature":null,"personalizedDescription":null,"registerTime":null}],"dataCount":3}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"pageIndex,pageSize,isDesc can not be null","httpCode":500,"errorCode":1014,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1013" errorLevel="0">appKey and token must be provide</Error>
+      <Error errorCode="1010" errorLevel="0">appKey must be provide</Error>
+      <Error errorCode="1011" errorLevel="0">token must be provide</Error>
+      <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
+      <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
+      <Error errorCode="3017" errorLevel="0">account abandoned</Error>
+      <Error errorCode="3018" errorLevel="0">account has been frozen</Error>
+      <Error errorCode="3019" errorLevel="0">account disabled</Error>
+      <Error errorCode="3020" errorLevel="0">do not have enough of permission</Error>
+      <Error errorCode="1014" errorLevel="0">pageIndex,pageSize,isDesc can not be null</Error>
+    </Errors>
+  </Api>
+
+  <Api name="添加">
+    <Router>api/Example</Router>
+    <Method>POST</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "appKey":1001,
+      "token":"",
+      "articleIdOrCommentId":xxxx-xxxxxxxxxxx,
+      "commentUserLoginId","",
+      "commentContent":""
+      }
+
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"register succeed","httpCode":200,"data":{"loginId":"jp123","appKey":1001,"secretKey":"57cab2c8e2da89ae425a8f5210490dd3","token":"rvoBsTWXbs/lE2MsHC/y7yUq75gcbbG8MSorSDZnGgZSXL2YW8KBfrbJ3hODTRo3ExkaDY/AchggzxCtZ3SlNNi4s7Mme8oJYOsIe08fOjOelfs3EhlxHeSHiiIVKxI6TbD5D6x7pgONPvjysu1VAeVLOLT1P+cwyUoi/ea0Avc="},"dataCount":1}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"register info expired,please register renew.","httpCode":500,"errorCode":1010,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1013" errorLevel="0">appKey and token must be provide</Error>
+      <Error errorCode="1010" errorLevel="0">appKey must be provide</Error>
+      <Error errorCode="1011" errorLevel="0">token must be provide</Error>
+      <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
+      <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
+      <Error errorCode="3017" errorLevel="0">account abandoned</Error>
+      <Error errorCode="3018" errorLevel="0">account has been frozen</Error>
+      <Error errorCode="3019" errorLevel="0">account disabled</Error>
+      <Error errorCode="3020" errorLevel="0">do not have enough of permission</Error>
+      <Error errorCode="3021" errorLevel="0">add faild</Error>
+    </Errors>
+  </Api>
+
+  <Api name="删除">
+    <Router>api/Example</Router>
+    <Method>DELETE</Method>
+    <ContentType>application/json; charset=utf-8</ContentType>
+    <Arguments-Data>
+      {
+      "appKey":1001,
+      "token":"",
+      "commentUid",xxxx-xxxxxxxxxxxx
+      }
+    </Arguments-Data>
+    <ReturnExample>
+      <Success>
+        {"isSuccess":true,"msg":"delete succeed !","httpCode":200,"data":null,"dataCount":0}
+      </Success>
+      <Error>
+        {"isSuccess":false,"msg":"login Id can not be null","httpCode":500,"errorCode":1007,"errorLevel":0}
+      </Error>
+    </ReturnExample>
+    <Errors>
+      <Error errorCode="1001" errorLevel="0">arguments must be provide</Error>
+      <Error errorCode="1013" errorLevel="0">appKey and token must be provide</Error>
+      <Error errorCode="1010" errorLevel="0">appKey must be provide</Error>
+      <Error errorCode="1011" errorLevel="0">token must be provide</Error>
+      <Error errorCode="3011" errorLevel="0">token expired , please login renew</Error>
+      <Error errorCode="3012" errorLevel="0">account login elsewhere,please login renew</Error>
+      <Error errorCode="3017" errorLevel="0">account abandoned</Error>
+      <Error errorCode="3018" errorLevel="0">account has been frozen</Error>
+      <Error errorCode="3019" errorLevel="0">account disabled</Error>
+      <Error errorCode="3020" errorLevel="0">do not have enough of permission</Error>
+      <Error errorCode="3005" errorLevel="0">delete faild</Error>
+    </Errors>
+  </Api>
+
+
+</ApiList>

@@ -20,10 +20,13 @@ namespace QX_Frame.Data.Entities
         [Required]
         [StringLength(200)]
         public string orderDescription { get; set; }
+        [ForeignKey("tb_OrderCategory")]
 
         public int orderCategoryId { get; set; }
 
         public Guid receiverUid { get; set; }
+
+        public DateTime receiveTime { get; set; }
 
         public int orderStatusId { get; set; }
 
@@ -33,20 +36,21 @@ namespace QX_Frame.Data.Entities
 
         public int voucherMax { get; set; }
 
-        public int evaluateId { get; set; }
+        public Guid evaluateUid { get; set; }
 
         [StringLength(50)]
         public string address { get; set; }
 
         public int phone { get; set; }
 
-        [StringLength(200)]
-        public string imagesUrls { get; set; }
-
+        [StringLength(500)]
+        public string imageUrls { get; set; }
         //解决json循环引用问题
         [JsonIgnore]
         public virtual tb_OrderEvaluate tb_OrderEvaluate { get; set; }
-
+        //解决json循环引用问题
+        [JsonIgnore]
+        public virtual tb_OrderCategory tb_OrderCategory { get; set; }
         //解决json循环引用问题
         [JsonIgnore]
         public virtual tb_OrderStatus tb_OrderStatus { get; set; }

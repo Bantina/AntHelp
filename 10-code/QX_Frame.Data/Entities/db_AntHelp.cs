@@ -23,7 +23,7 @@ namespace QX_Frame.Data.Entities
         public virtual DbSet<tb_MessagePushCategory> tb_MessagePushCategory { get; set; }
         public virtual DbSet<tb_MessagePushStatus> tb_MessagePushStatus { get; set; }
         public virtual DbSet<tb_Order> tb_Order { get; set; }
-        public virtual DbSet<tb_OrderComplain> tb_OrderComplain { get; set; }
+        public virtual DbSet<tb_Complain> tb_OrderComplain { get; set; }
         public virtual DbSet<tb_OrderEvaluate> tb_OrderEvaluate { get; set; }
         public virtual DbSet<tb_OrderStatus> tb_OrderStatus { get; set; }
         public virtual DbSet<tb_RelationStatus> tb_RelationStatus { get; set; }
@@ -64,10 +64,6 @@ namespace QX_Frame.Data.Entities
                 .WithRequired(e => e.tb_OrderStatus)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<tb_RelationStatus>()
-                .HasMany(e => e.tb_UserRelation)
-                .WithRequired(e => e.tb_RelationStatus)
-                .WillCascadeOnDelete(false);
         }
     }
 }

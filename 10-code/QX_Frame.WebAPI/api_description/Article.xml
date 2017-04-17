@@ -32,7 +32,10 @@
     <Method>GET</Method>
     <ContentType>application/json; charset=utf-8</ContentType>
     <Arguments-Data>
-
+      {
+      "appKey":1001,
+      "token":""
+      }
     </Arguments-Data>
     <ReturnExample>
       <Success>

@@ -7,7 +7,7 @@ namespace QX_Frame.Data.Entities
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class tb_OrderComplain : Entity<db_AntHelp, tb_OrderComplain>
+    public partial class tb_Complain : Entity<db_AntHelp, tb_Complain>
     {
         [Key]
         public Guid complainUid { get; set; }

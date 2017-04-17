@@ -1,5 +1,6 @@
 ﻿using QX_Frame.App.Base;
 using QX_Frame.Data.Entities.QX_Frame;
+using QX_Frame.Data.Options;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
 using QX_Frame.Helper_DG_Framework;
@@ -34,11 +35,7 @@ namespace QX_Frame.ConsoleApp
 
             // string url = $"http://localhost:3999/api/User{HttpUtility.UrlEncode("?loginId=123")}";
 
-            Console.WriteLine(DateTime_Helper_DG.GetCurrentTimeStamp());
-
-            Thread.Sleep(3000);
-
-            Console.WriteLine(DateTime_Helper_DG.GetCurrentTimeStamp());
+            Console.WriteLine(opt_AccountRoleLevel.ADMINISTRATOR.ToInt());
 
 
             Console.WriteLine("any key to exit ...");

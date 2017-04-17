@@ -12,7 +12,7 @@ namespace QX_Frame.Data.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tb_ComplainStatus()
         {
-            tb_OrderComplain = new HashSet<tb_OrderComplain>();
+            tb_OrderComplain = new HashSet<tb_Complain>();
         }
 
         [Key]
@@ -24,6 +24,6 @@ namespace QX_Frame.Data.Entities
         public string complainStatusName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_OrderComplain> tb_OrderComplain { get; set; }
+        public virtual ICollection<tb_Complain> tb_OrderComplain { get; set; }
     }
 }

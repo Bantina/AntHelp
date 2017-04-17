@@ -14,6 +14,10 @@ import { exampleComponent } from './02-example/example.component';
 import { SignUpComponent } from './03-login/signup.component'; 
 import { LoginComponent } from './03-login/login/login.component';
 import { SignupVerifyComponent } from './03-login/signupVerify/signupVerify.component';
+import { PublishComponent } from './30-order/publish/publish.component';
+import { OrderDetailComponent } from './30-order/detail/detail.component';
+import { ManagementComponent } from './20-management_center/management.component';
+import { AdministratorComponent } from './20-management_center/administrator/administrator.component';
  /*bantina add end*/
 
  /*zyq add start*/
@@ -52,6 +56,22 @@ const appRoutes: Routes = [
     {
         path: 'signupVerify',
         component: SignupVerifyComponent
+    }, 
+    {
+        path: 'publish',
+        component: PublishComponent
+    },  
+    {
+        path: 'orderDetail',
+        component: OrderDetailComponent
+    }, 
+    {
+        path: 'managementCenter',
+        component: ManagementComponent
+    },
+    {
+        path: 'administrator',
+        component: AdministratorComponent
     },
      /*bantina add end*/
 
@@ -92,7 +112,10 @@ const appComponents: any[] = [
     SignUpComponent,
     LoginComponent,
     SignupVerifyComponent,
-
+    PublishComponent,
+    OrderDetailComponent,
+    ManagementComponent,
+    AdministratorComponent,
     /*bantina add end*/
 
     /*zyq add start*/

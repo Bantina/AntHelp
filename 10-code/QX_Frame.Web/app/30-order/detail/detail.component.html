@@ -1,0 +1,44 @@
+﻿<!--start orderDetail-->
+<div class="orderDetail">
+    <div class="row">
+        <div class="slider-wrap col-md-7">
+            <div class="orderDetail_slider">
+                <p><strong>Pig ham:</strong> hock pork loin brisket pastrami frankfurter andouille.</p>
+                <img src="../../../Images/30-order/bg1.png" />
+                <p><strong>Sausage:</strong> ground round sirloin ball tip beef ribs.</p>
+                <img src="../../../Images/30-order/bg2.png" />
+                <p><strong>Pig ham:</strong> hock pork loin brisket pastrami frankfurter andouille.</p>
+                <img src="../../../Images/30-order/bg3.png" />
+                <p><strong>Pork turkey:</strong> shoulder, filet mignon chuck t-bone bacon.</p>
+                <img src="../../../Images/30-order/bg4.png" />
+            </div>
+        </div>
+        <div class="col-md-5 orderDetail_right">
+            <div class="row">
+                <p class="col-md-3 detail_title">发布者 :</p>
+                <p class="col-md-9 detail_content">{{orderPlus.publisherInfo.loginId}}</p>
+            </div>
+            <div class="row">
+                <p class="col-md-3 detail_title">价  格 :</p>
+                <p class="col-md-9 detail_content"><span style="color:tomato;font-size:22px;">￥</span>{{order.orderDescription}}</p>
+            </div>
+            <div class="row">
+                <p class="col-md-3 detail_title">分  类 :</p>
+                <p class="col-md-9 detail_content" >{{order.orderDescription}}</p>
+            </div>
+            <div class="row">
+                <p class="col-md-3 detail_title">简  介 :</p>
+                <p class="col-md-9 detail_content">{{order.orderDescription}}</p>
+            </div>
+            <div class="row">
+                <input type="button" class="col-md-10 col-md-offset-1 getorder_btn no-top-margin" value="立  即  抢  单" (click)="getOrder()" name="">
+            </div>
+        </div>
+    </div>
+    <div class="comment">
+
+    </div>
+   
+
+</div>
+<!--end orderDetail-->

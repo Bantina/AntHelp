@@ -33,7 +33,7 @@ namespace QX_Frame.ConsoleApp
             AppBase.Register(c => new MessagePushCategoryService());
             AppBase.Register(c => new MessagePushService());
             AppBase.Register(c => new MessagePushStatusService());
-            AppBase.Register(c => new OrderComplainService());
+            AppBase.Register(c => new ComplainService());
             AppBase.Register(c => new OrderEvaluateService());
             AppBase.Register(c => new OrderService());
             AppBase.Register(c => new OrderStatusService());

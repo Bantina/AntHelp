@@ -12,10 +12,10 @@ namespace QX_Frame.Data.Contract
 	/// <summary>
 	/// interface IOrderComplainService
 	/// </summary>
-	public interface IOrderComplainService
+	public interface IComplainService
 	{
-		bool Add(tb_OrderComplain tb_OrderComplain);
-		bool Update(tb_OrderComplain tb_OrderComplain);
-		bool Delete(tb_OrderComplain tb_OrderComplain);
+		bool Add(tb_Complain tb_OrderComplain);
+		bool Update(tb_Complain tb_OrderComplain);
+		bool Delete(tb_Complain tb_OrderComplain);
 	}
 }

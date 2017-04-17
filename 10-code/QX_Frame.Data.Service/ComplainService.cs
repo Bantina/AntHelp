@@ -14,28 +14,28 @@ namespace QX_Frame.Data.Service
 	/// <summary>
 	/// class OrderComplainService
 	/// </summary>
-	public class OrderComplainService:WcfService, IOrderComplainService
+	public class ComplainService:WcfService, IComplainService
 	{
-		private tb_OrderComplain _tb_OrderComplain;
+		private tb_Complain _tb_OrderComplain;
 		/// <summary>
 		/// construction method
 		/// </summary>
-		public OrderComplainService()
+		public ComplainService()
 		{}
 
-		public OrderComplainService(tb_OrderComplain tb_OrderComplain)
+		public ComplainService(tb_Complain tb_OrderComplain)
 		{
 			this._tb_OrderComplain = tb_OrderComplain;
 		}
-		public bool Add(tb_OrderComplain tb_OrderComplain)
+		public bool Add(tb_Complain tb_OrderComplain)
 		{
 			return tb_OrderComplain.Add(tb_OrderComplain);
 		}
-		public bool Update(tb_OrderComplain tb_OrderComplain)
+		public bool Update(tb_Complain tb_OrderComplain)
 		{
 			return tb_OrderComplain.Update(tb_OrderComplain);
 		}
-		public bool Delete(tb_OrderComplain tb_OrderComplain)
+		public bool Delete(tb_Complain tb_OrderComplain)
 		{
 			return tb_OrderComplain.Delete(tb_OrderComplain);
 		}

@@ -21,19 +21,19 @@
                 </ul>
                 <ul class="col-md-4 nav navbar-nav mynavbar navbar-right">
                     <li><a routerLink="/topic">社 区</a></li>
-                    <li><a>活动中心</a></li>
-                    <li><a>发 布</a></li>
+                    <li><a routerLink="/orderDetail">活动中心</a></li>
+                    <li><a routerLink="/publish">发 布</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             个人中心
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                            <li><a href="#">我的积分</a></li>
-                            <li><a href="#">我的订单</a></li>
-                            <li><a href="#">我的账户</a></li>
-                            <li><a href="#">我的发布</a></li>
+                            <li><a routerLink="/managementCenter" (click)="setCenterStatus(0)">我的账户</a></li>
+                            <li><a routerLink="/managementCenter" (click)="setCenterStatus(1)">我的订单</a></li>
+                            <li><a routerLink="/managementCenter" (click)="setCenterStatus(2)">我的发布</a></li>
                             <li role="separator" class="divider"></li>
+                            <li><a routerLink="/administrator">管理中心</a></li>
                             <li><a href="#">投   诉</a></li>
                         </ul>
                     </li>

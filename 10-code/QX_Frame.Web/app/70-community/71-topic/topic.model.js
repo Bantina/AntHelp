@@ -11,4 +11,7 @@ class ArticleList {
     }
 }
 exports.ArticleList = ArticleList;
+class Article {
+}
+exports.Article = Article;
 //# sourceMappingURL=topic.model.js.map

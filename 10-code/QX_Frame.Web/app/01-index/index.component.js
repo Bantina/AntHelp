@@ -12,13 +12,13 @@ const core_1 = require('@angular/core');
 let IndexComponent = class IndexComponent {
     ////the final execute ...
     ngOnInit() {
-        var defaults = {
-            thumbSize: 20,
-            slideSpeed: 1500,
-            auto: true,
-            loop: true
-        };
-        $('.index_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 3, effect: 'flipud', reverse: true, rewind: 75 }));
+        //var defaults = {
+        //    thumbSize: 20,
+        //    slideSpeed: 1500,
+        //    auto: true,
+        //    loop: true
+        //};
+        //$('.index_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 3, effect: 'flipud', reverse: true, rewind: 75 }));
     }
 };
 IndexComponent = __decorate([

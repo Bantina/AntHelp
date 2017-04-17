@@ -9,3 +9,16 @@ export class ArticleList {
         public isDesc: boolean
     ) { }
 }
+
+export class Article
+{
+   public articleUid: string;
+   public articleTitle: string;
+   public articleContent: string;
+   public publisherUid: string;
+   public publishTime: string;
+   public clickCount: number;
+   public praiseCount: number;
+   public ArticleCategoryId: string;
+   public imagesUrls: string;
+}

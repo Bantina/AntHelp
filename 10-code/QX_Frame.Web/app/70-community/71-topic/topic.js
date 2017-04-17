@@ -9,6 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 const core_1 = require('@angular/core');
+const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../../00-AQX_Frame.services/appService');
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let Topic = class Topic {
     constructor() {
@@ -25,8 +27,36 @@ let Topic = class Topic {
     toTop() {
         $('html, body').animate({ scrollTop: 0 }, 1000); //回到顶端
     }
+    GetTopic() {
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Article",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "articleTitle": "",
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    alert(data.data);
+                }
+                else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器错误！");
+            }
+        });
+    }
     ////the final execute ...
     ngOnInit() {
+        this.GetTopic();
         var App = {
             int: function () {
                 // 向上箭头淡入淡出功能

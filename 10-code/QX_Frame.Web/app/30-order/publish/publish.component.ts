@@ -48,7 +48,7 @@ export class PublishComponent implements OnInit {
     //}
 
 
-    //kinds list
+    //kinds list 
 
     kindsName: string = "代购代帮";
     publish_kinds: any = {

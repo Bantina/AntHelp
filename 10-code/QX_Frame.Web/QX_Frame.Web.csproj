@@ -297,6 +297,7 @@
     <TypeScriptCompile Include="app\20-management_center\management.component.ts" />
     <TypeScriptCompile Include="app\30-order\detail\detail.component.ts" />
     <TypeScriptCompile Include="app\30-order\order.model.ts" />
+    <TypeScriptCompile Include="app\30-order\publish\publish.component.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.model.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\topic.ts" />

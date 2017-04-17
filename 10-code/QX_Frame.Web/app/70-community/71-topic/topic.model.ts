@@ -1,32 +1,11 @@
-﻿//export class UserAccountViewModel {
-//    public loginId: string;
-//    public email: string;
-//    public pwd: string;
-//}
-export class UserAccountViewModel {
+﻿// 文章列表
+export class ArticleList {
     constructor(
-        public loginId: string,
-        public email: string,
-        public pwd: string,
-        public emailHtmlRoute: string
+        public appKey: number,
+        public token: string,
+        public articleTitle: string,
+        public pageIndex: number,
+        public pageSize: number,
+        public isDesc: boolean
     ) { }
 }
-
-//login
-export class LoginUserModel {
-    constructor(
-        public loginId: string,
-        public pwd: string
-    ) { }
-}
-
-export class UserAccountModel {
-    public loginId: string;
-    public pwd: string;
-}
-export class UserAccountInfoModel {
-    public loginId: string;
-    public email: string;
-    ///...
-}
-

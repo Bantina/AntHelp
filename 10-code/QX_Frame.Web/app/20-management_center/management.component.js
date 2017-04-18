@@ -101,8 +101,7 @@ let ManagementComponent = class ManagementComponent {
                             url: appBase_1.appBase.DomainApi + 'api/Files/' + json.data[i],
                             type: "GET",
                             success: function (data) {
-                                //$(".prePotrait img").eq(0).attr('src', data);
-                                self.userInfoModel.headImageUrl = data;
+                                self.headerImageData = data;
                                 $(".j_usr_img").attr('src', data);
                             },
                             error: function (data) {
@@ -148,7 +147,7 @@ let ManagementComponent = class ManagementComponent {
                                 type: "GET",
                                 success: function (data) {
                                     //$(".prePotrait img").eq(0).attr('src', data);
-                                    self.userInfoModel.headImageUrl = data;
+                                    self.headerImageData = data;
                                     $(".j_usr_img").attr('src', data);
                                 },
                                 error: function (data) {

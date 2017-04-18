@@ -1,30 +1,17 @@
 "use strict";
-//export class UserAccountViewModel {
-//    public loginId: string;
-//    public email: string;
-//    public pwd: string;
-//}
-class UserAccountViewModel {
-    constructor(loginId, email, pwd, emailHtmlRoute) {
-        this.loginId = loginId;
-        this.email = email;
-        this.pwd = pwd;
-        this.emailHtmlRoute = emailHtmlRoute;
+// 文章列表
+class ArticleList {
+    constructor(appKey, token, articleTitle, pageIndex, pageSize, isDesc) {
+        this.appKey = appKey;
+        this.token = token;
+        this.articleTitle = articleTitle;
+        this.pageIndex = pageIndex;
+        this.pageSize = pageSize;
+        this.isDesc = isDesc;
     }
 }
-exports.UserAccountViewModel = UserAccountViewModel;
-//login
-class LoginUserModel {
-    constructor(loginId, pwd) {
-        this.loginId = loginId;
-        this.pwd = pwd;
-    }
+exports.ArticleList = ArticleList;
+class Article {
 }
-exports.LoginUserModel = LoginUserModel;
-class UserAccountModel {
-}
-exports.UserAccountModel = UserAccountModel;
-class UserAccountInfoModel {
-}
-exports.UserAccountInfoModel = UserAccountInfoModel;
+exports.Article = Article;
 //# sourceMappingURL=topic.model.js.map

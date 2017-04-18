@@ -20,7 +20,7 @@ namespace QX_Frame.Data.DTO
 
         public tb_UserAccountInfo publisherInfo { get; set; }
         // 
-        public DateTime publishTime { get; set; }
+        public string publishTime { get; set; }
         // 
         public Int32 clickCount { get; set; }
         // 

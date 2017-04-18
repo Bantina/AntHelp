@@ -2,6 +2,7 @@
 import { appBase } from '../../00-AQX_Frame.commons/appBase';
 import { PublishAidModel, Order } from './../order.model';
 import { appService } from '../../00-AQX_Frame.services/appService';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'publish',
@@ -11,7 +12,10 @@ import { appService } from '../../00-AQX_Frame.services/appService';
 })
 
 export class PublishComponent implements OnInit {
-
+    router: Router;
+    constructor(_router: Router) {
+        this.router = _router;
+    }
     publishAidModel: PublishAidModel = {
         loginId: "",
         kinds: "",
@@ -225,6 +229,6 @@ export class PublishComponent implements OnInit {
 
     ////the final execute ...
     ngOnInit(): void {
-
+        appService.IsLogin(this.router);
     }
 }

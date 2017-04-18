@@ -200,6 +200,16 @@ let AdministratorComponent = class AdministratorComponent {
     //    });
     //}
     ////账户管理
+    selectOnchang(obj) {
+        alert(obj);
+        return obj;
+    }
+    //编辑用户；
+    EditUser() {
+    }
+    //删除用户；
+    //DeleteUser(): void {
+    //}
     ////订单管理
     ////投诉管理
     //the final execute ...

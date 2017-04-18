@@ -76,6 +76,8 @@
     <Content Include="app\00-main\app.component.html" />
     <Content Include="app\02-example\example.component.css" />
     <Content Include="app\02-example\example.component.html" />
+    <Content Include="app\03-login\blackLogin\blackLogin.component.html" />
+    <Content Include="app\03-login\blackLogin\blackLogin.component.css" />
     <Content Include="app\03-login\login\login.component.html" />
     <Content Include="app\03-login\signup.component.css" />
     <Content Include="app\03-login\signup.component.html" />
@@ -287,6 +289,7 @@
     <TypeScriptCompile Include="app\02-example\example.component.ts" />
     <TypeScriptCompile Include="app\02-example\example.model.ts" />
     <TypeScriptCompile Include="app\02-example\example.service.ts" />
+    <TypeScriptCompile Include="app\03-login\blackLogin\blackLogin.component.ts" />
     <TypeScriptCompile Include="app\03-login\login\login.component.ts" />
     <TypeScriptCompile Include="app\03-login\signup.component.ts" />
     <TypeScriptCompile Include="app\03-login\signup.model.ts" />

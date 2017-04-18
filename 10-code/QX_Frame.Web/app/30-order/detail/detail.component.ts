@@ -2,6 +2,7 @@
 import { appBase } from '../../00-AQX_Frame.commons/appBase';
 import { appService } from '../../00-AQX_Frame.services/appService';
 import { PublishAidModel, Order } from './../order.model';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'orderDetail',
@@ -11,7 +12,10 @@ import { PublishAidModel, Order } from './../order.model';
 })
 
 export class OrderDetailComponent implements OnInit {
-
+    router: Router;
+    constructor(_router: Router) {
+        this.router = _router;
+    }
     order: Order =
     {
         orderUid: "",
@@ -45,6 +49,7 @@ export class OrderDetailComponent implements OnInit {
 
     }
 
+
     ////the final execute ...
     ngOnInit(): void {
         //var defaults = {
@@ -57,49 +62,51 @@ export class OrderDetailComponent implements OnInit {
 
         var self = this;
         var orderUid = appService.GetQueryString("orderUid");
+        if (appService.IsLogin(self.router).isLogin) {
+            $.ajax({
+                url: appBase.DomainApi + "api/Order/" + orderUid,
+                type: "get",
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                data: {
+                    //"id": orderUid,
+                    "appKey": appService.getCookie("appKey"),
+                    "token": appService.getCookie("token")
+                },
+                success(data) {
+                    if (data.isSuccess) {
+                        self.order.publisherUid = data.data.publisherUid;
+                        self.order.orderUid = data.data.orderUid;
+                        self.order.publishTime = data.data.publishTime;
+                        self.order.orderDescription = data.data.orderDescription;
+                        self.order.orderCategoryId = data.data.orderCategoryId;
+                        self.order.receiverUid = data.data.receiverUid;
+                        self.order.receiveTime = data.data.receiveTime;
+                        self.order.orderStatusId = data.data.orderStatusId;
+                        self.order.orderValue = data.data.orderValue;
+                        self.order.allowVoucher = data.data.allowVoucher;
+                        self.order.voucherMax = data.data.voucherMax;
+                        self.order.evaluateUid = data.data.evaluateUid;
+                        self.order.address = data.data.address;
+                        self.order.phone = data.data.phone;
+                        self.order.imageUrls = data.data.imageUrls;
 
-        $.ajax({
-            url: appBase.DomainApi + "api/Order/" + orderUid,
-            type: "get",
-            dataType: "json",
-            contentType: "application/json; charset=UTF-8",
-            data: {
-                //"id": orderUid,
-                "appKey": appService.getCookie("appKey"),
-                "token": appService.getCookie("token")
-            },
-            success(data) {
-                if (data.isSuccess) {
-                    self.order.publisherUid = data.data.publisherUid;
-                    self.order.orderUid=data.data.orderUid;
-                    self.order.publishTime = data.data.publishTime;
-                    self.order.orderDescription = data.data.orderDescription;
-                    self.order.orderCategoryId=data.data.orderCategoryId;
-                    self.order.receiverUid = data.data.receiverUid;
-                    self.order.receiveTime = data.data.receiveTime;
-                    self.order.orderStatusId = data.data.orderStatusId;
-                    self.order.orderValue=data.data.orderValue;
-                    self.order.allowVoucher = data.data.allowVoucher;
-                    self.order.voucherMax = data.data.voucherMax;
-                    self.order.evaluateUid = data.data.evaluateUid;
-                    self.order.address = data.data.address;
-                    self.order.phone = data.data.phone;
-                    self.order.imageUrls = data.data.imageUrls;
+                        self.orderPlus.publisherInfo = data.data.publisherInfo;
+                        self.orderPlus.receiverInfo = data.data.receiverInfo;
+                        self.orderPlus.orderCategory = data.data.orderCategory;
+                        self.orderPlus.orderStatus = data.data.orderStatus;
+                        self.orderPlus.orderEvaluate = data.data.orderEvaluate;
 
-                    self.orderPlus.publisherInfo = data.data.publisherInfo;
-                    self.orderPlus.receiverInfo = data.data.receiverInfo;
-                    self.orderPlus.orderCategory = data.data.orderCategory;
-                    self.orderPlus.orderStatus = data.data.orderStatus;
-                    self.orderPlus.orderEvaluate = data.data.orderEvaluate;
-
-                } else {
-                    alert(data.msg);
+                    } else {
+                        alert(data.msg);
+                    }
+                },
+                error(data) {
+                    alert("服务器错误！");
                 }
-            },
-            error(data) {
-                alert("服务器错误！");
-            }
-        });
+            });
+        } 
+        
 
         //var defaults = {
         //    thumbSize: 20,

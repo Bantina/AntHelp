@@ -148,7 +148,7 @@ export class AdministratorComponent implements OnInit {
                                 success: function (data) {
                                     $(".j_usr_img").attr('src', data);
                                 },
-                                error: function (data) {}
+                                error: function (data) { }
                             });
                         }
 
@@ -206,6 +206,18 @@ export class AdministratorComponent implements OnInit {
     //}
 
     ////账户管理
+    selectOnchang(obj): any {
+        alert(obj);
+        return obj;
+    }
+    //编辑用户；
+    EditUser(): void {
+
+    }
+    //删除用户；
+    //DeleteUser(): void {
+
+    //}
 
     ////订单管理
 

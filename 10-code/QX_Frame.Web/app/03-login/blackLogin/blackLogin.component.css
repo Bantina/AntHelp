@@ -1,0 +1,28 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* blackLogin css*/
+
+.blackLoginO .black_login_r{
+    margin-top:200px;
+}
+.blackLoginO .black_login_r a{
+    display:block;
+    width:200px;
+    height:40px;
+    line-height:40px;
+  font-size:20px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 28px;
+  float: left;
+  margin-bottom:20px;
+  text-align:center;
+}
+.blackLoginO .black_login_r a:hover,.blackLoginO .black_login_r a:focus {
+    background-color: #ef5048;
+}
+.blackLoginO_img{
+    width:90%;
+}

@@ -1,9 +1,14 @@
 ﻿import { appBase } from '../00-AQX_Frame.commons/appBase';
 import { AppKeyTokenModel } from '../00-AQX_Frame.models/AppKeyTokenModel';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 declare function escape(s: string): string;
 declare function unescape(s: string): string;
 export class appService {
+    // router: Router;
+    //constructor(_router: Router) {
+    //    this.router = _router;
+    //}
      //获取url请求参数name值；
     static GetQueryString(name: string): string {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -33,9 +38,20 @@ export class appService {
         }
         return "";
     }
-
-    //判断用户是否登录
-    static IsLogin(): any {
+    
+    /**
+     * *判断用户是否登录
+     *router:某Component的router;
+     1.import { Router, ActivatedRoute, Params } from '@angular/router';
+     2.component类内
+        router: Router;
+        constructor(_router: Router) {
+            this.router = _router;
+        }
+     3.在ngOnInit()中 调用appService.IsLogin(this.router)
+     */
+    static IsLogin(router: Router): any {
+        var self = this;
         var appKey = Number(appService.getCookie("appKey"));
         var token = appService.getCookie("token");
         var _random = Math.ceil(Math.random() * 1000);
@@ -45,7 +61,10 @@ export class appService {
             loginId:""
         }
         //当cookie值为空时，未登录；
-        if (appKey == 0 || appKey == null || appKey == NaN) return loginResult;
+        if (appKey == 0 || appKey == null || appKey == NaN) {
+            router.navigateByUrl('/blackLogin');//跳转未登录页面；
+            return loginResult;
+        }
 
         else {
             $.ajax({
@@ -67,8 +86,8 @@ export class appService {
                         loginResult.loginId = data.data.loginId;
                     }
                     else {
-                        if (data.errorCode == 3011) {
-                            alert('登录已过期，请重新登录~');
+                        if (data.errorCode == 3011) { //登录过期；
+                            router.navigateByUrl('/blackLogin');//跳转未登录页面；
                             appService.setCookie('appKey', '', 7);
                             appService.setCookie('secretKey', '', 7);
                             appService.setCookie('loginId', '', 7);

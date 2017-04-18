@@ -1,6 +1,10 @@
 "use strict";
 const appBase_1 = require('../00-AQX_Frame.commons/appBase');
 class appService {
+    // router: Router;
+    //constructor(_router: Router) {
+    //    this.router = _router;
+    //}
     //获取url请求参数name值；
     static GetQueryString(name) {
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
@@ -31,8 +35,19 @@ class appService {
         }
         return "";
     }
-    //判断用户是否登录
-    static IsLogin() {
+    /**
+     * *判断用户是否登录
+     *router:某Component的router;
+     1.import { Router, ActivatedRoute, Params } from '@angular/router';
+     2.component类内
+        router: Router;
+        constructor(_router: Router) {
+            this.router = _router;
+        }
+     3.在ngOnInit()中 调用appService.IsLogin(this.router)
+     */
+    static IsLogin(router) {
+        var self = this;
         var appKey = Number(appService.getCookie("appKey"));
         var token = appService.getCookie("token");
         var _random = Math.ceil(Math.random() * 1000);
@@ -42,8 +57,10 @@ class appService {
             loginId: ""
         };
         //当cookie值为空时，未登录；
-        if (appKey == 0 || appKey == null || appKey == NaN)
+        if (appKey == 0 || appKey == null || appKey == NaN) {
+            router.navigateByUrl('/blackLogin'); //跳转未登录页面；
             return loginResult;
+        }
         else {
             $.ajax({
                 //url: appBase.DomainApi + "api/Login?appKey=" + appKey + "&random" + _random + "&timeStamp" + _timeStamp + "&token" + token,
@@ -65,7 +82,7 @@ class appService {
                     }
                     else {
                         if (data.errorCode == 3011) {
-                            alert('登录已过期，请重新登录~');
+                            router.navigateByUrl('/blackLogin'); //跳转未登录页面；
                             appService.setCookie('appKey', '', 7);
                             appService.setCookie('secretKey', '', 7);
                             appService.setCookie('loginId', '', 7);

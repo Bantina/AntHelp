@@ -45,7 +45,7 @@
                         <label for="true" class="col-sm-2 control-label">头  像 :</label>
                         <div class="col-sm-10">
                             <div class="col-sm-3 prePotrait">
-                                <img src="{{userInfoModel.headImageUrl}}" />
+                                <img src="{{headerImageData}}" />
                             </div>
                             <div class="col-sm-7">
                                 <input form="uploadHeadForm" id="personalHead_upload" type="file" name="file" placeholder="file" (change)="personalHeadUpload($event)" [(ngModel)]="personalHeadInput">
@@ -98,12 +98,21 @@
                     </div>
                 </div>
             </div>
-            <div class="row myorderBlock">
-                <div class="col-md-3"></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3 btn">
-                    <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
-                    <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
+            <div class="myorderBlock">
+                <div class="myorderTitle">
+                    <p><strong>订单编号：</strong>2132412432</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 myorderImg">
+                        <img src="../../Images/03-login/portraint01.png" />
+                    </div>
+                    <div class="col-md-1">
+                        <p>接单人：</p>
+                    </div>
+                    <div class="col-md-3 btn">
+                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
+                        <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
+                    </div>
                 </div>
             </div>
 

@@ -44,8 +44,8 @@ namespace QX_Frame.Data.QueryObject
 		// 
 		public Int32 praiseCount { get;set; }
 
-		// 
-		public Int32 ArticleCategoryId { get;set; }
+        // 
+        public Int32 ArticleCategoryId { get; set; } = 0;
 
 		// 
 		public String imagesUrls { get;set; }
@@ -62,6 +62,11 @@ namespace QX_Frame.Data.QueryObject
 			{
 				func = func.And(t => t.articleTitle.Contains(this.articleTitle));
 			}
+
+            if (this.ArticleCategoryId!=0)
+            {
+                func = func.And(t => t.ArticleCategoryId == this.ArticleCategoryId);
+            }
 
 			return func;
 		}

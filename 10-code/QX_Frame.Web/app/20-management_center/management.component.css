@@ -177,7 +177,7 @@ a:hover .ico-edit{background-position:0 -27px;}
 	margin-bottom: 20px;
 	border: 1px solid #e2e2e2;
 }
-.myorderBlock .btn input{
+.myorderBlock .btn input,.sentMassform .myorderComplaint_btn{
   width:150px;
   height:30px;
   display: block;
@@ -189,7 +189,21 @@ a:hover .ico-edit{background-position:0 -27px;}
   margin-top: 28px;
   margin-bottom:20px;
 }
-.myorderBlock .btn input:hover,.myorderBlock .btn input:focus {
+.myorderBlock .btn input:hover,.myorderBlock .btn input:focus,.sentMassform .myorderComplaint_btn:hover,.sentMassform .myorderComplaint_btn:focus {
     background-color: #ef5048;
+}
+.myorderBlock .myorderTitle{
+	border-bottom: 1px solid #e2e2e2;
+}
+.myorderBlock .myorderImg{
+    width:150px;
+    height:150px;
+}
+
+
+
+/*消息管理*/
+.sentMassform .myorderComplaint_btn{
+  width:100%;
 }
 

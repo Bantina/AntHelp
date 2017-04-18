@@ -6,9 +6,12 @@
                 <img class="j_usr_img" src="../../../Images/03-login/portraint01.png" width="100" height="100" alt="" />
             </div>
 
-            <p class="p1"><span class="fs14 td-n j_usr_name"><span class="myname" title="">昵 称：{{userInfoModel.nickName}}</span>
-                <!--<a href="#" target="_blank" class="ico-edit"></a>-->
-            </span> </p>
+            <p class="p1">
+                <span class="fs14 td-n j_usr_name">
+                    <span class="myname" title="">昵 称：{{userInfoModel.nickName}}</span>
+                    <!--<a href="#" target="_blank" class="ico-edit"></a>-->
+                </span>
+            </p>
             <p class="p2">(管理员ID: {{userInfoModel.loginId}})</p>
             <p><span class="fs14 vam"> 余额 : <strong class="c-red">888</strong></span></p>
         </div>
@@ -16,8 +19,9 @@
             <li><a routerLink="/administrator" (click)="sidenavClick_admin($event,0)"><span class="ico_db" (click)="sidenavSpanClick_admin($event,0)">用户管理</span> </a></li>
             <li><a routerLink="/administrator" (click)="sidenavClick_admin($event,1)"><span class="ico_buy" (click)="sidenavSpanClick_admin($event,1)">订单管理</span></a></li>
             <li><a routerLink="/administrator" (click)="sidenavClick_admin($event,2)"><span class="ico_luck" (click)="sidenavSpanClick_admin($event,2)">投诉管理</span></a></li>
+            <li><a routerLink="/administrator" (click)="sidenavClick_admin($event,3)"><span class="ico_luck" (click)="sidenavSpanClick_admin($event,3)">消息管理</span></a></li>
         </ul>
-    </div>   
+    </div>
     <!-- 未登陆 -->
     <div class="r rightCon" *ngIf="navStatus==-1">
         <div class="col-md-7 black_login">
@@ -28,116 +32,220 @@
             <a routerLink="/login">登    录</a>
         </div>
     </div>
-        <!-- 账户管理 -->
-        <div class="r rightCon" *ngIf="navStatus==0">
-            <div class="cfix topTit">
-                <div class="col-md-5"><h3 class="l fs20 c-black">所有用户信息</h3></div>
-                <div class="col-md-7">
-                    <form class="navbar-form navbar-right" role="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search loginId">
-                        </div>
-                        <button type="submit" class="btn btn-primary">查 询</button>
-                    </form>
-                </div>
-            </div>
-            <div class="cfix tabBox">
-                <ul class="l cfix tabs">
-                    <li class="on"><a href="?t=0">全部</a></li>
-                    <li class=""><a href="?t=1">普通用户</a></li>
-                    <li class=""><a href="?t=2">管理员</a></li>
-                </ul>
-                <table cellpadding="0" cellspacing="0" border="0" class="table table-addr">
-                    <tr>
-                        <th class="th30"><span class="pl10">用户ID</span></th>
-                        <th class="th60"><span class="pl10">昵称</span></th>
-                        <th class="th120">联系电话</th>
-                        <th class="th200">地址</th>
-                        <th class="th120">邮箱</th>
-                        <th class="th120">用户状态</th>
-                        <th class="th120">用户角色</th>
-                        <th class="operate th200">操作</th>
-                    </tr>
-
-                    <tr data-id="" class="address-add">
-                        <td class="th30"><span class="c-black fs14">33</span></td>
-                        <td class="th60"><span class="c-black fs14">33</span></td>
-                        <td class="th120"><span class="c-black fs14">333</span></td>
-                        <td class="th200"><span class="c-black fs14">33</span></td>
-                        <td class="th120"><span class="c-black fs14">33</span></td>
-                        <td class="th120">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" role="button" id="userStatusMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    正常
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="userStatusMenu">
-                                    <li><a href="javascript:void(0);">正常</a></li>
-                                    <li><a href="javascript:void(0);">停用</a></li>
-                                    <li><a href="javascript:void(0);">冻结</a></li>
-                                    <li><a href="javascript:void(0);">废弃</a></li>
-                                </ul>
-                            </div>
-                        </td>
-                        <td class="th120">
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" role="button" id="userRoleMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    普通用户
-                                    <span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="userRoleMenu">
-                                    <li><a href="javascript:void(0);">普通用户</a></li>
-                                    <li><a href="javascript:void(0);">管理员</a></li>
-                                </ul>
-                            </div>
-                        </td>
-
-                        <td class="operate">
-                        <a href="javascript:void(0)" class="fs14 a-edit">编辑</a><em>｜</em>
-                        <a href="javascript:void(0)" class="fs14 a-detele">删除</a></td>
-                           
-                    </tr>
-
-                </table>
+    <!-- 账户管理 -->
+    <div class="r rightCon" *ngIf="navStatus==0">
+        <div class="cfix topTit">
+            <div class="col-md-5"><h3 class="l fs20 c-black">所有用户信息</h3></div>
+            <div class="col-md-7">
+                <form class="navbar-form navbar-right" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search loginId">
+                    </div>
+                    <button type="submit" class="btn btn-primary">查 询</button>
+                </form>
             </div>
         </div>
-        <!-- 订单管理 -->
-        <div class="r rightCon" *ngIf="navStatus==1">
-            <div class="cfix topTit">
-                <h3 class="l fs20 c-black">所有订单记录</h3>
-            </div>
-            <div class="cfix tabBox">
-                <ul class="l cfix tabs">
-                    <li class="on"><a href="?t=0">全部</a></li>
-                    <li class=""><a href="?t=1">进行中</a></li>
-                    <li class=""><a href="?t=2">即将揭晓</a></li>
-                    <li class=""><a href="?t=3">已揭晓</a></li>
-                </ul>
-            </div>
-            <div class="row myorderBlock">
-                <div class="col-md-3"></div>
-                <div class="col-md-3"></div>
-                <div class="col-md-3 btn">
-                    <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
-                    <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
-                </div>
-            </div>
+        <div class="cfix tabBox">
+            <ul class="l cfix tabs">
+                <li class="on"><a href="?t=0">全部</a></li>
+                <li class=""><a href="?t=1">普通用户</a></li>
+                <li class=""><a href="?t=2">管理员</a></li>
+            </ul>
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-addr">
+                <tr>
+                    <th class="th30"><span class="pl10">用户ID</span></th>
+                    <th class="th60"><span class="pl10">昵称</span></th>
+                    <th class="th120">联系电话</th>
+                    <th class="th200">地址</th>
+                    <th class="th120">邮箱</th>
+                    <th class="th120">用户状态</th>
+                    <th class="th120">用户角色</th>
+                    <th class="operate th200">操作</th>
+                </tr>
 
+                <tr data-id="" class="address-add">
+                    <td class="th30"><span class="c-black fs14">33</span></td>
+                    <td class="th60"><span class="c-black fs14">33</span></td>
+                    <td class="th120"><span class="c-black fs14">333</span></td>
+                    <td class="th200"><span class="c-black fs14">33</span></td>
+                    <td class="th120"><span class="c-black fs14">33</span></td>
+                    <td class="th120">33</td>
+                    <td class="th120">33</td>
+
+                    <td class="operate">
+                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit">编辑</a>
+                    </td>
+                </tr>
+
+            </table>
         </div>
-        <!-- 投诉管理 -->
-        <div class="r rightCon" *ngIf="navStatus==2">
-            <div class="cfix topTit">
-                <h3 class="l fs20 c-black">所有投诉记录</h3>
-            </div>
-            <div class="cfix tabBox">
-                <ul class="l cfix tabs">
-                    <li class="on"><a href="?t=0">全部</a></li>
-                    <li class=""><a href="?t=1">进行中</a></li>
-                    <li class=""><a href="?t=2">即将揭晓</a></li>
-                    <li class=""><a href="?t=3">已揭晓</a></li>
-                </ul>
+    </div>
+    <!-- 订单管理 -->
+    <div class="r rightCon" *ngIf="navStatus==1">
+        <div class="cfix topTit">
+            <h3 class="l fs20 c-black">所有订单记录</h3>
+        </div>
+        <div class="cfix tabBox">
+            <ul class="l cfix tabs">
+                <li class="on"><a href="?t=0">全部</a></li>
+                <li class=""><a href="?t=1">进行中</a></li>
+                <li class=""><a href="?t=2">即将揭晓</a></li>
+                <li class=""><a href="?t=3">已揭晓</a></li>
+            </ul>
+        </div>
+        <div class="row myorderBlock">
+            <div class="col-md-3"></div>
+            <div class="col-md-3"></div>
+            <div class="col-md-3 btn">
+                <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
+                <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
             </div>
         </div>
 
     </div>
+    <!-- 投诉管理 -->
+    <div class="r rightCon" *ngIf="navStatus==2">
+        <div class="cfix topTit">
+            <h3 class="l fs20 c-black">所有投诉记录</h3>
+        </div>
+        <div class="cfix tabBox">
+            <ul class="l cfix tabs">
+                <li class="on"><a href="?t=0">全部</a></li>
+                <li class=""><a href="?t=1">已处理</a></li>
+                <li class=""><a href="?t=2">待处理</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 消息管理 -->
+    <div class="r rightCon" *ngIf="navStatus==3">
+        <div class="cfix topTit">
+            <h3 class="l fs20 c-black">所有消息记录</h3>
+        </div>
+        <div class="cfix tabBox">
+            <ul class="l cfix tabs">
+                <li class="on"><a href="?t=0">全部</a></li>
+                <li class=""><a href="?t=1">发布</a></li>
+            </ul>
+        </div>
+        <form action="" id="sentMassform" class="form-horizontal" style="min-width:500px;">
+            <div class="form-group">
+                <label for="true" class="col-sm-2 control-label">用户ID :</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="" name="loginId">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="true" class="col-sm-2 control-label">内  容 :</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" placeholder="请输入...." name="sentmass_content" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-8 col-md-offset-2">
+                    <input type="button" class="no-top-margin sentMassform_btn" value="发      送" name="">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<!-- model -->
+<div class="modal fade" id="userEditModel" tabindex="-1" role="dialog" aria-labelledby="userEditModelLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="userEditModelLabel">用 户 修 改</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" id="userEditform" class="form-horizontal" style="min-width:500px;">
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">用户ID :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.loginId" name="loginId" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">昵  称 :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.nickName" name="nickName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">电  话 :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.phone" name="phone">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">地  址 :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.position" name="position">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">邮  箱 :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">用户状态:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" (change)="selectOnchang($event.target.value)">
+                                <!--<option *ngFor="let org of orgs" [ngValue]="org"></option>-->
+                                <option value="">正常</option>
+                                <option value="">停用</option>
+                                <option value="">冻结</option>
+                                <option value="">废弃</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">用户角色:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" (change)="selectOnchang($event.target.value)">
+                                <option value="">普通用户</option>
+                                <option value="">管理员</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+                <button type="button" class="btn btn-primary" (click)="EditUser()">保 存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<div class="modal fade" id="userDeleteModel" tabindex="-1" role="dialog" aria-labelledby="userDeleteModelLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="userDeleteModelLabel">用  户  删  除</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" id="userEditform" class="form-horizontal" style="min-width:500px;">
+                    <div class="form-control col-md-8 col-md-offset-2">
+                        <h4>确定要删除该用户吗？</h4>
+                    </div>
+                </form>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+                    <button type="button" class="btn btn-primary" (click)="DeleteUser()">确 定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
 <!--end management-->

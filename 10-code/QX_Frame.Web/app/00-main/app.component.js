@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require('@angular/core');
 const appService_1 = require("../00-AQX_Frame.services/appService");
 const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+const router_1 = require('@angular/router');
 let AppComponent = class AppComponent {
-    constructor() {
+    constructor(_router) {
         this.title = 'Ant Help';
-        this.loginResult = appService_1.appService.IsLogin();
+        this.loginResult = {};
+        this.router = _router;
     }
     //个人中心菜单点击 切换
     setCenterStatus(num) {
@@ -27,14 +29,17 @@ let AppComponent = class AppComponent {
         //manageCenterUl.eq(appBase.AppObject.centerStatus).click(event, appBase.AppObject.centerStatus);
         //manageCenterUl.eq(num).trigger('click', {event,num});
     }
+    ngOnInit() {
+        this.loginResult = appService_1.appService.IsLogin(this.router);
+    }
 };
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
         templateUrl: 'app/00-main/app.component.html',
-        styleUrls: ['app/00-main/app.component.css'],
+        styleUrls: ['app/00-main/app.component.css']
     }), 
-    __metadata('design:paramtypes', [])
+    __metadata('design:paramtypes', [router_1.Router])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

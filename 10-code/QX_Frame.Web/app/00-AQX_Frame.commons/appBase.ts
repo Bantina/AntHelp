@@ -7,4 +7,5 @@
         centerStatus: 0, //personal center status
         administratorStatus: 0 //manager status
     } //personal center 
+
 }

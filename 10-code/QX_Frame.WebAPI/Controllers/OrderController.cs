@@ -24,7 +24,6 @@ namespace QX_Frame.WebAPI.Controllers
     /// <summary>
     ///class OrderController
     /// </summary>
-    [LimitsAttribute_DG(RoleLevel = 0)]//user
     public class OrderController : WebApiControllerBase
     {
         private readonly static object lockObj = new object();
@@ -72,13 +71,13 @@ namespace QX_Frame.WebAPI.Controllers
                     orderViewModel.orderUid = Order.orderUid;
                     orderViewModel.publisherUid = Order.publisherUid;
                     orderViewModel.publisherInfo = channel_user.GetUserAccountInfoByUidAllowNull(Order.publisherUid);
-                    orderViewModel.publishTime = Order.publishTime;
+                    orderViewModel.publishTime = Order.publishTime.ToDateTimeString_24HourType();
                     orderViewModel.orderDescription = Order.orderDescription;
                     orderViewModel.orderCategoryId = Order.orderCategoryId;
                     orderViewModel.orderCategory = Order.tb_OrderCategory;
                     orderViewModel.receiverUid = Order.receiverUid;
                     orderViewModel.receiverInfo = channel_user.GetUserAccountInfoByUidAllowNull(Order.receiverUid);
-                    orderViewModel.receiveTime = Order.receiveTime;
+                    orderViewModel.receiveTime = Order.receiveTime.ToDateTimeString_24HourType();
                     orderViewModel.orderStatusId = Order.orderStatusId;
                     orderViewModel.orderStatus = Order.tb_OrderStatus;
                     orderViewModel.orderValue = Order.orderValue;
@@ -90,12 +89,13 @@ namespace QX_Frame.WebAPI.Controllers
                     orderViewModel.phone = Order.phone;
                     orderViewModel.imageUrls = Order.imageUrls;
 
-                    return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Order by OrderUid", Order, 1));
+                    return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Order by OrderUid", orderViewModel, 1));
                 }
             }
         }
 
         // POST: api/Order
+        [LimitsAttribute_DG(RoleLevel = 0)]//user
         public IHttpActionResult Post([FromBody]dynamic query)
         {
             if (query == null)
@@ -150,7 +150,8 @@ namespace QX_Frame.WebAPI.Controllers
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("order publish succeed"));
         }
 
-        // PUT: api/Order/id    //id=1 receiverUid id=2 orderStatusId
+        // PUT: api/Order/id    //id=1 orderStatusId and receiverLoginId id=2 orderStatusId
+        [LimitsAttribute_DG(RoleLevel = 0)]//user
         public IHttpActionResult Put(int id, [FromBody]dynamic query)
         {
             lock (lockObj)
@@ -167,11 +168,19 @@ namespace QX_Frame.WebAPI.Controllers
                     }
                     if (id == 1)
                     {
-                        string loginId = query.receiverLoginId;//argument
-                        order.receiverUid = UserController.GetUserAccountInfoByLoginId(loginId).uid;
-                        order.receiveTime = DateTime.Now;
+                        if (order.orderStatusId == opt_OrderStatus.待接单.ToInt())
+                        {
+                            string loginId = query.receiverLoginId;//argument
+                            order.receiverUid = UserController.GetUserAccountInfoByLoginId(loginId.Trim()).uid;
+                            order.receiveTime = DateTime.Now;
+                            order.orderStatusId = query.orderStatusId;//argument
+                        }
+                        else
+                        {
+                            throw new Exception_DG("the order has been received", 3022);
+                        }
                     }
-                    else if (id == 2)
+                    else if (id==2)
                     {
                         order.orderStatusId = query.orderStatusId;//argument
                     }
@@ -182,6 +191,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // DELETE: api/Order
+        [LimitsAttribute_DG(RoleLevel = 0)]//user
         public IHttpActionResult Delete([FromBody]dynamic query)
         {
             Guid orderUid = query.orderUid;

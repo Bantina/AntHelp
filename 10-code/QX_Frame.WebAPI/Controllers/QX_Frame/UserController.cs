@@ -62,7 +62,6 @@ namespace QX_Frame.WebAPI.Controllers
                     userAccountInfoViewModel.personalizedSignature = item.personalizedSignature;
                     userAccountInfoViewModel.personalizedDescription = item.personalizedDescription;
                     userAccountInfoViewModel.registerTime = item.registerTime;
-                    userAccountInfoViewModelList.Add(userAccountInfoViewModel);
 
                     using (var fact_status=Wcf<UserStatusService>())
                     {
@@ -78,6 +77,8 @@ namespace QX_Frame.WebAPI.Controllers
                         userAccountInfoViewModel.roleId = userRole.roleLevel;
                         userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
                     }
+
+                    userAccountInfoViewModelList.Add(userAccountInfoViewModel);
                 }
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user info must paging by pageindex=num,pagesize=num,isdesc=1/0", userAccountInfoViewModelList, count));
             }

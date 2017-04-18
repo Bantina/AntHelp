@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 class UserInfoModel {
     constructor(email, appKey, token, loginId, nickName, phone, headImageUrl, age, sexId, birthday, bloodTypeId, position, school, location, company, constellation, chineseZodiac, personalizedSignature, personalizedDescription) {
         this.email = email;

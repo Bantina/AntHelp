@@ -17,7 +17,7 @@ namespace QX_Frame.Data.DTO
 
         public tb_UserAccountInfo publisherInfo { get; set; }
         // 
-        public DateTime publishTime { get; set; }
+        public string publishTime { get; set; }
         // 
         public String orderDescription { get; set; }
         // 
@@ -29,7 +29,7 @@ namespace QX_Frame.Data.DTO
         // 
         public tb_UserAccountInfo receiverInfo { get; set; }
 
-        public DateTime receiveTime { get; set; }
+        public string receiveTime { get; set; }
         // 
         public Int32 orderStatusId { get; set; }
 

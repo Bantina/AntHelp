@@ -1,9 +1,10 @@
 ﻿@charset "utf-8";
 /* CSS Document */
 /* order detail css*/
-.orderDetail{
-    min-height:600px;
+.orderDetail {
+    min-height: 600px;
 }
+
 .slider-wrap {
     background: white;
     padding: 10px;
@@ -24,24 +25,43 @@
 .orderDetail_right {
     padding: 100px 30px 10px 0;
 }
-.detail_title{
+
+.detail_title {
     text-align: right;
 }
-    .orderDetail_right p {
-        font-size: 18px;
-    }
 
-.orderDetail_right .getorder_btn{
-    height:40px;
-  font-size:22px;
-  background-color: #e72015;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  margin-top: 28px;
-  float: left;
-  margin-bottom:20px;
+.orderDetail_right p {
+    font-size: 18px;
 }
-.orderDetail_right .getorder_btn:hover,.orderDetail_right .getorder_btn:focus {
+
+.orderDetail_right .getorder_btn {
+    height: 40px;
+    font-size: 22px;
+    background-color: #e72015;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    margin-top: 28px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.orderDetail_right .getorder_dis_btn {
+    height: 40px;
+    font-size: 22px;
+    background-color: #808080;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    margin-top: 28px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.orderDetail_right .getorder_btn:hover, .orderDetail_right .getorder_btn:focus {
     background-color: #ef5048;
+}
+
+.orderDetail_right .getorder_dis_btn:hover, .orderDetail_right .getorder_dis_btn:focus {
+    background-color: #989595;
 }

@@ -24,11 +24,12 @@ namespace QX_Frame.WebAPI.Controllers
     /// </summary>
     public class ArticleController : WebApiControllerBase
     {
-        // GET: api/Article
-        public IHttpActionResult Get(string articleTitle, int pageIndex, int pageSize, bool isDesc)
+        // GET: api/Article articleCategoryId=0 query all
+        public IHttpActionResult Get(string articleTitle,int articleCategoryId, int pageIndex, int pageSize, bool isDesc)
         {
             tb_ArticleQueryObject queryObject = new tb_ArticleQueryObject();
 
+            queryObject.ArticleCategoryId = articleCategoryId;
             queryObject.articleTitle = articleTitle;//fuzzy query
             queryObject.PageIndex = pageIndex;
             queryObject.PageSize = pageSize;

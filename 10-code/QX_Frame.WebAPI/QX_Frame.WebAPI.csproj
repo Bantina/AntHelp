@@ -147,6 +147,7 @@
     <Compile Include="config\ClassRegisters.cs" />
     <Compile Include="config\ControllerConfigs.cs" />
     <Compile Include="config\DefaultImageStream.cs" />
+    <Compile Include="Controllers\ArticleCategoryController.cs" />
     <Compile Include="Controllers\UserRelationController.cs" />
     <Compile Include="Controllers\SelfMessageController.cs" />
     <Compile Include="Controllers\CommentReplyController.cs" />

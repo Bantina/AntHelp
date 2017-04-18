@@ -29,6 +29,7 @@ namespace QX_Frame.Data.Entities
 
         public int praiseCount { get; set; } = 0;
 
+        [ForeignKey("tb_ArticleCategory")]
         public int ArticleCategoryId { get; set; }
 
         [Required]

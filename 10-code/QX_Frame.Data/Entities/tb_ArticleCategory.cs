@@ -1,6 +1,7 @@
 namespace QX_Frame.Data.Entities
 {
     using global::QX_Frame.App.Base;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -22,6 +23,8 @@ namespace QX_Frame.Data.Entities
         [StringLength(20)]
         public string CategoryName { get; set; }
 
+        //解决json循环引用问题
+        [JsonIgnore]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_Article> tb_Article { get; set; }
     }

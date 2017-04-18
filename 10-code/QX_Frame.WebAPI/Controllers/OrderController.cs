@@ -24,7 +24,6 @@ namespace QX_Frame.WebAPI.Controllers
     /// <summary>
     ///class OrderController
     /// </summary>
-    [LimitsAttribute_DG(RoleLevel = 0)]//user
     public class OrderController : WebApiControllerBase
     {
         private readonly static object lockObj = new object();
@@ -96,6 +95,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // POST: api/Order
+        [LimitsAttribute_DG(RoleLevel = 0)]//user
         public IHttpActionResult Post([FromBody]dynamic query)
         {
             if (query == null)
@@ -151,6 +151,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // PUT: api/Order/id    //id=1 orderStatusId and receiverLoginId id=2 orderStatusId
+        [LimitsAttribute_DG(RoleLevel = 0)]//user
         public IHttpActionResult Put(int id, [FromBody]dynamic query)
         {
             lock (lockObj)
@@ -190,6 +191,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // DELETE: api/Order
+        [LimitsAttribute_DG(RoleLevel = 0)]//user
         public IHttpActionResult Delete([FromBody]dynamic query)
         {
             Guid orderUid = query.orderUid;

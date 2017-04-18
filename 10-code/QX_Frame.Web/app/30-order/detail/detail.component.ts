@@ -16,6 +16,7 @@ export class OrderDetailComponent implements OnInit {
     constructor(_router: Router) {
         this.router = _router;
     }
+    
     order: Order =
     {
         orderUid: "",
@@ -44,54 +45,47 @@ export class OrderDetailComponent implements OnInit {
     //抢单标识
     getOrderButtonIsDisabled: number = 1;
 
-
     //立即抢单
     getOrder(): void {
         var self = this;
-        $.ajax({
-            url: appBase.DomainApi + "api/Order/1",
-            type: "put",
-            dataType: "json",
-            contentType: "application/json; charset=UTF-8",
-            data: JSON.stringify(
-                {
-                    "appKey": appService.getCookie("appKey"),
-                    "token": appService.getCookie("token"),
-                    "orderUid": self.order.orderUid,
-                    "receiverLoginId": appService.getCookie("loginId"),
-                    "orderStatusId": 4
-                }),
-            success(data) {
-                if (data.isSuccess) {
-                    alert("抢单成功~");
-                    //这里可以进行跳转到订单详情页
-                    
-                    //
-                    self.getOrderButtonIsDisabled = 0;
-                } else {
-                    if (data.errorCode == 3022) {
-                        alert("手慢一步，订单被别人抢啦~");
-                    } else
-                    {
-                        alert("抢单失败，请重试！");
-                    }
-                }
-            },
-            error(data) {
-                alert("服务器连接失败!请稍后重试...");
-            }
-        });
-    }
 
-    ////the final execute ...
-    ngOnInit(): void {
-        //var defaults = {
-        //    thumbSize: 20,
-        //    slideSpeed: 1500,
-        //    auto: true,
-        //    loop: true
-        //};
-        //$('.orderDetail_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 1, effect: 'updown', cssSpeed: 500, backReverse: true }));
+        if (appService.IsLogin(self.router).isLogin) {
+            $.ajax({
+                url: appBase.DomainApi + "api/Order/1",
+                type: "put",
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify(
+                    {
+                        "appKey": appService.getCookie("appKey"),
+                        "token": appService.getCookie("token"),
+                        "orderUid": self.order.orderUid,
+                        "receiverLoginId": appService.getCookie("loginId"),
+                        "orderStatusId": 4
+                    }),
+                success(data) {
+                    if (data.isSuccess) {
+                        alert("抢单成功~");
+                        //这里可以进行跳转到订单详情页
+
+                        //
+                        self.getOrderButtonIsDisabled = 0;
+                    } else {
+                        if (data.errorCode == 3022) {
+                            alert("手慢一步，订单被别人抢啦~");
+                        } else {
+                            alert("抢单失败，请重试！");
+                        }
+                    }
+                },
+                error(data) {
+                    alert("服务器连接失败!请稍后重试...");
+                }
+            });
+        }
+
+        
+    }
 
     GetOrderByOrderUid(): void {
         var self = this;
@@ -165,10 +159,7 @@ export class OrderDetailComponent implements OnInit {
             });
         } 
         
-
-    }
-
-    ////the final execute ...
+    //the final execute ...
     ngOnInit(): void {
 
         this.GetOrderByOrderUid();//通过OrderUid获取Order信息

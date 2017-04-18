@@ -48,7 +48,7 @@ namespace QX_Frame.WebAPI.Controllers
                     articleViewModel.articleContent = item.articleContent;
                     articleViewModel.publisherUid = item.publisherUid;
                     articleViewModel.publisherInfo = UserController.GetUserAccountInfoByUid(item.publisherUid);
-                    articleViewModel.publishTime = item.publishTime;
+                    articleViewModel.publishTime = item.publishTime.ToDateTimeString_24HourType();
                     articleViewModel.clickCount = item.clickCount;
                     articleViewModel.praiseCount = item.praiseCount;
                     articleViewModel.ArticleCategoryId = item.ArticleCategoryId;
@@ -85,7 +85,7 @@ namespace QX_Frame.WebAPI.Controllers
                 articleViewModel.articleContent = article.articleContent;
                 articleViewModel.publisherUid = article.publisherUid;
                 articleViewModel.publisherInfo = UserController.GetUserAccountInfoByUid(article.publisherUid);
-                articleViewModel.publishTime = article.publishTime;
+                articleViewModel.publishTime = article.publishTime.ToDateTimeString_24HourType();
                 articleViewModel.clickCount = article.clickCount;
                 articleViewModel.praiseCount = article.praiseCount;
                 articleViewModel.ArticleCategoryId = article.ArticleCategoryId;

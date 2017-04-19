@@ -39,7 +39,8 @@ export class AdministratorComponent implements OnInit {
         roleName: '',
         roleDescription: '普通用户'
     }
-
+    //模态框Model
+    model_userInfoModel: UserInfoModel;
     userInfoModelList: UserInfoModel[] = [];
 
     //global
@@ -241,34 +242,34 @@ export class AdministratorComponent implements OnInit {
                 if (data.isSuccess) {
                     self.userInfoModelList = [];
                     for (var i = 0; i < data.data.length; i++) {
-                        self.userInfoModel = new UserInfoModel();
+                        var per_userInfoModel = new UserInfoModel();
 
-                        self.userInfoModel.loginId = data.data[i].loginId;
-                        self.userInfoModel.nickName = data.data[i].nickName;
-                        self.userInfoModel.phone = data.data[i].phone;
-                        self.userInfoModel.position = data.data[i].position;
-                        self.userInfoModel.email = data.data[i].email;
-                        self.userInfoModel.statusId = data.data[i].statusId;
-                        self.userInfoModel.statusName = data.data[i].statusName;
-                        self.userInfoModel.statusDescription = data.data[i].statusDescription;
-                        self.userInfoModel.roleId = data.data[i].roleId;
-                        self.userInfoModel.roleName = data.data[i].roleName;
-                        self.userInfoModel.roleDescription = data.data[i].roleDescription;
+                        per_userInfoModel.loginId = data.data[i].loginId;
+                        per_userInfoModel.nickName = data.data[i].nickName;
+                        per_userInfoModel.phone = data.data[i].phone;
+                        per_userInfoModel.position = data.data[i].position;
+                        per_userInfoModel.email = data.data[i].email;
+                        per_userInfoModel.statusId = data.data[i].statusId;
+                        per_userInfoModel.statusName = data.data[i].statusName;
+                        per_userInfoModel.statusDescription = data.data[i].statusDescription;
+                        per_userInfoModel.roleId = data.data[i].roleId;
+                        per_userInfoModel.roleName = data.data[i].roleName;
+                        per_userInfoModel.roleDescription = data.data[i].roleDescription;
+                        per_userInfoModel
+                        per_userInfoModel.age = data.data[i].age;
+                        per_userInfoModel.sexId = data.data[i].sexId;
+                        per_userInfoModel.birthday = data.data[i].birthday;
+                        per_userInfoModel.bloodTypeId = data.data[i].bloodTypeId;
+                        per_userInfoModel.school = data.data[i].school;
+                        per_userInfoModel.location = data.data[i].location;
+                        per_userInfoModel.company = data.data[i].company;
+                        per_userInfoModel.constellation = data.data[i].constellation;
+                        per_userInfoModel.chineseZodiac = data.data[i].chineseZodiac;
+                        per_userInfoModel.personalizedSignature = data.data[i].personalizedSignature;
+                        per_userInfoModel.personalizedDescription = data.data[i].personalizedDescription;
+                        per_userInfoModel.registerTime = data.data[i].registerTime;
 
-                        self.userInfoModel.age = data.data[i].age;
-                        self.userInfoModel.sexId = data.data[i].sexId;
-                        self.userInfoModel.birthday = data.data[i].birthday;
-                        self.userInfoModel.bloodTypeId = data.data[i].bloodTypeId;
-                        self.userInfoModel.school = data.data[i].school;
-                        self.userInfoModel.location = data.data[i].location;
-                        self.userInfoModel.company = data.data[i].company;
-                        self.userInfoModel.constellation = data.data[i].constellation;
-                        self.userInfoModel.chineseZodiac = data.data[i].chineseZodiac;
-                        self.userInfoModel.personalizedSignature = data.data[i].personalizedSignature;
-                        self.userInfoModel.personalizedDescription = data.data[i].personalizedDescription;
-                        self.userInfoModel.registerTime = data.data[i].registerTime;
-
-                        self.userInfoModelList.push(self.userInfoModel);
+                        self.userInfoModelList.push(per_userInfoModel);
                     }
                 } else {
                     alert(data.msg);
@@ -284,30 +285,29 @@ export class AdministratorComponent implements OnInit {
     GetThisLineUserInfo(i: number): void {
         var self = this;
 
-        self.userInfoModel.loginId = self.userInfoModelList[i].loginId;
-        self.userInfoModel.nickName = self.userInfoModelList[i].nickName;
-        self.userInfoModel.phone = self.userInfoModelList[i].phone;
-        self.userInfoModel.position = self.userInfoModelList[i].position;
-        self.userInfoModel.email = self.userInfoModelList[i].email;
-        self.userInfoModel.statusId = self.userInfoModelList[i].statusId;
-        self.userInfoModel.statusName = self.userInfoModelList[i].statusName;
-        self.userInfoModel.statusDescription = self.userInfoModelList[i].statusDescription;
-        self.userInfoModel.roleId = self.userInfoModelList[i].roleId;
-        self.userInfoModel.roleName = self.userInfoModelList[i].roleName;
-        self.userInfoModel.roleDescription = self.userInfoModelList[i].roleDescription;
-
-        self.userInfoModel.age = self.userInfoModelList[i].age;
-        self.userInfoModel.sexId = self.userInfoModelList[i].sexId;
-        self.userInfoModel.birthday = self.userInfoModelList[i].birthday;
-        self.userInfoModel.bloodTypeId = self.userInfoModelList[i].bloodTypeId;
-        self.userInfoModel.school = self.userInfoModelList[i].school;
-        self.userInfoModel.location = self.userInfoModelList[i].location;
-        self.userInfoModel.company = self.userInfoModelList[i].company;
-        self.userInfoModel.constellation = self.userInfoModelList[i].constellation;
-        self.userInfoModel.chineseZodiac = self.userInfoModelList[i].chineseZodiac;
-        self.userInfoModel.personalizedSignature = self.userInfoModelList[i].personalizedSignature;
-        self.userInfoModel.personalizedDescription = self.userInfoModelList[i].personalizedDescription;
-        self.userInfoModel.registerTime = self.userInfoModelList[i].registerTime;
+        self.model_userInfoModel.loginId = self.userInfoModelList[i].loginId;
+        self.model_userInfoModel.nickName = self.userInfoModelList[i].nickName;
+        self.model_userInfoModel.phone = self.userInfoModelList[i].phone;
+        self.model_userInfoModel.position = self.userInfoModelList[i].position;
+        self.model_userInfoModel.email = self.userInfoModelList[i].email;
+        self.model_userInfoModel.statusId = self.userInfoModelList[i].statusId;
+        self.model_userInfoModel.statusName = self.userInfoModelList[i].statusName;
+        self.model_userInfoModel.statusDescription = self.userInfoModelList[i].statusDescription;
+        self.model_userInfoModel.roleId = self.userInfoModelList[i].roleId;
+        self.model_userInfoModel.roleName = self.userInfoModelList[i].roleName;
+        self.model_userInfoModel.roleDescription = self.userInfoModelList[i].roleDescription;
+        self.model_userInfoModel.age = self.userInfoModelList[i].age;
+        self.model_userInfoModel.sexId = self.userInfoModelList[i].sexId;
+        self.model_userInfoModel.birthday = self.userInfoModelList[i].birthday;
+        self.model_userInfoModel.bloodTypeId = self.userInfoModelList[i].bloodTypeId;
+        self.model_userInfoModel.school = self.userInfoModelList[i].school;
+        self.model_userInfoModel.location = self.userInfoModelList[i].location;
+        self.model_userInfoModel.company = self.userInfoModelList[i].company;
+        self.model_userInfoModel.constellation = self.userInfoModelList[i].constellation;
+        self.model_userInfoModel.chineseZodiac = self.userInfoModelList[i].chineseZodiac;
+        self.model_userInfoModel.personalizedSignature = self.userInfoModelList[i].personalizedSignature;
+        self.model_userInfoModel.personalizedDescription = self.userInfoModelList[i].personalizedDescription;
+        self.model_userInfoModel.registerTime = self.userInfoModelList[i].registerTime;
     }
 
     //保存编辑用户；

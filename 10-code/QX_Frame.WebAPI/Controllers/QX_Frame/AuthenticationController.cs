@@ -31,7 +31,7 @@ namespace QX_Frame.WebAPI.Controllers
                 }).Cast<tb_Authentication>();
                 if (authentication == null)
                 {
-                    throw new Exception_DG("appKey","appKey error,cannot find any info by this appKey", 2004);
+                    throw new Exception_DG("appKey", "appKey error,cannot find any info by this appKey", 2004);
                 }
             }
             return authentication;
@@ -43,9 +43,9 @@ namespace QX_Frame.WebAPI.Controllers
         /// <param name="appKey"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        public static Tuple<Guid,string,long,string,tb_Authentication> GetTokenInfoByAppKeyToken(int? appKey,string token)
+        public static Tuple<Guid, string, long, string, tb_Authentication> GetTokenInfoByAppKeyToken(int? appKey, string token)
         {
-            if (appKey==null)
+            if (appKey == null)
             {
                 throw new Exception_DG("appKey must be provide", 1010);
             }
@@ -57,10 +57,7 @@ namespace QX_Frame.WebAPI.Controllers
             using (var fact = Wcf<AuthenticationService>())
             {
                 var channel = fact.CreateChannel();
-                authentication = channel.QuerySingle(new tb_AuthenticationQueryObject
-                {
-                    QueryCondition = t => t.appkey == appKey
-                }).Cast<tb_Authentication>();
+                authentication = channel.QuerySingle(new tb_AuthenticationQueryObject { QueryCondition = t => t.appkey == appKey }).Cast<tb_Authentication>();
                 if (authentication == null)
                 {
                     throw new Exception_DG("appKey", "appKey error,cannot find any info by this appKey", 2004);
@@ -73,7 +70,7 @@ namespace QX_Frame.WebAPI.Controllers
             string loginId = tokenArray[1];
             long expireTimeStamp = tokenArray[2].ToInt64();
             string tokenSign = tokenArray[3];
-            return new Tuple<Guid, string, long, string,tb_Authentication>(uid,loginId,expireTimeStamp,tokenSign,authentication);
+            return new Tuple<Guid, string, long, string, tb_Authentication>(uid, loginId, expireTimeStamp, tokenSign, authentication);
         }
     }
 }

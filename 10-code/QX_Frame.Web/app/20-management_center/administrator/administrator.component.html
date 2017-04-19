@@ -73,7 +73,7 @@
                     <td class="th120">{{item.roleDescription}}</td>
 
                     <td class="operate">
-                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit" (click)="GetThisLineUserInfo({{index}})">编辑{{index}}</a>
+                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit" (click)="GetThisLineUserInfo(index)">编辑{{index}}</a>
                     </td>
                 </tr>
 
@@ -166,39 +166,39 @@
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">用户ID :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.loginId" name="loginId" readonly>
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.loginId" name="loginId" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">昵  称 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.nickName" name="nickName">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.nickName" name="nickName">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">电  话 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.phone" name="phone">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.phone" name="phone">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">地  址 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.location" name="position">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.location" name="position">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">邮  箱 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.email" name="email">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.email" name="email">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">用户状态:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" (change)="selectOnchang($event.target.value)" [(ngModel)]="userInfoModel.statusDescription">
+                            <select class="form-control" (change)="selectOnchang($event.target.value)" [(ngModel)]="model_userInfoModel.statusDescription" name="ustatus">
                                 <!--<option *ngFor="let org of orgs" [ngValue]="org"></option>-->
-                                <option value="{{userInfoModel.statusId}}" selected="selected">{{userInfoModel.statusDescription}}</option>
+                                <option value="{{model_userInfoModel.statusId}}" selected="selected">{{model_userInfoModel.statusDescription}}</option>
                                 <option value="0">正常</option>
                                 <option value="1">停用</option>
                                 <option value="2">冻结</option>
@@ -209,8 +209,8 @@
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">用户角色:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" (change)="selectOnchang($event.target.value)" [(ngModel)]="userInfoModel.roleDescription">
-                                <option value="{{userInfoModel.roleId}}" selected="selected">{{userInfoModel.roleDescription}}</option>
+                            <select class="form-control" (change)="selectOnchang($event.target.value)" [(ngModel)]="model_userInfoModel.roleDescription" name="ustat">
+                                <option value="{{model_userInfoModel.roleId}}" selected="selected">{{model_userInfoModel.roleDescription}}</option>
                                 <option value="">普通用户</option>
                                 <option value="">管理员</option>
                             </select>

@@ -46,6 +46,8 @@ export class ManagementComponent implements OnInit {
 
     headerImageData: any;
 
+
+
     //global
     navStatus: number = appBase.AppObject.centerStatus; //-1未登录；
     loginId: string = appService.getCookie("loginId");

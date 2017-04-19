@@ -8,12 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../00-AQX_Frame.services/appService");
-const management_model_1 = require("./management.model");
-const router_1 = require("@angular/router");
+const core_1 = require('@angular/core');
+const appBase_1 = require('../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../00-AQX_Frame.services/appService');
+const management_model_1 = require('./management.model');
+const router_1 = require('@angular/router');
 let ManagementComponent = class ManagementComponent {
     constructor(_router) {
         //模型绑定;
@@ -268,22 +267,8 @@ let ManagementComponent = class ManagementComponent {
                         per_myorderModel.address = data.data[i].address;
                         per_myorderModel.phone = data.data[i].phone;
                         per_myorderModel.imageUrls = data.data[i].imageUrls;
-                        //per_myorderModel.firstImg = self.AjaxImages(data.data[i].imageUrls.split('&'));
                         //add-获取订单首张图片
                         per_myorderModel.firstImg = "../../Images/03-login/portraint01.png";
-                        //var imgArr = data.data[i].imageUrls.split('&');
-                        //if (imgArr.length > 0) {
-                        //    $.ajax({
-                        //        url: appBase.DomainApi + 'api/Files/' + imgArr[0],
-                        //        type: "GET",
-                        //        success: function (imgData) {
-                        //            self.myorderImgArr.push(imgData);
-                        //        },
-                        //        error: function (imgData) {
-                        //            //alert("获取订单图片失败~");
-                        //        }
-                        //    });
-                        //}
                         (function (arg) {
                             var imgArr = data.data[i].imageUrls.split('&');
                             var nullCount = 0;
@@ -296,7 +281,6 @@ let ManagementComponent = class ManagementComponent {
                                     type: "GET",
                                     success: function (imgData) {
                                         self.myorderImgArr.push(imgData);
-                                        //if (arg < data.data.length - nullCount) return;
                                         if (self.myorderImgArr[arg - 1] != undefined) {
                                             self.myorderModelList[arg - 1].firstImg = self.myorderImgArr[arg - 1];
                                         }
@@ -311,7 +295,6 @@ let ManagementComponent = class ManagementComponent {
                                 });
                             }
                         })(i);
-                        //per_myorderModel.firstImg = self.myorderImgArr[i];
                         self.myorderModelList.push(per_myorderModel);
                     }
                 }
@@ -324,29 +307,7 @@ let ManagementComponent = class ManagementComponent {
             }
         });
     }
-    //bindImg(): void {
-    //    var self = this;
-    //    for (var i = 0; i < self.myorderImgArr.length;i++) {
-    //        self.myorderModelList[i].firstImg = self.myorderImgArr[i];
-    //    }
-    //}
-    AjaxImages(imgArr) {
-        var result = "";
-        if (imgArr.length > 0) {
-            $.ajax({
-                url: appBase_1.appBase.DomainApi + 'api/Files/' + imgArr[0],
-                type: "GET",
-                success: function (imgData) {
-                    result = imgData;
-                },
-                error: function (imgData) {
-                    //alert("获取订单图片失败~");
-                }
-            });
-        }
-        return result;
-    }
-    ////我的发布
+    //我的发布
     //the final execute ...
     ngOnInit() {
         //左菜单 焦点 判断 显示；
@@ -362,8 +323,8 @@ ManagementComponent = __decorate([
         templateUrl: 'app/20-management_center/management.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
+    }), 
+    __metadata('design:paramtypes', [router_1.Router])
 ], ManagementComponent);
 exports.ManagementComponent = ManagementComponent;
 //# sourceMappingURL=management.component.js.map

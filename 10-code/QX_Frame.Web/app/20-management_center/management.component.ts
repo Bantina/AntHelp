@@ -2,6 +2,7 @@
 import { appBase } from '../00-AQX_Frame.commons/appBase';
 import { appService } from '../00-AQX_Frame.services/appService';
 import { UserInfoModel } from './management.model';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'managementCenter',
@@ -11,6 +12,10 @@ import { UserInfoModel } from './management.model';
 })
 
 export class ManagementComponent implements OnInit {
+    router: Router;
+    constructor(_router: Router) {
+        this.router = _router;
+    }
     //模型绑定;
     userInfoModel: UserInfoModel = {
         loginId: appService.getCookie('loginId'),
@@ -216,6 +221,9 @@ export class ManagementComponent implements OnInit {
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
+    }
+    toMyorderDetail(): void {
+        this.router.navigateByUrl('/myorderDetail');//跳转未登录页面；
     }
 
     ////我的发布

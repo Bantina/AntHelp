@@ -8,11 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const appBase_1 = require('../00-AQX_Frame.commons/appBase');
-const appService_1 = require('../00-AQX_Frame.services/appService');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../00-AQX_Frame.services/appService");
+const router_1 = require("@angular/router");
 let ManagementComponent = class ManagementComponent {
-    constructor() {
+    constructor(_router) {
         //模型绑定;
         this.userInfoModel = {
             loginId: appService_1.appService.getCookie('loginId'),
@@ -42,6 +44,7 @@ let ManagementComponent = class ManagementComponent {
         //上传头像
         this.uploadFlag = false;
         this.uploadErrorMsg = "";
+        this.router = _router;
     }
     //判断是否登录
     isLoginFlag() {
@@ -212,6 +215,9 @@ let ManagementComponent = class ManagementComponent {
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
     }
+    toMyorderDetail() {
+        this.router.navigateByUrl('/myorderDetail'); //跳转未登录页面；
+    }
     ////我的发布
     //the final execute ...
     ngOnInit() {
@@ -227,8 +233,8 @@ ManagementComponent = __decorate([
         templateUrl: 'app/20-management_center/management.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    }), 
-    __metadata('design:paramtypes', [])
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
 ], ManagementComponent);
 exports.ManagementComponent = ManagementComponent;
 //# sourceMappingURL=management.component.js.map

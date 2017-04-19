@@ -42,6 +42,8 @@ namespace QX_Frame.Data.QueryObject
 				func = func.And(t => true);
 			}
 
+            func = func.And(t => t.statusLevel == this.statusLevel);
+
 			return func;
 		}
 	}

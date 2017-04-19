@@ -316,11 +316,6 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\20-management_center\administrator\allAccount\" />
-    <Folder Include="app\20-management_center\administrator\allComplaint\" />
-    <Folder Include="app\20-management_center\administrator\allOrder\" />
-    <Folder Include="app\20-management_center\personal\myAccount\" />
-    <Folder Include="app\20-management_center\personal\myPublish\" />
     <Folder Include="app\30-order\payment\" />
     <Folder Include="app\70-community\73-information\" />
     <Folder Include="Files\" />

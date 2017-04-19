@@ -26,4 +26,30 @@
         public roleDescription: string;
 }
 
+export class MyorderModel {
+    public orderUid: number;
+    public publisherUid: number;
+    public publisherInfo: string;
+    public publishTime: string;
+    public orderDescription: string;
+    public orderCategoryId: string;
+    public orderCategory: string;
+    public receiverUid: number;
+    public receiverInfo: string;
+    public receiveTime: string;
+    public orderStatusId: string;
+    public orderStatus: string;
+    public orderValue: string;
+    public allowVoucher: string;
+    public voucherMax: string;
+    public evaluateUid: number;
+    public orderEvaluate: string;
+    public address: string;
+    public phone: string;
+    public imageUrls: string;
+
+    //add
+    public firstImg: string;
+}
+
 

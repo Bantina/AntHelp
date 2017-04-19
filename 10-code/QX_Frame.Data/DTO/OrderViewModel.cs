@@ -47,7 +47,7 @@ namespace QX_Frame.Data.DTO
         // 
         public String address { get; set; }
         // 
-        public Int32 phone { get; set; }
+        public int phone { get; set; }
         // 
         public String imageUrls { get; set; }
 

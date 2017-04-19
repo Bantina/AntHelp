@@ -28,21 +28,21 @@ export class PublishComponent implements OnInit {
 
     order: Order =
     {
-       orderUid:"",
-       publisherUid:"",
-       publishTime:"",
-       orderDescription:"",
-       orderCategoryId:"10",
-       receiverUid:"",
-       receiveTime:"",
-       orderStatusId:"",
-       orderValue:"0",
-       allowVoucher:"",
-       voucherMax:"",
-       evaluateUid:"",
-       address:"",
-       phone: "",
-       imageUrls:""
+        orderUid: "",
+        publisherUid: "",
+        publishTime: "",
+        orderDescription: "",
+        orderCategoryId: "10",
+        receiverUid: "",
+        receiveTime: "",
+        orderStatusId: "",
+        orderValue: "0",
+        allowVoucher: "",
+        voucherMax: "",
+        evaluateUid: "",
+        address: "",
+        phone: "",
+        imageUrls: ""
     }
 
     //publish_kinds: any = {
@@ -58,11 +58,11 @@ export class PublishComponent implements OnInit {
     publish_kinds: any = {
         publish: [
             {
-                id:2,
+                id: 2,
                 imgSrc: "../../../Images/30-order/octopus.png",
                 kindName: "代购代帮"
             }, {
-                id:3,
+                id: 3,
                 imgSrc: "../../../Images/30-order/octopus.png",
                 kindName: "代理销售"
             }, {
@@ -70,7 +70,7 @@ export class PublishComponent implements OnInit {
                 imgSrc: "../../../Images/30-order/octopus.png",
                 kindName: "维修装修"
             }, {
-                id:5 ,
+                id: 5,
                 imgSrc: "../../../Images/30-order/octopus.png",
                 kindName: "家政服务"
             }, {
@@ -122,8 +122,8 @@ export class PublishComponent implements OnInit {
         $('#publish_upload').click();
     }
     publishUpload(event): void {
-       var self = this;
-       var formData = new FormData((<HTMLFormElement[]><any>$("#uploadForm"))[0]);
+        var self = this;
+        var formData = new FormData((<HTMLFormElement[]><any>$("#uploadForm"))[0]);
         $.ajax({
             url: appBase.DomainApi + 'api/Files',
             type: 'POST',
@@ -140,7 +140,6 @@ export class PublishComponent implements OnInit {
                 else {
                     self.uploadFlag = "true";
 
-                    self.imageNameList = [];
                     for (var j in json.data) {
                         self.imageNameList.push(json.data[j]);
                     }
@@ -158,12 +157,12 @@ export class PublishComponent implements OnInit {
                             }
                         });
                     }
-                }                
+                }
             },
             error: function (json) {
                 self.uploadFlag = "false";
             }
-        }); 
+        });
     }
 
     publishAid(): void {
@@ -181,18 +180,22 @@ export class PublishComponent implements OnInit {
         var self = this;
 
         for (var i = 0; i < self.imageNameList.length; i++) {
-            if (i == self.imageNameList.length - 1) {
+            if (self.imageNameList.length == 1) {
                 self.order.imageUrls += self.imageNameList[i];
             } else {
-                self.order.imageUrls += self.imageNameList[i]+"&";
+                if (i == 0) {
+                    self.order.imageUrls += self.imageNameList[i];
+                } else {
+                    self.order.imageUrls += ("&" + self.imageNameList[i]);
+                }
             }
         }
 
-        if (self.order.orderCategoryId=="") {
+        if (self.order.orderCategoryId == "") {
             alert("orderCategoryId cannot be null!");
-        } else if (self.order.orderValue=="") {
+        } else if (self.order.orderValue == "") {
             alert("orderValue cannot be null!");
-        } else if (self.order.phone=="") {
+        } else if (self.order.phone == "") {
 
             alert("phone number cannot be null!");
         }
@@ -206,7 +209,7 @@ export class PublishComponent implements OnInit {
                 {
                     "appKey": appService.getCookie("appKey"),
                     "token": appService.getCookie("token"),
-                    "publisherLoginId":  appService.getCookie("loginId"),
+                    "publisherLoginId": appService.getCookie("loginId"),
                     "orderDescription": self.order.orderDescription,
                     "orderCategoryId": self.order.orderCategoryId,
                     "orderValue": self.order.orderValue,
@@ -217,6 +220,7 @@ export class PublishComponent implements OnInit {
             success(data) {
                 if (data.isSuccess) {
                     alert("订单下发成功~");
+                    self.imageNameList = [];
                 } else {
                     alert(data.msg);
                 }

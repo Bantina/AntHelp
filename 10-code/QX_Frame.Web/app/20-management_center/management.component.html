@@ -98,14 +98,15 @@
                     </div>
                 </div>
             </div>
-            <div class="myorderBlock col-md-3 col-md-offset-1">
+            <div class="myorderBlock col-md-3 col-md-offset-1"  *ngFor="let item of myorderModelList">
                 <div class="myorderTitle">
-                    <p><strong>订单编号：</strong>2132412432</p>
+                    <p><strong>订单编号：</strong>{{item.orderUid}}</p>
                 </div>
                 <div class="myorderBody">
-                    <img src="../../Images/03-login/portraint01.png" />
+                    <!--<img *ngIf="item.firstImg==''" src="../../Images/03-login/portraint01.png" />-->
+                    <img src="{{item.firstImg}}" />
                     <div class="myorderBody_des">
-                        <h4>fhdoeuriutroho</h4>
+                        <h4>{{item.orderDescription}}</h4>
                         <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="" (click)="toMyorderDetail()">
                         <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
                     </div>

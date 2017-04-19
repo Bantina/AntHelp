@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 const core_1 = require('@angular/core');
 const appBase_1 = require('../00-AQX_Frame.commons/appBase');
 const appService_1 = require('../00-AQX_Frame.services/appService');
+const management_model_1 = require('./management.model');
 const router_1 = require('@angular/router');
 let ManagementComponent = class ManagementComponent {
     constructor(_router) {
@@ -41,6 +42,9 @@ let ManagementComponent = class ManagementComponent {
             roleName: '',
             roleDescription: '普通用户'
         };
+        //个人订单信息列表
+        this.myorderModelList = [];
+        this.myorderImgArr = [];
         //global
         this.navStatus = appBase_1.appBase.AppObject.centerStatus; //-1未登录；
         this.loginId = appService_1.appService.getCookie("loginId");
@@ -219,7 +223,127 @@ let ManagementComponent = class ManagementComponent {
         $targetP.addClass("on");
     }
     toMyorderDetail() {
-        this.router.navigateByUrl('/myorderDetail'); //跳转未登录页面；
+        this.router.navigateByUrl('/myorderDetail'); //跳转订单详情页面；
+    }
+    //get MyorderList List 获取个人订单列表;
+    GetMyorderList() {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Order",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                //"id": orderUid,
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "orderDescription": "",
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.myorderModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        var per_myorderModel = new management_model_1.MyorderModel();
+                        per_myorderModel.orderUid = data.data[i].orderUid;
+                        per_myorderModel.publisherUid = data.data[i].nickNamepublisherUid;
+                        per_myorderModel.publisherInfo = data.data[i].publisherInfo;
+                        per_myorderModel.publishTime = data.data[i].publishTime;
+                        per_myorderModel.orderDescription = data.data[i].orderDescription;
+                        per_myorderModel.orderCategoryId = data.data[i].orderCategoryId;
+                        per_myorderModel.orderCategory = data.data[i].orderCategory;
+                        per_myorderModel.receiverUid = data.data[i].receiverUid;
+                        per_myorderModel.receiverInfo = data.data[i].receiverInfo;
+                        per_myorderModel.receiveTime = data.data[i].receiveTime;
+                        per_myorderModel.orderStatusId = data.data[i].orderStatusId;
+                        per_myorderModel.orderStatus = data.data[i].orderStatus;
+                        per_myorderModel.orderValue = data.data[i].sexIdorderValue;
+                        per_myorderModel.allowVoucher = data.data[i].allowVoucher;
+                        per_myorderModel.voucherMax = data.data[i].voucherMax;
+                        per_myorderModel.evaluateUid = data.data[i].evaluateUid;
+                        per_myorderModel.orderEvaluate = data.data[i].orderEvaluate;
+                        per_myorderModel.address = data.data[i].address;
+                        per_myorderModel.phone = data.data[i].phone;
+                        per_myorderModel.imageUrls = data.data[i].imageUrls;
+                        //per_myorderModel.firstImg = self.AjaxImages(data.data[i].imageUrls.split('&'));
+                        //add-获取订单首张图片
+                        per_myorderModel.firstImg = "../../Images/03-login/portraint01.png";
+                        //var imgArr = data.data[i].imageUrls.split('&');
+                        //if (imgArr.length > 0) {
+                        //    $.ajax({
+                        //        url: appBase.DomainApi + 'api/Files/' + imgArr[0],
+                        //        type: "GET",
+                        //        success: function (imgData) {
+                        //            self.myorderImgArr.push(imgData);
+                        //        },
+                        //        error: function (imgData) {
+                        //            //alert("获取订单图片失败~");
+                        //        }
+                        //    });
+                        //}
+                        (function (arg) {
+                            var imgArr = data.data[i].imageUrls.split('&');
+                            var nullCount = 0;
+                            if (imgArr[0].length < 2) {
+                                nullCount++;
+                            }
+                            else {
+                                $.ajax({
+                                    url: appBase_1.appBase.DomainApi + 'api/Files/' + imgArr[0],
+                                    type: "GET",
+                                    success: function (imgData) {
+                                        self.myorderImgArr.push(imgData);
+                                        //if (arg < data.data.length - nullCount) return;
+                                        if (self.myorderImgArr[arg - 1] != undefined) {
+                                            self.myorderModelList[arg - 1].firstImg = self.myorderImgArr[arg - 1];
+                                        }
+                                        for (var k = 0; k < self.myorderModelList.length; k++) {
+                                            if (self.myorderModelList[k].firstImg == undefined) {
+                                                self.myorderModelList[k].firstImg = "../../Images/03-login/portraint01.png";
+                                            }
+                                        }
+                                    },
+                                    error: function (imgData) {
+                                    }
+                                });
+                            }
+                        })(i);
+                        //per_myorderModel.firstImg = self.myorderImgArr[i];
+                        self.myorderModelList.push(per_myorderModel);
+                    }
+                }
+                else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+    //bindImg(): void {
+    //    var self = this;
+    //    for (var i = 0; i < self.myorderImgArr.length;i++) {
+    //        self.myorderModelList[i].firstImg = self.myorderImgArr[i];
+    //    }
+    //}
+    AjaxImages(imgArr) {
+        var result = "";
+        if (imgArr.length > 0) {
+            $.ajax({
+                url: appBase_1.appBase.DomainApi + 'api/Files/' + imgArr[0],
+                type: "GET",
+                success: function (imgData) {
+                    result = imgData;
+                },
+                error: function (imgData) {
+                    //alert("获取订单图片失败~");
+                }
+            });
+        }
+        return result;
     }
     ////我的发布
     //the final execute ...
@@ -228,6 +352,7 @@ let ManagementComponent = class ManagementComponent {
         $(".manageCenterUl li").eq(appBase_1.appBase.AppObject.centerStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
+        this.GetMyorderList();
     }
 };
 ManagementComponent = __decorate([

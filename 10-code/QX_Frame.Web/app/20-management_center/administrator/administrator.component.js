@@ -5,11 +5,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../../00-AQX_Frame.services/appService");
-const management_model_1 = require("./../management.model");
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+const core_1 = require('@angular/core');
+const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../../00-AQX_Frame.services/appService');
+const management_model_1 = require('./../management.model');
 let AdministratorComponent = class AdministratorComponent {
     constructor() {
         //模型绑定;
@@ -39,7 +41,35 @@ let AdministratorComponent = class AdministratorComponent {
             roleName: '',
             roleDescription: '普通用户'
         };
+        //用户信息列表
         this.userInfoModelList = [];
+        //模态框Model
+        this.model_userInfoModel = {
+            loginId: "",
+            nickName: '',
+            headImageUrl: "",
+            email: "",
+            phone: "",
+            position: "",
+            age: 21,
+            sexId: 0,
+            birthday: "",
+            bloodTypeId: 0,
+            school: '',
+            location: "",
+            company: '',
+            constellation: '',
+            chineseZodiac: '',
+            personalizedSignature: '',
+            personalizedDescription: '',
+            registerTime: '',
+            statusId: 0,
+            statusName: '',
+            statusDescription: '正常',
+            roleId: 0,
+            roleName: '',
+            roleDescription: '普通用户'
+        };
         //global
         this.navStatus = appBase_1.appBase.AppObject.administratorStatus; //-1未登录；
         this.loginId = appService_1.appService.getCookie("loginId");
@@ -371,7 +401,8 @@ AdministratorComponent = __decorate([
         templateUrl: 'app/20-management_center/administrator/administrator.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    })
+    }), 
+    __metadata('design:paramtypes', [])
 ], AdministratorComponent);
 exports.AdministratorComponent = AdministratorComponent;
 //# sourceMappingURL=administrator.component.js.map

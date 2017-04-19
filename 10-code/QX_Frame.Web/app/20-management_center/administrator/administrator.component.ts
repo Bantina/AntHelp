@@ -39,9 +39,35 @@ export class AdministratorComponent implements OnInit {
         roleName: '',
         roleDescription: '普通用户'
     }
-    //模态框Model
-    model_userInfoModel: UserInfoModel;
+    //用户信息列表
     userInfoModelList: UserInfoModel[] = [];
+    //模态框Model
+    model_userInfoModel: UserInfoModel = {
+        loginId: "",
+        nickName: '',
+        headImageUrl: "",
+        email: "",
+        phone: "",
+        position: "",
+        age: 21,
+        sexId: 0,
+        birthday: "",
+        bloodTypeId: 0,
+        school: '',
+        location: "",
+        company: '',
+        constellation: '',
+        chineseZodiac: '',
+        personalizedSignature: '',
+        personalizedDescription: '',
+        registerTime: '',
+        statusId: 0,
+        statusName: '',
+        statusDescription: '正常',
+        roleId: 0,
+        roleName: '',
+        roleDescription: '普通用户'
+    }
 
     //global
     navStatus: number = appBase.AppObject.administratorStatus; //-1未登录；

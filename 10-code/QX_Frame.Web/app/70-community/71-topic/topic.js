@@ -5,28 +5,37 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../../00-AQX_Frame.services/appService");
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+const core_1 = require('@angular/core');
+const topic_model_1 = require('./topic.model');
+const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../../00-AQX_Frame.services/appService');
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 let Topic = class Topic {
-    //注入器的两种：NgModule/Component(只在当前及子组件中生效)
     constructor() {
-        this.articleList = {
-            appKey: 1001,
-            token: "",
-            articleTitle: "人名",
-            pageIndex: 1,
-            pageSize: 3,
-            isDesc: false
+        this.article = {
+            articleUid: "",
+            articleTitle: "",
+            articleContent: "",
+            loginId: "",
+            nickName: "",
+            publishTime: "",
+            clickCount: 0,
+            praiseCount: 0,
+            ArticleCategoryId: "",
+            articleCategoryName: "",
+            imagesNameList: ""
         };
+        this.articleList = [];
     }
     // 点击回到顶部按钮
     toTop() {
         $('html, body').animate({ scrollTop: 0 }, 1000); //回到顶端
     }
     GetTopic() {
+        var self = this;
         $.ajax({
             url: appBase_1.appBase.DomainApi + "api/Article",
             type: "get",
@@ -42,7 +51,23 @@ let Topic = class Topic {
             },
             success(data) {
                 if (data.isSuccess) {
-                    alert(data.data);
+                    var dataList = data.data;
+                    self.articleList = [];
+                    for (var i = 0; i < dataList.length; i++) {
+                        var articleObject = new topic_model_1.Article();
+                        articleObject.articleUid = dataList[i].articleUid;
+                        articleObject.articleTitle = dataList[i].articleTitle;
+                        articleObject.articleContent = dataList[i].articleContent;
+                        articleObject.loginId = dataList[i].loginId;
+                        articleObject.nickName = dataList[i].publisherInfo.nickName;
+                        articleObject.publishTime = dataList[i].publishTime;
+                        articleObject.clickCount = dataList[i].clickCount;
+                        articleObject.praiseCount = dataList[i].praiseCount;
+                        articleObject.ArticleCategoryId = dataList[i].ArticleCategoryId;
+                        articleObject.articleCategoryName = dataList[i].articleCategory.CategoryName;
+                        articleObject.imagesNameList = dataList[i].imagesNameList;
+                        self.articleList.push(articleObject);
+                    }
                 }
                 else {
                     alert(data.msg);
@@ -82,7 +107,8 @@ Topic = __decorate([
         templateUrl: 'app/70-community/71-topic/topic.html',
         styleUrls: ['app/70-community/71-topic/topic.css'],
         providers: [] //元数据中申明依赖
-    })
+    }), 
+    __metadata('design:paramtypes', [])
 ], Topic);
 exports.Topic = Topic;
 //# sourceMappingURL=topic.js.map

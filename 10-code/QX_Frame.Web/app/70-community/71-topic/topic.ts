@@ -1,9 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { ArticleList } from './topic.model';
+import { ArticleList, Article } from './topic.model';
 import { appBase } from '../../00-AQX_Frame.commons/appBase';
 import { appService } from '../../00-AQX_Frame.services/appService';
 
-declare function escape(s: string): string;
 //注入器的两种：NgModule/Component(只在当前及子组件中生效)
 @Component({
     selector: 'topic',
@@ -14,16 +13,21 @@ declare function escape(s: string): string;
 
 export class Topic implements OnInit {
 
-    articleList: ArticleList = {
-        appKey: 1001,
-        token: "",
-        articleTitle: "人名",
-        pageIndex: 1,
-        pageSize: 3,
-        isDesc: false
+    article: Article = {
+        articleUid: "",
+        articleTitle: "",
+        articleContent: "",
+        loginId: "",
+        nickName: "",
+        publishTime: "",
+        clickCount: 0,
+        praiseCount: 0,
+        ArticleCategoryId: "",
+        articleCategoryName: "",
+        imagesNameList: ""
     };
 
-
+    articleList: Article[] = [];
 
     // 点击回到顶部按钮
     toTop(): void {
@@ -31,6 +35,7 @@ export class Topic implements OnInit {
     }
 
     GetTopic(): void {
+        var  self = this;
         $.ajax({
             url: appBase.DomainApi + "api/Article",
             type: "get",
@@ -47,8 +52,23 @@ export class Topic implements OnInit {
             },
             success(data) {
                 if (data.isSuccess) {
-                    alert(data.data)
-
+                    var dataList = data.data;
+                    self.articleList = [];
+                    for (var i = 0; i < dataList.length; i++) {
+                      var articleObject = new Article();
+                       articleObject.articleUid = dataList[i].articleUid;
+                       articleObject.articleTitle = dataList[i].articleTitle;
+                       articleObject.articleContent = dataList[i].articleContent;
+                       articleObject.loginId = dataList[i].loginId;
+                       articleObject.nickName = dataList[i].publisherInfo.nickName;
+                       articleObject.publishTime = dataList[i].publishTime;
+                       articleObject.clickCount = dataList[i].clickCount;
+                       articleObject.praiseCount = dataList[i].praiseCount;
+                       articleObject.ArticleCategoryId = dataList[i].ArticleCategoryId;
+                       articleObject.articleCategoryName = dataList[i].articleCategory.CategoryName;
+                       articleObject.imagesNameList = dataList[i].imagesNameList;
+                       self.articleList.push(articleObject);
+                    }
                 } else {
                     alert(data.msg);
                 }

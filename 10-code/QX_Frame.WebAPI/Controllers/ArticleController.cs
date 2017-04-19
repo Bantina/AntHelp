@@ -6,6 +6,7 @@ using QX_Frame.Data.Service;
 using QX_Frame.Data.Service.QX_Frame;
 using QX_Frame.Helper_DG_Framework;
 using QX_Frame.Helper_DG_Framework.Extends;
+using QX_Frame.WebAPI.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -22,6 +23,8 @@ namespace QX_Frame.WebAPI.Controllers
     /// <summary>
     ///class ArticleController
     /// </summary>
+
+    [LimitsAttribute_DG(RoleLevel = 0)]
     public class ArticleController : WebApiControllerBase
     {
         // GET: api/Article articleCategoryId=0 query all

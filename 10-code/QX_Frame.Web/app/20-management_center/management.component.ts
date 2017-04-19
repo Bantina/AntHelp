@@ -39,6 +39,8 @@ export class ManagementComponent implements OnInit {
         personalizedDescription: ''
     }
 
+    headerImageData: any;
+
     //global
     navStatus: number = appBase.AppObject.centerStatus; //-1未登录；
     loginId: string = appService.getCookie("loginId");
@@ -104,8 +106,7 @@ export class ManagementComponent implements OnInit {
                             url: appBase.DomainApi + 'api/Files/' + json.data[i],
                             type: "GET",
                             success: function (data) {
-                                //$(".prePotrait img").eq(0).attr('src', data);
-                                self.userInfoModel.headImageUrl = data;
+                                self.headerImageData = data;
                                 $(".j_usr_img").attr('src', data);
                             },
                             error: function (data) {
@@ -152,7 +153,7 @@ export class ManagementComponent implements OnInit {
                                 type: "GET",
                                 success: function (data) {
                                     //$(".prePotrait img").eq(0).attr('src', data);
-                                    self.userInfoModel.headImageUrl = data;
+                                    self.headerImageData= data;
                                     $(".j_usr_img").attr('src', data);
                                 },
                                 error: function (data) {

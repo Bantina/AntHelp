@@ -51,6 +51,7 @@ THE SOFTWARE.
 
 */
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Md5 {
     constructor() {
         this._state = new Int32Array(4);

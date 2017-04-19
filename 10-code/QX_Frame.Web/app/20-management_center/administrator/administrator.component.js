@@ -5,13 +5,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-const core_1 = require('@angular/core');
-const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
-const appService_1 = require('../../00-AQX_Frame.services/appService');
-const management_model_1 = require('./../management.model');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../../00-AQX_Frame.services/appService");
+const management_model_1 = require("./../management.model");
 let AdministratorComponent = class AdministratorComponent {
     constructor() {
         //模型绑定;
@@ -70,6 +68,8 @@ let AdministratorComponent = class AdministratorComponent {
             roleName: '',
             roleDescription: '普通用户'
         };
+        //searchLoginId
+        this.searchLoginId = "";
         //global
         this.navStatus = appBase_1.appBase.AppObject.administratorStatus; //-1未登录；
         this.loginId = appService_1.appService.getCookie("loginId");
@@ -237,12 +237,30 @@ let AdministratorComponent = class AdministratorComponent {
     //    });
     //}
     ////账户管理
-    selectOnchang(obj) {
-        alert(obj);
-        return obj;
+    model_userStatusModel_selectOnchange(obj) {
+        //userstatus select
+        var userModelStatus = obj;
+        this.model_userInfoModel.statusId = Number(userModelStatus);
+    }
+    model_userRoleModel_selectOnchange(obj) {
+        //userrole select
+        var userModelRole = obj;
+        this.model_userInfoModel.roleId = Number(userModelRole);
+    }
+    //SearchByLoginId
+    SearchByLoginId() {
+        this.GetUserInfoListByCondition(-1, -1);
     }
     //get userAccountInfo List
-    GetUserInfoList() {
+    tabBoxClick_UserCursor(event, roleId, statusId) {
+        var $targetP = $(event.target || event.srcElement).parent();
+        $targetP.siblings().removeClass("on");
+        $targetP.addClass("on");
+        //get list
+        this.GetUserInfoListByCondition(roleId, statusId);
+    }
+    //get user Info List by condition roleId=-1 query all,status = -1 query all
+    GetUserInfoListByCondition(roleId, statusId) {
         var self = this;
         $.ajax({
             url: appBase_1.appBase.DomainApi + "api/User",
@@ -253,7 +271,9 @@ let AdministratorComponent = class AdministratorComponent {
                 //"id": orderUid,
                 "appKey": appService_1.appService.getCookie("appKey"),
                 "token": appService_1.appService.getCookie("token"),
-                "loginId": "",
+                "roleId": roleId,
+                "statusId": statusId,
+                "loginId": self.searchLoginId,
                 "pageIndex": 1,
                 "pageSize": 10,
                 "isDesc": true
@@ -274,7 +294,6 @@ let AdministratorComponent = class AdministratorComponent {
                         per_userInfoModel.roleId = data.data[i].roleId;
                         per_userInfoModel.roleName = data.data[i].roleName;
                         per_userInfoModel.roleDescription = data.data[i].roleDescription;
-                        per_userInfoModel;
                         per_userInfoModel.age = data.data[i].age;
                         per_userInfoModel.sexId = data.data[i].sexId;
                         per_userInfoModel.birthday = data.data[i].birthday;
@@ -295,6 +314,7 @@ let AdministratorComponent = class AdministratorComponent {
                 }
             },
             error(data) {
+                alert(JSON.stringify(data));
                 alert("服务器连接失败，请稍后重试...");
             }
         });
@@ -325,6 +345,11 @@ let AdministratorComponent = class AdministratorComponent {
         self.model_userInfoModel.personalizedSignature = self.userInfoModelList[i].personalizedSignature;
         self.model_userInfoModel.personalizedDescription = self.userInfoModelList[i].personalizedDescription;
         self.model_userInfoModel.registerTime = self.userInfoModelList[i].registerTime;
+        //userstatus/role select
+        var userModelStatus = (document.getElementById("userModelStatus"));
+        userModelStatus.selectedIndex = self.userInfoModelList[i].statusId;
+        var userModelStatus = (document.getElementById("userModelRole"));
+        userModelStatus.selectedIndex = self.userInfoModelList[i].roleId;
     }
     //保存编辑用户；
     EditUser() {
@@ -335,48 +360,80 @@ let AdministratorComponent = class AdministratorComponent {
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify({
-                //"id": orderUid,
                 "appKey": appService_1.appService.getCookie("appKey"),
                 "token": appService_1.appService.getCookie("token"),
-                "loginId": self.userInfoModel.loginId,
+                "loginId": self.model_userInfoModel.loginId,
+                "nickName": self.model_userInfoModel.nickName,
+                "phone": self.model_userInfoModel.phone,
+                "headImageUrl": self.model_userInfoModel.headImageUrl,
+                "age": self.model_userInfoModel.age,
+                "sexId": self.model_userInfoModel.sexId,
+                "birthday": self.model_userInfoModel.birthday,
+                "bloodTypeId": self.model_userInfoModel.bloodTypeId,
+                "position": self.model_userInfoModel.position,
+                "school": self.model_userInfoModel.school,
+                "location": self.model_userInfoModel.location,
+                "company": self.model_userInfoModel.company,
+                "constellation": self.model_userInfoModel.constellation,
+                "chineseZodiac": self.model_userInfoModel.chineseZodiac,
+                "personalizedSignature": self.model_userInfoModel.personalizedSignature,
+                "personalizedDescription": self.model_userInfoModel.personalizedDescription
             }),
             success(data) {
                 if (data.isSuccess) {
-                    self.userInfoModelList = [];
-                    for (var i = 0; i < data.data.length; i++) {
-                        self.userInfoModel = new management_model_1.UserInfoModel();
-                        self.userInfoModel.loginId = data.data[i].loginId;
-                        self.userInfoModel.nickName = data.data[i].nickName;
-                        self.userInfoModel.phone = data.data[i].phone;
-                        self.userInfoModel.position = data.data[i].position;
-                        self.userInfoModel.email = data.data[i].email;
-                        self.userInfoModel.statusId = data.data[i].statusId;
-                        self.userInfoModel.statusName = data.data[i].statusName;
-                        self.userInfoModel.statusDescription = data.data[i].statusDescription;
-                        self.userInfoModel.roleId = data.data[i].roleId;
-                        self.userInfoModel.roleName = data.data[i].roleName;
-                        self.userInfoModel.roleDescription = data.data[i].roleDescription;
-                        self.userInfoModel.age = data.data[i].age;
-                        self.userInfoModel.sexId = data.data[i].sexId;
-                        self.userInfoModel.birthday = data.data[i].birthday;
-                        self.userInfoModel.bloodTypeId = data.data[i].bloodTypeId;
-                        self.userInfoModel.school = data.data[i].school;
-                        self.userInfoModel.location = data.data[i].location;
-                        self.userInfoModel.company = data.data[i].company;
-                        self.userInfoModel.constellation = data.data[i].constellation;
-                        self.userInfoModel.chineseZodiac = data.data[i].chineseZodiac;
-                        self.userInfoModel.personalizedSignature = data.data[i].personalizedSignature;
-                        self.userInfoModel.personalizedDescription = data.data[i].personalizedDescription;
-                        self.userInfoModel.registerTime = data.data[i].registerTime;
-                        self.userInfoModelList.push(self.userInfoModel);
-                    }
+                    $.ajax({
+                        url: appBase_1.appBase.DomainApi + "api/UserStatus",
+                        type: "put",
+                        dataType: "json",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                            "appKey": appService_1.appService.getCookie("appKey"),
+                            "token": appService_1.appService.getCookie("token"),
+                            "loginId": self.model_userInfoModel.loginId,
+                            "statusLevel": self.model_userInfoModel.statusId
+                        }),
+                        success(data) {
+                            if (data.isSuccess) {
+                                $.ajax({
+                                    url: appBase_1.appBase.DomainApi + "api/UserRole",
+                                    type: "put",
+                                    dataType: "json",
+                                    contentType: "application/json; charset=UTF-8",
+                                    data: JSON.stringify({
+                                        "appKey": appService_1.appService.getCookie("appKey"),
+                                        "token": appService_1.appService.getCookie("token"),
+                                        "loginId": self.model_userInfoModel.loginId,
+                                        "roleLevel": self.model_userInfoModel.roleId
+                                    }),
+                                    success(data) {
+                                        if (data.isSuccess) {
+                                            alert("用户信息修改成功~");
+                                            self.GetUserInfoListByCondition(-1, -1);
+                                        }
+                                        else {
+                                            alert("该用户 用户角色修改失败，请稍后重试~");
+                                        }
+                                    },
+                                    error(data) {
+                                        alert("该用户 用户角色修改失败，请稍后重试~");
+                                    }
+                                });
+                            }
+                            else {
+                                alert("该用户 用户状态修改失败，请稍后重试~");
+                            }
+                        },
+                        error(data) {
+                            alert("该用户 用户状态修改失败，请稍后重试~");
+                        }
+                    });
                 }
                 else {
-                    alert(data.msg);
+                    alert("该用户信息修改失败，请稍后重试~");
                 }
             },
             error(data) {
-                alert("服务器连接失败，请稍后重试...");
+                alert("该用户信息修改失败，请稍后重试~");
             }
         });
     }
@@ -392,7 +449,7 @@ let AdministratorComponent = class AdministratorComponent {
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
         //获取用户列表
-        this.GetUserInfoList();
+        this.GetUserInfoListByCondition(-1, -1);
     }
 };
 AdministratorComponent = __decorate([
@@ -401,8 +458,7 @@ AdministratorComponent = __decorate([
         templateUrl: 'app/20-management_center/administrator/administrator.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    }), 
-    __metadata('design:paramtypes', [])
+    })
 ], AdministratorComponent);
 exports.AdministratorComponent = AdministratorComponent;
 //# sourceMappingURL=administrator.component.js.map

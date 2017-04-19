@@ -20,70 +20,179 @@ namespace QX_Frame.WebAPI.Controllers
      * */
     public class UserController : WebApiControllerBase
     {
-        // GET: api/User
+        // GET: api/User  roleId = -1 query all  statusId = -1 query all
         [LimitsAttribute_DG(RoleLevel = 1)]
-        public IHttpActionResult Get(string loginId, int pageIndex, int pageSize, bool isDesc)
+        public IHttpActionResult Get(int roleId, int statusId, string loginId, int pageIndex, int pageSize, bool isDesc)
         {
-            tb_UserAccountInfoQueryObject queryObject = new tb_UserAccountInfoQueryObject();
+            List<UserAccountInfoViewModel> userAccountInfoViewModelList = new List<UserAccountInfoViewModel>();
+            int count = 0;
 
-            queryObject.loginId = loginId;
-            queryObject.PageIndex = pageIndex;
-            queryObject.PageSize = pageSize;
-            queryObject.IsDESC = isDesc;
-
-            using (var fact = Wcf<UserAccountService>())
+            if (roleId != -1)
             {
-                var channel = fact.CreateChannel();
-
-                int count;
-                List<tb_UserAccountInfo> userAccountInfoList = channel.QueryAllPaging<tb_UserAccountInfo, string>(queryObject, t => t.loginId).Cast<List<tb_UserAccountInfo>>(out count);
-                List<UserAccountInfoViewModel> userAccountInfoViewModelList = new List<UserAccountInfoViewModel>();
-                foreach (var item in userAccountInfoList)
+                using (var fact_role = Wcf<UserRoleService>())
                 {
-                    UserAccountInfoViewModel userAccountInfoViewModel = new UserAccountInfoViewModel();
-                    userAccountInfoViewModel.uid = item.uid;
-                    userAccountInfoViewModel.loginId = item.loginId;
-                    userAccountInfoViewModel.nickName = item.nickName;
-                    userAccountInfoViewModel.email = item.email;
-                    userAccountInfoViewModel.phone = item.phone;
-                    userAccountInfoViewModel.headImageUrl = item.headImageUrl;
-                    userAccountInfoViewModel.age = item.age;
-                    userAccountInfoViewModel.sexId = item.tb_Sex.sexId;
-                    userAccountInfoViewModel.sexName = item.tb_Sex.sexName.Trim();
-                    userAccountInfoViewModel.birthday = item.birthday?.ToDateTimeString_24HourType();
-                    userAccountInfoViewModel.bloodTypeId = item.tb_BloodType.bloodTypeId;
-                    userAccountInfoViewModel.bloodTypeName = item.tb_BloodType.bloodTypeName.Trim();
-                    userAccountInfoViewModel.position = item.position;
-                    userAccountInfoViewModel.school = item.school;
-                    userAccountInfoViewModel.location = item.location;
-                    userAccountInfoViewModel.company = item.company;
-                    userAccountInfoViewModel.constellation = item.constellation;
-                    userAccountInfoViewModel.chineseZodiac = item.chineseZodiac;
-                    userAccountInfoViewModel.personalizedSignature = item.personalizedSignature;
-                    userAccountInfoViewModel.personalizedDescription = item.personalizedDescription;
-                    userAccountInfoViewModel.registerTime = item.registerTime?.ToDateTimeString_24HourType();
+                    var channel_role = fact_role.CreateChannel();
+                    List<tb_UserRole> userRoleList = channel_role.QueryAllPaging<tb_UserRole, int>(new tb_UserRoleQueryObject { PageIndex = pageIndex, PageSize = pageSize, IsDESC = isDesc, roleLevel = roleId }, t => t.roleLevel).Cast<List<tb_UserRole>>(out count);
 
-                    using (var fact_status = Wcf<UserStatusService>())
+                    foreach (var item in userRoleList)
                     {
-                        var channel_status = fact_status.CreateChannel();
-                        tb_UserStatus userStatus = channel_status.QuerySingle(new tb_UserStatusQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserStatus>();
-                        userAccountInfoViewModel.statusId = userStatus.statusLevel;
-                        userAccountInfoViewModel.statusName = userStatus.tb_UserStatusAttribute.statusName;
-                        userAccountInfoViewModel.statusDescription = userStatus.tb_UserStatusAttribute.description;
-                    }
-                    using (var fact_role = Wcf<UserRoleService>())
-                    {
-                        var channel_role = fact_role.CreateChannel();
-                        tb_UserRole userRole = channel_role.QuerySingle(new tb_UserRoleQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserRole>();
-                        userAccountInfoViewModel.roleId = userRole.roleLevel;
-                        userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
-                        userAccountInfoViewModel.roleDescription = userRole.tb_UserRoleAttribute.description;
-                    }
+                        UserAccountInfoViewModel userAccountInfoViewModel = new Data.DTO.UserAccountInfoViewModel();
+                        userAccountInfoViewModel.roleId = item.roleLevel;
+                        userAccountInfoViewModel.roleName = item.tb_UserRoleAttribute.roleName;
+                        userAccountInfoViewModel.roleDescription = item.tb_UserRoleAttribute.description;
 
-                    userAccountInfoViewModelList.Add(userAccountInfoViewModel);
+                        using (var fact_user=Wcf<UserAccountInfoService>())
+                        {
+                            var channel_user = fact_user.CreateChannel();
+                            tb_UserAccountInfo userAccount = channel_user.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserAccountInfo>();
+                            userAccountInfoViewModel.uid = userAccount.uid;
+                            userAccountInfoViewModel.loginId = userAccount.loginId;
+                            userAccountInfoViewModel.nickName = userAccount.nickName;
+                            userAccountInfoViewModel.email = userAccount.email;
+                            userAccountInfoViewModel.phone = userAccount.phone;
+                            userAccountInfoViewModel.headImageUrl = userAccount.headImageUrl;
+                            userAccountInfoViewModel.age = userAccount.age;
+                            userAccountInfoViewModel.sexId = userAccount.tb_Sex.sexId;
+                            userAccountInfoViewModel.sexName = userAccount.tb_Sex.sexName.Trim();
+                            userAccountInfoViewModel.birthday = userAccount.birthday?.ToDateTimeString_24HourType();
+                            userAccountInfoViewModel.bloodTypeId = userAccount.tb_BloodType.bloodTypeId;
+                            userAccountInfoViewModel.bloodTypeName = userAccount.tb_BloodType.bloodTypeName.Trim();
+                            userAccountInfoViewModel.position = userAccount.position;
+                            userAccountInfoViewModel.school = userAccount.school;
+                            userAccountInfoViewModel.location = userAccount.location;
+                            userAccountInfoViewModel.company = userAccount.company;
+                            userAccountInfoViewModel.constellation = userAccount.constellation;
+                            userAccountInfoViewModel.chineseZodiac = userAccount.chineseZodiac;
+                            userAccountInfoViewModel.personalizedSignature = userAccount.personalizedSignature;
+                            userAccountInfoViewModel.personalizedDescription = userAccount.personalizedDescription;
+                            userAccountInfoViewModel.registerTime = userAccount.registerTime?.ToDateTimeString_24HourType();
+                        }
+
+                        using (var fact_status = Wcf<UserStatusService>())
+                        {
+                            var channel_status = fact_status.CreateChannel();
+                            tb_UserStatus userStatus = channel_status.QuerySingle(new tb_UserStatusQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserStatus>();
+                            userAccountInfoViewModel.statusId = userStatus.statusLevel;
+                            userAccountInfoViewModel.statusName = userStatus.tb_UserStatusAttribute.statusName;
+                            userAccountInfoViewModel.statusDescription = userStatus.tb_UserStatusAttribute.description;
+                        }
+                        userAccountInfoViewModelList.Add(userAccountInfoViewModel);
+                    }
                 }
-                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user info must paging by pageindex=num,pagesize=num,isdesc=1/0", userAccountInfoViewModelList, count));
             }
+            else if (statusId != -1)
+            {
+                using (var fact_status = Wcf<UserStatusService>())
+                {
+                    var channel_status = fact_status.CreateChannel();
+                    List<tb_UserStatus> userStatusList = channel_status.QueryAllPaging<tb_UserStatus, int>(new tb_UserStatusQueryObject { PageIndex = pageIndex, PageSize = pageSize, IsDESC = isDesc, statusLevel = statusId }, t => t.statusLevel).Cast<List<tb_UserStatus>>(out count);
+
+                    foreach (var item in userStatusList)
+                    {
+                        UserAccountInfoViewModel userAccountInfoViewModel = new Data.DTO.UserAccountInfoViewModel();
+                        userAccountInfoViewModel.statusId = item.statusLevel;
+                        userAccountInfoViewModel.statusName = item.tb_UserStatusAttribute.statusName;
+                        userAccountInfoViewModel.statusDescription = item.tb_UserStatusAttribute.description;
+
+                        using (var fact_user = Wcf<UserAccountInfoService>())
+                        {
+                            var channel_user = fact_user.CreateChannel();
+                            tb_UserAccountInfo userAccount = channel_user.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserAccountInfo>();
+                            userAccountInfoViewModel.uid = userAccount.uid;
+                            userAccountInfoViewModel.loginId = userAccount.loginId;
+                            userAccountInfoViewModel.nickName = userAccount.nickName;
+                            userAccountInfoViewModel.email = userAccount.email;
+                            userAccountInfoViewModel.phone = userAccount.phone;
+                            userAccountInfoViewModel.headImageUrl = userAccount.headImageUrl;
+                            userAccountInfoViewModel.age = userAccount.age;
+                            userAccountInfoViewModel.sexId = userAccount.tb_Sex.sexId;
+                            userAccountInfoViewModel.sexName = userAccount.tb_Sex.sexName.Trim();
+                            userAccountInfoViewModel.birthday = userAccount.birthday?.ToDateTimeString_24HourType();
+                            userAccountInfoViewModel.bloodTypeId = userAccount.tb_BloodType.bloodTypeId;
+                            userAccountInfoViewModel.bloodTypeName = userAccount.tb_BloodType.bloodTypeName.Trim();
+                            userAccountInfoViewModel.position = userAccount.position;
+                            userAccountInfoViewModel.school = userAccount.school;
+                            userAccountInfoViewModel.location = userAccount.location;
+                            userAccountInfoViewModel.company = userAccount.company;
+                            userAccountInfoViewModel.constellation = userAccount.constellation;
+                            userAccountInfoViewModel.chineseZodiac = userAccount.chineseZodiac;
+                            userAccountInfoViewModel.personalizedSignature = userAccount.personalizedSignature;
+                            userAccountInfoViewModel.personalizedDescription = userAccount.personalizedDescription;
+                            userAccountInfoViewModel.registerTime = userAccount.registerTime?.ToDateTimeString_24HourType();
+                        }
+
+                        using (var fact_role = Wcf<UserRoleService>())
+                        {
+                            var channel_role = fact_role.CreateChannel();
+                            tb_UserRole userRole = channel_role.QuerySingle(new tb_UserRoleQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserRole>();
+                            userAccountInfoViewModel.roleId = userRole.roleLevel;
+                            userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
+                            userAccountInfoViewModel.roleDescription = userRole.tb_UserRoleAttribute.description;
+                        }
+                        userAccountInfoViewModelList.Add(userAccountInfoViewModel);
+                    }
+                }
+            }
+            else
+            {
+                using (var fact = Wcf<UserAccountService>())
+                {
+                    var channel = fact.CreateChannel();
+
+                    tb_UserAccountInfoQueryObject queryObject = new tb_UserAccountInfoQueryObject();
+                    queryObject.loginId = loginId;
+                    queryObject.PageIndex = pageIndex;
+                    queryObject.PageSize = pageSize;
+                    queryObject.IsDESC = isDesc;
+
+                    List<tb_UserAccountInfo> userAccountInfoList = channel.QueryAllPaging<tb_UserAccountInfo, string>(queryObject, t => t.loginId).Cast<List<tb_UserAccountInfo>>(out count);
+                    foreach (var item in userAccountInfoList)
+                    {
+                        UserAccountInfoViewModel userAccountInfoViewModel = new UserAccountInfoViewModel();
+                        userAccountInfoViewModel.uid = item.uid;
+                        userAccountInfoViewModel.loginId = item.loginId;
+                        userAccountInfoViewModel.nickName = item.nickName;
+                        userAccountInfoViewModel.email = item.email;
+                        userAccountInfoViewModel.phone = item.phone;
+                        userAccountInfoViewModel.headImageUrl = item.headImageUrl;
+                        userAccountInfoViewModel.age = item.age;
+                        userAccountInfoViewModel.sexId = item.tb_Sex.sexId;
+                        userAccountInfoViewModel.sexName = item.tb_Sex.sexName.Trim();
+                        userAccountInfoViewModel.birthday = item.birthday?.ToDateTimeString_24HourType();
+                        userAccountInfoViewModel.bloodTypeId = item.tb_BloodType.bloodTypeId;
+                        userAccountInfoViewModel.bloodTypeName = item.tb_BloodType.bloodTypeName.Trim();
+                        userAccountInfoViewModel.position = item.position;
+                        userAccountInfoViewModel.school = item.school;
+                        userAccountInfoViewModel.location = item.location;
+                        userAccountInfoViewModel.company = item.company;
+                        userAccountInfoViewModel.constellation = item.constellation;
+                        userAccountInfoViewModel.chineseZodiac = item.chineseZodiac;
+                        userAccountInfoViewModel.personalizedSignature = item.personalizedSignature;
+                        userAccountInfoViewModel.personalizedDescription = item.personalizedDescription;
+                        userAccountInfoViewModel.registerTime = item.registerTime?.ToDateTimeString_24HourType();
+
+                        using (var fact_status = Wcf<UserStatusService>())
+                        {
+                            var channel_status = fact_status.CreateChannel();
+                            tb_UserStatus userStatus = channel_status.QuerySingle(new tb_UserStatusQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserStatus>();
+                            userAccountInfoViewModel.statusId = userStatus.statusLevel;
+                            userAccountInfoViewModel.statusName = userStatus.tb_UserStatusAttribute.statusName;
+                            userAccountInfoViewModel.statusDescription = userStatus.tb_UserStatusAttribute.description;
+                        }
+                        using (var fact_role = Wcf<UserRoleService>())
+                        {
+                            var channel_role = fact_role.CreateChannel();
+                            tb_UserRole userRole = channel_role.QuerySingle(new tb_UserRoleQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserRole>();
+                            userAccountInfoViewModel.roleId = userRole.roleLevel;
+                            userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
+                            userAccountInfoViewModel.roleDescription = userRole.tb_UserRoleAttribute.description;
+                        }
+
+                        userAccountInfoViewModelList.Add(userAccountInfoViewModel);
+                    }
+                }
+            }
+            return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user info must paging by pageindex=num,pagesize=num,isdesc=1/0", userAccountInfoViewModelList, count));
         }
 
         // GET: api/User/id
@@ -298,9 +407,12 @@ namespace QX_Frame.WebAPI.Controllers
             Guid uid = tokenInfo.Item1;
             string currentLoginId = tokenInfo.Item2;
             tb_UserRole userRole = UserRoleController.GetUserRoleByUid(uid);
-            if (!currentLoginId.Equals(loginId))
+            if (!(userRole.roleLevel > opt_AccountRoleLevel.USER.ToInt()))
             {
-                throw new Exception_DG("do not have enough of permission", 3020);
+                if (!currentLoginId.Equals(loginId))
+                {
+                    throw new Exception_DG("do not have enough of permission", 3020);
+                }
             }
             //--------------
 

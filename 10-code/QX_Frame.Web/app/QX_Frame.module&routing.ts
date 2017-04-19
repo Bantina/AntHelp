@@ -19,6 +19,7 @@ import { OrderDetailComponent } from './30-order/detail/detail.component';
 import { ManagementComponent } from './20-management_center/management.component';
 import { AdministratorComponent } from './20-management_center/administrator/administrator.component';
 import { BlackLoginComponent } from './03-login/blackLogin/blackLogin.component';
+import { MyorderDetailComponent } from './20-management_center/personal/myOrder/myorderDetail.component';
 
  /*bantina add end*/
 
@@ -78,6 +79,10 @@ const appRoutes: Routes = [
     {
         path: 'blackLogin',
         component: BlackLoginComponent
+    }, 
+     {
+        path: 'myorderDetail',
+        component: MyorderDetailComponent
     },
      /*bantina add end*/
 
@@ -123,6 +128,7 @@ const appComponents: any[] = [
     ManagementComponent,
     AdministratorComponent,
     BlackLoginComponent,
+    MyorderDetailComponent,
     /*bantina add end*/
 
     /*zyq add start*/

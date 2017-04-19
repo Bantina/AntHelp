@@ -15,10 +15,12 @@ export class Article
    public articleUid: string;
    public articleTitle: string;
    public articleContent: string;
-   public publisherUid: string;
+   public loginId: string;
+   public nickName: string;
    public publishTime: string;
    public clickCount: number;
    public praiseCount: number;
    public ArticleCategoryId: string;
-   public imagesUrls: string;
+   public articleCategoryName: string;
+   public imagesNameList: string;
 }

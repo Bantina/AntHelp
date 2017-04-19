@@ -1,32 +1,47 @@
-﻿//export class UserAccountViewModel {
-//    public loginId: string;
-//    public email: string;
-//    public pwd: string;
-//}
-export class UserAccountViewModel {
+﻿// 文章列表
+export class ArticleList {
     constructor(
-        public loginId: string,
-        public email: string,
-        public pwd: string,
-        public emailHtmlRoute: string
+        public appKey: number,
+        public token: string,
+        public articleTitle: string,
+        public pageIndex: number,
+        public pageSize: number,
+        public isDesc: boolean
     ) { }
 }
-
-//login
-export class LoginUserModel {
-    constructor(
-        public loginId: string,
-        public pwd: string
-    ) { }
-}
-
-export class UserAccountModel {
+// 文章
+export class Article {
+    public articleUid: string;
+    public articleTitle: string;
+    public articleContent: string;
     public loginId: string;
-    public pwd: string;
+    public nickName: string;
+    public publishTime: string;
+    public clickCount: number;
+    public praiseCount: number;
+    public ArticleCategoryId: string;
+    public articleCategoryName: string;
+    public imagesNameList: string;
 }
-export class UserAccountInfoModel {
-    public loginId: string;
+// 用户
+export class UserInfoModel {
     public email: string;
-    ///...
+    public appKey: number;
+    public token: string;
+    public loginId: string;
+    public nickName: string;
+    public phone: string;
+    public headImageUrl: string;
+    public age: number;
+    public sexId: number;
+    public birthday: string;
+    public bloodTypeId: number;
+    public position: string;
+    public school: string;
+    public location: string;
+    public company: string;
+    public constellation: string;
+    public chineseZodiac: string;
+    public personalizedSignature: string;
+    public personalizedDescription: string;
 }
-

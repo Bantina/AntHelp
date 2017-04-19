@@ -87,9 +87,9 @@
             <div class="cfix tabBox">
                 <ul class="l cfix tabs">
                     <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">全部</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">进行中</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">已完成</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">已揭晓</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">待完成</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">待支付</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">已结束</a></li>
                 </ul>
                 <div class="r filter cfix">
                     <span class="txt l">筛选：</span>
@@ -98,19 +98,15 @@
                     </div>
                 </div>
             </div>
-            <div class="myorderBlock">
+            <div class="myorderBlock col-md-3 col-md-offset-1">
                 <div class="myorderTitle">
                     <p><strong>订单编号：</strong>2132412432</p>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 myorderImg">
-                        <img src="../../Images/03-login/portraint01.png" />
-                    </div>
-                    <div class="col-md-1">
-                        <p>接单人：</p>
-                    </div>
-                    <div class="col-md-3 btn">
-                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
+                <div class="myorderBody">
+                    <img src="../../Images/03-login/portraint01.png" />
+                    <div class="myorderBody_des">
+                        <h4>fhdoeuriutroho</h4>
+                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="" (click)="toMyorderDetail()">
                         <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
                     </div>
                 </div>
@@ -125,9 +121,10 @@
             <div class="cfix tabBox">
                 <ul class="l cfix tabs">
                     <li class="on"><a href="javascript:void(0);">全部</a></li>
-                    <li class=""><a href="javascript:void(0);">进行中</a></li>
-                    <li class=""><a href="javascript:void(0);">即将揭晓</a></li>
-                    <li class=""><a href="javascript:void(0);">已揭晓</a></li>
+                    <li class=""><a href="javascript:void(0);">待接单</a></li>
+                    <li class=""><a href="javascript:void(0);">待支付</a></li>
+                    <li class=""><a href="javascript:void(0);">待确认</a></li>
+                    <li class=""><a href="javascript:void(0);">已结束</a></li>
                 </ul>
                 <div class="r filter cfix">
                     <span class="txt l">筛选：</span>

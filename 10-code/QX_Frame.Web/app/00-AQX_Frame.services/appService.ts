@@ -100,6 +100,7 @@ export class appService {
                 }
             });
         }
+        loginResult.isLogin = true;
         return loginResult;
     }
 

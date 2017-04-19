@@ -1,0 +1,44 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/* myorderDetail css*/
+.myorderDetail_C{
+	width:900px;
+    margin:0 auto;
+	border:1px solid #e2e2e2;
+    overflow: hidden;
+}
+
+.myorderDetail_T{
+    width:900px;
+    margin:150px auto 0 auto;
+}
+.myorderDetail_T_title,.myorderDetail_T_text{
+    font-size:16px;
+    color:#444;
+    overflow:hidden;
+}
+.myorderDetail_people{
+	border:1px solid #e2e2e2;
+}
+.myorderDetail_title,.myorderDetail_text{
+	font-size:16px;
+    margin:5px 0;
+}
+.myorderDetail_F{
+    width:900px;
+    margin:0 auto;
+}
+.myorderDetail_F_btn{
+  height:30px;
+  line-height:30px;
+  font-size:16px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin: 30px 15px;
+  padding:0 30px;
+}
+.myorderDetail_F_btn:hover,.myorderDetail_F_btn:focus {
+    background-color: #ef5048;
+}

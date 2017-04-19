@@ -21,7 +21,6 @@ namespace QX_Frame.Data.Entities
         [StringLength(200)]
         public string orderDescription { get; set; }
         [ForeignKey("tb_OrderCategory")]
-
         public int orderCategoryId { get; set; }
 
         public Guid receiverUid { get; set; }
@@ -45,6 +44,7 @@ namespace QX_Frame.Data.Entities
 
         [StringLength(500)]
         public string imageUrls { get; set; }
+
         //解决json循环引用问题
         [JsonIgnore]
         public virtual tb_OrderEvaluate tb_OrderEvaluate { get; set; }

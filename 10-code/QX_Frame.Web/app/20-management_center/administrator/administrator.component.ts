@@ -11,6 +11,7 @@ import { UserInfoModel } from './../management.model';
 })
 
 export class AdministratorComponent implements OnInit {
+
     //模型绑定;
     userInfoModel: UserInfoModel = {
         loginId: appService.getCookie('loginId'),
@@ -18,21 +19,28 @@ export class AdministratorComponent implements OnInit {
         headImageUrl: "../../Images/20-management/user_default_img.png",
         email: "4527875@foxmail.com",
         phone: "18254688788",
-        position: "天津市西青区",
-        appKey: Number(appService.getCookie('appKey')),
-        token: appService.getCookie('token'),
+        position: "",
         age: 21,
         sexId: 0,
         birthday: '2017-04-16',
         bloodTypeId: 0,
         school: '',
-        location: '',
+        location: '天津市西青区',
         company: '',
         constellation: '',
         chineseZodiac: '',
         personalizedSignature: '',
-        personalizedDescription: ''
+        personalizedDescription: '',
+        registerTime: '',
+        statusId: 0,
+        statusName: '',
+        statusDescription: '正常',
+        roleId: 0,
+        roleName: '',
+        roleDescription: '普通用户'
     }
+
+    userInfoModelList: UserInfoModel[] = [];
 
     //global
     navStatus: number = appBase.AppObject.administratorStatus; //-1未登录；
@@ -210,8 +218,154 @@ export class AdministratorComponent implements OnInit {
         alert(obj);
         return obj;
     }
-    //编辑用户；
+
+    //get userAccountInfo List
+    GetUserInfoList(): void {
+        var self = this;
+
+        $.ajax({
+            url: appBase.DomainApi + "api/User",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                //"id": orderUid,
+                "appKey": appService.getCookie("appKey"),
+                "token": appService.getCookie("token"),
+                "loginId": "",
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.userInfoModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        self.userInfoModel = new UserInfoModel();
+
+                        self.userInfoModel.loginId = data.data[i].loginId;
+                        self.userInfoModel.nickName = data.data[i].nickName;
+                        self.userInfoModel.phone = data.data[i].phone;
+                        self.userInfoModel.position = data.data[i].position;
+                        self.userInfoModel.email = data.data[i].email;
+                        self.userInfoModel.statusId = data.data[i].statusId;
+                        self.userInfoModel.statusName = data.data[i].statusName;
+                        self.userInfoModel.statusDescription = data.data[i].statusDescription;
+                        self.userInfoModel.roleId = data.data[i].roleId;
+                        self.userInfoModel.roleName = data.data[i].roleName;
+                        self.userInfoModel.roleDescription = data.data[i].roleDescription;
+
+                        self.userInfoModel.age = data.data[i].age;
+                        self.userInfoModel.sexId = data.data[i].sexId;
+                        self.userInfoModel.birthday = data.data[i].birthday;
+                        self.userInfoModel.bloodTypeId = data.data[i].bloodTypeId;
+                        self.userInfoModel.school = data.data[i].school;
+                        self.userInfoModel.location = data.data[i].location;
+                        self.userInfoModel.company = data.data[i].company;
+                        self.userInfoModel.constellation = data.data[i].constellation;
+                        self.userInfoModel.chineseZodiac = data.data[i].chineseZodiac;
+                        self.userInfoModel.personalizedSignature = data.data[i].personalizedSignature;
+                        self.userInfoModel.personalizedDescription = data.data[i].personalizedDescription;
+                        self.userInfoModel.registerTime = data.data[i].registerTime;
+
+                        self.userInfoModelList.push(self.userInfoModel);
+                    }
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+
+    //点编辑的a标签事件，把本行的信息获取出来
+    GetThisLineUserInfo(i: number): void {
+        var self = this;
+
+        self.userInfoModel.loginId = self.userInfoModelList[i].loginId;
+        self.userInfoModel.nickName = self.userInfoModelList[i].nickName;
+        self.userInfoModel.phone = self.userInfoModelList[i].phone;
+        self.userInfoModel.position = self.userInfoModelList[i].position;
+        self.userInfoModel.email = self.userInfoModelList[i].email;
+        self.userInfoModel.statusId = self.userInfoModelList[i].statusId;
+        self.userInfoModel.statusName = self.userInfoModelList[i].statusName;
+        self.userInfoModel.statusDescription = self.userInfoModelList[i].statusDescription;
+        self.userInfoModel.roleId = self.userInfoModelList[i].roleId;
+        self.userInfoModel.roleName = self.userInfoModelList[i].roleName;
+        self.userInfoModel.roleDescription = self.userInfoModelList[i].roleDescription;
+
+        self.userInfoModel.age = self.userInfoModelList[i].age;
+        self.userInfoModel.sexId = self.userInfoModelList[i].sexId;
+        self.userInfoModel.birthday = self.userInfoModelList[i].birthday;
+        self.userInfoModel.bloodTypeId = self.userInfoModelList[i].bloodTypeId;
+        self.userInfoModel.school = self.userInfoModelList[i].school;
+        self.userInfoModel.location = self.userInfoModelList[i].location;
+        self.userInfoModel.company = self.userInfoModelList[i].company;
+        self.userInfoModel.constellation = self.userInfoModelList[i].constellation;
+        self.userInfoModel.chineseZodiac = self.userInfoModelList[i].chineseZodiac;
+        self.userInfoModel.personalizedSignature = self.userInfoModelList[i].personalizedSignature;
+        self.userInfoModel.personalizedDescription = self.userInfoModelList[i].personalizedDescription;
+        self.userInfoModel.registerTime = self.userInfoModelList[i].registerTime;
+    }
+
+    //保存编辑用户；
     EditUser(): void {
+        var self = this;
+
+        $.ajax({
+            url: appBase.DomainApi + "api/User",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                //"id": orderUid,
+                "appKey": appService.getCookie("appKey"),
+                "token": appService.getCookie("token"),
+                "loginId": self.userInfoModel.loginId,
+            }),
+            success(data) {
+                if (data.isSuccess) {
+                    self.userInfoModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        self.userInfoModel = new UserInfoModel();
+
+                        self.userInfoModel.loginId = data.data[i].loginId;
+                        self.userInfoModel.nickName = data.data[i].nickName;
+                        self.userInfoModel.phone = data.data[i].phone;
+                        self.userInfoModel.position = data.data[i].position;
+                        self.userInfoModel.email = data.data[i].email;
+                        self.userInfoModel.statusId = data.data[i].statusId;
+                        self.userInfoModel.statusName = data.data[i].statusName;
+                        self.userInfoModel.statusDescription = data.data[i].statusDescription;
+                        self.userInfoModel.roleId = data.data[i].roleId;
+                        self.userInfoModel.roleName = data.data[i].roleName;
+                        self.userInfoModel.roleDescription = data.data[i].roleDescription;
+
+                        self.userInfoModel.age = data.data[i].age;
+                        self.userInfoModel.sexId = data.data[i].sexId;
+                        self.userInfoModel.birthday = data.data[i].birthday;
+                        self.userInfoModel.bloodTypeId = data.data[i].bloodTypeId;
+                        self.userInfoModel.school = data.data[i].school;
+                        self.userInfoModel.location = data.data[i].location;
+                        self.userInfoModel.company = data.data[i].company;
+                        self.userInfoModel.constellation = data.data[i].constellation;
+                        self.userInfoModel.chineseZodiac = data.data[i].chineseZodiac;
+                        self.userInfoModel.personalizedSignature = data.data[i].personalizedSignature;
+                        self.userInfoModel.personalizedDescription = data.data[i].personalizedDescription;
+                        self.userInfoModel.registerTime = data.data[i].registerTime;
+
+                        self.userInfoModelList.push(self.userInfoModel);
+                    }
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
 
     }
     //删除用户；
@@ -229,6 +383,7 @@ export class AdministratorComponent implements OnInit {
         $(".manageCenterUl li").eq(appBase.AppObject.administratorStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
-
+        //获取用户列表
+        this.GetUserInfoList();
     }
 }

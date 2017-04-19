@@ -21,7 +21,7 @@ namespace QX_Frame.WebAPI.Controllers
     public class UserController : WebApiControllerBase
     {
         // GET: api/User
-        [LimitsAttribute_DG(RoleLevel = 0)]
+        [LimitsAttribute_DG(RoleLevel = 1)]
         public IHttpActionResult Get(string loginId, int pageIndex, int pageSize, bool isDesc)
         {
             tb_UserAccountInfoQueryObject queryObject = new tb_UserAccountInfoQueryObject();
@@ -50,7 +50,7 @@ namespace QX_Frame.WebAPI.Controllers
                     userAccountInfoViewModel.age = item.age;
                     userAccountInfoViewModel.sexId = item.tb_Sex.sexId;
                     userAccountInfoViewModel.sexName = item.tb_Sex.sexName.Trim();
-                    userAccountInfoViewModel.birthday = item.birthday;
+                    userAccountInfoViewModel.birthday = item.birthday?.ToDateTimeString_24HourType();
                     userAccountInfoViewModel.bloodTypeId = item.tb_BloodType.bloodTypeId;
                     userAccountInfoViewModel.bloodTypeName = item.tb_BloodType.bloodTypeName.Trim();
                     userAccountInfoViewModel.position = item.position;
@@ -61,21 +61,23 @@ namespace QX_Frame.WebAPI.Controllers
                     userAccountInfoViewModel.chineseZodiac = item.chineseZodiac;
                     userAccountInfoViewModel.personalizedSignature = item.personalizedSignature;
                     userAccountInfoViewModel.personalizedDescription = item.personalizedDescription;
-                    userAccountInfoViewModel.registerTime = item.registerTime;
+                    userAccountInfoViewModel.registerTime = item.registerTime?.ToDateTimeString_24HourType();
 
-                    using (var fact_status=Wcf<UserStatusService>())
+                    using (var fact_status = Wcf<UserStatusService>())
                     {
                         var channel_status = fact_status.CreateChannel();
                         tb_UserStatus userStatus = channel_status.QuerySingle(new tb_UserStatusQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserStatus>();
                         userAccountInfoViewModel.statusId = userStatus.statusLevel;
                         userAccountInfoViewModel.statusName = userStatus.tb_UserStatusAttribute.statusName;
+                        userAccountInfoViewModel.statusDescription = userStatus.tb_UserStatusAttribute.description;
                     }
-                    using (var fact_role=Wcf<UserRoleService>())
+                    using (var fact_role = Wcf<UserRoleService>())
                     {
                         var channel_role = fact_role.CreateChannel();
                         tb_UserRole userRole = channel_role.QuerySingle(new tb_UserRoleQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserRole>();
                         userAccountInfoViewModel.roleId = userRole.roleLevel;
                         userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
+                        userAccountInfoViewModel.roleDescription = userRole.tb_UserRoleAttribute.description;
                     }
 
                     userAccountInfoViewModelList.Add(userAccountInfoViewModel);
@@ -122,7 +124,7 @@ namespace QX_Frame.WebAPI.Controllers
             userAccountInfoViewModel.age = userAccountInfo.age;
             userAccountInfoViewModel.sexId = userAccountInfo.tb_Sex.sexId;
             userAccountInfoViewModel.sexName = userAccountInfo.tb_Sex.sexName.Trim();
-            userAccountInfoViewModel.birthday = userAccountInfo.birthday;
+            userAccountInfoViewModel.birthday = userAccountInfo.birthday?.ToDateTimeString_24HourType();
             userAccountInfoViewModel.bloodTypeId = userAccountInfo.tb_BloodType.bloodTypeId;
             userAccountInfoViewModel.bloodTypeName = userAccountInfo.tb_BloodType.bloodTypeName.Trim();
             userAccountInfoViewModel.position = userAccountInfo.position;
@@ -139,6 +141,7 @@ namespace QX_Frame.WebAPI.Controllers
                 tb_UserStatus userStatus = channel_status.QuerySingle(new tb_UserStatusQueryObject { QueryCondition = t => t.uid == userAccountInfo.uid }).Cast<tb_UserStatus>();
                 userAccountInfoViewModel.statusId = userStatus.statusLevel;
                 userAccountInfoViewModel.statusName = userStatus.tb_UserStatusAttribute.statusName;
+                userAccountInfoViewModel.statusDescription = userStatus.tb_UserStatusAttribute.description;
             }
             using (var fact_role = Wcf<UserRoleService>())
             {
@@ -146,9 +149,10 @@ namespace QX_Frame.WebAPI.Controllers
                 tb_UserRole userRole = channel_role.QuerySingle(new tb_UserRoleQueryObject { QueryCondition = t => t.uid == userAccountInfo.uid }).Cast<tb_UserRole>();
                 userAccountInfoViewModel.roleId = userRole.roleLevel;
                 userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
+                userAccountInfoViewModel.roleDescription = userRole.tb_UserRoleAttribute.description;
             }
 
-            userAccountInfoViewModel.registerTime = userAccountInfo.registerTime;
+            userAccountInfoViewModel.registerTime = userAccountInfo.registerTime?.ToDateTimeString_24HourType();
 
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get user by loginId", userAccountInfoViewModel, 1));
         }

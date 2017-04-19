@@ -19,8 +19,6 @@ export class ManagementComponent implements OnInit {
         email: "4527875@foxmail.com",
         phone: "18254688788",
         position: "天津市西青区",
-        appKey: Number(appService.getCookie('appKey')),
-        token: appService.getCookie('token'),
         age: 21,
         sexId: 0,
         birthday: '2017-04-16',
@@ -31,7 +29,14 @@ export class ManagementComponent implements OnInit {
         constellation: '',
         chineseZodiac: '',
         personalizedSignature: '',
-        personalizedDescription: ''
+        personalizedDescription: '',
+        registerTime: '',
+        statusId: 0,
+        statusName: '',
+        statusDescription: '正常',
+        roleId: 0,
+        roleName: '',
+        roleDescription: '普通用户'
     }
 
     headerImageData: any;
@@ -178,8 +183,8 @@ export class ManagementComponent implements OnInit {
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(
                 {
-                    "appKey": self.userInfoModel.appKey,
-                    "token": self.userInfoModel.token,
+                    "appKey": appService.getCookie("appKey"),
+                    "token": appService.getCookie("token"),
                     "loginId": self.userInfoModel.loginId,
                     "nickName": self.userInfoModel.nickName,
                     "phone": self.userInfoModel.phone,

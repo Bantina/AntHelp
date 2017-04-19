@@ -21,8 +21,6 @@ let ManagementComponent = class ManagementComponent {
             email: "4527875@foxmail.com",
             phone: "18254688788",
             position: "天津市西青区",
-            appKey: Number(appService_1.appService.getCookie('appKey')),
-            token: appService_1.appService.getCookie('token'),
             age: 21,
             sexId: 0,
             birthday: '2017-04-16',
@@ -33,7 +31,14 @@ let ManagementComponent = class ManagementComponent {
             constellation: '',
             chineseZodiac: '',
             personalizedSignature: '',
-            personalizedDescription: ''
+            personalizedDescription: '',
+            registerTime: '',
+            statusId: 0,
+            statusName: '',
+            statusDescription: '正常',
+            roleId: 0,
+            roleName: '',
+            roleDescription: '普通用户'
         };
         //global
         this.navStatus = appBase_1.appBase.AppObject.centerStatus; //-1未登录；
@@ -172,8 +177,8 @@ let ManagementComponent = class ManagementComponent {
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify({
-                "appKey": self.userInfoModel.appKey,
-                "token": self.userInfoModel.token,
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
                 "loginId": self.userInfoModel.loginId,
                 "nickName": self.userInfoModel.nickName,
                 "phone": self.userInfoModel.phone,

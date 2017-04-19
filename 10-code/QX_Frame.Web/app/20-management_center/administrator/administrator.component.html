@@ -63,17 +63,17 @@
                     <th class="operate th200">操作</th>
                 </tr>
 
-                <tr data-id="" class="address-add">
-                    <td class="th30"><span class="c-black fs14">33</span></td>
-                    <td class="th60"><span class="c-black fs14">33</span></td>
-                    <td class="th120"><span class="c-black fs14">333</span></td>
-                    <td class="th200"><span class="c-black fs14">33</span></td>
-                    <td class="th120"><span class="c-black fs14">33</span></td>
-                    <td class="th120">33</td>
-                    <td class="th120">33</td>
+                <tr data-id="" class="address-add" *ngFor="let item of userInfoModelList">
+                    <td class="th30"><span class="c-black fs14">{{item.loginId}}</span></td>
+                    <td class="th60"><span class="c-black fs14">{{item.nickName}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.phone}}</span></td>
+                    <td class="th200"><span class="c-black fs14">{{item.location}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.email}}</span></td>
+                    <td class="th120">{{item.statusDescription}}</td>
+                    <td class="th120">{{item.roleDescription}}</td>
 
                     <td class="operate">
-                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit">编辑</a>
+                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit" (click)="GetThisLineUserInfo({{index}})">编辑{{index}}</a>
                     </td>
                 </tr>
 
@@ -184,7 +184,7 @@
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">地  址 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.position" name="position">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.location" name="position">
                         </div>
                     </div>
                     <div class="form-group">
@@ -196,19 +196,21 @@
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">用户状态:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" (change)="selectOnchang($event.target.value)">
+                            <select class="form-control" (change)="selectOnchang($event.target.value)" [(ngModel)]="userInfoModel.statusDescription">
                                 <!--<option *ngFor="let org of orgs" [ngValue]="org"></option>-->
-                                <option value="">正常</option>
-                                <option value="">停用</option>
-                                <option value="">冻结</option>
-                                <option value="">废弃</option>
+                                <option value="{{userInfoModel.statusId}}" selected="selected">{{userInfoModel.statusDescription}}</option>
+                                <option value="0">正常</option>
+                                <option value="1">停用</option>
+                                <option value="2">冻结</option>
+                                <option value="3">废弃</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">用户角色:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" (change)="selectOnchang($event.target.value)">
+                            <select class="form-control" (change)="selectOnchang($event.target.value)" [(ngModel)]="userInfoModel.roleDescription">
+                                <option value="{{userInfoModel.roleId}}" selected="selected">{{userInfoModel.roleDescription}}</option>
                                 <option value="">普通用户</option>
                                 <option value="">管理员</option>
                             </select>

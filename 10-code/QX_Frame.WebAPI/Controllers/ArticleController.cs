@@ -39,7 +39,7 @@ namespace QX_Frame.WebAPI.Controllers
             {
                 int count = 0;
                 var channel = fact.CreateChannel();
-                List<tb_Article> articleList = channel.QueryAllPaging<tb_Article, string>(queryObject, t => t.articleTitle).Cast<List<tb_Article>>(out count);
+                List<tb_Article> articleList = channel.QueryAllPaging<tb_Article, int>(queryObject, t => t.clickCount).Cast<List<tb_Article>>(out count);
                 List<ArticleViewModel> articleViewModelList = new List<ArticleViewModel>();
                 foreach (var item in articleList)
                 {

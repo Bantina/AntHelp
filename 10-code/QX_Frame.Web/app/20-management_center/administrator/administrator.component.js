@@ -5,10 +5,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../../00-AQX_Frame.services/appService");
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+const core_1 = require('@angular/core');
+const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../../00-AQX_Frame.services/appService');
+const management_model_1 = require('./../management.model');
 let AdministratorComponent = class AdministratorComponent {
     constructor() {
         //模型绑定;
@@ -18,21 +21,27 @@ let AdministratorComponent = class AdministratorComponent {
             headImageUrl: "../../Images/20-management/user_default_img.png",
             email: "4527875@foxmail.com",
             phone: "18254688788",
-            position: "天津市西青区",
-            appKey: Number(appService_1.appService.getCookie('appKey')),
-            token: appService_1.appService.getCookie('token'),
+            position: "",
             age: 21,
             sexId: 0,
             birthday: '2017-04-16',
             bloodTypeId: 0,
             school: '',
-            location: '',
+            location: '天津市西青区',
             company: '',
             constellation: '',
             chineseZodiac: '',
             personalizedSignature: '',
-            personalizedDescription: ''
+            personalizedDescription: '',
+            registerTime: '',
+            statusId: 0,
+            statusName: '',
+            statusDescription: '正常',
+            roleId: 0,
+            roleName: '',
+            roleDescription: '普通用户'
         };
+        this.userInfoModelList = [];
         //global
         this.navStatus = appBase_1.appBase.AppObject.administratorStatus; //-1未登录；
         this.loginId = appService_1.appService.getCookie("loginId");
@@ -204,8 +213,143 @@ let AdministratorComponent = class AdministratorComponent {
         alert(obj);
         return obj;
     }
-    //编辑用户；
+    //get userAccountInfo List
+    GetUserInfoList() {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/User",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                //"id": orderUid,
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "loginId": "",
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.userInfoModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        self.userInfoModel = new management_model_1.UserInfoModel();
+                        self.userInfoModel.loginId = data.data[i].loginId;
+                        self.userInfoModel.nickName = data.data[i].nickName;
+                        self.userInfoModel.phone = data.data[i].phone;
+                        self.userInfoModel.position = data.data[i].position;
+                        self.userInfoModel.email = data.data[i].email;
+                        self.userInfoModel.statusId = data.data[i].statusId;
+                        self.userInfoModel.statusName = data.data[i].statusName;
+                        self.userInfoModel.statusDescription = data.data[i].statusDescription;
+                        self.userInfoModel.roleId = data.data[i].roleId;
+                        self.userInfoModel.roleName = data.data[i].roleName;
+                        self.userInfoModel.roleDescription = data.data[i].roleDescription;
+                        self.userInfoModel.age = data.data[i].age;
+                        self.userInfoModel.sexId = data.data[i].sexId;
+                        self.userInfoModel.birthday = data.data[i].birthday;
+                        self.userInfoModel.bloodTypeId = data.data[i].bloodTypeId;
+                        self.userInfoModel.school = data.data[i].school;
+                        self.userInfoModel.location = data.data[i].location;
+                        self.userInfoModel.company = data.data[i].company;
+                        self.userInfoModel.constellation = data.data[i].constellation;
+                        self.userInfoModel.chineseZodiac = data.data[i].chineseZodiac;
+                        self.userInfoModel.personalizedSignature = data.data[i].personalizedSignature;
+                        self.userInfoModel.personalizedDescription = data.data[i].personalizedDescription;
+                        self.userInfoModel.registerTime = data.data[i].registerTime;
+                        self.userInfoModelList.push(self.userInfoModel);
+                    }
+                }
+                else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+    //点编辑的a标签事件，把本行的信息获取出来
+    GetThisLineUserInfo(i) {
+        var self = this;
+        self.userInfoModel.loginId = self.userInfoModelList[i].loginId;
+        self.userInfoModel.nickName = self.userInfoModelList[i].nickName;
+        self.userInfoModel.phone = self.userInfoModelList[i].phone;
+        self.userInfoModel.position = self.userInfoModelList[i].position;
+        self.userInfoModel.email = self.userInfoModelList[i].email;
+        self.userInfoModel.statusId = self.userInfoModelList[i].statusId;
+        self.userInfoModel.statusName = self.userInfoModelList[i].statusName;
+        self.userInfoModel.statusDescription = self.userInfoModelList[i].statusDescription;
+        self.userInfoModel.roleId = self.userInfoModelList[i].roleId;
+        self.userInfoModel.roleName = self.userInfoModelList[i].roleName;
+        self.userInfoModel.roleDescription = self.userInfoModelList[i].roleDescription;
+        self.userInfoModel.age = self.userInfoModelList[i].age;
+        self.userInfoModel.sexId = self.userInfoModelList[i].sexId;
+        self.userInfoModel.birthday = self.userInfoModelList[i].birthday;
+        self.userInfoModel.bloodTypeId = self.userInfoModelList[i].bloodTypeId;
+        self.userInfoModel.school = self.userInfoModelList[i].school;
+        self.userInfoModel.location = self.userInfoModelList[i].location;
+        self.userInfoModel.company = self.userInfoModelList[i].company;
+        self.userInfoModel.constellation = self.userInfoModelList[i].constellation;
+        self.userInfoModel.chineseZodiac = self.userInfoModelList[i].chineseZodiac;
+        self.userInfoModel.personalizedSignature = self.userInfoModelList[i].personalizedSignature;
+        self.userInfoModel.personalizedDescription = self.userInfoModelList[i].personalizedDescription;
+        self.userInfoModel.registerTime = self.userInfoModelList[i].registerTime;
+    }
+    //保存编辑用户；
     EditUser() {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/User",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                //"id": orderUid,
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "loginId": self.userInfoModel.loginId,
+            }),
+            success(data) {
+                if (data.isSuccess) {
+                    self.userInfoModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        self.userInfoModel = new management_model_1.UserInfoModel();
+                        self.userInfoModel.loginId = data.data[i].loginId;
+                        self.userInfoModel.nickName = data.data[i].nickName;
+                        self.userInfoModel.phone = data.data[i].phone;
+                        self.userInfoModel.position = data.data[i].position;
+                        self.userInfoModel.email = data.data[i].email;
+                        self.userInfoModel.statusId = data.data[i].statusId;
+                        self.userInfoModel.statusName = data.data[i].statusName;
+                        self.userInfoModel.statusDescription = data.data[i].statusDescription;
+                        self.userInfoModel.roleId = data.data[i].roleId;
+                        self.userInfoModel.roleName = data.data[i].roleName;
+                        self.userInfoModel.roleDescription = data.data[i].roleDescription;
+                        self.userInfoModel.age = data.data[i].age;
+                        self.userInfoModel.sexId = data.data[i].sexId;
+                        self.userInfoModel.birthday = data.data[i].birthday;
+                        self.userInfoModel.bloodTypeId = data.data[i].bloodTypeId;
+                        self.userInfoModel.school = data.data[i].school;
+                        self.userInfoModel.location = data.data[i].location;
+                        self.userInfoModel.company = data.data[i].company;
+                        self.userInfoModel.constellation = data.data[i].constellation;
+                        self.userInfoModel.chineseZodiac = data.data[i].chineseZodiac;
+                        self.userInfoModel.personalizedSignature = data.data[i].personalizedSignature;
+                        self.userInfoModel.personalizedDescription = data.data[i].personalizedDescription;
+                        self.userInfoModel.registerTime = data.data[i].registerTime;
+                        self.userInfoModelList.push(self.userInfoModel);
+                    }
+                }
+                else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
     }
     //删除用户；
     //DeleteUser(): void {
@@ -218,6 +362,8 @@ let AdministratorComponent = class AdministratorComponent {
         $(".manageCenterUl li").eq(appBase_1.appBase.AppObject.administratorStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
+        //获取用户列表
+        this.GetUserInfoList();
     }
 };
 AdministratorComponent = __decorate([
@@ -226,7 +372,8 @@ AdministratorComponent = __decorate([
         templateUrl: 'app/20-management_center/administrator/administrator.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    })
+    }), 
+    __metadata('design:paramtypes', [])
 ], AdministratorComponent);
 exports.AdministratorComponent = AdministratorComponent;
 //# sourceMappingURL=administrator.component.js.map

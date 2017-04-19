@@ -18,20 +18,25 @@ export class MyorderDetailComponent implements OnInit {
         headImageUrl: "../../Images/20-management/user_default_img.png",
         email: "4527875@foxmail.com",
         phone: "18254688788",
-        position: "天津市西青区",
-        appKey: Number(appService.getCookie('appKey')),
-        token: appService.getCookie('token'),
+        position: "",
         age: 21,
         sexId: 0,
         birthday: '2017-04-16',
         bloodTypeId: 0,
         school: '',
-        location: '',
+        location: '天津市西青区',
         company: '',
         constellation: '',
         chineseZodiac: '',
         personalizedSignature: '',
-        personalizedDescription: ''
+        personalizedDescription: '',
+        registerTime: '',
+        statusId: 0,
+        statusName: '',
+        statusDescription: '正常',
+        roleId: 0,
+        roleName: '',
+        roleDescription: '普通用户'
     }
 
    

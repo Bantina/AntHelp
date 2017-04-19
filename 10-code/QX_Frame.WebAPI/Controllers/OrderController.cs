@@ -1,6 +1,7 @@
 using QX_Frame.App.Web;
 using QX_Frame.Data.DTO;
 using QX_Frame.Data.Entities;
+using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.Options;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service;
@@ -27,15 +28,22 @@ namespace QX_Frame.WebAPI.Controllers
     public class OrderController : WebApiControllerBase
     {
         private readonly static object lockObj = new object();
-        // GET: api/Order
-        public IHttpActionResult Get(string orderDescription, int pageIndex, int pageSize, bool isDesc)
+        // GET: api/Order queryId=-1 all queryId=1 publish queryId=2 receive orderCategory = -1 all orderStatusId=-1 all
+        public IHttpActionResult Get(int queryId ,int orderCategoryId,int orderStatusId,string publisherOrReceiverLoginId,string orderDescription, int pageIndex, int pageSize, bool isDesc)
         {
             tb_OrderQueryObject queryObject = new tb_OrderQueryObject();
 
+            queryObject.queryId = queryId;
+            queryObject.orderCategoryId = orderCategoryId;
+            queryObject.orderStatusId = orderStatusId;
+            tb_UserAccountInfo userAccountInfo = UserController.GetUserAccountInfoByLoginId(publisherOrReceiverLoginId);
+            queryObject.publisherUid =userAccountInfo.uid;
+            queryObject.receiverUid = userAccountInfo.uid;
             queryObject.orderDescription = orderDescription;//fuzzy query
             queryObject.PageIndex = pageIndex;
             queryObject.PageSize = pageSize;
             queryObject.IsDESC = isDesc;
+            
 
             using (var fact = Wcf<OrderService>())
             {

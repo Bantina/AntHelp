@@ -229,6 +229,7 @@ export class ManagementComponent implements OnInit {
     }
 
     ////我的订单
+
     //条件帅选 点击；
     tabBoxClick_myorder(event): void {
         var $targetP = $(event.target || event.srcElement).parent();
@@ -285,23 +286,9 @@ export class ManagementComponent implements OnInit {
                         per_myorderModel.imageUrls = data.data[i].imageUrls;
 
 
-                        //per_myorderModel.firstImg = self.AjaxImages(data.data[i].imageUrls.split('&'));
                         //add-获取订单首张图片
                         per_myorderModel.firstImg = "../../Images/03-login/portraint01.png";
-                        //var imgArr = data.data[i].imageUrls.split('&');
-                        //if (imgArr.length > 0) {
-                        //    $.ajax({
-                        //        url: appBase.DomainApi + 'api/Files/' + imgArr[0],
-                        //        type: "GET",
-                        //        success: function (imgData) {
 
-                        //            self.myorderImgArr.push(imgData);
-                        //        },
-                        //        error: function (imgData) {
-                        //            //alert("获取订单图片失败~");
-                        //        }
-                        //    });
-                        //}
                         (function (arg) {
                             var imgArr = data.data[i].imageUrls.split('&');
                             var nullCount = 0;
@@ -313,7 +300,6 @@ export class ManagementComponent implements OnInit {
                                     type: "GET",
                                     success: function (imgData) {
                                         self.myorderImgArr.push(imgData);
-                                        //if (arg < data.data.length - nullCount) return;
                                         if (self.myorderImgArr[arg - 1] != undefined) {
                                             self.myorderModelList[arg - 1].firstImg = self.myorderImgArr[arg - 1];
                                         }
@@ -328,7 +314,6 @@ export class ManagementComponent implements OnInit {
                                 });
                             }
                         })(i)
-                        //per_myorderModel.firstImg = self.myorderImgArr[i];
                         self.myorderModelList.push(per_myorderModel);
                     }
                 } else {
@@ -341,31 +326,7 @@ export class ManagementComponent implements OnInit {
         });
     }
 
-    //bindImg(): void {
-    //    var self = this;
-    //    for (var i = 0; i < self.myorderImgArr.length;i++) {
-    //        self.myorderModelList[i].firstImg = self.myorderImgArr[i];
-    //    }
-    //}
-
-    AjaxImages(imgArr): string {
-        var result = "";
-        if (imgArr.length > 0) {
-            $.ajax({
-                url: appBase.DomainApi + 'api/Files/' + imgArr[0],
-                type: "GET",
-                success: function (imgData) {
-                    result = imgData;
-                },
-                error: function (imgData) {
-                    //alert("获取订单图片失败~");
-                }
-            });
-        }
-        return result;
-    }
-
-    ////我的发布
+    //我的发布
 
     //the final execute ...
     ngOnInit(): void {

@@ -19,10 +19,8 @@ export class AppComponent {
 
     loginResult: any = {};
 
-
-
     //个人中心菜单点击 切换
-    setCenterStatus(num): void{
+    setCenterStatus(num): void {
         appBase.AppObject.centerStatus = num;
         //window.location.href = appBase.WebUrlDomain + "managementCenter";
         var manageCenterUl = $(".manageCenterUl li");
@@ -32,12 +30,43 @@ export class AppComponent {
         //内容切换；
         //manageCenterUl.eq(appBase.AppObject.centerStatus).click(event, appBase.AppObject.centerStatus);
         //manageCenterUl.eq(num).trigger('click', {event,num});
-
-
     }
 
-    ngOnInit(): void {
-        this.loginResult = appService.IsLogin(this.router); 
+    //获取消息
+    messageCount: number = 0;
+    GetMessagePushList(): void {
+        var self = this;
+        $.ajax({
+            url: appBase.DomainApi + "api/MessagePush",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                "appKey": appService.getCookie("appKey"),
+                "token": appService.getCookie("token"),
+                "messagePushStatusId": 0,
+                "loginId": appService.getCookie("loginId"),
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.messageCount = data.dataCount;
+                } else {
+                    //alert(data.msg);
+                }
+            },
+            error(data) {
+                //alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
 
+
+    ngOnInit(): void {
+        this.loginResult = appService.IsLogin(this.router);
+        //get message count
+        this.GetMessagePushList();
     }
 }

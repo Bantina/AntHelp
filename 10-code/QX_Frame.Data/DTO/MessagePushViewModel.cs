@@ -19,11 +19,11 @@ namespace QX_Frame.Data.DTO
         // 
         public Int32 messageCategoryId { get; set; }
 
-        public tb_MessagePushCategory messagePushCategory { get; set; }
+        public string  messagePushCategoryName { get; set; }
         //
         public Int32 messagePushStatusId { get; set; }
 
-        public tb_MessagePushStatus messagePushStatus{get;set;}
+        public string messagePushStatusName{get;set;}
         // 
         public Guid pushToUserUid { get; set; }
 

@@ -26,11 +26,12 @@ namespace QX_Frame.WebAPI.Controllers
     /// </summary>
     public class ComplainController : WebApiControllerBase
     {
-        // GET: api/Complain
-        public IHttpActionResult Get(int complainStatusId, string loginId, int pageIndex, int pageSize, bool isDesc)
+        // GET: api/Complain //queryId==-1 query all user,queryId==1 query by loginId
+        public IHttpActionResult Get(int queryId,int complainStatusId, string loginId, int pageIndex, int pageSize, bool isDesc)
         {
             tb_ComplainQueryObject queryObject = new tb_ComplainQueryObject();
 
+            queryObject.queryId = queryId;
             queryObject.complainStatusId = complainStatusId;
             queryObject.complainUserUid = UserController.GetUserAccountInfoByLoginIdAllowNull(loginId) != null ? UserController.GetUserAccountInfoByLoginIdAllowNull(loginId).uid : default(Guid);
             queryObject.PageIndex = pageIndex;
@@ -71,7 +72,7 @@ namespace QX_Frame.WebAPI.Controllers
                     result.complainUid = complain.complainUid;
                     result.complainContent = complain.complainContent;
                     result.complainUserUid = complain.complainUserUid;
-                    result.complainTime = complain.complainTime.ToDateTimeString_24HourType();
+                    result.complainTime = complain.complainTime.ToDateTimeString_24HourType("-");
                     result.complainStatusId = complain.complainStatusId;
                     result.complainStatusName = complain.tb_ComplainStatus.complainStatusName;
                 }

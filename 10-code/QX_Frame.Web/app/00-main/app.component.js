@@ -16,6 +16,8 @@ let AppComponent = class AppComponent {
     constructor(_router) {
         this.title = 'Ant Help';
         this.loginResult = {};
+        //获取消息
+        this.messageCount = 0;
         this.router = _router;
     }
     //个人中心菜单点击 切换
@@ -29,8 +31,38 @@ let AppComponent = class AppComponent {
         //manageCenterUl.eq(appBase.AppObject.centerStatus).click(event, appBase.AppObject.centerStatus);
         //manageCenterUl.eq(num).trigger('click', {event,num});
     }
+    GetMessagePushList() {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/MessagePush",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "messagePushStatusId": 0,
+                "loginId": appService_1.appService.getCookie("loginId"),
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.messageCount = data.dataCount;
+                }
+                else {
+                }
+            },
+            error(data) {
+                //alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
     ngOnInit() {
         this.loginResult = appService_1.appService.IsLogin(this.router);
+        //get message count
+        this.GetMessagePushList();
     }
 };
 AppComponent = __decorate([

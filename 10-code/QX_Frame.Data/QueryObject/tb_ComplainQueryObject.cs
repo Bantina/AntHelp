@@ -38,8 +38,10 @@ namespace QX_Frame.Data.QueryObject
 		// 
 		public Int32 complainStatusId { get;set; }
 
-		//query condition // null default
-		public override Expression<Func<tb_Complain, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
+        public int queryId { get; set; }
+
+        //query condition // null default
+        public override Expression<Func<tb_Complain, bool>> QueryCondition {get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
 		//query condition func // true default //if QueryCondition != null this will be override !!!
 		protected override Expression<Func<tb_Complain, bool>> QueryConditionFunc()
@@ -50,6 +52,16 @@ namespace QX_Frame.Data.QueryObject
 			{
 				func = func.And(t => true);
 			}
+
+            if (this.complainStatusId!=-1)
+            {
+                func = func.And(ts => ts.complainStatusId == this.complainStatusId);
+            }
+
+            if (this.queryId!=-1)
+            {
+                func = func.And(ts => ts.complainUserUid == this.complainUserUid);
+            }
 
 			return func;
 		}

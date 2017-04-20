@@ -26,13 +26,20 @@ namespace QX_Frame.WebAPI.Controllers
     /// </summary>
     public class MessagePushController : WebApiControllerBase
     {
-        // GET: api/MessagePush messagePushStatusId 0=未读 1=已读 2=全部 loginId="" 全部
+        // GET: api/MessagePush messagePushStatusId 0=未读 1=已读 -1=全部 loginId="" 全部
         public IHttpActionResult Get(int messagePushStatusId, string loginId, int pageIndex, int pageSize, bool isDesc)
         {
             tb_MessagePushQueryObject queryObject = new tb_MessagePushQueryObject();
 
             queryObject.messagePushStatusId = messagePushStatusId;
-            queryObject.pushToUserUid = UserController.GetUserAccountInfoByLoginIdAllowNull(loginId)!=null? UserController.GetUserAccountInfoByLoginIdAllowNull(loginId).uid:default(Guid);
+            if (string.IsNullOrEmpty(loginId))
+            {
+                queryObject.pushToUserUid = default(Guid);
+            }
+            else
+            {
+                queryObject.pushToUserUid = UserController.GetUserAccountInfoByLoginIdAllowNull(loginId) != null ? UserController.GetUserAccountInfoByLoginIdAllowNull(loginId).uid : default(Guid);
+            }
             queryObject.PageIndex = pageIndex;
             queryObject.PageSize = pageSize;
             queryObject.IsDESC = isDesc;
@@ -51,9 +58,9 @@ namespace QX_Frame.WebAPI.Controllers
                     messagePushViewModel.messagePusher = item.messagePusher;
                     messagePushViewModel.messagePushTime = item.messagePushTime;
                     messagePushViewModel.messageCategoryId = item.messageCategoryId;
-                    messagePushViewModel.messagePushCategory = item.tb_MessagePushCategory;
+                    messagePushViewModel.messagePushCategoryName = item.tb_MessagePushCategory.messageCategoryName;
                     messagePushViewModel.messagePushStatusId = item.messagePushStatusId;
-                    messagePushViewModel.messagePushStatus = item.tb_MessagePushStatus;
+                    messagePushViewModel.messagePushStatusName = item.tb_MessagePushStatus.StatusName;
                     messagePushViewModel.pushToUserUid = item.pushToUserUid;
 
                     messagePushList.Add(messagePushViewModel);
@@ -71,16 +78,16 @@ namespace QX_Frame.WebAPI.Controllers
                 var channel = fact.CreateChannel();
                 tb_MessagePush result = channel.QuerySingle(new tb_MessagePushQueryObject { QueryCondition = t => t.messageUid == uid }).Cast<tb_MessagePush>();
                 MessagePushViewModel messagePush = new MessagePushViewModel();
-                if (result!=null)
+                if (result != null)
                 {
                     messagePush.messageUid = result.messageUid;
                     messagePush.messageContent = result.messageContent;
                     messagePush.messagePusher = result.messagePusher;
                     messagePush.messagePushTime = result.messagePushTime;
                     messagePush.messageCategoryId = result.messageCategoryId;
-                    messagePush.messagePushCategory = result.tb_MessagePushCategory;
+                    messagePush.messagePushCategoryName = result.tb_MessagePushCategory.messageCategoryName;
                     messagePush.messagePushStatusId = result.messagePushStatusId;
-                    messagePush.messagePushStatus = result.tb_MessagePushStatus;
+                    messagePush.messagePushStatusName = result.tb_MessagePushStatus.StatusName;
                     messagePush.pushToUserUid = result.pushToUserUid;
                 }
                 result.messagePushStatusId = opt_MessageStatus.已读.ToInt();
@@ -128,14 +135,14 @@ namespace QX_Frame.WebAPI.Controllers
             {
                 throw new Exception_DG("arguments must be provide", 1001);
             }
-            Guid uid = Guid.Parse(query.messagePushUid);
+            Guid uid = query.messagePushUid;
             using (var fact = Wcf<MessagePushService>())
             {
                 var channel = fact.CreateChannel();
                 tb_MessagePush result = channel.QuerySingle(new tb_MessagePushQueryObject { QueryCondition = t => t.messageUid == uid }).Cast<tb_MessagePush>();
-                if (result==null)
+                if (result == null)
                 {
-                    throw new Exception_DG("no result found by this query condition",3021);
+                    throw new Exception_DG("no result found by this query condition", 3021);
                 }
                 channel.Delete(result);
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("delete succeed"));

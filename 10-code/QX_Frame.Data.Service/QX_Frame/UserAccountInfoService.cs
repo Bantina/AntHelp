@@ -76,11 +76,11 @@ namespace QX_Frame.Data.Service.QX_Frame
         }
         public tb_UserAccountInfo GetUserAccountInfoByLoginId(string loginId)
         {
-            if (string .IsNullOrEmpty(loginId))
+            if (string.IsNullOrEmpty(loginId))
             {
-                throw new Exception_DG("loginId must be provide",1002);
+                throw new Exception_DG("loginId must be provide", 1002);
             }
-            tb_UserAccountInfo userAccountInfo = Cache_Helper_DG.Cache_Get(loginId+"Info") as tb_UserAccountInfo;
+            tb_UserAccountInfo userAccountInfo = Cache_Helper_DG.Cache_Get(loginId + "Info") as tb_UserAccountInfo;
             if (userAccountInfo != null)
             {
                 return userAccountInfo;
@@ -106,7 +106,10 @@ namespace QX_Frame.Data.Service.QX_Frame
                 return userAccountInfo;
             }
             userAccountInfo = QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.loginId.Equals(loginId) }).Cast<tb_UserAccountInfo>();
-            Cache_Helper_DG.Cache_Add(loginId + "Info", userAccountInfo);
+            if (userAccountInfo != null)
+            {
+                Cache_Helper_DG.Cache_Add(loginId + "Info", userAccountInfo);
+            }
             return userAccountInfo;
         }
     }

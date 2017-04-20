@@ -1,7 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { appBase } from '../../../00-AQX_Frame.commons/appBase';
 import { appService } from '../../../00-AQX_Frame.services/appService';
-import { UserInfoModel } from '../.././management.model';
+import { ComplainModel } from '../../../00-models/complain.model';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'complaint',
@@ -11,38 +12,55 @@ import { UserInfoModel } from '../.././management.model';
 })
 
 export class ComplaintComponent implements OnInit {
-    //模型绑定;
-    userInfoModel: UserInfoModel = {
-        loginId: appService.getCookie('loginId'),
-        nickName: '',
-        headImageUrl: "../../Images/20-management/user_default_img.png",
-        email: "4527875@foxmail.com",
-        phone: "18254688788",
-        position: "",
-        age: 21,
-        sexId: 0,
-        birthday: '2017-04-16',
-        bloodTypeId: 0,
-        school: '',
-        location: '天津市西青区',
-        company: '',
-        constellation: '',
-        chineseZodiac: '',
-        personalizedSignature: '',
-        personalizedDescription: '',
-        registerTime: '',
-        statusId: 0,
-        statusName: '',
-        statusDescription: '正常',
-        roleId: 0,
-        roleName: '',
-        roleDescription: '普通用户'
+    router: Router;
+    constructor(_router: Router) {
+        this.router = _router;
     }
 
-   
+    //------- complain ------------------
+    //投诉信息
+    complainModel: ComplainModel =
+    {
+        complainUid: "",
+        complainContent: "",
+        complainUserUid: "",
+        complainTime: "",
+        complainStatusId: 0,
+        complainStatusName: ""
+    }
+
+    SendComplain(): void {
+        var self = this;
+        $.ajax({
+            url: appBase.DomainApi + "api/Complain",
+            type: "post",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "appKey": appService.getCookie("appKey"),
+                "token": appService.getCookie("token"),
+                "complainContent": self.complainModel.complainContent
+            }),
+            success(data) {
+                if (data.isSuccess) {
+                    alert("谢谢您的建议，请耐心等待我们的回复~");
+                    self.complainModel.complainContent = "";
+                } else {
+                    console.error(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+    //------complain end -----------------
+
+
+
     //the final execute ...
     ngOnInit(): void {
-       
 
+        appService.IsLogin(this.router);
     }
 }

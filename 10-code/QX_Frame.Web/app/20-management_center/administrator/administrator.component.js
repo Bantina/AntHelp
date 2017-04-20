@@ -12,8 +12,11 @@ const core_1 = require('@angular/core');
 const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
 const appService_1 = require('../../00-AQX_Frame.services/appService');
 const management_model_1 = require('./../management.model');
+const complain_model_1 = require('../../00-models/complain.model');
+const MessagePush_model_1 = require('../../00-models/MessagePush.model');
+const app_component_1 = require('../../00-main/app.component');
 let AdministratorComponent = class AdministratorComponent {
-    constructor() {
+    constructor(_appComponet) {
         //模型绑定;
         this.userInfoModel = {
             loginId: appService_1.appService.getCookie('loginId'),
@@ -75,13 +78,34 @@ let AdministratorComponent = class AdministratorComponent {
         //global
         this.navStatus = appBase_1.appBase.AppObject.administratorStatus; //-1未登录；
         this.loginId = appService_1.appService.getCookie("loginId");
-        //删除用户；
-        //DeleteUser(): void {
-        //}
-        ////订单管理
-        ////投诉管理
-        ////消息管理
+        //------- complain ------------------
+        //投诉信息
+        this.complainModel = {
+            complainUid: "",
+            complainContent: "",
+            complainUserUid: "",
+            complainTime: "",
+            complainStatusId: 0,
+            complainStatusName: ""
+        };
+        this.complainModelList = [];
+        //-----  complain end ------------------------
+        //----- 消息管理 --------
+        this.messagePush = {
+            messageUid: "",
+            messageContent: "",
+            messagePusher: "",
+            messagePushTime: "",
+            messageCategoryId: 0,
+            messagePushCategoryName: "",
+            messagePushStatusId: 0,
+            messagePushStatusName: "",
+            pushToUserUid: ""
+        };
+        this.messagePushList = [];
+        //----- 消息管理 end -------------------
         this.messageFlag = true;
+        this.appComponent = _appComponet;
     }
     //判断是否登录
     isLoginFlag() {
@@ -117,52 +141,7 @@ let AdministratorComponent = class AdministratorComponent {
     sidenavFun() {
         //////
     }
-    ////个人账户
-    //上传头像
-    //uploadFlag: boolean = false;
-    //uploadErrorMsg: string = "";
-    //personalHeadUpload(event): void {
-    //    var self = this;
-    //    var formData = new FormData((<HTMLFormElement[]><any>$("#uploadHeadForm"))[0]);
-    //    $.ajax({
-    //        url: appBase.DomainApi + 'api/Files',
-    //        type: 'POST',
-    //        data: formData,
-    //        async: false,
-    //        cache: false,
-    //        contentType: false,
-    //        processData: false,
-    //        success: function (json) {
-    //            if (json.errorCode == 2005) {
-    //                self.uploadFlag = false;
-    //                self.uploadErrorMsg = "文件类型不允许";
-    //            }
-    //            else {
-    //                self.uploadFlag = true;
-    //                self.userInfoModel.headImageUrl = json.data[0]; //头像地址保存
-    //                for (var i = 0; i < json.dataCount; i++) {
-    //                    $.ajax({
-    //                        url: appBase.DomainApi + 'api/Files/' + json.data[i],
-    //                        type: "GET",
-    //                        success: function (data) {
-    //                            //$(".prePotrait img").eq(0).attr('src', data);
-    //                            self.userInfoModel.headImageUrl = data;
-    //                            $(".j_usr_img").attr('src', data);
-    //                        },
-    //                        error: function (data) {
-    //                            self.uploadFlag = false;
-    //                            self.uploadErrorMsg = "图片已上传成功，预览失败~";
-    //                        }
-    //                    });
-    //                }
-    //            }
-    //        },
-    //        error: function (json) {
-    //            self.uploadFlag = false;
-    //        }
-    //    });
-    //}
-    ////获取用户信息；
+    //获取用户信息；
     getUserInfo() {
         var self = this;
         var appKey = Number(appService_1.appService.getCookie("appKey"));
@@ -203,48 +182,7 @@ let AdministratorComponent = class AdministratorComponent {
             });
         }
     }
-    ////保存 用户信息
-    //userInfoSave(): void {
-    //    var self = this;
-    //    $.ajax({
-    //        url: appBase.DomainApi + "api/User",
-    //        type: "put",
-    //        dataType: "json",
-    //        contentType: "application/json; charset=UTF-8",
-    //        data: JSON.stringify(
-    //            {
-    //                "appKey": self.userInfoModel.appKey,
-    //                "token": self.userInfoModel.token,
-    //                "loginId": self.userInfoModel.loginId,
-    //                "nickName": self.userInfoModel.nickName,
-    //                "phone": self.userInfoModel.phone,
-    //                "headImageUrl": self.userInfoModel.headImageUrl,
-    //                "age": self.userInfoModel.age,
-    //                "sexId": self.userInfoModel.sexId,
-    //                "birthday": self.userInfoModel.birthday,
-    //                "bloodTypeId": self.userInfoModel.bloodTypeId,
-    //                "position": self.userInfoModel.position,
-    //                "school": self.userInfoModel.school,
-    //                "location": self.userInfoModel.location,
-    //                "company": self.userInfoModel.company,
-    //                "constellation": self.userInfoModel.constellation,
-    //                "chineseZodiac": self.userInfoModel.chineseZodiac,
-    //                "personalizedSignature": self.userInfoModel.personalizedSignature,
-    //                "personalizedDescription": self.userInfoModel.personalizedDescription
-    //            }),
-    //        success(data) {
-    //            if (data.isSuccess) {
-    //                alert("个人信息修改成功~");
-    //            }
-    //            else {
-    //                alert("个人信息修改失败，请稍后重试~");
-    //            }
-    //        },
-    //        error(data) {
-    //            alert("个人信息修改失败，请稍后重试~");
-    //        }
-    //    });
-    //}
+    //保存 用户信息
     ////账户管理
     model_userStatusModel_selectOnchange(obj) {
         //userstatus select
@@ -446,6 +384,203 @@ let AdministratorComponent = class AdministratorComponent {
             }
         });
     }
+    //get complain info
+    GetComplainList(queryId, complainStatusId) {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Complain",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                //"id": orderUid,
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "queryId": queryId,
+                "complainStatusId": complainStatusId,
+                "loginId": appService_1.appService.getCookie("loginId"),
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.complainModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        var complainModel2 = new complain_model_1.ComplainModel();
+                        complainModel2.complainUid = data.data[i].complainUid;
+                        complainModel2.complainContent = data.data[i].complainContent;
+                        complainModel2.complainUserUid = data.data[i].complainUserUid;
+                        complainModel2.complainTime = data.data[i].complainTime;
+                        complainModel2.complainStatusId = data.data[i].complainStatusId;
+                        complainModel2.complainStatusName = data.data[i].complainStatusName;
+                        self.complainModelList.push(complainModel2);
+                    }
+                }
+                else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+    //get single line info
+    GetComplainFromList(i) {
+        this.complainModel.complainUid = this.complainModelList[i].complainUid;
+        this.complainModel.complainContent = this.complainModelList[i].complainContent;
+        this.complainModel.complainUserUid = this.complainModelList[i].complainUserUid;
+        this.complainModel.complainTime = this.complainModelList[i].complainTime;
+        this.complainModel.complainStatusId = this.complainModelList[i].complainStatusId;
+        this.complainModel.complainStatusName = this.complainModelList[i].complainStatusName;
+    }
+    tabBoxClick_ComplainCursor(event, queryId, complainStatusId) {
+        var $targetP = $(event.target || event.srcElement).parent();
+        $targetP.siblings().removeClass("on");
+        $targetP.addClass("on");
+        //get list
+        this.GetComplainList(queryId, complainStatusId);
+    }
+    MarkToRead() {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Complain/" + self.complainModel.complainUid,
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+            }),
+            success(data) {
+                if (data.isSuccess) {
+                    $(".btn_closeModel").click();
+                    self.GetComplainList(-1, 0); //如果更改成功，重新获取未读列表
+                }
+                else {
+                    console.error(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+    GetMessagePushList(statusId) {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/MessagePush",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "messagePushStatusId": statusId,
+                "loginId": "",
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.messagePushList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        var messagePushModelTemp = new MessagePush_model_1.MessagePushModel();
+                        messagePushModelTemp.messageUid = data.data[i].messageUid;
+                        messagePushModelTemp.messageContent = data.data[i].messageContent;
+                        messagePushModelTemp.messagePusher = data.data[i].messagePusher;
+                        messagePushModelTemp.messagePushTime = data.data[i].messagePushTime;
+                        messagePushModelTemp.messageCategoryId = data.data[i].messageCategoryId;
+                        messagePushModelTemp.messagePushCategoryName = data.data[i].messagePushCategoryName;
+                        messagePushModelTemp.messagePushStatusId = data.data[i].messagePushStatusId;
+                        messagePushModelTemp.messagePushStatusName = data.data[i].messagePushStatusName;
+                        messagePushModelTemp.pushToUserUid = data.data[i].pushToUserUid;
+                        self.messagePushList.push(messagePushModelTemp);
+                    }
+                }
+                else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+    GetSingleMessage(i) {
+        this.messagePush.messageUid = this.messagePushList[i].messageUid;
+        this.messagePush.messageContent = this.messagePushList[i].messageContent;
+        this.messagePush.messagePusher = this.messagePushList[i].messagePusher;
+        this.messagePush.messagePushTime = this.messagePushList[i].messagePushTime;
+        this.messagePush.messageCategoryId = this.messagePushList[i].messageCategoryId;
+        this.messagePush.messagePushCategoryName = this.messagePushList[i].messagePushCategoryName;
+        this.messagePush.messagePushStatusId = this.messagePushList[i].messagePushStatusId;
+        this.messagePush.messagePushStatusName = this.messagePushList[i].messagePushStatusName;
+        this.messagePush.pushToUserUid = this.messagePushList[i].pushToUserUid;
+    }
+    //撤回消息
+    ReSetMessage(i) {
+        var self = this;
+        if (confirm("确定撤回这条消息？")) {
+            $.ajax({
+                url: appBase_1.appBase.DomainApi + "api/MessagePush",
+                type: "delete",
+                dataType: "json",
+                contentType: "application/json; charset=UTF-8",
+                data: JSON.stringify({
+                    "appKey": appService_1.appService.getCookie("appKey"),
+                    "token": appService_1.appService.getCookie("token"),
+                    "messagePushUid": self.messagePushList[i].messageUid
+                }),
+                success(data) {
+                    if (data.isSuccess) {
+                        //获取信息列表
+                        self.GetMessagePushList(-1);
+                    }
+                    else {
+                        alert(data.msg);
+                    }
+                },
+                error(data) {
+                    alert("服务器连接失败，请稍后重试...");
+                }
+            });
+        }
+    }
+    //send msg
+    SendMessage() {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/MessagePush",
+            type: "post",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "messagePusher": "System",
+                "messageContent": self.messagePush.messageContent,
+                "messageCategoryId": 0,
+                "loginId": self.messagePush.pushToUserUid
+            }),
+            success(data) {
+                if (data.isSuccess) {
+                    alert("发送成功~");
+                    self.messagePush.messageContent = "";
+                    self.messagePush.pushToUserUid = "";
+                    self.GetMessagePushList(-1);
+                }
+                else {
+                    alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
     //条件帅选 点击；
     tabBoxClick_message(event, num) {
         var $targetP = $(event.target || event.srcElement).parent();
@@ -458,14 +593,18 @@ let AdministratorComponent = class AdministratorComponent {
             this.messageFlag = true;
         }
     }
-    //the final execute ...
+    //----- end 消息管理 ---
     ngOnInit() {
-        //左菜单 焦点 判断 显示；
+        //左菜单 焦点 判断 显示;
         $(".manageCenterUl li").eq(appBase_1.appBase.AppObject.administratorStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
         //获取用户列表
         this.GetUserInfoListByCondition(-1, -1);
+        //获取投诉消息
+        this.GetComplainList(-1, -1);
+        //获取信息列表
+        this.GetMessagePushList(-1);
     }
 };
 AdministratorComponent = __decorate([
@@ -475,7 +614,7 @@ AdministratorComponent = __decorate([
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
     }), 
-    __metadata('design:paramtypes', [])
+    __metadata('design:paramtypes', [app_component_1.AppComponent])
 ], AdministratorComponent);
 exports.AdministratorComponent = AdministratorComponent;
 //# sourceMappingURL=administrator.component.js.map

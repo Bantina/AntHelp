@@ -114,39 +114,33 @@
         </div>
         <div class="cfix tabBox">
             <ul class="l cfix tabs">
-                <li class="on"><a href="?t=0">全部</a></li>
-                <li class=""><a href="?t=1">已处理</a></li>
-                <li class=""><a href="?t=2">待处理</a></li>
+                <li class="on"><a (click)="tabBoxClick_ComplainCursor($event,-1,-1)" style="cursor:pointer;">全部</a></li>
+                <li class=""><a (click)="tabBoxClick_ComplainCursor($event,-1,1)" style="cursor:pointer;">已处理</a></li>
+                <li class=""><a (click)="tabBoxClick_ComplainCursor($event,-1,0)" style="cursor:pointer;">待处理</a></li>
             </ul>
         </div>
         <table cellpadding="0" cellspacing="0" border="0" class="table table-addr">
             <tr>
-                <th class="th30"><span class="pl10">用户ID</span></th>
-                <th class="th60"><span class="pl10">昵称</span></th>
-                <th class="th120">联系电话</th>
-                <th class="th200">地址</th>
-                <th class="th120">邮箱</th>
-                <th class="th120">用户状态</th>
-                <th class="th120">用户角色</th>
+                <th class="th30"><span class="pl10">投诉UID</span></th>
+                <th class="th60"><span class="pl10">内容</span></th>
+                <th class="th120">投诉人</th>
+                <th class="th200">投诉时间</th>
+                <th class="th120">投诉状态</th>
                 <th class="operate th200">操作</th>
             </tr>
 
-            <tr data-id="" class="address-add" *ngFor="let item of userInfoModelList;let i = index;">
-                <td class="th30"><span class="c-black fs14">{{item.loginId}}</span></td>
-                <td class="th60"><span class="c-black fs14">{{item.nickName}}</span></td>
-                <td class="th120"><span class="c-black fs14">{{item.phone}}</span></td>
-                <td class="th200"><span class="c-black fs14">{{item.location}}</span></td>
-                <td class="th120"><span class="c-black fs14">{{item.email}}</span></td>
-                <td class="th120">{{item.statusDescription}}</td>
-                <td class="th120">{{item.roleDescription}}</td>
+            <tr data-id="" class="address-add" *ngFor="let item of complainModelList;let i = index;">
+                <td class="th30"><span class="c-black fs14">{{item.complainUid}}</span></td>
+                <td class="th60"><span class="c-black fs14">{{item.complainContent}}</span></td>
+                <td class="th120"><span class="c-black fs14">{{item.complainUserUid}}</span></td>
+                <td class="th200"><span class="c-black fs14">{{item.complainTime}}</span></td>
+                <td class="th120"><span class="c-black fs14">{{item.complainStatusName}}</span></td>
 
                 <td class="operate">
-                    <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit" (click)="GetThisLineUserInfo(i)">处理投诉信息</a>
+                    <a data-toggle="modal" data-target="#complainEditModel" href="###" class="fs14 a-edit" (click)="GetComplainFromList(i)" *ngIf="item.complainStatusId==0">处理投诉信息</a>
                 </td>
             </tr>
-
         </table>
-
     </div>
     <!-- 消息管理 -->
     <div class="r rightCon" *ngIf="navStatus==3">
@@ -155,32 +149,32 @@
         </div>
         <div class="cfix tabBox">
             <ul class="l cfix tabs">
-                <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_message($event,0)">全部</a></li>
+                <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_message($event,0)">已发送</a></li>
                 <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_message($event,1)">发布</a></li>
             </ul>
-            <table cellpadding="0" cellspacing="0" border="0" class="table table-addr"  *ngIf="messageFlag">
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-addr" *ngIf="messageFlag">
                 <tr>
-                    <th class="th30"><span class="pl10">用户ID</span></th>
-                    <th class="th60"><span class="pl10">昵称</span></th>
-                    <th class="th120">联系电话</th>
-                    <th class="th200">地址</th>
-                    <th class="th120">邮箱</th>
-                    <th class="th120">用户状态</th>
-                    <th class="th120">用户角色</th>
+                    <th class="th30"><span class="pl10">消息UID</span></th>
+                    <th class="th60"><span class="pl10">发送者</span></th>
+                    <th class="th120">发送时间</th>
+                    <th class="th200">分类</th>
+                    <th class="th120">接受者</th>
+                    <th class="th120">状态</th>
+                    <th class="th120">内容</th>
                     <th class="operate th200">操作</th>
                 </tr>
 
-                <tr data-id="" class="address-add" *ngFor="let item of userInfoModelList;let i = index;">
-                    <td class="th30"><span class="c-black fs14">{{item.loginId}}</span></td>
-                    <td class="th60"><span class="c-black fs14">{{item.nickName}}</span></td>
-                    <td class="th120"><span class="c-black fs14">{{item.phone}}</span></td>
-                    <td class="th200"><span class="c-black fs14">{{item.location}}</span></td>
-                    <td class="th120"><span class="c-black fs14">{{item.email}}</span></td>
-                    <td class="th120">{{item.statusDescription}}</td>
-                    <td class="th120">{{item.roleDescription}}</td>
+                <tr data-id="" class="address-add" *ngFor="let item of messagePushList;let i = index;">
+                    <td class="th30"><span class="c-black fs14">{{item.messageUid}}</span></td>
+                    <td class="th60"><span class="c-black fs14">{{item.messagePusher}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.messagePushTime}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.messagePushCategoryName}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.pushToUserUid}}</span></td>
+                    <td class="th120">{{item.messagePushStatusName}}</td>
+                    <td class="th200">{{item.messageContent}}</td>
 
                     <td class="operate">
-                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit" (click)="GetThisLineUserInfo(i)">编辑</a>
+                        <a data-toggle="modal" data-target="#messagePushModel" href="###" class="fs14 a-edit" (click)="ReSetMessage(i)">撤回</a>
                     </td>
                 </tr>
 
@@ -189,27 +183,25 @@
         <!-- 发布消息 -->
         <form action="" id="sentMassform" class="form-horizontal" style="min-width:500px;" *ngIf="!messageFlag">
             <div class="form-group">
-                <label for="true" class="col-sm-2 control-label">用户ID :</label>
+                <label for="true" class="col-sm-2 control-label">用户loginId :</label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" placeholder="" name="loginId">
+                    <input type="text" class="form-control" placeholder="send to loginId ..." [(ngModel)]="messagePush.pushToUserUid" name="pushToUserUid">
                 </div>
             </div>
             <div class="form-group">
                 <label for="true" class="col-sm-2 control-label">内  容 :</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" placeholder="请输入...." name="sentmass_content" rows="3"></textarea>
+                    <textarea class="form-control" placeholder="请输入...." [(ngModel)]="messagePush.messageContent" name="messageContent" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-8 col-md-offset-2">
-                    <input type="button" class="no-top-margin sentMassform_btn pull-right" value="发  布  消  息" name="">
+                    <input type="button" class="no-top-margin sentMassform_btn pull-right" value="发  布  消  息" (click)="SendMessage()" name="">
                 </div>
             </div>
         </form>
     </div>
-
 </div>
-
 
 <!-- model -->
 <div class="modal fade" id="userEditModel" tabindex="-1" role="dialog" aria-labelledby="userEditModelLabel">
@@ -268,7 +260,7 @@
                         <label for="true" class="col-sm-2 control-label">用户角色:</label>
                         <div class="col-sm-10">
                             <select id="userModelRole" class="form-control" (change)="model_userRoleModel_selectOnchange($event.target.value)" name="ustate">
-                               <option value="0">普通用户</option>
+                                <option value="0">普通用户</option>
                                 <option value="1">管理员</option>
                             </select>
                         </div>
@@ -282,6 +274,58 @@
         </div>
     </div>
 </div>
+<!-- 投诉处理 -->
+<div class="modal fade" id="complainEditModel" tabindex="-1" role="dialog" aria-labelledby="complainEditModelLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close btn_closeModel" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="complainEditModelLabel">投 诉 信 息 处 理</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" id="userEditform" class="form-horizontal" style="min-width:500px;">
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">UID :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="complainModel.complainUid" name="loginId" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">发布人UID :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="complainModel.complainUserUid" name="nickName" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">发布时间:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="complainModel.complainTime" name="phone" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">状  态 :</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="complainModel.complainStatusName" name="position" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="true" class="col-sm-2 control-label">内  容 :</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" placeholder="" [(ngModel)]="complainModel.complainContent" name="email" readonly></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+                <button type="button" class="btn btn-primary" (click)="MarkToRead()">标记为已读</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--<div class="modal fade" id="userDeleteModel" tabindex="-1" role="dialog" aria-labelledby="userDeleteModelLabel">
     <div class="modal-dialog" role="document">
@@ -306,5 +350,4 @@
         </div>
     </div>
 </div>-->
-
 <!--end management-->

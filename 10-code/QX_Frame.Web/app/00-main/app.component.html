@@ -34,10 +34,10 @@
                             <li><a routerLink="/managementCenter" (click)="setCenterStatus(2)">我的发布</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a routerLink="/administrator">管理中心</a></li>
-                            <li><a href="#">投   诉</a></li>
+                            <li><a routerLink="/complaint">投   诉</a></li>
                         </ul>
                     </li>
-                    <li><a>消息(1)</a></li>                    
+                    <li><a style="cursor:pointer;">消息(<span style="color:#fc1b1b">{{messageCount}}</span>)</a></li>                    
                 </ul>
             </div>
         </nav>

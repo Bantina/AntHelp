@@ -287,6 +287,7 @@
     <TypeScriptCompile Include="app\00-AQX_Frame.services\logger.service.ts" />
     <TypeScriptCompile Include="app\00-AQX_Frame.commons\appBase.ts" />
     <TypeScriptCompile Include="app\00-models\complain.model.ts" />
+    <TypeScriptCompile Include="app\00-models\MessagePush.model.ts" />
     <TypeScriptCompile Include="app\01-index\index.component.ts" />
     <TypeScriptCompile Include="app\01-index\index.model.ts" />
     <TypeScriptCompile Include="app\01-index\index.service.ts" />

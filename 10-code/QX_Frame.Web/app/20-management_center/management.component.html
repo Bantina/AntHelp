@@ -86,10 +86,10 @@
             </div>
             <div class="cfix tabBox">
                 <ul class="l cfix tabs">
-                    <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">全部</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">待完成</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">待支付</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">已结束</a></li>
+                    <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,2,-1,-1)">全部</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,2,-1,5)">待完成</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,2,-1,2)">待支付</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,2,-1,6)">已结束</a></li>
                 </ul>
             </div>
             <div class="myorderBlock col-md-3 col-md-offset-1"  *ngFor="let item of myorderModelList">
@@ -115,11 +115,11 @@
             </div>
             <div class="cfix tabBox">
                 <ul class="l cfix tabs">
-                    <li class="on"><a href="javascript:void(0);">全部</a></li>
-                    <li class=""><a href="javascript:void(0);">待接单</a></li>
-                    <li class=""><a href="javascript:void(0);">待支付</a></li>
-                    <li class=""><a href="javascript:void(0);">待确认</a></li>
-                    <li class=""><a href="javascript:void(0);">已结束</a></li>
+                    <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,-1)">全部</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,1)">待接单</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,2)">待支付</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,5)">待确认</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,6)">已结束</a></li>
                 </ul>
             </div>
             <div class="myorderBlock col-md-3 col-md-offset-1" *ngFor="let item of myorderModelList">

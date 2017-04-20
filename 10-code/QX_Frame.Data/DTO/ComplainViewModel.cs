@@ -15,7 +15,7 @@ namespace QX_Frame.Data.DTO
         // 
         public Guid complainUserUid { get; set; }
         // 
-        public DateTime complainTime { get; set; }
+        public string complainTime { get; set; }
         // 
         public Int32 complainStatusId { get; set; }
 

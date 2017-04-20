@@ -91,7 +91,7 @@ namespace QX_Frame.Data.QueryObject
 
             if (this.orderStatusId!=-1)
             {
-                func = func.And(t => t.orderStatusId == this.orderStatusId);
+                func = func.And(t => t.orderStatusId <= this.orderStatusId);
             }
 
             return func;

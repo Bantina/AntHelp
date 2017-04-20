@@ -49,7 +49,7 @@ namespace QX_Frame.WebAPI.Controllers
                     complain.complainUid = item.complainUid;
                     complain.complainContent = item.complainContent;
                     complain.complainUserUid = item.complainUserUid;
-                    complain.complainTime = item.complainTime;
+                    complain.complainTime = item.complainTime.ToDateTimeString_24HourType();
                     complain.complainStatusId = item.complainStatusId;
                     complain.complainStatusName = item.tb_ComplainStatus.complainStatusName;
                     complainViewModelList.Add(complain);
@@ -71,7 +71,7 @@ namespace QX_Frame.WebAPI.Controllers
                     result.complainUid = complain.complainUid;
                     result.complainContent = complain.complainContent;
                     result.complainUserUid = complain.complainUserUid;
-                    result.complainTime = complain.complainTime;
+                    result.complainTime = complain.complainTime.ToDateTimeString_24HourType();
                     result.complainStatusId = complain.complainStatusId;
                     result.complainStatusName = complain.tb_ComplainStatus.complainStatusName;
                 }

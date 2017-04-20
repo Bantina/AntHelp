@@ -2,6 +2,7 @@
 import { appBase } from '../../00-AQX_Frame.commons/appBase';
 import { appService } from '../../00-AQX_Frame.services/appService';
 import { UserInfoModel } from './../management.model';
+import { ComplainModel } from '../../00-models/ComplainModel';
 
 @Component({
     selector: 'administrator',

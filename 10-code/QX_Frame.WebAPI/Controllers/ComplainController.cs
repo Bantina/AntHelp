@@ -49,9 +49,9 @@ namespace QX_Frame.WebAPI.Controllers
                     complain.complainUid = item.complainUid;
                     complain.complainContent = item.complainContent;
                     complain.complainUserUid = item.complainUserUid;
-                    complain.complainTime = item.complainTime;
+                    complain.complainTime = item.complainTime.ToDateTimeString_24HourType();
                     complain.complainStatusId = item.complainStatusId;
-                    complain.complainStatus = item.tb_ComplainStatus;
+                    complain.complainStatusName = item.tb_ComplainStatus.complainStatusName;
                     complainViewModelList.Add(complain);
                 }
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get complain list query by messagePushStatus", complainViewModelList, count));
@@ -71,13 +71,11 @@ namespace QX_Frame.WebAPI.Controllers
                     result.complainUid = complain.complainUid;
                     result.complainContent = complain.complainContent;
                     result.complainUserUid = complain.complainUserUid;
-                    result.complainTime = complain.complainTime;
+                    result.complainTime = complain.complainTime.ToDateTimeString_24HourType();
                     result.complainStatusId = complain.complainStatusId;
-                    result.complainStatus = complain.tb_ComplainStatus;
+                    result.complainStatusName = complain.tb_ComplainStatus.complainStatusName;
                 }
-                complain.complainStatusId = opt_ComplainStatus.已读.ToInt();
-                channel.Update(complain);
-                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get complain by complainUid = id",result,1));
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get complain by complainUid = id", result, 1));
             }
         }
 
@@ -94,16 +92,28 @@ namespace QX_Frame.WebAPI.Controllers
                 string token = query.token;
                 complain.complainUserUid = AuthenticationController.GetTokenInfoByAppKeyToken(appKey, token).Item1;
                 complain.complainTime = DateTime.Now;
-                complain.complainStatusId = opt_ComplainStatus.未读.ToInt();
+                complain.complainStatusId = opt_ComplainStatus.未处理.ToInt();
                 channel.Add(complain);
             }
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("add succeed"));
         }
 
-        // PUT: api/Complain
-        public IHttpActionResult Put([FromBody]dynamic query)
+        // PUT: api/Complain/id
+        public IHttpActionResult Put(string id,[FromBody]dynamic query)
         {
-            throw new Exception_DG("The interface is not available", 9999);
+            Guid complainuid = Guid.Parse(id);
+            using (var fact = Wcf<ComplainService>())
+            {
+                var channel = fact.CreateChannel();
+                tb_Complain complain = channel.QuerySingle(new tb_ComplainQueryObject { QueryCondition = t => t.complainUid == complainuid }).Cast<tb_Complain>();
+                ComplainViewModel result = new ComplainViewModel();
+                if (complain != null)
+                {
+                    complain.complainStatusId = opt_ComplainStatus.已处理.ToInt();
+                }
+                channel.Update(complain);
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("update succeed"));
+            }
         }
 
         // DELETE: api/Complain

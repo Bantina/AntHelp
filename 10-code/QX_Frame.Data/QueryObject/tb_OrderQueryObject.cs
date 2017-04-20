@@ -1,7 +1,9 @@
 using QX_Frame.App.Base;
 using QX_Frame.Data.Entities;
+using QX_Frame.Data.Options;
 using System;
 using System.Linq.Expressions;
+using QX_Frame.Helper_DG_Framework.Extends;
 
 namespace QX_Frame.Data.QueryObject
 {
@@ -89,9 +91,9 @@ namespace QX_Frame.Data.QueryObject
                 func = func.And(t => t.receiverUid == this.receiverUid);
             }
 
-            if (this.orderStatusId!=-1)
+            if (this.orderStatusId != -1)
             {
-                func = func.And(t => t.orderStatusId <= this.orderStatusId);
+                func = func.And(t => t.orderStatusId == this.orderStatusId);
             }
 
             return func;

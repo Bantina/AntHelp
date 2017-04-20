@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
-const appService_1 = require('../../00-AQX_Frame.services/appService');
-const router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../../00-AQX_Frame.services/appService");
+const router_1 = require("@angular/router");
 let OrderDetailComponent = class OrderDetailComponent {
     constructor(_router) {
         this.order = {
@@ -29,7 +30,8 @@ let OrderDetailComponent = class OrderDetailComponent {
             evaluateUid: "",
             address: "",
             phone: "",
-            imageUrls: ""
+            imageUrls: "",
+            imageDatas: []
         };
         //抢单标识
         this.getOrderButtonIsDisabled = 1;
@@ -87,6 +89,7 @@ let OrderDetailComponent = class OrderDetailComponent {
                 "token": appService_1.appService.getCookie("token")
             },
             success(data) {
+                var _html = '';
                 if (data.isSuccess) {
                     self.order.publisherUid = data.data.publisherUid;
                     self.order.orderUid = data.data.orderUid;
@@ -103,25 +106,27 @@ let OrderDetailComponent = class OrderDetailComponent {
                     self.order.address = data.data.address;
                     self.order.phone = data.data.phone;
                     self.order.imageUrls = data.data.imageUrls;
+                    self.order.imageDatas = data.data.imageDatas;
                     self.publisherLoginId = data.data.publisherInfo.loginId;
                     self.orderCategoryName = data.data.orderCategory.CategoryName;
-                    self.imageNameList = self.order.imageUrls.split('&');
-                    self.imageSrcList = [];
-                    for (var i = 0; i < self.imageNameList.length; i++) {
-                        if (self.imageNameList[i] == "") {
-                            self.imageNameList[i] = "default.jpg";
-                        }
-                        $.ajax({
-                            url: appBase_1.appBase.DomainApi + 'api/Files/' + self.imageNameList[i],
-                            type: "GET",
-                            success: function (imageData) {
-                                self.imageSrcList.push(imageData);
-                            },
-                            error: function (imageData) {
-                                //self.imageSrcList.push("#");
-                            }
-                        });
-                    }
+                    //$('.detail_carousel').append(_html);
+                    //self.imageNameList = self.order.imageUrls.split('&');
+                    //self.imageSrcList = [];
+                    //for (var i = 0; i < self.imageNameList.length; i++) {
+                    //    if (self.imageNameList[i] == "") {
+                    //        self.imageNameList[i] = "default.jpg";
+                    //    }
+                    //    $.ajax({
+                    //        url: appBase.DomainApi + 'api/Files/' + self.imageNameList[i],
+                    //        type: "GET",
+                    //        success: function (imageData) {
+                    //            self.imageSrcList.push(imageData);
+                    //        },
+                    //        error: function (imageData) {
+                    //            //self.imageSrcList.push("#");
+                    //        }
+                    //    });
+                    //}
                     //判断是否能点击
                     if (self.order.orderStatusId != "1") {
                         //如果不是未接单的状态，则不能进行抢单操作
@@ -136,6 +141,13 @@ let OrderDetailComponent = class OrderDetailComponent {
                 alert("服务器错误！");
             }
         });
+    }
+    orderDetail_img_cli(event) {
+        var $target = $(event.target || event.srcElement);
+        var $targetP = $target.parent();
+        $('.orderDetail_ret').find('img').attr('src', $target.attr('src'));
+        $targetP.siblings().css('border-color', '#444');
+        $targetP.css('border-color', 'tomato');
     }
     //the final execute ...
     ngOnInit() {
@@ -155,8 +167,8 @@ OrderDetailComponent = __decorate([
         templateUrl: 'app/30-order/detail/detail.component.html',
         styleUrls: ['app/30-order/detail/detail.component.css'],
         providers: []
-    }), 
-    __metadata('design:paramtypes', [router_1.Router])
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
 ], OrderDetailComponent);
 exports.OrderDetailComponent = OrderDetailComponent;
 //# sourceMappingURL=detail.component.js.map

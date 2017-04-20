@@ -289,8 +289,6 @@
     <TypeScriptCompile Include="app\00-models\complain.model.ts" />
     <TypeScriptCompile Include="app\00-models\MessagePush.model.ts" />
     <TypeScriptCompile Include="app\01-index\index.component.ts" />
-    <TypeScriptCompile Include="app\01-index\index.model.ts" />
-    <TypeScriptCompile Include="app\01-index\index.service.ts" />
     <TypeScriptCompile Include="app\00-main\app.component.ts" />
     <TypeScriptCompile Include="app\02-example\example.component.ts" />
     <TypeScriptCompile Include="app\02-example\example.model.ts" />

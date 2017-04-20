@@ -58,7 +58,7 @@ namespace QX_Frame.WebAPI.Controllers
                     articleViewModel.ArticleCategoryId = item.ArticleCategoryId;
                     articleViewModel.articleCategory = item.tb_ArticleCategory;
                     articleViewModel.imagesUrls = item.imagesUrls;
-                    articleViewModel.imageDatas = FilesController.GetImageDataArray(item.imagesUrls.Split('&'));
+                    articleViewModel.imageDatas = FilesController.ImageDataArrayByNameArray(item.imagesUrls.Split('&'));
                     articleViewModelList.Add(articleViewModel);
                 }
 
@@ -96,7 +96,7 @@ namespace QX_Frame.WebAPI.Controllers
                 articleViewModel.ArticleCategoryId = article.ArticleCategoryId;
                 articleViewModel.articleCategory = article.tb_ArticleCategory;
                 articleViewModel.imagesUrls = article.imagesUrls;
-                articleViewModel.imageDatas = FilesController.GetImageDataArray(article.imagesUrls.Split('&'));
+                articleViewModel.imageDatas = FilesController.ImageDataArrayByNameArray(article.imagesUrls.Split('&'));
 
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Article by articleUid", articleViewModel, 1));
             }

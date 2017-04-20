@@ -34,7 +34,7 @@ export class MyorderModel {
     public orderDescription: string;
     public orderCategoryId: string;
     public orderCategory: string;
-    public receiverUid: number;
+    public receiverUid: string;
     public receiverInfo: string;
     public receiveTime: string;
     public orderStatusId: string;

@@ -28,21 +28,26 @@ namespace QX_Frame.WebAPI.Controllers
     public class OrderController : WebApiControllerBase
     {
         // GET: api/Order queryId=-1 all,queryId=0 own, queryId=1 publish, queryId=2 receive, orderCategory = -1 all orderStatusId=-1 all
-        public IHttpActionResult Get(int queryId ,int orderCategoryId,int orderStatusId,string publisherOrReceiverLoginId,string orderDescription, int pageIndex, int pageSize, bool isDesc)
+        public IHttpActionResult Get(int queryId, int orderCategoryId, int orderStatusId, string publisherOrReceiverLoginId, string orderDescription, int pageIndex, int pageSize, bool isDesc)
         {
             tb_OrderQueryObject queryObject = new tb_OrderQueryObject();
 
             queryObject.queryId = queryId;
             queryObject.orderCategoryId = orderCategoryId;
             queryObject.orderStatusId = orderStatusId;
-            tb_UserAccountInfo userAccountInfo = UserController.GetUserAccountInfoByLoginId(publisherOrReceiverLoginId);
-            queryObject.publisherUid =userAccountInfo.uid;
-            queryObject.receiverUid = userAccountInfo.uid;
+
+            if (queryId != -1)
+            {
+                tb_UserAccountInfo userAccountInfo = UserController.GetUserAccountInfoByLoginId(publisherOrReceiverLoginId);
+                queryObject.publisherUid = userAccountInfo.uid;
+                queryObject.receiverUid = userAccountInfo.uid;
+            }
+
             queryObject.orderDescription = orderDescription;//fuzzy query
             queryObject.PageIndex = pageIndex;
             queryObject.PageSize = pageSize;
             queryObject.IsDESC = isDesc;
-            
+
 
             using (var fact = Wcf<OrderService>())
             {
@@ -71,7 +76,7 @@ namespace QX_Frame.WebAPI.Controllers
                     orderViewModel.address = item.address;
                     orderViewModel.phone = item.phone;
                     orderViewModel.imageUrls = item.imageUrls;
-                    orderViewModel.imageDatas = FilesController.GetImageDataArray(item.imageUrls.Split('&'));
+                    orderViewModel.imageDatas = FilesController.ImageDataArrayByNameArray(item.imageUrls.Split('&'));
 
                     resultList.Add(orderViewModel);
                 }
@@ -121,7 +126,7 @@ namespace QX_Frame.WebAPI.Controllers
                     orderViewModel.address = Order.address;
                     orderViewModel.phone = Order.phone;
                     orderViewModel.imageUrls = Order.imageUrls;
-                    orderViewModel.imageDatas = FilesController.GetImageDataArray(Order.imageUrls.Split('&'));
+                    orderViewModel.imageDatas = FilesController.ImageDataArrayByNameArray(Order.imageUrls.Split('&'));
 
                     return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Order by OrderUid", orderViewModel, 1));
                 }
@@ -154,7 +159,7 @@ namespace QX_Frame.WebAPI.Controllers
                 order.orderCategoryId = query.orderCategoryId;
                 order.receiverUid = default(Guid);
                 order.receiveTime = DateTime.Now;
-                order.orderStatusId = opt_OrderStatus.待接单.ToInt();
+                order.orderStatusId = opt_OrderStatus.未支付.ToInt();
                 order.orderValue = query.orderValue;
                 order.allowVoucher = 1;
                 order.voucherMax = 5;
@@ -203,19 +208,19 @@ namespace QX_Frame.WebAPI.Controllers
                     }
                     if (id == 1)
                     {
-                        if (order.orderStatusId == opt_OrderStatus.待接单.ToInt())
+                        if (order.orderStatusId == opt_OrderStatus.已支付.ToInt())
                         {
                             string loginId = query.receiverLoginId;//argument
                             order.receiverUid = UserController.GetUserAccountInfoByLoginId(loginId.Trim()).uid;
                             order.receiveTime = DateTime.Now;
-                            order.orderStatusId = query.orderStatusId;//argument
+                            order.orderStatusId = opt_OrderStatus.已接单.ToInt();//argument
                         }
                         else
                         {
                             throw new Exception_DG("the order has been received", 3022);
                         }
                     }
-                    else if (id==2)
+                    else if (id == 2)
                     {
                         order.orderStatusId = query.orderStatusId;//argument
                     }

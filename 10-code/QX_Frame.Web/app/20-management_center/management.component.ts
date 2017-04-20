@@ -230,10 +230,11 @@ export class ManagementComponent implements OnInit {
     ////我的订单
 
     //条件帅选 点击；
-    tabBoxClick_myorder(event): void {
+    tabBoxClick_myorder(event, queryId, orderCategoryId, orderStatusId): void {
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
+        this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
     }
     toMyorderDetail(): void {
         this.router.navigateByUrl('/myorderDetail');//跳转订单详情页面；

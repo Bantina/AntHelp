@@ -36,4 +36,5 @@ export class Order {
     public address: string;
     public phone: string;
     public imageUrls: string;
+    public imageDatas: string[];
 }

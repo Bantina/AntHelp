@@ -42,7 +42,8 @@ export class PublishComponent implements OnInit {
         evaluateUid: "",
         address: "",
         phone: "",
-        imageUrls: ""
+        imageUrls: "",
+        imageDatas: []
     }
 
     //publish_kinds: any = {
@@ -114,6 +115,11 @@ export class PublishComponent implements OnInit {
             this.kindsName = kindTar.text();
         }
         this.order.orderCategoryId = kindTar.parent().attr("id");
+        if (this.order.orderCategoryId == '6') {
+            $('.publish_price').attr('readonly','readonly').val('0');
+        } else {
+            $('.publish_price').removeAttr('readonly').val('');
+        }
 
     }
 
@@ -178,7 +184,7 @@ export class PublishComponent implements OnInit {
     OrderPublish(): void {
 
         var self = this;
-
+        self.order.imageUrls = "";
         for (var i = 0; i < self.imageNameList.length; i++) {
             if (self.imageNameList.length == 1) {
                 self.order.imageUrls += self.imageNameList[i];

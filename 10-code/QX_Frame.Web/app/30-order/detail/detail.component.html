@@ -2,17 +2,22 @@
 <div class="orderDetail">
     <div class="row">
         <div class="slider-wrap col-md-7">
-            <div class="orderDetail_slider">
-                <div *ngFor="let item of imageSrcList">
-                    <p><strong>Pig ham:</strong> hock pork loin brisket pastrami frankfurter andouille.</p>
-                    <img src="{{item}}" />
+            <div *ngIf="order.imageDatas.length==0" class="detail_carousel_C">
+                <img src="../../../Images/03-login/blank_bg.png" />
+            </div>
+            <div *ngIf="order.imageDatas.length==1" class="detail_carousel_C">
+                <img src="{{order.imageDatas[0]}}" />
+            </div>
+            <div *ngIf="order.imageDatas.length>1">
+                <div class="orderDetail_ret">
+                    <img src="{{order.imageDatas[0]}}" />
                 </div>
-                <!--<p><strong>Sausage:</strong> ground round sirloin ball tip beef ribs.</p>
-                <img src="../../../Images/30-order/bg2.png" />
-                <p><strong>Pig ham:</strong> hock pork loin brisket pastrami frankfurter andouille.</p>
-                <img src="../../../Images/30-order/bg3.png" />
-                <p><strong>Pork turkey:</strong> shoulder, filet mignon chuck t-bone bacon.</p>
-                <img src="../../../Images/30-order/bg4.png" />-->
+                <div class="orderDetail_ret_box">
+                    <div class="orderDetail_ret_block" *ngFor="let item of order.imageDatas">
+                        <img src="{{item}}" (click)="orderDetail_img_cli($event)" />
+                    </div>
+                    <div stylr="clear:both;"></div>
+                </div>
             </div>
         </div>
         <div class="col-md-5 orderDetail_right">
@@ -34,7 +39,7 @@
             </div>
             <div class="row">
                 <input type="button" class="col-md-10 col-md-offset-1 no-top-margin getorder_btn" value="立  即  抢  单~" (click)="getOrder()" *ngIf="getOrderButtonIsDisabled==1" name="">
-                <input type="button" class="col-md-10 col-md-offset-1 no-top-margin getorder_dis_btn" disabled="disabled"  value="手慢一步，试试其他订单吧~" (click)="getOrder()" *ngIf="getOrderButtonIsDisabled==0" name="">
+                <input type="button" class="col-md-10 col-md-offset-1 no-top-margin getorder_dis_btn" disabled="disabled" value="手慢一步，试试其他订单吧~" (click)="getOrder()" *ngIf="getOrderButtonIsDisabled==0" name="">
             </div>
         </div>
     </div>

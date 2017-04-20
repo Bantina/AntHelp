@@ -60,7 +60,7 @@
                             <div class="col-sm-10 input-group publish_inputgroup">
                                 <!--<input type="text" class="form-control" placeholder="请输入...." name="">-->
                                 <span class="input-group-addon" style="color:tomato;">￥</span>
-                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                <input type="text" class="form-control publish_price"  [(ngModel)]="order.orderValue" name="price" aria-label="Amount (to the nearest dollar)">
                             </div>
                         </div>
                         <div class="form-group">

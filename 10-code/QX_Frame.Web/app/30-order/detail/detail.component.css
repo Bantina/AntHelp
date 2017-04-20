@@ -8,7 +8,7 @@
 .slider-wrap {
     background: white;
     padding: 10px;
-    height: 450px;
+    height: 530px;
     box-shadow: 0 1px 4px rgba(0,0,0,.2);
 }
 
@@ -23,7 +23,7 @@
     }
 
 .orderDetail_right {
-    padding: 100px 30px 10px 0;
+    padding: 150px 30px 10px 0;
 }
 
 .detail_title {
@@ -65,3 +65,50 @@
 .orderDetail_right .getorder_dis_btn:hover, .orderDetail_right .getorder_dis_btn:focus {
     background-color: #989595;
 }
+
+/*bootstrap轮播*/
+.detail_carousel_C img{
+	width:100%;
+	height:500px;
+}
+
+.detail_carousel_left,.detail_carousel_right {
+	width:50px;
+	height:50px;
+	margin-left:20px;
+	margin-top:230px;
+	background: url('../../Images/30-order/prev_next.png') no-repeat;
+}
+.detail_carousel_right{
+	background-position: -40px;
+}
+
+
+
+.orderDetail_ret{
+		width:100%;
+		height:400px;
+	}
+	.orderDetail_ret img{
+		width:100%;
+		height: 100%;
+        cursor:pointer;
+	}
+	.orderDetail_ret_box{
+		margin-top: 10px;
+	}
+	.orderDetail_ret_block{
+		width:150px;
+		height: 100px;
+		border: solid 1px #444;
+		float: left;
+		padding: 2px;
+        margin-left:15px;
+	}
+    .orderDetail_ret_block:first-child{
+        border-color:tomato;
+    }
+	.orderDetail_ret_block img{
+		width:100%;
+		height: 100%;
+	}

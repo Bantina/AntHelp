@@ -82,7 +82,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         //Get Image Data
-        public static string GetImageData(string imageName)
+        public static string ImageDataByName(string imageName)
         {
             try
             {
@@ -98,7 +98,7 @@ namespace QX_Frame.WebAPI.Controllers
             }
         }
         //GetImageDataArray imageData list
-        public static string[] GetImageDataArray(string[] imageNameArray)
+        public static string[] ImageDataArrayByNameArray(string[] imageNameArray)
         {
             string[] resultArray = new string[imageNameArray.Length];
             for (int i = 0; i < imageNameArray.Length; i++)

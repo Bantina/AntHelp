@@ -33,7 +33,8 @@ export class OrderDetailComponent implements OnInit {
         evaluateUid: "",
         address: "",
         phone: "",
-        imageUrls: ""
+        imageUrls: "",
+        imageDatas:[]
     }
 
     //发布者的loginId
@@ -86,7 +87,7 @@ export class OrderDetailComponent implements OnInit {
 
         
     }
-
+    
     GetOrderByOrderUid(): void {
         var self = this;
         var orderUid = appService.GetQueryString("orderUid");
@@ -102,6 +103,7 @@ export class OrderDetailComponent implements OnInit {
                 "token": appService.getCookie("token")
             },
             success(data) {
+                var _html = '';
                 if (data.isSuccess) {
                     self.order.publisherUid = data.data.publisherUid;
                     self.order.orderUid = data.data.orderUid;
@@ -118,30 +120,33 @@ export class OrderDetailComponent implements OnInit {
                     self.order.address = data.data.address;
                     self.order.phone = data.data.phone;
                     self.order.imageUrls = data.data.imageUrls;
+                    self.order.imageDatas = data.data.imageDatas;
 
                     self.publisherLoginId = data.data.publisherInfo.loginId;
                     self.orderCategoryName = data.data.orderCategory.CategoryName;
+                   
+                    //$('.detail_carousel').append(_html);
 
-                    self.imageNameList = self.order.imageUrls.split('&');
-                    self.imageSrcList = [];
+                    //self.imageNameList = self.order.imageUrls.split('&');
+                    //self.imageSrcList = [];
 
-                    for (var i = 0; i < self.imageNameList.length; i++) {
+                    //for (var i = 0; i < self.imageNameList.length; i++) {
 
-                        if (self.imageNameList[i] == "") {
-                            self.imageNameList[i] = "default.jpg";
-                        }
+                    //    if (self.imageNameList[i] == "") {
+                    //        self.imageNameList[i] = "default.jpg";
+                    //    }
 
-                        $.ajax({
-                            url: appBase.DomainApi + 'api/Files/' + self.imageNameList[i],
-                            type: "GET",
-                            success: function (imageData) {
-                                self.imageSrcList.push(imageData);
-                            },
-                            error: function (imageData) {
-                                //self.imageSrcList.push("#");
-                            }
-                        });
-                    }
+                    //    $.ajax({
+                    //        url: appBase.DomainApi + 'api/Files/' + self.imageNameList[i],
+                    //        type: "GET",
+                    //        success: function (imageData) {
+                    //            self.imageSrcList.push(imageData);
+                    //        },
+                    //        error: function (imageData) {
+                    //            //self.imageSrcList.push("#");
+                    //        }
+                    //    });
+                    //}
 
                     //判断是否能点击
                     if (self.order.orderStatusId != "1") {
@@ -158,7 +163,14 @@ export class OrderDetailComponent implements OnInit {
                 }
             });
         } 
-        
+
+    orderDetail_img_cli(event): void {
+        var $target = $(event.target || event.srcElement);
+        var $targetP = $target.parent();
+        $('.orderDetail_ret').find('img').attr('src', $target.attr('src'));
+        $targetP.siblings().css('border-color', '#444');
+        $targetP.css('border-color', 'tomato');
+    }
     //the final execute ...
     ngOnInit(): void {
 

@@ -1,8 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { appBase } from '../../00-AQX_Frame.commons/appBase';
 import { appService } from '../../00-AQX_Frame.services/appService';
-import { UserInfoModel } from './../management.model';
-import { ComplainModel } from '../../00-models/ComplainModel';
+import { UserInfoModel, MyorderModel } from './../management.model';
+import { ComplainModel } from '../../00-models/complain.model';
 
 @Component({
     selector: 'administrator',
@@ -110,51 +110,6 @@ export class AdministratorComponent implements OnInit {
         //////
     }
 
-    ////个人账户
-    //上传头像
-    //uploadFlag: boolean = false;
-    //uploadErrorMsg: string = "";
-    //personalHeadUpload(event): void {
-    //    var self = this;
-    //    var formData = new FormData((<HTMLFormElement[]><any>$("#uploadHeadForm"))[0]);
-    //    $.ajax({
-    //        url: appBase.DomainApi + 'api/Files',
-    //        type: 'POST',
-    //        data: formData,
-    //        async: false,
-    //        cache: false,
-    //        contentType: false,
-    //        processData: false,
-    //        success: function (json) {
-    //            if (json.errorCode == 2005) {
-    //                self.uploadFlag = false;
-    //                self.uploadErrorMsg = "文件类型不允许";
-    //            }
-    //            else {
-    //                self.uploadFlag = true;
-    //                self.userInfoModel.headImageUrl = json.data[0]; //头像地址保存
-    //                for (var i = 0; i < json.dataCount; i++) {
-    //                    $.ajax({
-    //                        url: appBase.DomainApi + 'api/Files/' + json.data[i],
-    //                        type: "GET",
-    //                        success: function (data) {
-    //                            //$(".prePotrait img").eq(0).attr('src', data);
-    //                            self.userInfoModel.headImageUrl = data;
-    //                            $(".j_usr_img").attr('src', data);
-    //                        },
-    //                        error: function (data) {
-    //                            self.uploadFlag = false;
-    //                            self.uploadErrorMsg = "图片已上传成功，预览失败~";
-    //                        }
-    //                    });
-
-    //                }
-    //            }
-    //        },
-    //        error: function (json) {
-    //            self.uploadFlag = false;
-    //        }
-    //    });
     //}
     ////获取用户信息；
     getUserInfo(): void {
@@ -201,48 +156,7 @@ export class AdministratorComponent implements OnInit {
         }
 
     }
-    ////保存 用户信息
-    //userInfoSave(): void {
-    //    var self = this;
-    //    $.ajax({
-    //        url: appBase.DomainApi + "api/User",
-    //        type: "put",
-    //        dataType: "json",
-    //        contentType: "application/json; charset=UTF-8",
-    //        data: JSON.stringify(
-    //            {
-    //                "appKey": self.userInfoModel.appKey,
-    //                "token": self.userInfoModel.token,
-    //                "loginId": self.userInfoModel.loginId,
-    //                "nickName": self.userInfoModel.nickName,
-    //                "phone": self.userInfoModel.phone,
-    //                "headImageUrl": self.userInfoModel.headImageUrl,
-    //                "age": self.userInfoModel.age,
-    //                "sexId": self.userInfoModel.sexId,
-    //                "birthday": self.userInfoModel.birthday,
-    //                "bloodTypeId": self.userInfoModel.bloodTypeId,
-    //                "position": self.userInfoModel.position,
-    //                "school": self.userInfoModel.school,
-    //                "location": self.userInfoModel.location,
-    //                "company": self.userInfoModel.company,
-    //                "constellation": self.userInfoModel.constellation,
-    //                "chineseZodiac": self.userInfoModel.chineseZodiac,
-    //                "personalizedSignature": self.userInfoModel.personalizedSignature,
-    //                "personalizedDescription": self.userInfoModel.personalizedDescription
-    //            }),
-    //        success(data) {
-    //            if (data.isSuccess) {
-    //                alert("个人信息修改成功~");
-    //            }
-    //            else {
-    //                alert("个人信息修改失败，请稍后重试~");
-    //            }
-    //        },
-    //        error(data) {
-    //            alert("个人信息修改失败，请稍后重试~");
-    //        }
-    //    });
-    //}
+
 
     ////账户管理
     model_userStatusModel_selectOnchange(obj): any {
@@ -465,6 +379,130 @@ export class AdministratorComponent implements OnInit {
     //}
 
     ////订单管理
+    //order-model
+    model_orderModel: MyorderModel = {
+        orderUid: 0,
+        publisherUid: 0,
+        publisherInfo: "",
+        publishTime: "",
+        orderDescription: "",
+        orderCategoryId: '',
+        orderCategory: '',
+        receiverUid:'',
+        receiveTime: '',
+        receiverInfo: '',
+        orderStatusId: "",
+        orderStatus: '',
+        orderValue: '',
+        allowVoucher: '',
+        voucherMax: '',
+        evaluateUid: 0,
+        orderEvaluate: '',
+        address: '',
+        phone: '',
+        imageUrls: '',
+        firstImg:''
+    }
+    //tabclick
+    tabBoxClick_allOrder(event,queryId, orderCategoryId, orderStatusId): void {
+        var $targetP = $(event.target || event.srcElement).parent();
+        $targetP.siblings().removeClass("on");
+        $targetP.addClass("on");
+        //get list
+        this.GetAllorderList(queryId, orderCategoryId, orderStatusId);
+    }
+    //get AllorderList List 获取全部订单列表;
+    allorderModelList: MyorderModel[] = [];
+    GetAllorderList(queryId, orderCategoryId, orderStatusId): void {
+        var self = this;
+        $.ajax({
+            url: appBase.DomainApi + "api/Order",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                //queryId=-1 all queryId=1 publish queryId=2 receive orderCategory = -1 all orderStatusId=-1 all
+                "appKey": appService.getCookie("appKey"),
+                "token": appService.getCookie("token"),
+                "publisherOrReceiverLoginId": appService.getCookie("loginId"),
+                "queryId": queryId,
+                "orderCategoryId": orderCategoryId,
+                "orderStatusId": orderStatusId,
+                "orderDescription": "",
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.allorderModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        var per_myorderModel = new MyorderModel();
+
+                        per_myorderModel.orderUid = data.data[i].orderUid;
+                        per_myorderModel.publisherUid = data.data[i].publisherUid;
+                        per_myorderModel.publisherInfo = data.data[i].publisherInfo;
+                        per_myorderModel.publishTime = data.data[i].publishTime;
+                        per_myorderModel.orderDescription = data.data[i].orderDescription;
+                        per_myorderModel.orderCategoryId = data.data[i].orderCategoryId;
+                        per_myorderModel.orderCategory = data.data[i].orderCategory.CategoryName;
+                        if (data.data[i].receiverUid == '00000000-0000-0000-0000-000000000000') {
+                            per_myorderModel.receiverUid = '暂无';
+                        } else {
+                            per_myorderModel.receiverUid = data.data[i].receiverUid;
+                        }
+                        per_myorderModel.receiverInfo = data.data[i].receiverInfo;
+                        per_myorderModel.receiveTime = data.data[i].receiveTime;
+                        per_myorderModel.orderStatusId = data.data[i].orderStatusId;
+                        per_myorderModel.orderStatus = data.data[i].orderStatus.orderStatusDescription;
+                        per_myorderModel.orderValue = data.data[i].orderValue;
+                        per_myorderModel.allowVoucher = data.data[i].allowVoucher;
+                        per_myorderModel.voucherMax = data.data[i].voucherMax;
+                        per_myorderModel.evaluateUid = data.data[i].evaluateUid;
+                        per_myorderModel.orderEvaluate = data.data[i].orderEvaluate;
+                        per_myorderModel.address = data.data[i].address;
+                        per_myorderModel.phone = data.data[i].phone;
+                        per_myorderModel.imageUrls = data.data[i].imageUrls;
+                        per_myorderModel.firstImg = data.data[i].imageDatas[0];
+
+                        self.allorderModelList.push(per_myorderModel);
+                    }
+                } else {
+                    console.error(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+    //点编辑的a标签事件，把本行的信息获取出来
+    //GetThisLineOrderInfo(i: number): void {
+    //    var self = this;
+
+    //    self.model_orderModel.orderUid = self.allorderModelList[i].orderUid;
+    //    self.model_orderModel.publisherUid = self.allorderModelList[i].publisherUid;
+    //    self.model_orderModel.publisherInfo = self.allorderModelList[i].publisherInfo;
+    //    self.model_orderModel.publishTime = self.allorderModelList[i].publishTime;
+    //    self.model_orderModel.orderDescription = self.allorderModelList[i].orderDescription;
+    //    self.model_orderModel.orderCategoryId = self.allorderModelList[i].orderCategoryId;
+    //    self.model_orderModel.orderCategory = self.allorderModelList[i].orderCategory;
+    //    self.model_orderModel.receiverUid = self.allorderModelList[i].receiverUid;
+    //    self.model_orderModel.receiverInfo =self.allorderModelList[i].receiverInfo;
+    //    self.model_orderModel.receiveTime =self.allorderModelList[i].receiveTime;
+    //    self.model_orderModel.orderStatusId =self.allorderModelList[i].orderStatusId;
+    //    self.model_orderModel.orderStatus =self.allorderModelList[i].orderStatus.orderStatusDescription;
+    //    self.model_orderModel.orderValue =self.allorderModelList[i].orderValue;
+    //    self.model_orderModel.allowVoucher =self.allorderModelList[i].allowVoucher;
+    //    self.model_orderModel.voucherMax =self.allorderModelList[i].voucherMax;
+    //    self.model_orderModel.evaluateUid =self.allorderModelList[i].evaluateUid;
+    //    self.model_orderModel.orderEvaluate =self.allorderModelList[i].orderEvaluate;
+    //    self.model_orderModel.address =self.allorderModelList[i].address;
+    //    self.model_orderModel.phone =self.allorderModelList[i].phone;
+    //    self.model_orderModel.imageUrls =self.allorderModelList[i].imageUrls;
+    //    self.model_orderModel.firstImg ='';
+        
+    //}
 
     ////投诉管理
 
@@ -488,6 +526,7 @@ export class AdministratorComponent implements OnInit {
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
         //获取用户列表
-        this.GetUserInfoListByCondition(-1,-1);
+        this.GetUserInfoListByCondition(-1, -1);
+        this.GetAllorderList(-1,-1,-1);
     }
 }

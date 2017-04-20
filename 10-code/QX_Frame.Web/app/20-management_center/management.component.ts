@@ -64,7 +64,7 @@ export class ManagementComponent implements OnInit {
     }
 
     //左菜单点击事件；
-    sidenavClick(event, num): void { //a
+    sidenavClick(event, num, queryId, orderCategoryId, orderStatusId): void { //a
         if (!this.loginId || this.loginId == "undefined") {
             this.navStatus == -1;
         } else {
@@ -73,9 +73,11 @@ export class ManagementComponent implements OnInit {
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
-        this.sidenavFun();
+        if (num != 0) {
+            this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
+        }
     }
-    sidenavSpanClick(event, num): void { //span
+    sidenavSpanClick(event, num, queryId, orderCategoryId, orderStatusId): void { //span
         if (!this.loginId || this.loginId == "undefined") {
             this.navStatus == -1;
         } else {
@@ -84,11 +86,11 @@ export class ManagementComponent implements OnInit {
         var $targetP = $(event.target || event.srcElement).parent().parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
-        this.sidenavFun();
+        if (num != 0) {
+            this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
+        }
     }
-    sidenavFun(): void { //切换 实质
-        //////
-    }
+
 
     ////个人账户
     //上传头像
@@ -144,7 +146,7 @@ export class ManagementComponent implements OnInit {
         if (appKey == 0 || appKey == null || appKey == NaN) this.navStatus = -1;
         if (this.navStatus != -1) {
             $.ajax({
-                url: appBase.DomainApi + "api/User/" + this.loginId,
+                url: appBase.DomainApi + "api/User?id=" + self.loginId,
                 type: "get",
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
@@ -240,23 +242,27 @@ export class ManagementComponent implements OnInit {
         this.router.navigateByUrl('/myorderDetail');//跳转订单详情页面；
     }
 
-    //get MyorderList List 获取个人订单列表;
-    GetMyorderList(): void {
+    //get MyorderList List 获取个人订单列表;--我的订单
+    GetMyorderList(queryId, orderCategoryId, orderStatusId): void {
         var self = this;
-
         $.ajax({
             url: appBase.DomainApi + "api/Order",
             type: "get",
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
             data: {
-                //"id": orderUid,
+                //queryId=-1 all queryId=1 publish queryId=2 receive orderCategory = -1 all orderStatusId=-1 all
                 "appKey": appService.getCookie("appKey"),
                 "token": appService.getCookie("token"),
+                "publisherOrReceiverLoginId": appService.getCookie("loginId"),
+                "queryId": queryId,
+                "orderCategoryId": orderCategoryId,
+                "orderStatusId": orderStatusId,
                 "orderDescription": "",
                 "pageIndex": 1,
                 "pageSize": 10,
                 "isDesc": true
+
             },
             success(data) {
                 if (data.isSuccess) {
@@ -287,33 +293,33 @@ export class ManagementComponent implements OnInit {
 
 
                         //add-获取订单首张图片
-                        per_myorderModel.firstImg = "../../Images/03-login/portraint01.png";
+                        //per_myorderModel.firstImg = "../../Images/03-login/portraint01.png";
 
-                        (function (arg) {
-                            var imgArr = data.data[i].imageUrls.split('&');
-                            var nullCount = 0;
-                            if (imgArr[0].length < 2) {
-                                nullCount++;
-                            } else {
-                                $.ajax({
-                                    url: appBase.DomainApi + 'api/Files/' + imgArr[0],
-                                    type: "GET",
-                                    success: function (imgData) {
-                                        self.myorderImgArr.push(imgData);
-                                        if (self.myorderImgArr[arg - 1] != undefined) {
-                                            self.myorderModelList[arg - 1].firstImg = self.myorderImgArr[arg - 1];
-                                        }
-                                        for (var k = 0; k < self.myorderModelList.length; k++) {
-                                            if (self.myorderModelList[k].firstImg == undefined) {
-                                                self.myorderModelList[k].firstImg = "../../Images/03-login/portraint01.png";
-                                            }
-                                        }
-                                    },
-                                    error: function (imgData) {
-                                    }
-                                });
-                            }
-                        })(i)
+                        //(function (arg) {
+                        //    var imgArr = data.data[i].imageUrls.split('&');
+                        //    var nullCount = 0;
+                        //    if (imgArr[0].length < 2) {
+                        //        nullCount++;
+                        //    } else {
+                        //        $.ajax({
+                        //            url: appBase.DomainApi + 'api/Files/' + imgArr[0],
+                        //            type: "GET",
+                        //            success: function (imgData) {
+                        //                self.myorderImgArr.push(imgData);
+                        //                if (self.myorderImgArr[arg - 1] != undefined) {
+                        //                    self.myorderModelList[arg - 1].firstImg = self.myorderImgArr[arg - 1];
+                        //                }
+                        //                for (var k = 0; k < self.myorderModelList.length; k++) {
+                        //                    if (self.myorderModelList[k].firstImg == undefined) {
+                        //                        self.myorderModelList[k].firstImg = "../../Images/03-login/portraint01.png";
+                        //                    }
+                        //                }
+                        //            },
+                        //            error: function (imgData) {
+                        //            }
+                        //        });
+                        //    }
+                        //})(i)
                         self.myorderModelList.push(per_myorderModel);
                     }
                 } else {
@@ -328,13 +334,14 @@ export class ManagementComponent implements OnInit {
 
     //我的发布
 
+
     //the final execute ...
     ngOnInit(): void {
         //左菜单 焦点 判断 显示；
         $(".manageCenterUl li").eq(appBase.AppObject.centerStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
-        this.GetMyorderList();
+        this.GetMyorderList(-1,-1,-1);
 
     }
 }

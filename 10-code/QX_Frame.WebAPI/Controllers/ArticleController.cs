@@ -131,7 +131,7 @@ namespace QX_Frame.WebAPI.Controllers
             }
         }
 
-        // PUT: api/Article/id  1 = update info ,2 = add clickCount , 3 = praiseCount
+        // PUT: api/Article/id  1 = update info ,2 = add clickCount , 3 = add praiseCount
         public IHttpActionResult Put(int id, [FromBody]dynamic query)
         {
             if (query == null)

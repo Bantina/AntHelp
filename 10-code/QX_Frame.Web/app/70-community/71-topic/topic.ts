@@ -46,6 +46,7 @@ export class Topic implements OnInit {
                 "appKey": appService.getCookie("appKey"),
                 "token": appService.getCookie("token"),
                 "articleTitle": "",
+                "articleCategoryId": 0,
                 "pageIndex": 1,
                 "pageSize": 10,
                 "isDesc": true

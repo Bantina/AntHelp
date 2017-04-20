@@ -45,3 +45,11 @@ export class UserInfoModel {
     public personalizedSignature: string;
     public personalizedDescription: string;
 }
+// 回复
+export class CommentReply {
+    public commentUid: string;
+    public articleIdOrCommentId: number;
+    public commentUserLoginId: string;
+    public commentContent: string;
+    public commentTime: string;
+}

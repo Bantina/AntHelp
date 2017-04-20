@@ -45,6 +45,7 @@ let Topic = class Topic {
                 "appKey": appService_1.appService.getCookie("appKey"),
                 "token": appService_1.appService.getCookie("token"),
                 "articleTitle": "",
+                "articleCategoryId": 0,
                 "pageIndex": 1,
                 "pageSize": 10,
                 "isDesc": true

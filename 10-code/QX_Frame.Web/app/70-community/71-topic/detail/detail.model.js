@@ -19,4 +19,8 @@ exports.Article = Article;
 class UserInfoModel {
 }
 exports.UserInfoModel = UserInfoModel;
+// 回复
+class CommentReply {
+}
+exports.CommentReply = CommentReply;
 //# sourceMappingURL=detail.model.js.map

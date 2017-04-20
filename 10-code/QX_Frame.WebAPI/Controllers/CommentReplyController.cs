@@ -56,11 +56,11 @@ namespace QX_Frame.WebAPI.Controllers
                     foreach (var item2 in replyList)
                     {
                         CommentReplyViewModel replyViewModel = new CommentReplyViewModel();
-                        replyViewModel.commentUid = item.commentUid;
-                        replyViewModel.articleIdOrCommentId = item.articleIdOrCommentId;
-                        replyViewModel.commentUserLoginId = item.commentUserLoginId;
-                        replyViewModel.commentContent = item.commentContent;
-                        replyViewModel.commentTime = item.commentTime.ToDateTimeString_24HourType();
+                        replyViewModel.commentUid = item2.commentUid;
+                        replyViewModel.articleIdOrCommentId = item2.articleIdOrCommentId;
+                        replyViewModel.commentUserLoginId = item2.commentUserLoginId;
+                        replyViewModel.commentContent = item2.commentContent;
+                        replyViewModel.commentTime = item2.commentTime.ToDateTimeString_24HourType();
                         replyViewModel.commentReplyList = null;
 
                         replyViewModelList.Add(replyViewModel);
@@ -89,7 +89,7 @@ namespace QX_Frame.WebAPI.Controllers
                 var channel = fact.CreateChannel();
                 tb_CommentReply commentReply = new tb_CommentReply();
                 commentReply.commentUid = Guid.NewGuid();
-                Guid articleIdOrCommentId = Guid.Parse(query.articleIdOrCommentId);
+                Guid articleIdOrCommentId = query.articleIdOrCommentId;
                 commentReply.articleIdOrCommentId = articleIdOrCommentId;
                 commentReply.commentUserLoginId = query.commentUserLoginId;
                 commentReply.commentContent = query.commentContent;

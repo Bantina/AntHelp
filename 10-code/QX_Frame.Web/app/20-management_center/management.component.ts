@@ -181,7 +181,7 @@ export class ManagementComponent implements OnInit {
                     }
                 },
                 error(data) {
-
+                    console.error(data);
                 }
             });
         }
@@ -262,7 +262,6 @@ export class ManagementComponent implements OnInit {
                 "pageIndex": 1,
                 "pageSize": 10,
                 "isDesc": true
-
             },
             success(data) {
                 if (data.isSuccess) {
@@ -290,40 +289,12 @@ export class ManagementComponent implements OnInit {
                         per_myorderModel.address = data.data[i].address;
                         per_myorderModel.phone = data.data[i].phone;
                         per_myorderModel.imageUrls = data.data[i].imageUrls;
+                        per_myorderModel.firstImg = data.data[i].imageDatas[0];
 
-
-                        //add-获取订单首张图片
-                        //per_myorderModel.firstImg = "../../Images/03-login/portraint01.png";
-
-                        //(function (arg) {
-                        //    var imgArr = data.data[i].imageUrls.split('&');
-                        //    var nullCount = 0;
-                        //    if (imgArr[0].length < 2) {
-                        //        nullCount++;
-                        //    } else {
-                        //        $.ajax({
-                        //            url: appBase.DomainApi + 'api/Files/' + imgArr[0],
-                        //            type: "GET",
-                        //            success: function (imgData) {
-                        //                self.myorderImgArr.push(imgData);
-                        //                if (self.myorderImgArr[arg - 1] != undefined) {
-                        //                    self.myorderModelList[arg - 1].firstImg = self.myorderImgArr[arg - 1];
-                        //                }
-                        //                for (var k = 0; k < self.myorderModelList.length; k++) {
-                        //                    if (self.myorderModelList[k].firstImg == undefined) {
-                        //                        self.myorderModelList[k].firstImg = "../../Images/03-login/portraint01.png";
-                        //                    }
-                        //                }
-                        //            },
-                        //            error: function (imgData) {
-                        //            }
-                        //        });
-                        //    }
-                        //})(i)
                         self.myorderModelList.push(per_myorderModel);
                     }
                 } else {
-                    alert(data.msg);
+                    console.error(data.msg);
                 }
             },
             error(data) {
@@ -341,7 +312,7 @@ export class ManagementComponent implements OnInit {
         $(".manageCenterUl li").eq(appBase.AppObject.centerStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
-        this.GetMyorderList(-1,-1,-1);
+        this.GetMyorderList(-1, -1, -1);
 
     }
 }

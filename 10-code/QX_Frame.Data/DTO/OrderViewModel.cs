@@ -51,5 +51,7 @@ namespace QX_Frame.Data.DTO
         // 
         public String imageUrls { get; set; }
 
+        public string[] imageDatas { get; set; }
+
     }
 }

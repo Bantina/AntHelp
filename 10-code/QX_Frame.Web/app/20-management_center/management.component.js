@@ -8,12 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../00-AQX_Frame.services/appService");
-const management_model_1 = require("./management.model");
-const router_1 = require("@angular/router");
+const core_1 = require('@angular/core');
+const appBase_1 = require('../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../00-AQX_Frame.services/appService');
+const management_model_1 = require('./management.model');
+const router_1 = require('@angular/router');
 let ManagementComponent = class ManagementComponent {
     constructor(_router) {
         //模型绑定;
@@ -172,6 +171,7 @@ let ManagementComponent = class ManagementComponent {
                     }
                 },
                 error(data) {
+                    console.error(data);
                 }
             });
         }
@@ -273,38 +273,12 @@ let ManagementComponent = class ManagementComponent {
                         per_myorderModel.address = data.data[i].address;
                         per_myorderModel.phone = data.data[i].phone;
                         per_myorderModel.imageUrls = data.data[i].imageUrls;
-                        //add-获取订单首张图片
-                        //per_myorderModel.firstImg = "../../Images/03-login/portraint01.png";
-                        //(function (arg) {
-                        //    var imgArr = data.data[i].imageUrls.split('&');
-                        //    var nullCount = 0;
-                        //    if (imgArr[0].length < 2) {
-                        //        nullCount++;
-                        //    } else {
-                        //        $.ajax({
-                        //            url: appBase.DomainApi + 'api/Files/' + imgArr[0],
-                        //            type: "GET",
-                        //            success: function (imgData) {
-                        //                self.myorderImgArr.push(imgData);
-                        //                if (self.myorderImgArr[arg - 1] != undefined) {
-                        //                    self.myorderModelList[arg - 1].firstImg = self.myorderImgArr[arg - 1];
-                        //                }
-                        //                for (var k = 0; k < self.myorderModelList.length; k++) {
-                        //                    if (self.myorderModelList[k].firstImg == undefined) {
-                        //                        self.myorderModelList[k].firstImg = "../../Images/03-login/portraint01.png";
-                        //                    }
-                        //                }
-                        //            },
-                        //            error: function (imgData) {
-                        //            }
-                        //        });
-                        //    }
-                        //})(i)
+                        per_myorderModel.firstImg = data.data[i].imageDatas[0];
                         self.myorderModelList.push(per_myorderModel);
                     }
                 }
                 else {
-                    alert(data.msg);
+                    console.error(data.msg);
                 }
             },
             error(data) {
@@ -328,8 +302,8 @@ ManagementComponent = __decorate([
         templateUrl: 'app/20-management_center/management.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
+    }), 
+    __metadata('design:paramtypes', [router_1.Router])
 ], ManagementComponent);
 exports.ManagementComponent = ManagementComponent;
 //# sourceMappingURL=management.component.js.map

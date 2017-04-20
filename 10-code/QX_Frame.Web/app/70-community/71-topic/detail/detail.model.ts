@@ -21,7 +21,7 @@ export class Article {
     public praiseCount: number;
     public ArticleCategoryId: string;
     public articleCategoryName: string;
-    public imagesNameList: string;
+    public imageDatas: string;
 }
 // 用户
 export class UserInfoModel {

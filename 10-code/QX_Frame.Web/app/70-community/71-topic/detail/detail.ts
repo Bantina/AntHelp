@@ -30,7 +30,7 @@ export class Detail implements OnInit {
         praiseCount: 0,
         ArticleCategoryId: "",
         articleCategoryName: "",
-        imagesNameList: ""
+        imageDatas: ""
     };
     // 回复对象
     commentReply: CommentReply = {
@@ -95,9 +95,11 @@ export class Detail implements OnInit {
                        self.article.praiseCount = dataList.praiseCount;
                        self.article.ArticleCategoryId = dataList.ArticleCategoryId;
                        self.article.articleCategoryName = dataList.articleCategory.CategoryName;
-                       self.article.imagesNameList = dataList.imagesNameList;
+                       self.article.imageDatas = dataList.imageDatas[0];
+                       // 设置头像
+                       $("#dp").attr('src', self.article.imageDatas);
                        // 请求头像绝对路径
-                       $.ajax({
+                      /* $.ajax({
                            url: appBase.DomainApi + 'api/Files/' + dataList.publisherInfo.headImageUrl,
                            type: "GET",
                            success: function (data) {
@@ -107,7 +109,7 @@ export class Detail implements OnInit {
                            error: function (data) {
                               
                            }
-                       });
+                       });*/
                        
                 } else {
                     alert(data.msg);
@@ -183,6 +185,7 @@ export class Detail implements OnInit {
             }),
             success(data) {
                 if (data.isSuccess) {
+                    console.log(data)
                     var dataList = data.data;
                     self.article.praiseCount = dataList.praiseCount;
                 } else {

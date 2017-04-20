@@ -27,7 +27,7 @@ namespace QX_Frame.WebAPI.Controllers
     /// </summary>
     public class OrderController : WebApiControllerBase
     {
-        // GET: api/Order queryId=-1 all queryId=1 publish queryId=2 receive orderCategory = -1 all orderStatusId=-1 all
+        // GET: api/Order queryId=-1 all,queryId=0 own, queryId=1 publish, queryId=2 receive, orderCategory = -1 all orderStatusId=-1 all
         public IHttpActionResult Get(int queryId ,int orderCategoryId,int orderStatusId,string publisherOrReceiverLoginId,string orderDescription, int pageIndex, int pageSize, bool isDesc)
         {
             tb_OrderQueryObject queryObject = new tb_OrderQueryObject();

@@ -75,6 +75,11 @@ namespace QX_Frame.Data.QueryObject
                 func = func.And(t => t.orderCategoryId == this.orderCategoryId);
             }
 
+            if (this.queryId == 0)
+            {
+                func = func.And(t => t.publisherUid == this.publisherUid || t.receiverUid == this.receiverUid);
+            }
+
             if (this.queryId == 1)
             {
                 func = func.And(t => t.publisherUid == this.publisherUid);

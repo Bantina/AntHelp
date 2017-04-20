@@ -291,7 +291,7 @@ let ManagementComponent = class ManagementComponent {
         $(".manageCenterUl li").eq(appBase_1.appBase.AppObject.centerStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
-        this.GetMyorderList(-1, -1, -1);
+        this.GetMyorderList(2, -1, -1);
     }
 };
 ManagementComponent = __decorate([

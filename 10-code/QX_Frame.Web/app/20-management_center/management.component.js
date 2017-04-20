@@ -8,11 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const appBase_1 = require('../00-AQX_Frame.commons/appBase');
-const appService_1 = require('../00-AQX_Frame.services/appService');
-const management_model_1 = require('./management.model');
-const router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../00-AQX_Frame.services/appService");
+const management_model_1 = require("./management.model");
+const router_1 = require("@angular/router");
 let ManagementComponent = class ManagementComponent {
     constructor(_router) {
         //模型绑定;
@@ -85,9 +86,6 @@ let ManagementComponent = class ManagementComponent {
         var $targetP = $(event.target || event.srcElement).parent().parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
-        if (num != 0) {
-            this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
-        }
     }
     personalHeadUpload(event) {
         var self = this;
@@ -302,8 +300,8 @@ ManagementComponent = __decorate([
         templateUrl: 'app/20-management_center/management.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    }), 
-    __metadata('design:paramtypes', [router_1.Router])
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
 ], ManagementComponent);
 exports.ManagementComponent = ManagementComponent;
 //# sourceMappingURL=management.component.js.map

@@ -86,9 +86,6 @@ export class ManagementComponent implements OnInit {
         var $targetP = $(event.target || event.srcElement).parent().parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
-        if (num != 0) {
-            this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
-        }
     }
 
 

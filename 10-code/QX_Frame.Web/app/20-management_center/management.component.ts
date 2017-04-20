@@ -309,7 +309,7 @@ export class ManagementComponent implements OnInit {
         $(".manageCenterUl li").eq(appBase.AppObject.centerStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
-        this.GetMyorderList(-1, -1, -1);
+        this.GetMyorderList(2, -1, -1);
 
     }
 }

@@ -16,6 +16,8 @@ namespace QX_Frame.Data.DTO
         public String phone { get; set; }
         // 
         public String headImageUrl { get; set; }
+
+        public string headImageData { get; set; }
         // 
         public Int32 age { get; set; }
 
@@ -23,7 +25,7 @@ namespace QX_Frame.Data.DTO
         // 
         public string sexName { get; set; }
         // 
-        public DateTime? birthday { get; set; }
+        public string birthday { get; set; }
 
         public int bloodTypeId { get; set; }
         // 
@@ -45,14 +47,18 @@ namespace QX_Frame.Data.DTO
         // 个人说明
         public String personalizedDescription { get; set; }
 
-        public DateTime? registerTime { get; set; }
+        public string registerTime { get; set; }
 
         public int statusId { get; set; }
 
         public string statusName { get; set; }
 
+        public string statusDescription { get; set; }
+
         public int roleId { get; set; }
 
         public string roleName { get; set; }
+
+        public string roleDescription { get; set; }
     }
 }

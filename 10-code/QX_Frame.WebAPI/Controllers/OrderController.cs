@@ -1,6 +1,7 @@
 using QX_Frame.App.Web;
 using QX_Frame.Data.DTO;
 using QX_Frame.Data.Entities;
+using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.Options;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service;
@@ -26,23 +27,55 @@ namespace QX_Frame.WebAPI.Controllers
     /// </summary>
     public class OrderController : WebApiControllerBase
     {
-        private readonly static object lockObj = new object();
-        // GET: api/Order
-        public IHttpActionResult Get(string orderDescription, int pageIndex, int pageSize, bool isDesc)
+        // GET: api/Order queryId=-1 all queryId=1 publish queryId=2 receive orderCategory = -1 all orderStatusId=-1 all
+        public IHttpActionResult Get(int queryId ,int orderCategoryId,int orderStatusId,string publisherOrReceiverLoginId,string orderDescription, int pageIndex, int pageSize, bool isDesc)
         {
             tb_OrderQueryObject queryObject = new tb_OrderQueryObject();
 
+            queryObject.queryId = queryId;
+            queryObject.orderCategoryId = orderCategoryId;
+            queryObject.orderStatusId = orderStatusId;
+            tb_UserAccountInfo userAccountInfo = UserController.GetUserAccountInfoByLoginId(publisherOrReceiverLoginId);
+            queryObject.publisherUid =userAccountInfo.uid;
+            queryObject.receiverUid = userAccountInfo.uid;
             queryObject.orderDescription = orderDescription;//fuzzy query
             queryObject.PageIndex = pageIndex;
             queryObject.PageSize = pageSize;
             queryObject.IsDESC = isDesc;
+            
 
             using (var fact = Wcf<OrderService>())
             {
                 int count = 0;
                 var channel = fact.CreateChannel();
                 List<tb_Order> orderList = channel.QueryAllPaging<tb_Order, DateTime>(queryObject, t => t.publishTime).Cast<List<tb_Order>>(out count);
-                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get order list fuzzy query by orderDescription", orderList, count));
+                List<OrderViewModel> resultList = new List<OrderViewModel>();
+                foreach (var item in orderList)
+                {
+                    OrderViewModel orderViewModel = new OrderViewModel();
+                    orderViewModel.orderUid = item.orderUid;
+                    orderViewModel.publisherUid = item.publisherUid;
+                    orderViewModel.publishTime = item.publishTime.ToDateTimeString_24HourType();
+                    orderViewModel.orderDescription = item.orderDescription;
+                    orderViewModel.orderCategoryId = item.orderCategoryId;
+                    orderViewModel.orderCategory = item.tb_OrderCategory;
+                    orderViewModel.receiverUid = item.receiverUid;
+                    orderViewModel.receiveTime = item.receiveTime.ToDateTimeString_24HourType();
+                    orderViewModel.orderStatusId = item.orderStatusId;
+                    orderViewModel.orderStatus = item.tb_OrderStatus;
+                    orderViewModel.orderValue = item.orderValue;
+                    orderViewModel.allowVoucher = item.allowVoucher;
+                    orderViewModel.voucherMax = item.voucherMax;
+                    orderViewModel.evaluateUid = item.evaluateUid;
+                    orderViewModel.orderEvaluate = item.tb_OrderEvaluate;
+                    orderViewModel.address = item.address;
+                    orderViewModel.phone = item.phone;
+                    orderViewModel.imageUrls = item.imageUrls;
+                    orderViewModel.imageDatas = FilesController.GetImageDataArray(item.imageUrls.Split('&'));
+
+                    resultList.Add(orderViewModel);
+                }
+                return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get order list fuzzy query by orderDescription", resultList, count));
             }
         }
 
@@ -88,6 +121,7 @@ namespace QX_Frame.WebAPI.Controllers
                     orderViewModel.address = Order.address;
                     orderViewModel.phone = Order.phone;
                     orderViewModel.imageUrls = Order.imageUrls;
+                    orderViewModel.imageDatas = FilesController.GetImageDataArray(Order.imageUrls.Split('&'));
 
                     return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("get Order by OrderUid", orderViewModel, 1));
                 }
@@ -151,6 +185,7 @@ namespace QX_Frame.WebAPI.Controllers
         }
 
         // PUT: api/Order/id    //id=1 orderStatusId and receiverLoginId id=2 orderStatusId
+        private readonly static object lockObj = new object();//lock helper
         [LimitsAttribute_DG(RoleLevel = 0)]//user
         public IHttpActionResult Put(int id, [FromBody]dynamic query)
         {

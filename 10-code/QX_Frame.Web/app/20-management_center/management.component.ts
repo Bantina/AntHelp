@@ -1,7 +1,8 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { appBase } from '../00-AQX_Frame.commons/appBase';
 import { appService } from '../00-AQX_Frame.services/appService';
-import { UserInfoModel } from './management.model';
+import { UserInfoModel, MyorderModel } from './management.model';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'managementCenter',
@@ -11,6 +12,10 @@ import { UserInfoModel } from './management.model';
 })
 
 export class ManagementComponent implements OnInit {
+    router: Router;
+    constructor(_router: Router) {
+        this.router = _router;
+    }
     //模型绑定;
     userInfoModel: UserInfoModel = {
         loginId: appService.getCookie('loginId'),
@@ -19,8 +24,6 @@ export class ManagementComponent implements OnInit {
         email: "4527875@foxmail.com",
         phone: "18254688788",
         position: "天津市西青区",
-        appKey: Number(appService.getCookie('appKey')),
-        token: appService.getCookie('token'),
         age: 21,
         sexId: 0,
         birthday: '2017-04-16',
@@ -31,10 +34,24 @@ export class ManagementComponent implements OnInit {
         constellation: '',
         chineseZodiac: '',
         personalizedSignature: '',
-        personalizedDescription: ''
+        personalizedDescription: '',
+        registerTime: '',
+        statusId: 0,
+        statusName: '',
+        statusDescription: '正常',
+        roleId: 0,
+        roleName: '',
+        roleDescription: '普通用户'
     }
 
     headerImageData: any;
+
+    //个人订单信息列表
+    myorderModelList: MyorderModel[] = [];
+    myorderImgArr: any = [];
+
+
+
 
     //global
     navStatus: number = appBase.AppObject.centerStatus; //-1未登录；
@@ -47,7 +64,7 @@ export class ManagementComponent implements OnInit {
     }
 
     //左菜单点击事件；
-    sidenavClick(event, num): void { //a
+    sidenavClick(event, num, queryId, orderCategoryId, orderStatusId): void { //a
         if (!this.loginId || this.loginId == "undefined") {
             this.navStatus == -1;
         } else {
@@ -56,9 +73,11 @@ export class ManagementComponent implements OnInit {
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
-        this.sidenavFun();
+        if (num != 0) {
+            this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
+        }
     }
-    sidenavSpanClick(event, num): void { //span
+    sidenavSpanClick(event, num, queryId, orderCategoryId, orderStatusId): void { //span
         if (!this.loginId || this.loginId == "undefined") {
             this.navStatus == -1;
         } else {
@@ -67,11 +86,8 @@ export class ManagementComponent implements OnInit {
         var $targetP = $(event.target || event.srcElement).parent().parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
-        this.sidenavFun();
     }
-    sidenavFun(): void { //切换 实质
-        //////
-    }
+
 
     ////个人账户
     //上传头像
@@ -127,7 +143,7 @@ export class ManagementComponent implements OnInit {
         if (appKey == 0 || appKey == null || appKey == NaN) this.navStatus = -1;
         if (this.navStatus != -1) {
             $.ajax({
-                url: appBase.DomainApi + "api/User/" + this.loginId,
+                url: appBase.DomainApi + "api/User?id=" + self.loginId,
                 type: "get",
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
@@ -148,7 +164,7 @@ export class ManagementComponent implements OnInit {
                                 type: "GET",
                                 success: function (data) {
                                     //$(".prePotrait img").eq(0).attr('src', data);
-                                    self.headerImageData= data;
+                                    self.headerImageData = data;
                                     $(".j_usr_img").attr('src', data);
                                 },
                                 error: function (data) {
@@ -162,7 +178,7 @@ export class ManagementComponent implements OnInit {
                     }
                 },
                 error(data) {
-
+                    console.error(data);
                 }
             });
         }
@@ -178,8 +194,8 @@ export class ManagementComponent implements OnInit {
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify(
                 {
-                    "appKey": self.userInfoModel.appKey,
-                    "token": self.userInfoModel.token,
+                    "appKey": appService.getCookie("appKey"),
+                    "token": appService.getCookie("token"),
                     "loginId": self.userInfoModel.loginId,
                     "nickName": self.userInfoModel.nickName,
                     "phone": self.userInfoModel.phone,
@@ -212,14 +228,80 @@ export class ManagementComponent implements OnInit {
     }
 
     ////我的订单
+
     //条件帅选 点击；
     tabBoxClick_myorder(event): void {
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
     }
+    toMyorderDetail(): void {
+        this.router.navigateByUrl('/myorderDetail');//跳转订单详情页面；
+    }
 
-    ////我的发布
+    //get MyorderList List 获取个人订单列表;--我的订单
+    GetMyorderList(queryId, orderCategoryId, orderStatusId): void {
+        var self = this;
+        $.ajax({
+            url: appBase.DomainApi + "api/Order",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                //queryId=-1 all queryId=1 publish queryId=2 receive orderCategory = -1 all orderStatusId=-1 all
+                "appKey": appService.getCookie("appKey"),
+                "token": appService.getCookie("token"),
+                "publisherOrReceiverLoginId": appService.getCookie("loginId"),
+                "queryId": queryId,
+                "orderCategoryId": orderCategoryId,
+                "orderStatusId": orderStatusId,
+                "orderDescription": "",
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.myorderModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        var per_myorderModel = new MyorderModel();
+
+                        per_myorderModel.orderUid = data.data[i].orderUid;
+                        per_myorderModel.publisherUid = data.data[i].nickNamepublisherUid;
+                        per_myorderModel.publisherInfo = data.data[i].publisherInfo;
+                        per_myorderModel.publishTime = data.data[i].publishTime;
+                        per_myorderModel.orderDescription = data.data[i].orderDescription;
+                        per_myorderModel.orderCategoryId = data.data[i].orderCategoryId;
+                        per_myorderModel.orderCategory = data.data[i].orderCategory;
+                        per_myorderModel.receiverUid = data.data[i].receiverUid;
+                        per_myorderModel.receiverInfo = data.data[i].receiverInfo;
+                        per_myorderModel.receiveTime = data.data[i].receiveTime;
+                        per_myorderModel.orderStatusId = data.data[i].orderStatusId;
+                        per_myorderModel.orderStatus = data.data[i].orderStatus;
+                        per_myorderModel.orderValue = data.data[i].sexIdorderValue;
+                        per_myorderModel.allowVoucher = data.data[i].allowVoucher;
+                        per_myorderModel.voucherMax = data.data[i].voucherMax;
+                        per_myorderModel.evaluateUid = data.data[i].evaluateUid;
+                        per_myorderModel.orderEvaluate = data.data[i].orderEvaluate;
+                        per_myorderModel.address = data.data[i].address;
+                        per_myorderModel.phone = data.data[i].phone;
+                        per_myorderModel.imageUrls = data.data[i].imageUrls;
+                        per_myorderModel.firstImg = data.data[i].imageDatas[0];
+
+                        self.myorderModelList.push(per_myorderModel);
+                    }
+                } else {
+                    console.error(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+
+    //我的发布
+
 
     //the final execute ...
     ngOnInit(): void {
@@ -227,6 +309,7 @@ export class ManagementComponent implements OnInit {
         $(".manageCenterUl li").eq(appBase.AppObject.centerStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
+        this.GetMyorderList(-1, -1, -1);
 
     }
 }

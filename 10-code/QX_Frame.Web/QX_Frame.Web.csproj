@@ -85,6 +85,8 @@
     <Content Include="app\20-management_center\administrator\administrator.component.html" />
     <Content Include="app\20-management_center\management.component.css" />
     <Content Include="app\20-management_center\management.component.html" />
+    <Content Include="app\20-management_center\personal\myOrder\myorderDetail.component.css" />
+    <Content Include="app\20-management_center\personal\myOrder\myorderDetail.component.html" />
     <Content Include="app\30-order\detail\detail.component.css" />
     <Content Include="app\30-order\detail\detail.component.html" />
     <Content Include="app\30-order\publish\publish.component.css" />
@@ -298,6 +300,7 @@
     <TypeScriptCompile Include="app\20-management_center\administrator\administrator.component.ts" />
     <TypeScriptCompile Include="app\20-management_center\management.model.ts" />
     <TypeScriptCompile Include="app\20-management_center\management.component.ts" />
+    <TypeScriptCompile Include="app\20-management_center\personal\myOrder\myorderDetail.component.ts" />
     <TypeScriptCompile Include="app\30-order\detail\detail.component.ts" />
     <TypeScriptCompile Include="app\30-order\order.model.ts" />
     <TypeScriptCompile Include="app\30-order\publish\publish.component.ts" />
@@ -313,12 +316,6 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\20-management_center\administrator\allAccount\" />
-    <Folder Include="app\20-management_center\administrator\allComplaint\" />
-    <Folder Include="app\20-management_center\administrator\allOrder\" />
-    <Folder Include="app\20-management_center\personal\myAccount\" />
-    <Folder Include="app\20-management_center\personal\myOrder\" />
-    <Folder Include="app\20-management_center\personal\myPublish\" />
     <Folder Include="app\30-order\payment\" />
     <Folder Include="app\70-community\73-information\" />
     <Folder Include="Files\" />

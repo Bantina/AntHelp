@@ -22,8 +22,8 @@ namespace QX_Frame.WebAPI.Controllers
     ///class UserStatusController
     /// </summary>
     [LimitsAttribute_DG(RoleLevel = 1)]//administrator least
-    public class UserStatusController:WebApiControllerBase
-	{
+    public class UserStatusController : WebApiControllerBase
+    {
         // GET: api/UserStatus
         public IHttpActionResult Get(int pageIndex, int pageSize, bool isDesc)
         {
@@ -38,15 +38,15 @@ namespace QX_Frame.WebAPI.Controllers
 
         // GET: api/UserStatus/id
         public IHttpActionResult Get(string id)
-		{
-			throw new Exception_DG("The interface is not available", 9999);
-		}
+        {
+            throw new Exception_DG("The interface is not available", 9999);
+        }
 
-		// POST: api/UserStatus
-		public IHttpActionResult Post([FromBody]dynamic query)
-		{
-			throw new Exception_DG("The interface is not available", 9999);
-		}
+        // POST: api/UserStatus
+        public IHttpActionResult Post([FromBody]dynamic query)
+        {
+            throw new Exception_DG("The interface is not available", 9999);
+        }
 
         // PUT: api/UserStatus
         public IHttpActionResult Put([FromBody]dynamic query)
@@ -68,14 +68,17 @@ namespace QX_Frame.WebAPI.Controllers
                 {
                     return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("update user status success"));
                 }
+                else
+                {
+                    throw new Exception_DG("update faild", 3014);
+                }
             }
-            throw new Exception_DG("update faild", 3014);
         }
         // DELETE: api/UserStatus
         public IHttpActionResult Delete([FromBody]dynamic query)
-		{
-			throw new Exception_DG("The interface is not available", 9999);
-		}
+        {
+            throw new Exception_DG("The interface is not available", 9999);
+        }
         /// <summary>
         /// Get User Status By Uid
         /// </summary>

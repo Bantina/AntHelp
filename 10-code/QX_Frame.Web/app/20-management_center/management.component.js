@@ -8,11 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const appBase_1 = require('../00-AQX_Frame.commons/appBase');
-const appService_1 = require('../00-AQX_Frame.services/appService');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const appBase_1 = require("../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../00-AQX_Frame.services/appService");
+const management_model_1 = require("./management.model");
+const router_1 = require("@angular/router");
 let ManagementComponent = class ManagementComponent {
-    constructor() {
+    constructor(_router) {
         //模型绑定;
         this.userInfoModel = {
             loginId: appService_1.appService.getCookie('loginId'),
@@ -21,8 +24,6 @@ let ManagementComponent = class ManagementComponent {
             email: "4527875@foxmail.com",
             phone: "18254688788",
             position: "天津市西青区",
-            appKey: Number(appService_1.appService.getCookie('appKey')),
-            token: appService_1.appService.getCookie('token'),
             age: 21,
             sexId: 0,
             birthday: '2017-04-16',
@@ -33,8 +34,18 @@ let ManagementComponent = class ManagementComponent {
             constellation: '',
             chineseZodiac: '',
             personalizedSignature: '',
-            personalizedDescription: ''
+            personalizedDescription: '',
+            registerTime: '',
+            statusId: 0,
+            statusName: '',
+            statusDescription: '正常',
+            roleId: 0,
+            roleName: '',
+            roleDescription: '普通用户'
         };
+        //个人订单信息列表
+        this.myorderModelList = [];
+        this.myorderImgArr = [];
         //global
         this.navStatus = appBase_1.appBase.AppObject.centerStatus; //-1未登录；
         this.loginId = appService_1.appService.getCookie("loginId");
@@ -42,6 +53,7 @@ let ManagementComponent = class ManagementComponent {
         //上传头像
         this.uploadFlag = false;
         this.uploadErrorMsg = "";
+        this.router = _router;
     }
     //判断是否登录
     isLoginFlag() {
@@ -50,7 +62,7 @@ let ManagementComponent = class ManagementComponent {
         }
     }
     //左菜单点击事件；
-    sidenavClick(event, num) {
+    sidenavClick(event, num, queryId, orderCategoryId, orderStatusId) {
         if (!this.loginId || this.loginId == "undefined") {
             this.navStatus == -1;
         }
@@ -60,9 +72,11 @@ let ManagementComponent = class ManagementComponent {
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
-        this.sidenavFun();
+        if (num != 0) {
+            this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
+        }
     }
-    sidenavSpanClick(event, num) {
+    sidenavSpanClick(event, num, queryId, orderCategoryId, orderStatusId) {
         if (!this.loginId || this.loginId == "undefined") {
             this.navStatus == -1;
         }
@@ -72,10 +86,6 @@ let ManagementComponent = class ManagementComponent {
         var $targetP = $(event.target || event.srcElement).parent().parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
-        this.sidenavFun();
-    }
-    sidenavFun() {
-        //////
     }
     personalHeadUpload(event) {
         var self = this;
@@ -127,7 +137,7 @@ let ManagementComponent = class ManagementComponent {
             this.navStatus = -1;
         if (this.navStatus != -1) {
             $.ajax({
-                url: appBase_1.appBase.DomainApi + "api/User/" + this.loginId,
+                url: appBase_1.appBase.DomainApi + "api/User?id=" + self.loginId,
                 type: "get",
                 dataType: "json",
                 contentType: "application/json; charset=UTF-8",
@@ -159,6 +169,7 @@ let ManagementComponent = class ManagementComponent {
                     }
                 },
                 error(data) {
+                    console.error(data);
                 }
             });
         }
@@ -172,8 +183,8 @@ let ManagementComponent = class ManagementComponent {
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
             data: JSON.stringify({
-                "appKey": self.userInfoModel.appKey,
-                "token": self.userInfoModel.token,
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
                 "loginId": self.userInfoModel.loginId,
                 "nickName": self.userInfoModel.nickName,
                 "phone": self.userInfoModel.phone,
@@ -211,13 +222,76 @@ let ManagementComponent = class ManagementComponent {
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
     }
-    ////我的发布
+    toMyorderDetail() {
+        this.router.navigateByUrl('/myorderDetail'); //跳转订单详情页面；
+    }
+    //get MyorderList List 获取个人订单列表;--我的订单
+    GetMyorderList(queryId, orderCategoryId, orderStatusId) {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Order",
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                //queryId=-1 all queryId=1 publish queryId=2 receive orderCategory = -1 all orderStatusId=-1 all
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "publisherOrReceiverLoginId": appService_1.appService.getCookie("loginId"),
+                "queryId": queryId,
+                "orderCategoryId": orderCategoryId,
+                "orderStatusId": orderStatusId,
+                "orderDescription": "",
+                "pageIndex": 1,
+                "pageSize": 10,
+                "isDesc": true
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    self.myorderModelList = [];
+                    for (var i = 0; i < data.data.length; i++) {
+                        var per_myorderModel = new management_model_1.MyorderModel();
+                        per_myorderModel.orderUid = data.data[i].orderUid;
+                        per_myorderModel.publisherUid = data.data[i].nickNamepublisherUid;
+                        per_myorderModel.publisherInfo = data.data[i].publisherInfo;
+                        per_myorderModel.publishTime = data.data[i].publishTime;
+                        per_myorderModel.orderDescription = data.data[i].orderDescription;
+                        per_myorderModel.orderCategoryId = data.data[i].orderCategoryId;
+                        per_myorderModel.orderCategory = data.data[i].orderCategory;
+                        per_myorderModel.receiverUid = data.data[i].receiverUid;
+                        per_myorderModel.receiverInfo = data.data[i].receiverInfo;
+                        per_myorderModel.receiveTime = data.data[i].receiveTime;
+                        per_myorderModel.orderStatusId = data.data[i].orderStatusId;
+                        per_myorderModel.orderStatus = data.data[i].orderStatus;
+                        per_myorderModel.orderValue = data.data[i].sexIdorderValue;
+                        per_myorderModel.allowVoucher = data.data[i].allowVoucher;
+                        per_myorderModel.voucherMax = data.data[i].voucherMax;
+                        per_myorderModel.evaluateUid = data.data[i].evaluateUid;
+                        per_myorderModel.orderEvaluate = data.data[i].orderEvaluate;
+                        per_myorderModel.address = data.data[i].address;
+                        per_myorderModel.phone = data.data[i].phone;
+                        per_myorderModel.imageUrls = data.data[i].imageUrls;
+                        per_myorderModel.firstImg = data.data[i].imageDatas[0];
+                        self.myorderModelList.push(per_myorderModel);
+                    }
+                }
+                else {
+                    console.error(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+    //我的发布
     //the final execute ...
     ngOnInit() {
         //左菜单 焦点 判断 显示；
         $(".manageCenterUl li").eq(appBase_1.appBase.AppObject.centerStatus).addClass("on");
         this.isLoginFlag(); //判断是否登录
         this.getUserInfo();
+        this.GetMyorderList(-1, -1, -1);
     }
 };
 ManagementComponent = __decorate([
@@ -226,8 +300,8 @@ ManagementComponent = __decorate([
         templateUrl: 'app/20-management_center/management.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    }), 
-    __metadata('design:paramtypes', [])
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
 ], ManagementComponent);
 exports.ManagementComponent = ManagementComponent;
 //# sourceMappingURL=management.component.js.map

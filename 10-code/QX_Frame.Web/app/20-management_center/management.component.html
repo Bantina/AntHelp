@@ -13,9 +13,9 @@
             <p><span class="fs14 vam"> 余额 : <strong class="c-red">888</strong></span></p>
         </div>
         <ul class="sidenav manageCenterUl">
-            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,0)"><span class="ico_luck" (click)="sidenavSpanClick($event,0)">我的账户</span> </a></li>
-            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,1)"><span class="ico_buy" (click)="sidenavSpanClick($event,1)">我的订单</span></a></li>
-            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,2)"><span class="ico_db" (click)="sidenavSpanClick($event,2)">我的发布</span></a></li>
+            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,0,-1,-1,-1)"><span class="ico_luck" (click)="sidenavSpanClick($event,0,-1,-1,-1)">我的账户</span> </a></li>
+            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,1,2,-1,-1)"><span class="ico_buy" (click)="sidenavSpanClick($event,1,2,-1,-1)">我的订单</span></a></li>
+            <li><a routerLink="/managementCenter" (click)="sidenavClick($event,2,1,-1,-1)"><span class="ico_db" (click)="sidenavSpanClick($event,2,1,-1,-1)">我的发布</span></a></li>
         </ul>
     </div>   
         <!-- 未登陆 --> 
@@ -87,30 +87,21 @@
             <div class="cfix tabBox">
                 <ul class="l cfix tabs">
                     <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">全部</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">进行中</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">已完成</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">已揭晓</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">待完成</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">待支付</a></li>
+                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event)">已结束</a></li>
                 </ul>
-                <div class="r filter cfix">
-                    <span class="txt l">筛选：</span>
-                    <div class="selBox l">
-
-                    </div>
-                </div>
             </div>
-            <div class="myorderBlock">
+            <div class="myorderBlock col-md-3 col-md-offset-1"  *ngFor="let item of myorderModelList">
                 <div class="myorderTitle">
-                    <p><strong>订单编号：</strong>2132412432</p>
+                    <p><strong>订单编号：</strong>{{item.orderUid}}</p>
                 </div>
-                <div class="row">
-                    <div class="col-md-3 myorderImg">
-                        <img src="../../Images/03-login/portraint01.png" />
-                    </div>
-                    <div class="col-md-1">
-                        <p>接单人：</p>
-                    </div>
-                    <div class="col-md-3 btn">
-                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
+                <div class="myorderBody">
+                    <!--<img *ngIf="item.firstImg==''" src="../../Images/03-login/portraint01.png" />-->
+                    <img src="{{item.firstImg}}" />
+                    <div class="myorderBody_des">
+                        <h4>{{item.orderDescription}}</h4>
+                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="" (click)="toMyorderDetail()">
                         <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
                     </div>
                 </div>
@@ -125,14 +116,23 @@
             <div class="cfix tabBox">
                 <ul class="l cfix tabs">
                     <li class="on"><a href="javascript:void(0);">全部</a></li>
-                    <li class=""><a href="javascript:void(0);">进行中</a></li>
-                    <li class=""><a href="javascript:void(0);">即将揭晓</a></li>
-                    <li class=""><a href="javascript:void(0);">已揭晓</a></li>
+                    <li class=""><a href="javascript:void(0);">待接单</a></li>
+                    <li class=""><a href="javascript:void(0);">待支付</a></li>
+                    <li class=""><a href="javascript:void(0);">待确认</a></li>
+                    <li class=""><a href="javascript:void(0);">已结束</a></li>
                 </ul>
-                <div class="r filter cfix">
-                    <span class="txt l">筛选：</span>
-                    <div class="selBox l">
-
+            </div>
+            <div class="myorderBlock col-md-3 col-md-offset-1" *ngFor="let item of myorderModelList">
+                <div class="myorderTitle">
+                    <p><strong>订单编号：</strong>{{item.orderUid}}</p>
+                </div>
+                <div class="myorderBody">
+                    <!--<img *ngIf="item.firstImg==''" src="../../Images/03-login/portraint01.png" />-->
+                    <img src="{{item.firstImg}}" />
+                    <div class="myorderBody_des">
+                        <h4>{{item.orderDescription}}</h4>
+                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="" (click)="toMyorderDetail()">
+                        <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
                     </div>
                 </div>
             </div>

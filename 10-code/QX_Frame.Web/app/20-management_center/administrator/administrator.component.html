@@ -39,17 +39,21 @@
             <div class="col-md-7">
                 <form class="navbar-form navbar-right" role="search">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search loginId">
+                        <input type="text" class="form-control" placeholder="Search loginId" [(ngModel)]="searchLoginId" name="searchLoginId">
                     </div>
-                    <button type="submit" class="btn btn-primary">查 询</button>
+                    <button type="submit" class="btn btn-primary" (click)="SearchByLoginId()">查 询</button>
                 </form>
             </div>
         </div>
         <div class="cfix tabBox">
             <ul class="l cfix tabs">
-                <li class="on"><a href="?t=0">全部</a></li>
-                <li class=""><a href="?t=1">普通用户</a></li>
-                <li class=""><a href="?t=2">管理员</a></li>
+                <li class="on"><a style="cursor:pointer;" (click)="tabBoxClick_UserCursor($event,-1,-1)">全部</a></li>
+                <li class=""><a style="cursor:pointer;" (click)="tabBoxClick_UserCursor($event,0,-1)">普通用户</a></li>
+                <li class=""><a style="cursor:pointer;" (click)="tabBoxClick_UserCursor($event,1,-1)">管理员</a></li>
+                <li class=""><a style="cursor:pointer;" (click)="tabBoxClick_UserCursor($event,-1,0)">正常</a></li>
+                <li class=""><a style="cursor:pointer;" (click)="tabBoxClick_UserCursor($event,-1,1)">停用</a></li>
+                <li class=""><a style="cursor:pointer;" (click)="tabBoxClick_UserCursor($event,-1,2)">冻结</a></li>
+                <li class=""><a style="cursor:pointer;" (click)="tabBoxClick_UserCursor($event,-1,3)">废弃</a></li>
             </ul>
             <table cellpadding="0" cellspacing="0" border="0" class="table table-addr">
                 <tr>
@@ -63,17 +67,17 @@
                     <th class="operate th200">操作</th>
                 </tr>
 
-                <tr data-id="" class="address-add">
-                    <td class="th30"><span class="c-black fs14">33</span></td>
-                    <td class="th60"><span class="c-black fs14">33</span></td>
-                    <td class="th120"><span class="c-black fs14">333</span></td>
-                    <td class="th200"><span class="c-black fs14">33</span></td>
-                    <td class="th120"><span class="c-black fs14">33</span></td>
-                    <td class="th120">33</td>
-                    <td class="th120">33</td>
+                <tr data-id="" class="address-add" *ngFor="let item of userInfoModelList;let i = index;">
+                    <td class="th30"><span class="c-black fs14">{{item.loginId}}</span></td>
+                    <td class="th60"><span class="c-black fs14">{{item.nickName}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.phone}}</span></td>
+                    <td class="th200"><span class="c-black fs14">{{item.location}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.email}}</span></td>
+                    <td class="th120">{{item.statusDescription}}</td>
+                    <td class="th120">{{item.roleDescription}}</td>
 
                     <td class="operate">
-                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit">编辑</a>
+                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit" (click)="GetThisLineUserInfo(i)">编辑</a>
                     </td>
                 </tr>
 
@@ -97,8 +101,8 @@
             <div class="col-md-3"></div>
             <div class="col-md-3"></div>
             <div class="col-md-3 btn">
-                <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="">
-                <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
+                <input type="button" class="no-top-margin toMyorderDetail_btn" value="查 看 详 情" name="">
+                <input type="button" class="no-top-margin toMyorderComplaint_btn" value="投       诉" name="">
             </div>
         </div>
 
@@ -166,51 +170,50 @@
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">用户ID :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.loginId" name="loginId" readonly>
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.loginId" name="loginId" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">昵  称 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.nickName" name="nickName">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.nickName" name="nickName">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">电  话 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.phone" name="phone">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.phone" name="phone">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">地  址 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.position" name="position">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.location" name="position">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">邮  箱 :</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="" [(ngModel)]="userInfoModel.email" name="email">
+                            <input type="text" class="form-control" placeholder="" [(ngModel)]="model_userInfoModel.email" name="email" readonly>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">用户状态:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" (change)="selectOnchang($event.target.value)">
-                                <!--<option *ngFor="let org of orgs" [ngValue]="org"></option>-->
-                                <option value="">正常</option>
-                                <option value="">停用</option>
-                                <option value="">冻结</option>
-                                <option value="">废弃</option>
+                            <select id="userModelStatus" class="form-control" (change)="model_userStatusModel_selectOnchange($event.target.value)" name="ustatus">
+                                <option value="0">正常</option>
+                                <option value="1">停用</option>
+                                <option value="2">冻结</option>
+                                <option value="3">废弃</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="true" class="col-sm-2 control-label">用户角色:</label>
                         <div class="col-sm-10">
-                            <select class="form-control" (change)="selectOnchang($event.target.value)">
-                                <option value="">普通用户</option>
-                                <option value="">管理员</option>
+                            <select id="userModelRole" class="form-control" (change)="model_userRoleModel_selectOnchange($event.target.value)" name="ustate">
+                               <option value="0">普通用户</option>
+                                <option value="1">管理员</option>
                             </select>
                         </div>
                     </div>

@@ -8,16 +8,6 @@
 
 
 export class IndexComponent implements OnInit {
-
-
-    ////the final execute ...
     ngOnInit(): void {
-        //var defaults = {
-        //    thumbSize: 20,
-        //    slideSpeed: 1500,
-        //    auto: true,
-        //    loop: true
-        //};
-        //$('.index_slider').tilesSlider($.extend({}, defaults, { x: 20, y: 3, effect: 'flipud', reverse: true, rewind: 75 }));
     }
 }

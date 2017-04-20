@@ -8,10 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
-const appService_1 = require('../../00-AQX_Frame.services/appService');
-const router_1 = require('@angular/router');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../../00-AQX_Frame.services/appService");
+const router_1 = require("@angular/router");
 let OrderDetailComponent = class OrderDetailComponent {
     constructor(_router) {
         this.order = {
@@ -127,7 +128,7 @@ let OrderDetailComponent = class OrderDetailComponent {
                     //    });
                     //}
                     //判断是否能点击
-                    if (self.order.orderStatusId != "1") {
+                    if (self.order.orderStatusId != "3") {
                         //如果不是未接单的状态，则不能进行抢单操作
                         self.getOrderButtonIsDisabled = 0;
                     }
@@ -166,8 +167,8 @@ OrderDetailComponent = __decorate([
         templateUrl: 'app/30-order/detail/detail.component.html',
         styleUrls: ['app/30-order/detail/detail.component.css'],
         providers: []
-    }), 
-    __metadata('design:paramtypes', [router_1.Router])
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
 ], OrderDetailComponent);
 exports.OrderDetailComponent = OrderDetailComponent;
 //# sourceMappingURL=detail.component.js.map

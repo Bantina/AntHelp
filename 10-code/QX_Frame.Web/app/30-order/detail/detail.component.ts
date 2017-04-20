@@ -149,7 +149,7 @@ export class OrderDetailComponent implements OnInit {
                     //}
 
                     //判断是否能点击
-                    if (self.order.orderStatusId != "1") {
+                    if (self.order.orderStatusId != "3") {
                         //如果不是未接单的状态，则不能进行抢单操作
                         self.getOrderButtonIsDisabled = 0;
                     }

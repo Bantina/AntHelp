@@ -761,6 +761,8 @@ export class AdministratorComponent implements OnInit {
         this.GetComplainList(-1, -1);
         //获取信息列表
         this.GetMessagePushList(-1);
+        //获取订单列表
+        this.GetAllorderList(-1, -1, -1);
 
     }
 }

@@ -467,6 +467,19 @@ export class AdministratorComponent implements OnInit {
 
     ////投诉管理
 
+    ////消息管理
+    messageFlag: boolean=true;
+    //条件帅选 点击；
+    tabBoxClick_message(event,num): void {
+        var $targetP = $(event.target || event.srcElement).parent();
+        $targetP.siblings().removeClass("on");
+        $targetP.addClass("on");
+        if (num == 1) {
+            this.messageFlag = false;
+        } else {
+            this.messageFlag = true;
+        }
+    }
     //the final execute ...
     ngOnInit(): void {
         //左菜单 焦点 判断 显示；

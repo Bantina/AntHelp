@@ -85,6 +85,8 @@
     <Content Include="app\20-management_center\administrator\administrator.component.html" />
     <Content Include="app\20-management_center\management.component.css" />
     <Content Include="app\20-management_center\management.component.html" />
+    <Content Include="app\20-management_center\personal\complaint\complaint.component.css" />
+    <Content Include="app\20-management_center\personal\complaint\complaint.component.html" />
     <Content Include="app\20-management_center\personal\myOrder\myorderDetail.component.css" />
     <Content Include="app\20-management_center\personal\myOrder\myorderDetail.component.html" />
     <Content Include="app\30-order\detail\detail.component.css" />
@@ -300,6 +302,7 @@
     <TypeScriptCompile Include="app\20-management_center\administrator\administrator.component.ts" />
     <TypeScriptCompile Include="app\20-management_center\management.model.ts" />
     <TypeScriptCompile Include="app\20-management_center\management.component.ts" />
+    <TypeScriptCompile Include="app\20-management_center\personal\complaint\complaint.component.ts" />
     <TypeScriptCompile Include="app\20-management_center\personal\myOrder\myorderDetail.component.ts" />
     <TypeScriptCompile Include="app\30-order\detail\detail.component.ts" />
     <TypeScriptCompile Include="app\30-order\order.model.ts" />

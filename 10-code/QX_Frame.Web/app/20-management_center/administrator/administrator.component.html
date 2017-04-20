@@ -155,11 +155,39 @@
         </div>
         <div class="cfix tabBox">
             <ul class="l cfix tabs">
-                <li class="on"><a href="?t=0">全部</a></li>
-                <li class=""><a href="?t=1">发布</a></li>
+                <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_message($event,0)">全部</a></li>
+                <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_message($event,1)">发布</a></li>
             </ul>
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-addr"  *ngIf="messageFlag">
+                <tr>
+                    <th class="th30"><span class="pl10">用户ID</span></th>
+                    <th class="th60"><span class="pl10">昵称</span></th>
+                    <th class="th120">联系电话</th>
+                    <th class="th200">地址</th>
+                    <th class="th120">邮箱</th>
+                    <th class="th120">用户状态</th>
+                    <th class="th120">用户角色</th>
+                    <th class="operate th200">操作</th>
+                </tr>
+
+                <tr data-id="" class="address-add" *ngFor="let item of userInfoModelList;let i = index;">
+                    <td class="th30"><span class="c-black fs14">{{item.loginId}}</span></td>
+                    <td class="th60"><span class="c-black fs14">{{item.nickName}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.phone}}</span></td>
+                    <td class="th200"><span class="c-black fs14">{{item.location}}</span></td>
+                    <td class="th120"><span class="c-black fs14">{{item.email}}</span></td>
+                    <td class="th120">{{item.statusDescription}}</td>
+                    <td class="th120">{{item.roleDescription}}</td>
+
+                    <td class="operate">
+                        <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit" (click)="GetThisLineUserInfo(i)">编辑</a>
+                    </td>
+                </tr>
+
+            </table>
         </div>
-        <form action="" id="sentMassform" class="form-horizontal" style="min-width:500px;">
+        <!-- 发布消息 -->
+        <form action="" id="sentMassform" class="form-horizontal" style="min-width:500px;" *ngIf="!messageFlag">
             <div class="form-group">
                 <label for="true" class="col-sm-2 control-label">用户ID :</label>
                 <div class="col-sm-8">
@@ -174,7 +202,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-8 col-md-offset-2">
-                    <input type="button" class="no-top-margin sentMassform_btn" value="发      送" name="">
+                    <input type="button" class="no-top-margin sentMassform_btn pull-right" value="发  布  消  息" name="">
                 </div>
             </div>
         </form>

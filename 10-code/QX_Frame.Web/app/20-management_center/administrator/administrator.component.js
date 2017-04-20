@@ -73,6 +73,13 @@ let AdministratorComponent = class AdministratorComponent {
         //global
         this.navStatus = appBase_1.appBase.AppObject.administratorStatus; //-1未登录；
         this.loginId = appService_1.appService.getCookie("loginId");
+        //删除用户；
+        //DeleteUser(): void {
+        //}
+        ////订单管理
+        ////投诉管理
+        ////消息管理
+        this.messageFlag = true;
     }
     //判断是否登录
     isLoginFlag() {
@@ -437,11 +444,18 @@ let AdministratorComponent = class AdministratorComponent {
             }
         });
     }
-    //删除用户；
-    //DeleteUser(): void {
-    //}
-    ////订单管理
-    ////投诉管理
+    //条件帅选 点击；
+    tabBoxClick_message(event, num) {
+        var $targetP = $(event.target || event.srcElement).parent();
+        $targetP.siblings().removeClass("on");
+        $targetP.addClass("on");
+        if (num == 1) {
+            this.messageFlag = false;
+        }
+        else {
+            this.messageFlag = true;
+        }
+    }
     //the final execute ...
     ngOnInit() {
         //左菜单 焦点 判断 显示；

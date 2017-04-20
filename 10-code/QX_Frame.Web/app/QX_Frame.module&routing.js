@@ -27,6 +27,7 @@ const management_component_1 = require("./20-management_center/management.compon
 const administrator_component_1 = require("./20-management_center/administrator/administrator.component");
 const blackLogin_component_1 = require("./03-login/blackLogin/blackLogin.component");
 const myorderDetail_component_1 = require("./20-management_center/personal/myOrder/myorderDetail.component");
+const complaint_component_1 = require("./20-management_center/personal/complaint/complaint.component");
 /*bantina add end*/
 /*zyq add start*/
 const topic_1 = require("./70-community/71-topic/topic");
@@ -86,6 +87,10 @@ const appRoutes = [
         path: 'myorderDetail',
         component: myorderDetail_component_1.MyorderDetailComponent
     },
+    {
+        path: 'complaint',
+        component: complaint_component_1.ComplaintComponent
+    },
     /*bantina add end*/
     /*zyq add start*/
     {
@@ -127,6 +132,7 @@ const appComponents = [
     administrator_component_1.AdministratorComponent,
     blackLogin_component_1.BlackLoginComponent,
     myorderDetail_component_1.MyorderDetailComponent,
+    complaint_component_1.ComplaintComponent,
     /*bantina add end*/
     /*zyq add start*/
     topic_1.Topic,

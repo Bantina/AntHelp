@@ -63,7 +63,7 @@ namespace QX_Frame.Data.QueryObject
 				func = func.And(t => t.articleTitle.Contains(this.articleTitle));
 			}
 
-            if (this.ArticleCategoryId!=0)
+            if (this.ArticleCategoryId!=-1)
             {
                 func = func.And(t => t.ArticleCategoryId == this.ArticleCategoryId);
             }

@@ -80,5 +80,43 @@ namespace QX_Frame.WebAPI.Controllers
 
             return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("file upload success", fileNameList, fileNameList.Count));
         }
+
+        //Get Image Data
+        public static string GetImageData(string imageName)
+        {
+            try
+            {
+                string root = "Files/";
+                var path = Path.Combine(root, imageName);
+                var bytes = File.ReadAllBytes(path);
+                var base64 = Convert.ToBase64String(bytes);
+                return "data:image/jpeg;base64," + base64;
+            }
+            catch (Exception)
+            {
+                return DefaultImageStream.errorImageStream;
+            }
+        }
+        //GetImageDataArray imageData list
+        public static string[] GetImageDataArray(string[] imageNameArray)
+        {
+            string[] resultArray = new string[imageNameArray.Length];
+            for (int i = 0; i < imageNameArray.Length; i++)
+            {
+                try
+                {
+                    string root = "Files/";
+                    var path = Path.Combine(root, imageNameArray[i]);
+                    var bytes = File.ReadAllBytes(path);
+                    var base64 = Convert.ToBase64String(bytes);
+                    resultArray[i] = "data:image/jpeg;base64," + base64;
+                }
+                catch (Exception)
+                {
+                    resultArray[i] = DefaultImageStream.errorImageStream;
+                }
+            }
+            return resultArray;
+        }
     }
 }

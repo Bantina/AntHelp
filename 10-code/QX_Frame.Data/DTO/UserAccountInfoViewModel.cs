@@ -16,6 +16,8 @@ namespace QX_Frame.Data.DTO
         public String phone { get; set; }
         // 
         public String headImageUrl { get; set; }
+
+        public string headImageData { get; set; }
         // 
         public Int32 age { get; set; }
 

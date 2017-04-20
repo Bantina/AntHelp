@@ -51,6 +51,7 @@ namespace QX_Frame.WebAPI.Controllers
                             userAccountInfoViewModel.email = userAccount.email;
                             userAccountInfoViewModel.phone = userAccount.phone;
                             userAccountInfoViewModel.headImageUrl = userAccount.headImageUrl;
+                            userAccountInfoViewModel.headImageData = FilesController.GetImageData(userAccount.headImageUrl);
                             userAccountInfoViewModel.age = userAccount.age;
                             userAccountInfoViewModel.sexId = userAccount.tb_Sex.sexId;
                             userAccountInfoViewModel.sexName = userAccount.tb_Sex.sexName.Trim();

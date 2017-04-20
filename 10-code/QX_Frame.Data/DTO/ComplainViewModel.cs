@@ -19,6 +19,6 @@ namespace QX_Frame.Data.DTO
         // 
         public Int32 complainStatusId { get; set; }
 
-        public tb_ComplainStatus complainStatus { get; set; }
+        public string complainStatusName { get; set; }
     }
 }

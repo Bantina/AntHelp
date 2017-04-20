@@ -31,7 +31,7 @@ let Detail = class Detail {
             praiseCount: 0,
             ArticleCategoryId: "",
             articleCategoryName: "",
-            imagesNameList: ""
+            imageDatas: ""
         };
         // 回复对象
         this.commentReply = {
@@ -96,18 +96,9 @@ let Detail = class Detail {
                     self.article.praiseCount = dataList.praiseCount;
                     self.article.ArticleCategoryId = dataList.ArticleCategoryId;
                     self.article.articleCategoryName = dataList.articleCategory.CategoryName;
-                    self.article.imagesNameList = dataList.imagesNameList;
-                    // 请求头像绝对路径
-                    $.ajax({
-                        url: appBase_1.appBase.DomainApi + 'api/Files/' + dataList.publisherInfo.headImageUrl,
-                        type: "GET",
-                        success: function (data) {
-                            // 设置头像
-                            $("#dp").attr('src', data);
-                        },
-                        error: function (data) {
-                        }
-                    });
+                    self.article.imageDatas = dataList.imageDatas[0];
+                    // 设置头像
+                    $("#dp").attr('src', self.article.imageDatas);
                 }
                 else {
                     alert(data.msg);
@@ -182,6 +173,7 @@ let Detail = class Detail {
             }),
             success(data) {
                 if (data.isSuccess) {
+                    console.log(data);
                     var dataList = data.data;
                     self.article.praiseCount = dataList.praiseCount;
                 }

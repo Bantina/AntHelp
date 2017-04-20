@@ -119,6 +119,34 @@
                 <li class=""><a href="?t=2">待处理</a></li>
             </ul>
         </div>
+        <table cellpadding="0" cellspacing="0" border="0" class="table table-addr">
+            <tr>
+                <th class="th30"><span class="pl10">用户ID</span></th>
+                <th class="th60"><span class="pl10">昵称</span></th>
+                <th class="th120">联系电话</th>
+                <th class="th200">地址</th>
+                <th class="th120">邮箱</th>
+                <th class="th120">用户状态</th>
+                <th class="th120">用户角色</th>
+                <th class="operate th200">操作</th>
+            </tr>
+
+            <tr data-id="" class="address-add" *ngFor="let item of userInfoModelList;let i = index;">
+                <td class="th30"><span class="c-black fs14">{{item.loginId}}</span></td>
+                <td class="th60"><span class="c-black fs14">{{item.nickName}}</span></td>
+                <td class="th120"><span class="c-black fs14">{{item.phone}}</span></td>
+                <td class="th200"><span class="c-black fs14">{{item.location}}</span></td>
+                <td class="th120"><span class="c-black fs14">{{item.email}}</span></td>
+                <td class="th120">{{item.statusDescription}}</td>
+                <td class="th120">{{item.roleDescription}}</td>
+
+                <td class="operate">
+                    <a data-toggle="modal" data-target="#userEditModel" href="###" class="fs14 a-edit" (click)="GetThisLineUserInfo(i)">处理投诉信息</a>
+                </td>
+            </tr>
+
+        </table>
+
     </div>
     <!-- 消息管理 -->
     <div class="r rightCon" *ngIf="navStatus==3">

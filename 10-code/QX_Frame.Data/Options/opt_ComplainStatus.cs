@@ -12,8 +12,8 @@ namespace QX_Frame.Data.Options
      * */
     public enum opt_ComplainStatus : int
     {
-        未读 = 0,
-        已读 = 1,
-        全部 = 2
+        未处理 = 0,
+        已处理 = 1,
+        全部 = -1
     }
 }

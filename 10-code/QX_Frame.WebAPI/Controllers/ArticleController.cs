@@ -27,7 +27,7 @@ namespace QX_Frame.WebAPI.Controllers
     [LimitsAttribute_DG(RoleLevel = 0)]
     public class ArticleController : WebApiControllerBase
     {
-        // GET: api/Article articleCategoryId=0 query all
+        // GET: api/Article articleCategoryId=-1 query all
         public IHttpActionResult Get(string articleTitle,int articleCategoryId, int pageIndex, int pageSize, bool isDesc)
         {
             tb_ArticleQueryObject queryObject = new tb_ArticleQueryObject();

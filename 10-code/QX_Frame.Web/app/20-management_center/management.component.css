@@ -177,7 +177,7 @@ a:hover .ico-edit{background-position:0 -27px;}
 	margin-bottom: 20px;
 	border: 1px solid #e2e2e2;
 }
-.myorderBlock .myorderBody_des input,.sentMassform .myorderComplaint_btn{
+.myorderBlock .myorderBody_des input,.myorderBlock .myorderBody_des a,.sentMassform .myorderComplaint_btn{
   width:150px;
   height:30px;
   display: block;
@@ -189,7 +189,12 @@ a:hover .ico-edit{background-position:0 -27px;}
   margin-top: 28px;
   margin-bottom:20px;
 }
-.myorderBlock .myorderBody_des input:hover,.myorderBlock .myorderBody_des input:focus,.sentMassform .myorderComplaint_btn:hover,.sentMassform .myorderComplaint_btn:focus {
+.myorderBlock .myorderBody_des a{
+    margin-left:50%;
+    transform:translateX(-50%);
+    line-height:30px;
+}
+.myorderBlock .myorderBody_des input:hover,.myorderBlock .myorderBody_des input:focus,.myorderBlock .myorderBody_des a:hover,.myorderBlock .myorderBody_des a:focus,.sentMassform .myorderComplaint_btn:hover,.sentMassform .myorderComplaint_btn:focus {
 	background-color: #ef5048;
 }
 .myorderBlock .myorderTitle{
@@ -248,7 +253,62 @@ a:hover .ico-edit{background-position:0 -27px;}
   border: none;
   border-radius: 6px;
 }
-.sentMassform_btn:focus,sentMassform_btn:hover {
+.sentMassform_btn:focus,.sentMassform_btn:hover {
 	background-color: #ef5048;
 }
 
+
+/*消息页*/
+.myMassege_tabBox{
+    margin-left:50%;
+    transform:translateX(-50%);
+}
+.myMassegeBlock_left,.myMassegeBlock_right{
+		background: #484860;
+		box-shadow: 0 13px 10px -5px rgba(0,0,0,0.2);
+		color: #fff;
+		margin-bottom: 15px;
+		border-radius: 2px;
+	}
+
+	.myMassegeBlock_icon img{
+		width:50px;
+		height: 50px;
+		margin-left: 15px;
+	}
+	.myMassegeBlock_text{
+		font-size: 18px;
+		margin-top: 12px;
+	}
+	.fromer{
+		color:tomato;
+		margin:0 5px;
+	}
+	.checkup_btn,.checkup_delete_btn{
+	  width:80px;
+	  height:30px;
+	  line-height:30px;
+	  display: block;
+	  font-size:16px;
+	  background-color: #e72015;
+	  color: #fff;
+	  border: none;
+	  text-align: center;
+	  margin-top: 10px;
+	  border-radius: 2px;
+	}
+    .checkup_delete_btn{
+        margin-top:27px;
+    }
+	.checkup_btn:focus,.checkup_delete_btn:focus,.checkup_btn:hover,.checkup_delete_btn:hover {
+		background-color: #ef5048;
+	}
+    .myMessageModel_content p{
+        margin-left:50%;
+        transform:translateX(-50%);
+    }
+    .myMassegeBlock_right_count{
+        font-size:18px;
+        margin-left:46px;
+        font-weight:bold;
+    }

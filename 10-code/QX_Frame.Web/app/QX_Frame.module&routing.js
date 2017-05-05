@@ -28,6 +28,8 @@ const administrator_component_1 = require("./20-management_center/administrator/
 const blackLogin_component_1 = require("./03-login/blackLogin/blackLogin.component");
 const myorderDetail_component_1 = require("./20-management_center/personal/myOrder/myorderDetail.component");
 const complaint_component_1 = require("./20-management_center/personal/complaint/complaint.component");
+const activity_component_1 = require("./60-activity/activity.component");
+const massege_component_1 = require("./20-management_center/massege/massege.component");
 /*bantina add end*/
 /*zyq add start*/
 const topic_1 = require("./70-community/71-topic/topic");
@@ -91,6 +93,14 @@ const appRoutes = [
         path: 'complaint',
         component: complaint_component_1.ComplaintComponent
     },
+    {
+        path: 'activity',
+        component: activity_component_1.ActivityComponent
+    },
+    {
+        path: 'myMassege',
+        component: massege_component_1.MassegeComponent
+    },
     /*bantina add end*/
     /*zyq add start*/
     {
@@ -133,6 +143,8 @@ const appComponents = [
     blackLogin_component_1.BlackLoginComponent,
     myorderDetail_component_1.MyorderDetailComponent,
     complaint_component_1.ComplaintComponent,
+    activity_component_1.ActivityComponent,
+    massege_component_1.MassegeComponent,
     /*bantina add end*/
     /*zyq add start*/
     topic_1.Topic,

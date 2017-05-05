@@ -1,0 +1,75 @@
+﻿<!--start myMassege-->
+<div class="myMassege">
+    <!--<div class="myMassege_left">
+        <div class="myMassege_title">未读</div>
+
+    </div>
+    <div class="myMassege_right">
+        <div class="myMassege_title">已读</div>
+    </div>-->
+    <div class="cfix tabBox">
+        <ul class="l cfix tabs myMassege_tabBox">
+            <li class="on"><a style="cursor:pointer;" (click)="tabBoxClick_myMassege($event,0)">未读</a></li>
+            <li class=""><a style="cursor:pointer;" (click)="tabBoxClick_myMassege($event,1)">已读</a></li>
+        </ul>
+    </div>
+    <!-- 未读消息 -->
+    <div *ngIf="notReadFlag">
+        <div class="myMassegeBlock_left col-md-6 col-md-offset-3" *ngFor="let item of messagePushList;let i = index;">
+            <div class="row">
+                <div class="col-md-2 myMassegeBlock_icon">
+                    <img src="../../../Images/60-activity/myMassegeR.png" />
+                </div>
+                <div class="col-md-8 myMassegeBlock_text pull-left">
+                    <span class="myMassegeBlock_count">{{i+1}}.</span>
+                    收到一条<span class="fromer">{{item.messagePushCategoryName}}</span>的消息
+                </div>
+                <div class="col-md-2">
+                    <a href="###" class="checkup_btn"  data-toggle="modal" data-target="#myMassegeModel" (click)="GetSingleMessage(i)">查  看</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 已读消息 -->
+    <div *ngIf="!notReadFlag">
+        <div class="myMassegeBlock_right col-md-6 col-md-offset-3" *ngFor="let item of messagePushList;let i = index;">
+            <div class="row">
+                <div class="col-md-2 myMassegeBlock_icon">
+                    <img src="../../../Images/60-activity/myMassegeL.png" />
+                    <p class="myMassegeBlock_right_count">{{i+1}}</p>
+                </div>
+                <div class="col-md-8 myMassegeBlock_text pull-left">
+                    <p>{{item.messageContent}}</p>
+                    <p>{{item.messagePushTime}}</p>
+                </div>
+                <div class="col-md-2">
+                    <a href="javascript:void(0);" class="checkup_delete_btn" (click)="ReSetMessage(i)">删  除</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- model -->
+    <div class="modal fade" id="myMassegeModel" tabindex="-1" role="dialog" aria-labelledby="myMassegeModelLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                    <h4 class="modal-title" id="myMassegeModelLabel">{{messagePush.messagePushCategoryName}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="myMessageModel_content">
+                        <p>{{messagePush.messageContent}}</p>
+                        <p>{{messagePush.messagePushTime}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">关 闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end myMassege-->

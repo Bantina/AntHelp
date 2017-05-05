@@ -56,7 +56,7 @@ namespace QX_Frame.WebAPI.Controllers
                     messagePushViewModel.messageUid = item.messageUid;
                     messagePushViewModel.messageContent = item.messageContent;
                     messagePushViewModel.messagePusher = item.messagePusher;
-                    messagePushViewModel.messagePushTime = item.messagePushTime;
+                    messagePushViewModel.messagePushTime = item.messagePushTime.ToString("yyy-MM-dd hh:mm:ss");
                     messagePushViewModel.messageCategoryId = item.messageCategoryId;
                     messagePushViewModel.messagePushCategoryName = item.tb_MessagePushCategory.messageCategoryName;
                     messagePushViewModel.messagePushStatusId = item.messagePushStatusId;
@@ -83,7 +83,7 @@ namespace QX_Frame.WebAPI.Controllers
                     messagePush.messageUid = result.messageUid;
                     messagePush.messageContent = result.messageContent;
                     messagePush.messagePusher = result.messagePusher;
-                    messagePush.messagePushTime = result.messagePushTime;
+                    messagePush.messagePushTime = result.messagePushTime.ToString("yyy-MM-dd hh:mm:ss");
                     messagePush.messageCategoryId = result.messageCategoryId;
                     messagePush.messagePushCategoryName = result.tb_MessagePushCategory.messageCategoryName;
                     messagePush.messagePushStatusId = result.messagePushStatusId;
@@ -122,11 +122,35 @@ namespace QX_Frame.WebAPI.Controllers
             }
         }
 
-        // PUT: api/MessagePush
-        public IHttpActionResult Put([FromBody]dynamic query)
+        // PUT: api/MessagePush/id -> id=1 update messageStatus;
+        public IHttpActionResult Put(int id,[FromBody]dynamic query)
         {
-            throw new Exception_DG("The interface is not available", 9999);
+            if (query == null)
+            {
+                throw new Exception_DG("arguments must be provide", 1001);
+            }
+            Guid uid = query.messagePushUid;
+            if (id==1)
+            {
+                using (var fact = Wcf<MessagePushService>())
+                {
+                    var channel = fact.CreateChannel();
+                    tb_MessagePush result = channel.QuerySingle(new tb_MessagePushQueryObject { QueryCondition = t => t.messageUid == uid }).Cast<tb_MessagePush>();
+                    if (result == null)
+                    {
+                        throw new Exception_DG("no result found by this query condition", 3021);
+                    }
+                    result.messagePushStatusId = opt_MessageStatus.已读.ToInt();
+                    channel.Update(result);
+                    return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("update succeed"));
+                }
+            }
+            else
+            {
+                throw new Exception_DG("id = 1 update messageStatus !");
+            }
         }
+           
 
         // DELETE: api/MessagePush
         public IHttpActionResult Delete([FromBody]dynamic query)

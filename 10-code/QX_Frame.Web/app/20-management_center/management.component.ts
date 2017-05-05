@@ -236,8 +236,9 @@ export class ManagementComponent implements OnInit {
         $targetP.addClass("on");
         this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
     }
-    toMyorderDetail(): void {
-        this.router.navigateByUrl('/myorderDetail');//跳转订单详情页面；
+    toMyorderDetail(index: number): void {
+        //this.router.navigateByUrl('/myorderDetail');//跳转订单详情页面
+        this.router.navigateByUrl('/myorderDetail?orderUid=' + this.myorderModelList[index].orderUid);//跳转订单详情页面
     }
 
     //get MyorderList List 获取个人订单列表;--我的订单

@@ -223,8 +223,9 @@ let ManagementComponent = class ManagementComponent {
         $targetP.addClass("on");
         this.GetMyorderList(queryId, orderCategoryId, orderStatusId);
     }
-    toMyorderDetail() {
-        this.router.navigateByUrl('/myorderDetail'); //跳转订单详情页面；
+    toMyorderDetail(index) {
+        //this.router.navigateByUrl('/myorderDetail');//跳转订单详情页面
+        this.router.navigateByUrl('/myorderDetail?orderUid=' + this.myorderModelList[index].orderUid); //跳转订单详情页面
     }
     //get MyorderList List 获取个人订单列表;--我的订单
     GetMyorderList(queryId, orderCategoryId, orderStatusId) {

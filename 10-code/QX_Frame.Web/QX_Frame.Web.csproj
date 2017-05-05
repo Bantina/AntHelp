@@ -85,6 +85,7 @@
     <Content Include="app\20-management_center\administrator\administrator.component.html" />
     <Content Include="app\20-management_center\management.component.css" />
     <Content Include="app\20-management_center\management.component.html" />
+    <Content Include="app\20-management_center\massege\massege.component.html" />
     <Content Include="app\20-management_center\personal\complaint\complaint.component.css" />
     <Content Include="app\20-management_center\personal\complaint\complaint.component.html" />
     <Content Include="app\20-management_center\personal\myOrder\myorderDetail.component.css" />
@@ -93,6 +94,8 @@
     <Content Include="app\30-order\detail\detail.component.html" />
     <Content Include="app\30-order\publish\publish.component.css" />
     <Content Include="app\30-order\publish\publish.component.html" />
+    <Content Include="app\60-activity\activity.component.css" />
+    <Content Include="app\60-activity\activity.component.html" />
     <Content Include="app\70-community\71-topic\detail\detail.css" />
     <Content Include="app\70-community\71-topic\detail\detail.html" />
     <Content Include="app\70-community\71-topic\topic.css" />
@@ -135,6 +138,9 @@
     <Content Include="Images\30-order\bg5.png" />
     <Content Include="Images\30-order\octopus.png" />
     <Content Include="Images\30-order\prev_next.png" />
+    <Content Include="Images\60-activity\1493777571577.jpg" />
+    <Content Include="Images\60-activity\myMassegeL.png" />
+    <Content Include="Images\60-activity\myMassegeR.png" />
     <Content Include="Images\70-index\banner.jpg" />
     <Content Include="Images\70-index\bg40.jpg" />
     <Content Include="Images\70-index\delete.png" />
@@ -302,11 +308,13 @@
     <TypeScriptCompile Include="app\20-management_center\administrator\administrator.component.ts" />
     <TypeScriptCompile Include="app\20-management_center\management.model.ts" />
     <TypeScriptCompile Include="app\20-management_center\management.component.ts" />
+    <TypeScriptCompile Include="app\20-management_center\massege\massege.component.ts" />
     <TypeScriptCompile Include="app\20-management_center\personal\complaint\complaint.component.ts" />
     <TypeScriptCompile Include="app\20-management_center\personal\myOrder\myorderDetail.component.ts" />
     <TypeScriptCompile Include="app\30-order\detail\detail.component.ts" />
     <TypeScriptCompile Include="app\30-order\order.model.ts" />
     <TypeScriptCompile Include="app\30-order\publish\publish.component.ts" />
+    <TypeScriptCompile Include="app\60-activity\activity.component.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.model.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\topic.ts" />

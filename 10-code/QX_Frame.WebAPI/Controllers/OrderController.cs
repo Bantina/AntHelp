@@ -64,7 +64,7 @@ namespace QX_Frame.WebAPI.Controllers
                     orderViewModel.orderCategoryId = item.orderCategoryId;
                     orderViewModel.orderCategory = item.tb_OrderCategory;
                     orderViewModel.receiverUid = item.receiverUid;
-                    orderViewModel.receiveTime = item.receiveTime.ToDateTimeString_24HourType();
+                    orderViewModel.receiveTime = item.receiveTime.ToString("yyy-MM-dd hh:mm:ss");
                     orderViewModel.orderStatusId = item.orderStatusId;
                     orderViewModel.orderStatus = item.tb_OrderStatus;
                     orderViewModel.orderValue = item.orderValue;
@@ -114,7 +114,7 @@ namespace QX_Frame.WebAPI.Controllers
                     orderViewModel.orderCategory = Order.tb_OrderCategory;
                     orderViewModel.receiverUid = Order.receiverUid;
                     orderViewModel.receiverInfo = channel_user.GetUserAccountInfoByUidAllowNull(Order.receiverUid);
-                    orderViewModel.receiveTime = Order.receiveTime.ToDateTimeString_24HourType();
+                    orderViewModel.receiveTime = Order.receiveTime.ToString("yyy-MM-dd hh:mm:ss");
                     orderViewModel.orderStatusId = Order.orderStatusId;
                     orderViewModel.orderStatus = Order.tb_OrderStatus;
                     orderViewModel.orderValue = Order.orderValue;

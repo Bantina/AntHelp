@@ -8,4 +8,6 @@
         administratorStatus: 0 //manager status
     } //personal center 
 
+    public static MessageCount: any = 0;
+
 }

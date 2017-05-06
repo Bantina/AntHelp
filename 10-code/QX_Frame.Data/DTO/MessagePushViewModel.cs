@@ -15,7 +15,7 @@ namespace QX_Frame.Data.DTO
         // 
         public String messagePusher { get; set; }
         // 
-        public DateTime messagePushTime { get; set; }
+        public string messagePushTime { get; set; }
         // 
         public Int32 messageCategoryId { get; set; }
 

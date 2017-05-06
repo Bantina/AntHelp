@@ -2,21 +2,21 @@
 <div class="myorderDetail_T">
     <div class="row">
         <div class="col-md-2 text-right myorderDetail_T_title">订单编号：</div>
-        <div class="col-md-7 myorderDetail_T_text">4324325453</div>
+        <div class="col-md-7 myorderDetail_T_text">{{order.orderUid}}</div>
         <div class="col-md-2">
             <span style="color:tomato;font-size:20px;">￥</span>
-            <span style="color:#444;font-size:16px;">888</span>
+            <span style="color:#444;font-size:16px;">{{order.orderValue}}</span>
         </div>
     </div>
 </div>
 <div class="myorderDetail_C">
     <div class="row">
         <div class="col-md-3 col-md-offset-1 text-right myorderDetail_title">订单描述：</div>
-        <div class="col-md-8 myorderDetail_text">4324325453幅度萨芬</div>
+        <div class="col-md-8 myorderDetail_text">{{order.orderDescription}}</div>
     </div>
     <div class="row">
         <div class="col-md-3 col-md-offset-1 text-right myorderDetail_title">订单状态：</div>
-        <div class="col-md-8 myorderDetail_text">待接单</div>
+        <div class="col-md-8 myorderDetail_text">{{orderStatus}}</div>
     </div>
     <div class="row">
         <div class="col-md-6 myorderDetail_people">
@@ -24,41 +24,51 @@
                 <p class="col-md-12 myorderDetail_title" style="text-align:center;color:#444;">发布信息</p>
             </div>
             <div class="row">
-                <div class="col-md-6 text-right myorderDetail_title">发布者：</div>
-                <div class="col-md-6 myorderDetail_text">adfsa</div>
+                <div class="col-md-3 text-right myorderDetail_title">发布者：</div>
+                <div class="col-md-9 myorderDetail_text">{{order.publisherUid}}</div>
             </div>
             <div class="row">
                 <div class="col-md-6 text-right myorderDetail_title">发布时间：</div>
-                <div class="col-md-6 myorderDetail_text">adfsa</div>
+                <div class="col-md-6 myorderDetail_text">{{order.publishTime}}</div>
             </div>
         </div>
         <div class="col-md-6 myorderDetail_people">
             <div class="row">
                 <p class="col-md-12 myorderDetail_title" style="text-align:center;color:#444;">接单信息</p>
             </div>
-            <div class="row">
-                <div class="col-md-6 text-right myorderDetail_title">接单者：</div>
-                <div class="col-md-6 myorderDetail_text">adfsa</div>
+            <div *ngIf="order.receiverUid!='00000000-0000-0000-0000-000000000000'">
+                <div class="row">
+                    <div class="col-md-3 text-right myorderDetail_title">接单者：</div>
+                    <div class="col-md-9 myorderDetail_text">{{order.receiverUid}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 text-right myorderDetail_title">接单时间：</div>
+                    <div class="col-md-6 myorderDetail_text">{{order.receiveTime}}</div>
+                </div>
+                </div>
+                <div *ngIf="order.receiverUid=='00000000-0000-0000-0000-000000000000'">
+                    <div class="row">
+                        <div class="col-md-3 text-right myorderDetail_title">接单者：</div>
+                        <div class="col-md-9 myorderDetail_text">无</div>
+                    </div>
+
+                </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 text-right myorderDetail_title">接单时间：</div>
-                <div class="col-md-6 myorderDetail_text">adfsa</div>
-            </div>
-        </div>
     </div>
     <div class="row">
         <div class="col-md-3 col-md-offset-1 text-right myorderDetail_title">地址：</div>
-        <div class="col-md-8 myorderDetail_text">反对撒额外提供的</div>
+        <div class="col-md-8 myorderDetail_text">{{order.address}}</div>
     </div>
     <div class="row">
         <div class="col-md-3 col-md-offset-1 text-right myorderDetail_title">电话：</div>
-        <div class="col-md-8 myorderDetail_text">7815654548</div>
+        <div class="col-md-8 myorderDetail_text">{{order.phone}}</div>
     </div>
 </div>
 <div class="myorderDetail_F">
     <div class="row pull-right">
         <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="">
-        <input type="button" class="myorderDetail_F_btn" value="投       诉" name="">
+        <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="">
+        <a class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
     </div>
 </div>
 <!--end myorderDetail-->

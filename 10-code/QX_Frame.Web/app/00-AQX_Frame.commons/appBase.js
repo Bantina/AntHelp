@@ -8,5 +8,6 @@ appBase.AppObject = {
     centerStatus: 0,
     administratorStatus: 0 //manager status
 }; //personal center 
+appBase.MessageCount = 0;
 exports.appBase = appBase;
 //# sourceMappingURL=appBase.js.map

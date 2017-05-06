@@ -93,7 +93,7 @@
                     <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,2,-1,7)">已结束</a></li>
                 </ul>
             </div>
-            <div class="myorderBlock col-md-3 col-md-offset-1"  *ngFor="let item of myorderModelList">
+            <div class="myorderBlock col-md-3 col-md-offset-1"  *ngFor="let item of myorderModelList;let i=index;">
                 <div class="myorderTitle">
                     <p><strong>订单编号：</strong>{{item.orderUid}}</p>
                 </div>
@@ -102,8 +102,8 @@
                     <img src="{{item.firstImg}}" />
                     <div class="myorderBody_des">
                         <h4>{{item.orderDescription}}</h4>
-                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="" (click)="toMyorderDetail()">
-                        <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
+                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="" (click)="toMyorderDetail(i)">
+                        <a routerLink="/complaint" class="no-top-margin myorderComplaint_btn" name="">投       诉</a>
                     </div>
                 </div>
             </div>
@@ -117,14 +117,14 @@
             <div class="cfix tabBox">
                 <ul class="l cfix tabs">
                     <li class="on"><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,-1)">全部</a></li>
-                    <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,1)"><!--待接单--></a></li>
+                    <!--<li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,1)">待接单</a></li>-->
                     <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,2)">待支付</a></li>
                     <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,3)">待接单</a></li>
                     <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,6)">待确认</a></li>
                     <li class=""><a href="javascript:void(0);" (click)="tabBoxClick_myorder($event,1,-1,7)">已结束</a></li>
                 </ul>
             </div>
-            <div class="myorderBlock col-md-3 col-md-offset-1" *ngFor="let item of myorderModelList">
+            <div class="myorderBlock col-md-3 col-md-offset-1" *ngFor="let item of myorderModelList;let i=index;">
                 <div class="myorderTitle">
                     <p><strong>订单编号：</strong>{{item.orderUid}}</p>
                 </div>
@@ -133,8 +133,8 @@
                     <img src="{{item.firstImg}}" />
                     <div class="myorderBody_des">
                         <h4>{{item.orderDescription}}</h4>
-                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="" (click)="toMyorderDetail()">
-                        <input type="button" class="no-top-margin myorderComplaint_btn" value="投       诉" name="">
+                        <input type="button" class="no-top-margin myorderDetail_btn" value="查 看 详 情" name="" (click)="toMyorderDetail(i)">
+                        <a routerLink="/complaint" class="no-top-margin myorderComplaint_btn" name="">投       诉</a>
                     </div>
                 </div>
             </div>

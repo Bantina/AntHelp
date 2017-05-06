@@ -8,11 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const appBase_1 = require("../../../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../../../00-AQX_Frame.services/appService");
-const router_1 = require("@angular/router");
+const core_1 = require('@angular/core');
+const appBase_1 = require('../../../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../../../00-AQX_Frame.services/appService');
+const router_1 = require('@angular/router');
 let ComplaintComponent = class ComplaintComponent {
     constructor(_router) {
         //------- complain ------------------
@@ -65,8 +64,8 @@ ComplaintComponent = __decorate([
         templateUrl: 'app/20-management_center/personal/complaint/complaint.component.html',
         styleUrls: ['app/20-management_center/personal/complaint/complaint.component.css'],
         providers: []
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
+    }), 
+    __metadata('design:paramtypes', [router_1.Router])
 ], ComplaintComponent);
 exports.ComplaintComponent = ComplaintComponent;
 //# sourceMappingURL=complaint.component.js.map

@@ -2,8 +2,7 @@ using QX_Frame.App.Base;
 using QX_Frame.Data.Contract.QX_Frame;
 using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.QueryObject;
-using QX_Frame.Helper_DG_Framework;
-using QX_Frame.Helper_DG_Framework.Extends;
+using QX_Frame.Helper_DG;
 
 namespace QX_Frame.Data.Service.QX_Frame
 {

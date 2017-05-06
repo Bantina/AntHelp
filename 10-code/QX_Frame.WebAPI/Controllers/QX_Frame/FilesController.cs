@@ -1,5 +1,4 @@
-﻿using QX_Frame.Helper_DG_Framework;
-using QX_Frame.Helper_DG_Framework.Extends;
+﻿using QX_Frame.Helper_DG;
 using QX_Frame.WebAPI.config;
 using System;
 using System.Collections.Generic;

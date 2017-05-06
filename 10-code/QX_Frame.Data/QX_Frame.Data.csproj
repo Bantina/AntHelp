@@ -49,9 +49,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\QX_Frame.Reference\QX_Frame.App.Base\QX_Frame.App.Base.dll</HintPath>
     </Reference>
-    <Reference Include="QX_Frame.Helper_DG_Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\QX_Frame.Reference\QX_Frame.App.Base\QX_Frame.Helper_DG_Framework.dll</HintPath>
+    <Reference Include="QX_Frame.Helper_DG">
+      <HintPath>..\QX_Frame.Reference\QX_Frame.Helper_DG_Framework\QX_Frame.Helper_DG.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />

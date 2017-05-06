@@ -3,12 +3,11 @@ using QX_Frame.Data.DTO;
 using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
-using QX_Frame.Helper_DG_Framework;
-using QX_Frame.Helper_DG_Framework.Extends;
+using QX_Frame.Helper_DG;
 using System.Collections.Generic;
 using System;
 using System.Web.Http;
-using static QX_Frame.Helper_DG_Framework.Encrypt_Helper_DG;
+using static QX_Frame.Helper_DG.Encrypt_Helper_DG;
 using QX_Frame.Data.Options;
 using QX_Frame.WebAPI.Filters;
 

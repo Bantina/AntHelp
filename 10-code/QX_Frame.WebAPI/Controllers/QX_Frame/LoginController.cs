@@ -2,12 +2,11 @@ using QX_Frame.App.Web;
 using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
-using QX_Frame.Helper_DG_Framework;
-using QX_Frame.Helper_DG_Framework.Extends;
+using QX_Frame.Helper_DG;
 using QX_Frame.WebAPI.Filters;
 using System;
 using System.Web.Http;
-using static QX_Frame.Helper_DG_Framework.Encrypt_Helper_DG;
+using static QX_Frame.Helper_DG.Encrypt_Helper_DG;
 
 namespace QX_Frame.WebAPI.Controllers
 {

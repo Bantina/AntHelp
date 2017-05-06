@@ -1,8 +1,7 @@
 using QX_Frame.App.Web;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
-using QX_Frame.Helper_DG_Framework;
-using QX_Frame.Helper_DG_Framework.Extends;
+using QX_Frame.Helper_DG;
 using QX_Frame.WebAPI.config;
 using QX_Frame.WebAPI.Helpers;
 using System;

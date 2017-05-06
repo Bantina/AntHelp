@@ -1,9 +1,8 @@
 using QX_Frame.App.Base;
 using QX_Frame.Data.Entities;
-using QX_Frame.Data.Options;
 using System;
 using System.Linq.Expressions;
-using QX_Frame.Helper_DG_Framework.Extends;
+using QX_Frame.Helper_DG;
 
 namespace QX_Frame.Data.QueryObject
 {

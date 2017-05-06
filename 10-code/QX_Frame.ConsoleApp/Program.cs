@@ -3,7 +3,7 @@ using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.Options;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
-using QX_Frame.Helper_DG_Framework;
+using QX_Frame.Helper_DG;
 using System;
 using System.Collections.Generic;
 using System.Threading;

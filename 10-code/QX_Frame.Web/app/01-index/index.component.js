@@ -8,12 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const router_1 = require("@angular/router");
-const appBase_1 = require("../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../00-AQX_Frame.services/appService");
-const core_1 = require("@angular/core");
-const management_model_1 = require("../20-management_center/management.model");
+const router_1 = require('@angular/router');
+const appBase_1 = require('../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../00-AQX_Frame.services/appService');
+const core_1 = require('@angular/core');
+const management_model_1 = require('../20-management_center/management.model');
 let IndexComponent = class IndexComponent {
     constructor(_router) {
         //免费专场
@@ -273,8 +272,8 @@ IndexComponent = __decorate([
         selector: 'index',
         templateUrl: 'app/01-index/index.component.html',
         styleUrls: ['app/01-index/index.component.css'],
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
+    }), 
+    __metadata('design:paramtypes', [router_1.Router])
 ], IndexComponent);
 exports.IndexComponent = IndexComponent;
 //# sourceMappingURL=index.component.js.map

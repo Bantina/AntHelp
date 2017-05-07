@@ -83,7 +83,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\QX_Frame.Reference\QX_Frame.App.Web\QX_Frame.App.Web.dll</HintPath>
     </Reference>
-    <Reference Include="QX_Frame.Helper_DG">
+    <Reference Include="QX_Frame.Helper_DG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\QX_Frame.Reference\QX_Frame.Helper_DG_Framework\QX_Frame.Helper_DG.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />

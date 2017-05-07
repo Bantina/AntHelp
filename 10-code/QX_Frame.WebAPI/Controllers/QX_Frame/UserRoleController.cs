@@ -3,6 +3,7 @@ using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;
 using QX_Frame.Helper_DG;
+using QX_Frame.Helper_DG.Extends;
 using QX_Frame.WebAPI.Filters;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,11 @@ namespace QX_Frame.WebAPI.Controllers
     /// </summary>
     ///
     [LimitsAttribute_DG(RoleLevel =1)]//administrator
-	public class UserRoleController:WebApiControllerBase
-	{
-		// GET: api/UserRole
-		public IHttpActionResult Get(int pageIndex, int pageSize, bool isDesc)
-		{
+    public class UserRoleController:WebApiControllerBase
+    {
+        // GET: api/UserRole
+        public IHttpActionResult Get(int pageIndex, int pageSize, bool isDesc)
+        {
             using (var fact=Wcf<UserRoleService>())
             {
                 var channel = fact.CreateChannel();
@@ -34,23 +35,23 @@ namespace QX_Frame.WebAPI.Controllers
                 List<tb_UserRole> userRoleList = channel.QueryAllPaging<tb_UserRole, int>(new tb_UserRoleQueryObject { PageIndex = pageIndex, PageSize = pageSize, IsDESC = isDesc }, t => t.roleLevel).Cast<List<tb_UserRole>>(out count);
                 return Json(Return_Helper_DG.Success_Msg_Data_DCount_HttpCode("user role list", userRoleList, count));
             }
-		}
+        }
 
-		// GET: api/UserRole/id
-		public IHttpActionResult Get(string id)
-		{
-			throw new Exception_DG("The interface is not available", 9999);
-		}
+        // GET: api/UserRole/id
+        public IHttpActionResult Get(string id)
+        {
+            throw new Exception_DG("The interface is not available", 9999);
+        }
 
-		// POST: api/UserRole
-		public IHttpActionResult Post([FromBody]dynamic query)
-		{
-			throw new Exception_DG("The interface is not available", 9999);
-		}
+        // POST: api/UserRole
+        public IHttpActionResult Post([FromBody]dynamic query)
+        {
+            throw new Exception_DG("The interface is not available", 9999);
+        }
 
-		// PUT: api/UserRole
-		public IHttpActionResult Put([FromBody]dynamic query)
-		{
+        // PUT: api/UserRole
+        public IHttpActionResult Put([FromBody]dynamic query)
+        {
             Guid uid ;
             string loginId = query.loginId;
             using (var fact=Wcf<UserAccountService>())
@@ -70,13 +71,13 @@ namespace QX_Frame.WebAPI.Controllers
                 }
             }
             throw new Exception_DG("update faild",3014);
-		}
+        }
 
-		// DELETE: api/UserRole
-		public IHttpActionResult Delete([FromBody]dynamic query)
-		{
-			throw new Exception_DG("The interface is not available", 9999);
-		}
+        // DELETE: api/UserRole
+        public IHttpActionResult Delete([FromBody]dynamic query)
+        {
+            throw new Exception_DG("The interface is not available", 9999);
+        }
 
         /// <summary>
         /// Get User Role By Uid
@@ -96,5 +97,5 @@ namespace QX_Frame.WebAPI.Controllers
                 return userRole;
             }
         }
-	}
+    }
 }

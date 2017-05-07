@@ -8,12 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const core_1 = require("@angular/core");
-const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
-const appService_1 = require("../../00-AQX_Frame.services/appService");
-const MessagePush_model_1 = require("../../00-models/MessagePush.model");
-const router_1 = require("@angular/router");
+const core_1 = require('@angular/core');
+const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
+const appService_1 = require('../../00-AQX_Frame.services/appService');
+const MessagePush_model_1 = require('../../00-models/MessagePush.model');
+const router_1 = require('@angular/router');
 let MassegeComponent = class MassegeComponent {
     constructor(_router) {
         //条件帅选 点击；
@@ -189,8 +188,8 @@ MassegeComponent = __decorate([
         templateUrl: 'app/20-management_center/massege/massege.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
+    }), 
+    __metadata('design:paramtypes', [router_1.Router])
 ], MassegeComponent);
 exports.MassegeComponent = MassegeComponent;
 //# sourceMappingURL=massege.component.js.map

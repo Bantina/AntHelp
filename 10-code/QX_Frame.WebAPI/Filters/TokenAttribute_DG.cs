@@ -1,5 +1,6 @@
 ﻿using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Helper_DG;
+using QX_Frame.Helper_DG.Extends;
 using QX_Frame.WebAPI.Controllers;
 using System;
 using System.Net.Http;

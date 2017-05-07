@@ -41,7 +41,7 @@ namespace QX_Frame.WebAPI.Controllers
                         userAccountInfoViewModel.roleName = item.tb_UserRoleAttribute.roleName;
                         userAccountInfoViewModel.roleDescription = item.tb_UserRoleAttribute.description;
 
-                        using (var fact_user=Wcf<UserAccountInfoService>())
+                        using (var fact_user = Wcf<UserAccountInfoService>())
                         {
                             var channel_user = fact_user.CreateChannel();
                             tb_UserAccountInfo userAccount = channel_user.QuerySingle(new tb_UserAccountInfoQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserAccountInfo>();
@@ -76,6 +76,13 @@ namespace QX_Frame.WebAPI.Controllers
                             userAccountInfoViewModel.statusId = userStatus.statusLevel;
                             userAccountInfoViewModel.statusName = userStatus.tb_UserStatusAttribute.statusName;
                             userAccountInfoViewModel.statusDescription = userStatus.tb_UserStatusAttribute.description;
+                        }
+
+                        using (var fact_money=Wcf<UserMoneyService>())
+                        {
+                            var channel_userMoney = fact_money.CreateChannel();
+                            tb_UserMoney userMoney = channel_userMoney.QuerySingle(new tb_UserMoneyQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserMoney>();
+                            userAccountInfoViewModel.balance = userMoney.money;
                         }
                         userAccountInfoViewModelList.Add(userAccountInfoViewModel);
                     }
@@ -130,6 +137,14 @@ namespace QX_Frame.WebAPI.Controllers
                             userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
                             userAccountInfoViewModel.roleDescription = userRole.tb_UserRoleAttribute.description;
                         }
+
+                        using (var fact_money = Wcf<UserMoneyService>())
+                        {
+                            var channel_userMoney = fact_money.CreateChannel();
+                            tb_UserMoney userMoney = channel_userMoney.QuerySingle(new tb_UserMoneyQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserMoney>();
+                            userAccountInfoViewModel.balance = userMoney.money;
+                        }
+
                         userAccountInfoViewModelList.Add(userAccountInfoViewModel);
                     }
                 }
@@ -187,6 +202,13 @@ namespace QX_Frame.WebAPI.Controllers
                             userAccountInfoViewModel.roleId = userRole.roleLevel;
                             userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
                             userAccountInfoViewModel.roleDescription = userRole.tb_UserRoleAttribute.description;
+                        }
+
+                        using (var fact_money = Wcf<UserMoneyService>())
+                        {
+                            var channel_userMoney = fact_money.CreateChannel();
+                            tb_UserMoney userMoney = channel_userMoney.QuerySingle(new tb_UserMoneyQueryObject { QueryCondition = t => t.uid == item.uid }).Cast<tb_UserMoney>();
+                            userAccountInfoViewModel.balance = userMoney.money;
                         }
 
                         userAccountInfoViewModelList.Add(userAccountInfoViewModel);
@@ -261,6 +283,12 @@ namespace QX_Frame.WebAPI.Controllers
                 userAccountInfoViewModel.roleName = userRole.tb_UserRoleAttribute.roleName;
                 userAccountInfoViewModel.roleDescription = userRole.tb_UserRoleAttribute.description;
             }
+            using (var fact_money = Wcf<UserMoneyService>())
+            {
+                var channel_userMoney = fact_money.CreateChannel();
+                tb_UserMoney userMoney = channel_userMoney.QuerySingle(new tb_UserMoneyQueryObject { QueryCondition = t => t.uid == userAccountInfo.uid }).Cast<tb_UserMoney>();
+                userAccountInfoViewModel.balance = userMoney.money;
+            }
 
             userAccountInfoViewModel.registerTime = userAccountInfo.registerTime?.ToDateTimeString_24HourType();
 
@@ -326,6 +354,12 @@ namespace QX_Frame.WebAPI.Controllers
                 {
                     var channel = fact.CreateChannel();
                     addSuccess = addSuccess && channel.Add(new tb_UserStatus { uid = userAccount.uid, statusLevel = 0 });
+                }
+                //add tb_UserMoney
+                using (var fact = Wcf<UserMoneyService>())
+                {
+                    var channel = fact.CreateChannel();
+                    addSuccess = addSuccess && channel.Add(new tb_UserMoney { uid = userAccount.uid, money = 0 });
                 }
             }));
 
@@ -509,6 +543,12 @@ namespace QX_Frame.WebAPI.Controllers
                     var channel = fact.CreateChannel();
                     tb_UserStatus userStatus = channel.QuerySingle(new tb_UserStatusQueryObject { QueryCondition = t => t.uid == userAccount.uid }).Cast<tb_UserStatus>();
                     isSucceed = isSucceed && channel.Delete(userStatus);
+                }
+                using (var fact = Wcf<UserMoneyService>())
+                {
+                    var channel = fact.CreateChannel();
+                    tb_UserMoney userMoney = channel.QuerySingle(new tb_UserMoneyQueryObject { QueryCondition = t => t.uid == userAccount.uid }).Cast<tb_UserMoney>();
+                    isSucceed = isSucceed && channel.Delete(userMoney);
                 }
             }));
 

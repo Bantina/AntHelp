@@ -24,7 +24,9 @@ namespace QX_Frame.WebAPI.config
             WebApiControllerBase.Register(c => new UserRoleAttributeService());
             WebApiControllerBase.Register(c => new UserRoleService());
             WebApiControllerBase.Register(c => new UserStatusAttributeService());
-            WebApiControllerBase.Register(c => new UserStatusService());
+            WebApiControllerBase.Register(c => new UserStatusService()); 
+            WebApiControllerBase.Register(c => new UserMoneyService()); 
+            WebApiControllerBase.Register(c => new UserMoneyBillService()); 
 
             WebApiControllerBase.Register(c => new ArticleCategoryService());
             WebApiControllerBase.Register(c => new ArticleService());

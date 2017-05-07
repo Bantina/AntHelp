@@ -147,6 +147,8 @@
     <Compile Include="config\ControllerConfigs.cs" />
     <Compile Include="config\DefaultImageStream.cs" />
     <Compile Include="Controllers\ArticleCategoryController.cs" />
+    <Compile Include="Controllers\QX_Frame\UserMoneyBillController.cs" />
+    <Compile Include="Controllers\QX_Frame\UserMoneyController.cs" />
     <Compile Include="Controllers\UserRelationController.cs" />
     <Compile Include="Controllers\SelfMessageController.cs" />
     <Compile Include="Controllers\CommentReplyController.cs" />

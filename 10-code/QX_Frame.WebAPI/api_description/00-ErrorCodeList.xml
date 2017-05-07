@@ -49,7 +49,7 @@
   <Error errorCode="3020" errorLevel="0">do not have enough of permission</Error>
   <Error errorCode="3021" errorLevel="0">no result found by this query condition</Error>
   <Error errorCode="3022" errorLevel="0">the order has been received</Error>
-  <Error errorCode="30" errorLevel="0"></Error>
+  <Error errorCode="3023" errorLevel="0">no enough money</Error>
   <Error errorCode="30" errorLevel="0"></Error>
   <Error errorCode="30" errorLevel="0"></Error>
 

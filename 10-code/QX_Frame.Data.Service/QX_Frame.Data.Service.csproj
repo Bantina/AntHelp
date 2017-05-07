@@ -87,6 +87,8 @@
     <Compile Include="QX_Frame\UserAccountInfoService.cs" />
     <Compile Include="QX_Frame\UserAccountService.cs" />
     <Compile Include="QX_Frame\UserFunctionService.cs" />
+    <Compile Include="QX_Frame\UserMoneyBillService.cs" />
+    <Compile Include="QX_Frame\UserMoneyService.cs" />
     <Compile Include="QX_Frame\UserPasswordProtectionQuestionService.cs" />
     <Compile Include="QX_Frame\UserRoleAttributeService.cs" />
     <Compile Include="QX_Frame\UserRoleService.cs" />

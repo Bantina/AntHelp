@@ -81,6 +81,8 @@
     <Compile Include="Entities\QX_Frame\tb_UserAccount.cs" />
     <Compile Include="Entities\QX_Frame\tb_UserAccountInfo.cs" />
     <Compile Include="Entities\QX_Frame\tb_UserFunction.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserMoney.cs" />
+    <Compile Include="Entities\QX_Frame\tb_UserMoneyBill.cs" />
     <Compile Include="Entities\QX_Frame\tb_UserPasswordProtectionQuestion.cs" />
     <Compile Include="Entities\QX_Frame\tb_UserRole.cs" />
     <Compile Include="Entities\QX_Frame\tb_UserRoleAttribute.cs" />
@@ -135,6 +137,8 @@
     <Compile Include="QueryObject\tb_OrderStatusQueryObject.cs" />
     <Compile Include="QueryObject\tb_RelationStatusQueryObject.cs" />
     <Compile Include="QueryObject\tb_SelfMessageQueryObject.cs" />
+    <Compile Include="QueryObject\QX_Frame\tb_UserMoneyBillQueryObject.cs" />
+    <Compile Include="QueryObject\QX_Frame\tb_UserMoneyQueryObject.cs" />
     <Compile Include="QueryObject\tb_UserRelationQueryObject.cs" />
     <Compile Include="QueryObject\tb_VoucherQueryObject.cs" />
   </ItemGroup>

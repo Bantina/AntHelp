@@ -64,6 +64,8 @@
     <Compile Include="QX_Frame\IUserAccountInfoService.cs" />
     <Compile Include="QX_Frame\IUserAccountService.cs" />
     <Compile Include="QX_Frame\IUserFunctionService.cs" />
+    <Compile Include="QX_Frame\IUserMoneyBillService.cs" />
+    <Compile Include="QX_Frame\IUserMoneyService.cs" />
     <Compile Include="QX_Frame\IUserPasswordProtectionQuestionService.cs" />
     <Compile Include="QX_Frame\IUserRoleAttributeService.cs" />
     <Compile Include="QX_Frame\IUserRoleService.cs" />

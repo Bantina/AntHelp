@@ -60,5 +60,7 @@ namespace QX_Frame.Data.DTO
         public string roleName { get; set; }
 
         public string roleDescription { get; set; }
+
+        public int balance { get; set; }
     }
 }

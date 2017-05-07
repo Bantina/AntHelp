@@ -41,8 +41,8 @@ namespace QX_Frame.Data.QueryObject
 		//query condition // null default
 		public override Expression<Func<tb_UserFunction, bool>> QueryCondition { get { return base.QueryCondition; } set { base.QueryCondition = value; } }
 
-        //query condition func // true default //if QueryCondition != null this will be override !!!
-        protected override Expression<Func<tb_UserFunction, bool>> QueryConditionFunc()
+		//query condition func // true default //if QueryCondition != null this will be override !!!
+		protected override Expression<Func<tb_UserFunction, bool>> QueryConditionFunc()
 		{
 			Expression<Func<tb_UserFunction, bool>> func = t => true;
 

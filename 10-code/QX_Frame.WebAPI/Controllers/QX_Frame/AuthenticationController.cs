@@ -1,4 +1,4 @@
-﻿using QX_Frame.App.Web;
+﻿using QX_Frame.App.WebApi;
 using QX_Frame.Data.Entities.QX_Frame;
 using QX_Frame.Data.QueryObject;
 using QX_Frame.Data.Service.QX_Frame;

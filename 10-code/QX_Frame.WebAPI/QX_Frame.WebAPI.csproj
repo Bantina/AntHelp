@@ -43,9 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\QX_Frame.Reference\QX_Frame.App.Web\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.5.0\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -79,9 +79,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\QX_Frame.Reference\QX_Frame.App.Base\QX_Frame.App.Base.dll</HintPath>
     </Reference>
-    <Reference Include="QX_Frame.App.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\QX_Frame.Reference\QX_Frame.App.Web\QX_Frame.App.Web.dll</HintPath>
+    <Reference Include="QX_Frame.App.WebApi">
+      <HintPath>..\QX_Frame.Reference\QX_Frame.App.WebApi\QX_Frame.App.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="QX_Frame.Helper_DG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin.Hosting;
 using Newtonsoft.Json;
 using Owin;
-using QX_Frame.App.Web.Extends;
+using QX_Frame.App.WebApi.Extends;
 using QX_Frame.WebAPI.config;
 using System;
 using System.Web.Http;
@@ -57,7 +57,7 @@ namespace QX_Frame.Web.Srv
             config.Services.Replace(typeof(IHttpControllerSelector), new WebAPI.WebApiControllerSelector(config));
 
             //if config the global filter input there need not write the attributes
-            config.Filters.Add(new App.Web.Filters.ExceptionAttribute_DG());
+            config.Filters.Add(new App.WebApi.Filters.ExceptionAttribute_DG());
 
             new ClassRegisters(); //register ioc menbers
 

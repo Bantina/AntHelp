@@ -8,13 +8,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-const core_1 = require('@angular/core');
-const appBase_1 = require('../../00-AQX_Frame.commons/appBase');
-const appService_1 = require('../../00-AQX_Frame.services/appService');
-const MessagePush_model_1 = require('../../00-models/MessagePush.model');
-const app_component_1 = require('../../00-main/app.component');
-const management_model_1 = require('./../management.model');
-const complain_model_1 = require('../../00-models/complain.model');
+Object.defineProperty(exports, "__esModule", { value: true });
+const core_1 = require("@angular/core");
+const appBase_1 = require("../../00-AQX_Frame.commons/appBase");
+const appService_1 = require("../../00-AQX_Frame.services/appService");
+const MessagePush_model_1 = require("../../00-models/MessagePush.model");
+const app_component_1 = require("../../00-main/app.component");
+const management_model_1 = require("./../management.model");
+const complain_model_1 = require("../../00-models/complain.model");
 let AdministratorComponent = class AdministratorComponent {
     constructor(_appComponet) {
         //模型绑定;
@@ -736,8 +737,8 @@ AdministratorComponent = __decorate([
         templateUrl: 'app/20-management_center/administrator/administrator.component.html',
         styleUrls: ['app/20-management_center/management.component.css'],
         providers: []
-    }), 
-    __metadata('design:paramtypes', [app_component_1.AppComponent])
+    }),
+    __metadata("design:paramtypes", [app_component_1.AppComponent])
 ], AdministratorComponent);
 exports.AdministratorComponent = AdministratorComponent;
 //# sourceMappingURL=administrator.component.js.map

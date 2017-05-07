@@ -24,8 +24,8 @@
                 <p class="col-md-12 myorderDetail_title" style="text-align:center;color:#444;">发布信息</p>
             </div>
             <div class="row">
-                <div class="col-md-3 text-right myorderDetail_title">发布者：</div>
-                <div class="col-md-9 myorderDetail_text">{{order.publisherUid}}</div>
+                <div class="col-md-6 text-right myorderDetail_title">发布者：</div>
+                <div class="col-md-6 myorderDetail_text">{{publisherInfo}}</div>
             </div>
             <div class="row">
                 <div class="col-md-6 text-right myorderDetail_title">发布时间：</div>
@@ -38,8 +38,8 @@
             </div>
             <div *ngIf="order.receiverUid!='00000000-0000-0000-0000-000000000000'">
                 <div class="row">
-                    <div class="col-md-3 text-right myorderDetail_title">接单者：</div>
-                    <div class="col-md-9 myorderDetail_text">{{order.receiverUid}}</div>
+                    <div class="col-md-6 text-right myorderDetail_title">接单者：</div>
+                    <div class="col-md-6 myorderDetail_text">{{receiverInfo}}</div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 text-right myorderDetail_title">接单时间：</div>
@@ -49,7 +49,7 @@
                 <div *ngIf="order.receiverUid=='00000000-0000-0000-0000-000000000000'">
                     <div class="row">
                         <div class="col-md-3 text-right myorderDetail_title">接单者：</div>
-                        <div class="col-md-9 myorderDetail_text">无</div>
+                        <div class="col-md-9 myorderDetail_text" style="margin-bottom:36px;">无</div>
                     </div>
 
                 </div>
@@ -64,11 +64,76 @@
         <div class="col-md-8 myorderDetail_text">{{order.phone}}</div>
     </div>
 </div>
-<div class="myorderDetail_F">
+<!-- 未支付 2-->
+<div class="myorderDetail_F" *ngIf="orderStatus=='未支付'">
+    <div class="row orderHints_div">
+        <p class="orderHints col-md-12">
+            您的需求已发布，需要支付后才能对其他用户可见~
+        </p>
+    </div>
     <div class="row pull-right">
+        <input type="button" class="myorderDetail_F_btn" value="去 支 付" name="" (click)="UpdateOrderStatus(3)">
         <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="">
-        <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="">
-        <a class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
+        <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
     </div>
 </div>
+<!-- 已支付 (发布者状态栏--待接单) 3-->
+<div class="myorderDetail_F"  *ngIf="orderStatus=='已支付'">
+    <div class="row orderHints_div">
+        <p class="orderHints col-md-12">
+            该订单已完成支付，请耐心等待其他用户的响应。。。。
+        </p>
+    </div>
+    <div class="row pull-right">
+        <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="">
+        <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
+    </div>
+</div>
+<!-- 已接单 （接单者状态栏--待完成）4-->
+<div class="myorderDetail_F" *ngIf="orderStatus=='已接单'">
+    <div class="row orderHints_div">
+        <p class="orderHints col-md-12">
+            恭喜您成功抢到该单，对方正在等待您的完成反馈o~
+        </p>
+    </div>
+    <div class="row pull-right">
+        <input type="button" class="myorderDetail_F_btn" value="我 已 完 成" name=""  (click)="UpdateOrderStatus(6)">
+        <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
+    </div>
+</div><!-- 已完成 我的接单（接收者状态栏）6 -->
+<div class="myorderDetail_F" *ngIf="orderStatus=='完成确认'&&isMyPublish==false">
+    <div class="row orderHints_div">
+        <p class="orderHints col-md-12">
+            您的完成反馈已发送到对方，正在等待对方确认~
+        </p>
+    </div>
+    <div class="row pull-right">
+        <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">我 要 投 诉</a>
+    </div>
+</div>
+<!-- 完成确认 我的发布6-->
+<div class="myorderDetail_F" *ngIf="orderStatus=='完成确认'&&isMyPublish==true">
+    <div class="row orderHints_div">
+        <p class="orderHints col-md-12">
+            对方已完成您发布的需求订单，正在等待您的反馈意见o~
+        </p>
+    </div>
+    <div class="row pull-right">
+        <input type="button" class="myorderDetail_F_btn" value="确 认 完 成" name=""  (click)="UpdateOrderStatus(7)">
+        <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">我 要 投 诉</a>
+    </div>
+</div>
+<!-- 订单结束 7 -->
+<div class="myorderDetail_F" *ngIf="orderStatus=='订单结束'">
+    <div class="row orderHints_div">
+        <p class="orderHints col-md-12">
+            该订单已完成，交易已关闭。
+        </p>
+    </div>
+    <div class="row pull-right">
+        <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">我 要 投 诉</a>
+    </div>
+</div>
+
 <!--end myorderDetail-->
+

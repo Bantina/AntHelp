@@ -72,7 +72,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="QX_Frame.App.WebApi">
-      <HintPath>G:\AProject\QX_Frame.FramwWork4.6\10-code\QX_Frame.Reference\QX_Frame.App.WebApi\QX_Frame.App.WebApi.dll</HintPath>
+      <HintPath>..\QX_Frame.Reference\QX_Frame.App.WebApi\QX_Frame.App.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="Swagger.Net, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Swagger.Net.0.5.5\lib\net40\Swagger.Net.dll</HintPath>

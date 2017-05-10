@@ -24,13 +24,9 @@ let AppComponent = class AppComponent {
     //个人中心菜单点击 切换
     setCenterStatus(num) {
         appBase_1.appBase.AppObject.centerStatus = num;
-        //window.location.href = appBase.WebUrlDomain + "managementCenter";
         var manageCenterUl = $(".manageCenterUl li");
         manageCenterUl.removeClass("on");
         manageCenterUl.eq(appBase_1.appBase.AppObject.centerStatus).addClass("on");
-        //内容切换；
-        //manageCenterUl.eq(appBase.AppObject.centerStatus).click(event, appBase.AppObject.centerStatus);
-        //manageCenterUl.eq(num).trigger('click', {event,num});
     }
     GetMessagePushList() {
         var self = this;

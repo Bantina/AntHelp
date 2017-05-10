@@ -94,6 +94,8 @@
     <Content Include="app\20-management_center\personal\myOrder\myorderDetail.component.html" />
     <Content Include="app\30-order\detail\detail.component.css" />
     <Content Include="app\30-order\detail\detail.component.html" />
+    <Content Include="app\30-order\payment\payment.component.css" />
+    <Content Include="app\30-order\payment\payment.component.html" />
     <Content Include="app\30-order\publish\publish.component.css" />
     <Content Include="app\30-order\publish\publish.component.html" />
     <Content Include="app\60-activity\activity.component.css" />
@@ -133,6 +135,7 @@
     <Content Include="Images\03-login\sign01.png" />
     <Content Include="Images\20-management\bg_sidenav.png" />
     <Content Include="Images\20-management\bg_sidenav_hover.png" />
+    <Content Include="Images\20-management\cart_payment.png" />
     <Content Include="Images\20-management\edit.png" />
     <Content Include="Images\20-management\user_default_img.png" />
     <Content Include="Images\30-order\addpic.png" />
@@ -328,6 +331,7 @@
     <TypeScriptCompile Include="app\20-management_center\personal\myOrder\myorderDetail.component.ts" />
     <TypeScriptCompile Include="app\30-order\detail\detail.component.ts" />
     <TypeScriptCompile Include="app\30-order\order.model.ts" />
+    <TypeScriptCompile Include="app\30-order\payment\payment.component.ts" />
     <TypeScriptCompile Include="app\30-order\publish\publish.component.ts" />
     <TypeScriptCompile Include="app\60-activity\activity.component.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.model.ts" />
@@ -342,7 +346,6 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\30-order\payment\" />
     <Folder Include="app\70-community\73-information\" />
     <Folder Include="Files\" />
     <Folder Include="fonts\" />

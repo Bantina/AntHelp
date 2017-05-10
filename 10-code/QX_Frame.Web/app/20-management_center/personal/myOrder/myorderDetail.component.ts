@@ -3,6 +3,7 @@ import { appBase } from '../../../00-AQX_Frame.commons/appBase';
 import { appService } from '../../../00-AQX_Frame.services/appService';
 import { PublishAidModel, Order } from './../../../30-order/order.model';
 import { UserInfoModel } from '../.././management.model';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'managementCenter',
@@ -12,8 +13,15 @@ import { UserInfoModel } from '../.././management.model';
 })
 
 export class MyorderDetailComponent implements OnInit {
-    //orderStatusFlag: number;//订单状态标识；
+
+    router: Router;
+    constructor(_router: Router) {
+        this.router = _router;
+    }
+
     isMyPublish: boolean = true; //是否为我的发布/接单的标识
+    loginId: string = appService.getCookie("loginId");
+    balance: any = 0; //余额
     //模型绑定;
     order: Order =
     {
@@ -65,6 +73,10 @@ export class MyorderDetailComponent implements OnInit {
     orderStatus: string;
     publisherInfo: string;
     receiverInfo: string;
+
+    /**
+     * *根据Id获取订单详情；
+     */
     GetsingleOrderByOrderUid(): void {
         var self = this;
         //var orderUid = appService.GetQueryString("orderUid");
@@ -101,12 +113,14 @@ export class MyorderDetailComponent implements OnInit {
                     ////
                     self.orderStatus = data.data.orderStatus.orderStatusDescription;
                     self.publisherInfo = data.data.publisherInfo.loginId;
-                    self.receiverInfo = data.data.receiverInfo.loginId;
+                    if (data.data.receiverInfo != null) {
+                        self.receiverInfo = data.data.receiverInfo.loginId;
+                    }
 
-                    if (appService.getCookie("loginId") == data.data.receiverInfo.loginId) {
-                        self.isMyPublish = false; //我的接单
-                    } else {
+                    if (appService.getCookie("loginId") == data.data.publisherInfo.loginId) {
                         self.isMyPublish = true; //我的发布
+                    } else {
+                        self.isMyPublish = false; //我的接单
                     }
 
                 } else {
@@ -117,12 +131,91 @@ export class MyorderDetailComponent implements OnInit {
                 alert("服务器错误！");
             }
         });
-    } 
+    }
+    //跳转到充值页；
+    goPayment(): void {
+        $('#paymentModal').modal('hide');
+        this.router.navigateByUrl('/payment');
+    }
 
-    //订单各项操作：
+    /**
+     * 判断余额是否充足；
+     */
+    canPay: string = 'false';
+    forPayment(): void {
+        var self = this;
+        if ((self.balance - Number(self.order.orderValue)) >= 0) {
+            self.canPay = 'true';
+        } else {
+            self.canPay = 'false';
+        }
+    }
 
-
-    //修改订单状态
+    /**
+     * 获取账户余额；
+     */
+    getPersonalBalance(): void {
+        var self = this;
+        var appKey = Number(appService.getCookie("appKey"));
+        var token = appService.getCookie("token");
+        $.ajax({
+            url: appBase.DomainApi + "api/UserMoney/" + self.loginId,
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                appKey: appKey,
+                token: token
+            },
+            success(json) {
+                if (json.isSuccess) {
+                    self.balance = json.data.money;
+                }
+            },
+            error(data) {
+                console.error(data);
+            }
+        });
+    }
+    /**
+     * 确认支付；
+     */
+    toPayment(): void {
+        var self = this;
+        var appKey = Number(appService.getCookie("appKey"));
+        var token = appService.getCookie("token");
+        $.ajax({
+            url: appBase.DomainApi + "api/UserMoney/",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                appKey: appKey,
+                token: token,
+                loginId: self.loginId,
+                money: -Number(self.order.orderValue)
+            }),
+            success(json) {
+                if (json.isSuccess) { //支付成功
+                    self.UpdateOrderStatus(3);//修改订单状态
+                    self.canPay = 'already';
+                } else {
+                    alert('支付失败，请稍后重试~');
+                }
+            },
+            error(data) {
+                console.error(data);
+            }
+        });
+    }
+    refresh(): void {
+        this.router.navigateByUrl('/managementCenter');
+    }
+    
+    /**
+     * 修改订单状态
+     * @param status 订单状态id
+     */
     UpdateOrderStatus(status): void {
         var self = this;
         $.ajax({
@@ -143,9 +236,10 @@ export class MyorderDetailComponent implements OnInit {
             }
         });
     }
-   
+
     //the final execute ...
     ngOnInit(): void {
         this.GetsingleOrderByOrderUid();
+        this.getPersonalBalance();
     }
 }

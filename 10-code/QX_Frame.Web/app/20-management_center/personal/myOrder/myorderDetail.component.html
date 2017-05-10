@@ -72,7 +72,7 @@
         </p>
     </div>
     <div class="row pull-right">
-        <input type="button" class="myorderDetail_F_btn" value="去 支 付" name="" (click)="UpdateOrderStatus(3)">
+        <input type="button" data-toggle="modal" data-target="#paymentModal" class="myorderDetail_F_btn" value="支 付" name="" (click)="forPayment()">
         <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="">
         <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
     </div>
@@ -134,6 +134,39 @@
         <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">我 要 投 诉</a>
     </div>
 </div>
-
+<!-- 支付model -->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="paymentModalLabel">确 认 支 付</h4>
+            </div>
+            <div class="modal-body">
+               <div class="row banlance_hint" *ngIf="canPay=='true'">
+                   <p>此次订单发布需要支付金额 <span style="color:tomato;">{{order.orderValue}}</span>元</p>
+                   <p>确认支付吗？</p>
+               </div>
+                <div class="row banlance_hint" *ngIf="canPay=='false'">
+                    <p>此次订单发布需要支付金额 <span style="color:tomato;">{{order.orderValue}}</span>元</p>
+                    <p>您的余额为<span style="color:tomato;">{{balance}}</span></p>
+                    <p style="color:tomato;">余额不足，请先充值~</p>
+                </div>
+                <div class="row banlance_hint" *ngIf="canPay=='already'">
+                    <img src="../../../../Images/03-login/emo_suc.png" />
+                    <span style="color:tomato;margin-left:5px;font-size:22px;">支付成功~</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" *ngIf="canPay!='already'">关 闭</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" *ngIf="canPay=='already'"  (click)="refresh()">确 定</button>
+                <button type="button" class="btn btn-primary" (click)="toPayment()" *ngIf="canPay=='true'">确 认 支 付</button>
+                <button type="button" class="btn btn-primary" (click)="goPayment()" *ngIf="canPay=='false'">去 充 值</button>
+            </div>
+        </div>
+    </div>
+</div>
 <!--end myorderDetail-->
 

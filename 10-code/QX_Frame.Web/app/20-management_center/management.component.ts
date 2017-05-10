@@ -56,10 +56,13 @@ export class ManagementComponent implements OnInit {
     //global
     navStatus: number = appBase.AppObject.centerStatus; //-1未登录；
     loginId: string = appService.getCookie("loginId");
+    balance: any = 0;
     //判断是否登录
     isLoginFlag(): void {
         if (!this.loginId || this.loginId == "undefined") {
             this.navStatus == -1;
+        } else {
+            this.getPersonalBalance();
         }
     }
 
@@ -88,7 +91,32 @@ export class ManagementComponent implements OnInit {
         $targetP.addClass("on");
     }
 
-
+    /**
+     * 获取账户余额；
+     */
+    getPersonalBalance(): void {
+        var self = this;
+        var appKey = Number(appService.getCookie("appKey"));
+        var token = appService.getCookie("token");
+        $.ajax({
+            url: appBase.DomainApi + "api/UserMoney/" + self.loginId,
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                appKey: appKey,
+                token: token
+            },
+            success(json) {
+                if (json.isSuccess) {
+                    self.balance = json.data.money;
+                }
+            },
+            error(data) {
+                console.error(data);
+            }
+        });
+    }
     ////个人账户
     //上传头像
     uploadFlag: boolean = false;

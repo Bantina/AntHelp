@@ -32,6 +32,16 @@
             <a routerLink="/login">登    录</a>
         </div>
     </div>
+    <!-- 非管理员操作 -->
+    <div class="r rightCon" *ngIf="navStatus==9">
+        <div class="col-md-7 black_login">
+            <img src="../../Images/03-login/blank_bg.png" />
+        </div>
+        <div class="col-md-4 black_login_r">
+            <h3>抱歉，您不是管理员~</h3>
+            <h3>没有权限进行此操作 T_T</h3>
+        </div>
+    </div>
     <!-- 账户管理 -->
     <div class="r rightCon" *ngIf="navStatus==0">
         <div class="cfix topTit">

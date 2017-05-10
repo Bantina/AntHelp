@@ -22,6 +22,7 @@ const signup_component_1 = require("./03-login/signup.component");
 const login_component_1 = require("./03-login/login/login.component");
 const signupVerify_component_1 = require("./03-login/signupVerify/signupVerify.component");
 const publish_component_1 = require("./30-order/publish/publish.component");
+const payment_component_1 = require("./30-order/payment/payment.component");
 const detail_component_1 = require("./30-order/detail/detail.component");
 const management_component_1 = require("./20-management_center/management.component");
 const administrator_component_1 = require("./20-management_center/administrator/administrator.component");
@@ -106,6 +107,10 @@ const appRoutes = [
         path: 'category',
         component: category_component_1.CategoryComponent
     },
+    {
+        path: 'payment',
+        component: payment_component_1.PaymentComponent
+    },
     /*bantina add end*/
     /*zyq add start*/
     {
@@ -151,6 +156,7 @@ const appComponents = [
     activity_component_1.ActivityComponent,
     massege_component_1.MassegeComponent,
     category_component_1.CategoryComponent,
+    payment_component_1.PaymentComponent,
     /*bantina add end*/
     /*zyq add start*/
     topic_1.Topic,

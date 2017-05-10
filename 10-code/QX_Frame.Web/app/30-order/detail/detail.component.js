@@ -40,9 +40,10 @@ let OrderDetailComponent = class OrderDetailComponent {
     //立即抢单
     getOrder() {
         var self = this;
+        var loginUser = appService_1.appService.getCookie('loginId');
         if (appService_1.appService.IsLogin(self.router).isLogin) {
             //用户不能抢自己发布的订单；
-            if (appService_1.appService.getCookie('loginId') != self.publisherLoginId) {
+            if (loginUser.toLowerCase() != self.publisherLoginId.toLowerCase()) {
                 $.ajax({
                     url: appBase_1.appBase.DomainApi + "api/Order/1",
                     type: "put",

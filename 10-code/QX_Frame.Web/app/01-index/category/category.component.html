@@ -11,6 +11,7 @@
             <div class="myorderBody">
                 <img src="{{item.firstImg}}" />
                 <div class="myorderBody_des">
+                    <h4>发布者：{{item.publisherInfo.loginId}}</h4>
                     <h4><span style="color:tomato;font-size:26px;">￥</span>{{item.orderValue}}</h4>
                     <a id="{{item.orderUid}}" href="javascript:void(0);" (click)="goOrderDetail($event)">查 看 详 情</a>
                     <a routerLink="/complaint" class="no-top-margin myorderComplaint_btn" name="">投       诉</a>

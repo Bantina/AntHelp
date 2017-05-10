@@ -10,7 +10,7 @@
                 <!--<a href="#" target="_blank" class="ico-edit"></a>-->
             </span> </p>
             <p class="p2">(用户ID: {{userInfoModel.loginId}})</p>
-            <p><span class="fs14 vam"> 余额 : <strong class="c-red">888</strong></span></p>
+            <p><span class="fs14 vam"> 余额 : <strong class="c-red">{{balance}}</strong></span></p>
         </div>
         <ul class="sidenav manageCenterUl">
             <li><a routerLink="/managementCenter" (click)="sidenavClick($event,0,-1,-1,-1)"><span class="ico_luck" (click)="sidenavSpanClick($event,0,-1,-1,-1)">我的账户</span> </a></li>

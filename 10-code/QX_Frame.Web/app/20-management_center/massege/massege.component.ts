@@ -150,17 +150,6 @@ export class MassegeComponent implements OnInit {
                 "token": appService.getCookie("token"),
                 "messagePushUid": self.messagePushList[i].messageUid
             }),
-            //success(data) {
-            //    if (data.isSuccess) {
-            //        //获取信息列表
-            //        self.GetMessagePushList(-1);
-            //    } else {
-            //        alert(data.msg);
-            //    }
-            //},
-            //error(data) {
-            //    alert("服务器连接失败，请稍后重试...");
-            //}
         });
     }
     //send msg

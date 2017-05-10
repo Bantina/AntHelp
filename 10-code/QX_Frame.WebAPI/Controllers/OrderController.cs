@@ -60,6 +60,7 @@ namespace QX_Frame.WebAPI.Controllers
                     OrderViewModel orderViewModel = new OrderViewModel();
                     orderViewModel.orderUid = item.orderUid;
                     orderViewModel.publisherUid = item.publisherUid;
+                    orderViewModel.publisherInfo = UserController.GetUserAccountInfoByUidAllowNull(item.publisherUid);
                     orderViewModel.publishTime = item.publishTime.ToDateTimeString_24HourType();
                     orderViewModel.orderDescription = item.orderDescription;
                     orderViewModel.orderCategoryId = item.orderCategoryId;

@@ -1,0 +1,22 @@
+﻿<!-- BEGIN middle part -->
+<section id="categoryContent">
+    <div class="cateTitle">
+        {{categoryTitle}}
+    </div>
+    <div style="margin:20px 20px 0 20px;">
+        <div class="categoryBlock col-md-3 col-md-offset-1" *ngFor="let item of OrderList_free;let i=index;">
+            <div class="myorderTitle">
+                <p style="text-align:center;margin:5px 0;font-size:16px;"><strong>{{item.orderDescription}}</strong></p>
+            </div>
+            <div class="myorderBody">
+                <img src="{{item.firstImg}}" />
+                <div class="myorderBody_des">
+                    <h4><span style="color:tomato;font-size:26px;">￥</span>{{item.orderValue}}</h4>
+                    <a id="{{item.orderUid}}" href="javascript:void(0);" (click)="goOrderDetail($event)">查 看 详 情</a>
+                    <a routerLink="/complaint" class="no-top-margin myorderComplaint_btn" name="">投       诉</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /END middle part -->

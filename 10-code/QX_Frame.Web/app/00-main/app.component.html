@@ -12,11 +12,11 @@
                 <div class="col-md-4 col-md-offset-2 app_title">
                     <a routerLink="/">{{title}}</a>
                 </div>
-                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="!loginResult.isLogin">
+                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="!loginResult.isLogin||loginResult.loginId==''">
                     <li><a routerLink="/login">登 录</a></li>
                     <li><a routerLink="/signup">注 册</a></li>
                 </ul>
-                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="loginResult.isLogin">
+                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="loginResult.isLogin&&loginResult.loginId!=''">
                     <div style="padding-top:5px;">欢迎~ {{loginResult.loginId}}</div>
                 </ul>
                 <ul class="col-md-4 nav navbar-nav mynavbar navbar-right">

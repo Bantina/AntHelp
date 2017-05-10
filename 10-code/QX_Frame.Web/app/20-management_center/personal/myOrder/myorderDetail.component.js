@@ -14,6 +14,24 @@ let MyorderDetailComponent = class MyorderDetailComponent {
         //orderStatusFlag: number;//订单状态标识；
         this.isMyPublish = true; //是否为我的发布/接单的标识
         //模型绑定;
+        this.order = {
+            orderUid: "",
+            publisherUid: "",
+            publishTime: "",
+            orderDescription: "",
+            orderCategoryId: "10",
+            receiverUid: "",
+            receiveTime: "",
+            orderStatusId: "",
+            orderValue: "0",
+            allowVoucher: "",
+            voucherMax: "",
+            evaluateUid: "",
+            address: "",
+            phone: "",
+            imageUrls: "",
+            imageDatas: []
+        };
         this.userInfoModel = {
             loginId: appService_1.appService.getCookie('loginId'),
             nickName: '',
@@ -39,24 +57,6 @@ let MyorderDetailComponent = class MyorderDetailComponent {
             roleId: 0,
             roleName: '',
             roleDescription: '普通用户'
-        };
-        this.order = {
-            orderUid: "",
-            publisherUid: "",
-            publishTime: "",
-            orderDescription: "",
-            orderCategoryId: "10",
-            receiverUid: "",
-            receiveTime: "",
-            orderStatusId: "",
-            orderValue: "0",
-            allowVoucher: "",
-            voucherMax: "",
-            evaluateUid: "",
-            address: "",
-            phone: "",
-            imageUrls: "",
-            imageDatas: []
         };
         this.orderUid = appService_1.appService.GetQueryString("orderUid");
     }

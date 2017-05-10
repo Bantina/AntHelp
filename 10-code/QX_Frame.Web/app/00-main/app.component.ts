@@ -67,6 +67,8 @@ export class AppComponent {
     ngOnInit(): void {
         this.loginResult = appService.IsLogin(this.router);
         //get message count
-        this.GetMessagePushList();
+        if (this.loginResult.isLogin) {
+            this.GetMessagePushList();
+        }
     }
 }

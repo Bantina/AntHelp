@@ -1,9 +1,10 @@
 ﻿<!--start publish-->
 <div class="publishAll" >
-    <div class="col-md-4 public_block" *ngFor="let item of publish_kinds.publish">
+    <div class="col-md-4 public_block" *ngFor="let item of publish_kinds.publish;let i=index;">
         <a href="###" data-toggle="modal" data-target="#publishModal" id="{{item.id}}" (click)="openModal($event)">
             <div class="circle_div">
-                <img src="{{item.imgSrc}}" />
+                <!--<img src="{{item.imgSrc}}" />-->
+                <div class="kinds_icon kinds_icon_{{i}}"></div>
             </div>
             <p class="public_kind">{{item.kindName}}</p>
         </a>
@@ -42,7 +43,7 @@
                                 <input form="uploadForm" id="publish_upload" type="file" name="file" placeholder="file" multiple (change)="publishUpload($event)" [(ngModel)]="changeInput">
                             </div>
                         </div>
-                        <div class="form-group" *ngIf="uploadFlag=='true'">
+                        <div class="form-group" *ngIf="uploadFlag=='true'&&showImg==true">
                             <label for="true" class="col-sm-2 control-label" style="padding-top:40px;color:tomato;">预 览 >></label>
                             <div class="col-sm-10 resultImg">
                                 <img src="{{itemPic}}" alt="" *ngFor="let itemPic of imageList" />
@@ -79,7 +80,7 @@
                     <form id="uploadForm"></form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" (click)="OrderPublishClear()">关 闭</button>
                     <button type="button" class="btn btn-primary" (click)="OrderPublish()">发 布</button>
                 </div>
             </div>

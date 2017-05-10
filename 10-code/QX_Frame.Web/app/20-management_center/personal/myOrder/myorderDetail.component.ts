@@ -12,11 +12,29 @@ import { UserInfoModel } from '../.././management.model';
 })
 
 export class MyorderDetailComponent implements OnInit {
-
     //orderStatusFlag: number;//订单状态标识；
     isMyPublish: boolean = true; //是否为我的发布/接单的标识
-
     //模型绑定;
+    order: Order =
+    {
+        orderUid: "",
+        publisherUid: "",
+        publishTime: "",
+        orderDescription: "",
+        orderCategoryId: "10",
+        receiverUid: "",
+        receiveTime: "",
+        orderStatusId: "",
+        orderValue: "0",
+        allowVoucher: "",
+        voucherMax: "",
+        evaluateUid: "",
+        address: "",
+        phone: "",
+        imageUrls: "",
+        imageDatas: []
+    }
+
     userInfoModel: UserInfoModel = {
         loginId: appService.getCookie('loginId'),
         nickName: '',
@@ -43,26 +61,6 @@ export class MyorderDetailComponent implements OnInit {
         roleName: '',
         roleDescription: '普通用户'
     }
-    order: Order =
-    {
-        orderUid: "",
-        publisherUid: "",
-        publishTime: "",
-        orderDescription: "",
-        orderCategoryId: "10",
-        receiverUid: "",
-        receiveTime: "",
-        orderStatusId: "",
-        orderValue: "0",
-        allowVoucher: "",
-        voucherMax: "",
-        evaluateUid: "",
-        address: "",
-        phone: "",
-        imageUrls: "",
-        imageDatas: []
-    }
-
     orderUid: string = appService.GetQueryString("orderUid");
     orderStatus: string;
     publisherInfo: string;
@@ -70,7 +68,6 @@ export class MyorderDetailComponent implements OnInit {
     GetsingleOrderByOrderUid(): void {
         var self = this;
         //var orderUid = appService.GetQueryString("orderUid");
-
         $.ajax({
             url: appBase.DomainApi + "api/Order/" + self.orderUid,
             type: "get",

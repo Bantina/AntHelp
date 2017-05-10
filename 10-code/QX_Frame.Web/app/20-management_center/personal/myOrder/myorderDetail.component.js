@@ -11,6 +11,8 @@ const appBase_1 = require("../../../00-AQX_Frame.commons/appBase");
 const appService_1 = require("../../../00-AQX_Frame.services/appService");
 let MyorderDetailComponent = class MyorderDetailComponent {
     constructor() {
+        //orderStatusFlag: number;//订单状态标识；
+        this.isMyPublish = true; //是否为我的发布/接单的标识
         //模型绑定;
         this.userInfoModel = {
             loginId: appService_1.appService.getCookie('loginId'),
@@ -56,12 +58,13 @@ let MyorderDetailComponent = class MyorderDetailComponent {
             imageUrls: "",
             imageDatas: []
         };
+        this.orderUid = appService_1.appService.GetQueryString("orderUid");
     }
     GetsingleOrderByOrderUid() {
         var self = this;
-        var orderUid = appService_1.appService.GetQueryString("orderUid");
+        //var orderUid = appService.GetQueryString("orderUid");
         $.ajax({
-            url: appBase_1.appBase.DomainApi + "api/Order/" + orderUid,
+            url: appBase_1.appBase.DomainApi + "api/Order/" + self.orderUid,
             type: "get",
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
@@ -91,6 +94,14 @@ let MyorderDetailComponent = class MyorderDetailComponent {
                     self.order.imageDatas = data.data.imageDatas;
                     ////
                     self.orderStatus = data.data.orderStatus.orderStatusDescription;
+                    self.publisherInfo = data.data.publisherInfo.loginId;
+                    self.receiverInfo = data.data.receiverInfo.loginId;
+                    if (appService_1.appService.getCookie("loginId") == data.data.receiverInfo.loginId) {
+                        self.isMyPublish = false; //我的接单
+                    }
+                    else {
+                        self.isMyPublish = true; //我的发布
+                    }
                 }
                 else {
                     alert(data.msg);
@@ -98,6 +109,27 @@ let MyorderDetailComponent = class MyorderDetailComponent {
             },
             error(data) {
                 alert("服务器错误！");
+            }
+        });
+    }
+    //订单各项操作：
+    //修改订单状态
+    UpdateOrderStatus(status) {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Order/2",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "orderUid": self.orderUid,
+                "receiverLoginId": appService_1.appService.getCookie("loginId"),
+                "orderStatusId": status
+            }),
+            error(data) {
+                alert("服务器连接失败!请稍后重试...");
             }
         });
     }

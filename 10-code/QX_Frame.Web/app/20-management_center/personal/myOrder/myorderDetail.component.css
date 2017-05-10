@@ -27,6 +27,7 @@
 .myorderDetail_F{
     width:900px;
     margin:0 auto;
+    border:solid 1px #4caf50;
 }
 .myorderDetail_F_btn{
   height:30px;
@@ -41,4 +42,14 @@
 }
 .myorderDetail_F_btn:hover,.myorderDetail_F_btn:focus {
     background-color: #ef5048;
+}
+.orderHints_div{
+}
+.orderHints{
+    font-size:18px;
+    text-align:center;
+    height:45px;
+    line-height:45px;
+    color:#e72015;
+    margin:0;
 }

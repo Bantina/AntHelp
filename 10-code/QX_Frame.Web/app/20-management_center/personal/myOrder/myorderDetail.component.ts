@@ -12,6 +12,10 @@ import { UserInfoModel } from '../.././management.model';
 })
 
 export class MyorderDetailComponent implements OnInit {
+
+    //orderStatusFlag: number;//订单状态标识；
+    isMyPublish: boolean = true; //是否为我的发布/接单的标识
+
     //模型绑定;
     userInfoModel: UserInfoModel = {
         loginId: appService.getCookie('loginId'),
@@ -59,13 +63,16 @@ export class MyorderDetailComponent implements OnInit {
         imageDatas: []
     }
 
+    orderUid: string = appService.GetQueryString("orderUid");
     orderStatus: string;
+    publisherInfo: string;
+    receiverInfo: string;
     GetsingleOrderByOrderUid(): void {
         var self = this;
-        var orderUid = appService.GetQueryString("orderUid");
+        //var orderUid = appService.GetQueryString("orderUid");
 
         $.ajax({
-            url: appBase.DomainApi + "api/Order/" + orderUid,
+            url: appBase.DomainApi + "api/Order/" + self.orderUid,
             type: "get",
             dataType: "json",
             contentType: "application/json; charset=UTF-8",
@@ -96,6 +103,14 @@ export class MyorderDetailComponent implements OnInit {
 
                     ////
                     self.orderStatus = data.data.orderStatus.orderStatusDescription;
+                    self.publisherInfo = data.data.publisherInfo.loginId;
+                    self.receiverInfo = data.data.receiverInfo.loginId;
+
+                    if (appService.getCookie("loginId") == data.data.receiverInfo.loginId) {
+                        self.isMyPublish = false; //我的接单
+                    } else {
+                        self.isMyPublish = true; //我的发布
+                    }
 
                 } else {
                     alert(data.msg);
@@ -106,6 +121,31 @@ export class MyorderDetailComponent implements OnInit {
             }
         });
     } 
+
+    //订单各项操作：
+
+
+    //修改订单状态
+    UpdateOrderStatus(status): void {
+        var self = this;
+        $.ajax({
+            url: appBase.DomainApi + "api/Order/2",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(
+                {
+                    "appKey": appService.getCookie("appKey"),
+                    "token": appService.getCookie("token"),
+                    "orderUid": self.orderUid,
+                    "receiverLoginId": appService.getCookie("loginId"),
+                    "orderStatusId": status
+                }),
+            error(data) {
+                alert("服务器连接失败!请稍后重试...");
+            }
+        });
+    }
    
     //the final execute ...
     ngOnInit(): void {

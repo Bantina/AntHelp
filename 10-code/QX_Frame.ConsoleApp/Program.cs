@@ -12,7 +12,7 @@ using System.Web;
 
 namespace QX_Frame.ConsoleApp
 {
-    class Program : AppBase
+    class Program: AppBase
     {
         static void Main(string[] args)
         {

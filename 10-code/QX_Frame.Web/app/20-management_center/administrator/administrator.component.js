@@ -160,11 +160,11 @@ let AdministratorComponent = class AdministratorComponent {
         this.appComponent = _appComponet;
     }
     //判断是否登录
-    isLoginFlag() {
-        if (!this.loginId || this.loginId == "undefined") {
-            this.navStatus == -1;
-        }
-    }
+    //isLoginFlag(): void {
+    //    if (!this.loginId || this.loginId == "undefined") {
+    //        this.navStatus == -1;
+    //    }
+    //}
     //左菜单点击事件；
     sidenavClick_admin(event, num) {
         if (!this.loginId || this.loginId == "undefined") {
@@ -308,11 +308,15 @@ let AdministratorComponent = class AdministratorComponent {
                     }
                 }
                 else {
-                    alert(data.msg);
+                    if (data.errorCode == 3020) {
+                        alert('没有管理权限');
+                    }
+                    else {
+                        //alert(data.msg);
+                    }
                 }
             },
             error(data) {
-                alert(JSON.stringify(data));
                 alert("服务器连接失败，请稍后重试...");
             }
         });
@@ -469,7 +473,7 @@ let AdministratorComponent = class AdministratorComponent {
                     }
                 }
                 else {
-                    alert(data.msg);
+                    //alert(data.msg);
                 }
             },
             error(data) {
@@ -623,7 +627,7 @@ let AdministratorComponent = class AdministratorComponent {
                     }
                 }
                 else {
-                    alert(data.msg);
+                    //alert(data.msg);
                 }
             },
             error(data) {
@@ -662,7 +666,7 @@ let AdministratorComponent = class AdministratorComponent {
                         self.GetMessagePushList(-1);
                     }
                     else {
-                        alert(data.msg);
+                        //alert(data.msg);
                     }
                 },
                 error(data) {
@@ -695,7 +699,7 @@ let AdministratorComponent = class AdministratorComponent {
                     self.GetMessagePushList(-1);
                 }
                 else {
-                    alert(data.msg);
+                    //alert(data.msg);
                 }
             },
             error(data) {
@@ -716,19 +720,66 @@ let AdministratorComponent = class AdministratorComponent {
         }
     }
     //----- end 消息管理 ---
+    /**
+     * 是否为管理员
+     */
+    //isAdministrator: boolean = false;
+    IsAdmin() {
+        var self = this;
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/User/" + self.loginId,
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token")
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    if (data.data.roleId == 0) {
+                        self.navStatus = 9;
+                    }
+                    else {
+                        self.getUserInfo();
+                        //获取用户列表
+                        self.GetUserInfoListByCondition(-1, -1);
+                        //获取投诉消息
+                        self.GetComplainList(-1, -1);
+                        //获取信息列表
+                        self.GetMessagePushList(-1);
+                        //获取订单列表
+                        self.GetAllorderList(-1, -1, -1);
+                    }
+                }
+                else {
+                    //alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
     ngOnInit() {
         //左菜单 焦点 判断 显示;
         $(".manageCenterUl li").eq(appBase_1.appBase.AppObject.administratorStatus).addClass("on");
-        this.isLoginFlag(); //判断是否登录
-        this.getUserInfo();
-        //获取用户列表
-        this.GetUserInfoListByCondition(-1, -1);
-        //获取投诉消息
-        this.GetComplainList(-1, -1);
-        //获取信息列表
-        this.GetMessagePushList(-1);
-        //获取订单列表
-        this.GetAllorderList(-1, -1, -1);
+        if (!this.loginId || this.loginId == "undefined") {
+            this.navStatus = -1;
+        }
+        else {
+            this.IsAdmin(); //是否具有管理权限；
+        }
+        //this.isLoginFlag(); //判断是否登录
+        //this.getUserInfo();
+        ////获取用户列表
+        //this.GetUserInfoListByCondition(-1, -1);
+        ////获取投诉消息
+        //this.GetComplainList(-1, -1);
+        ////获取信息列表
+        //this.GetMessagePushList(-1);
+        ////获取订单列表
+        //this.GetAllorderList(-1, -1, -1);
     }
 };
 AdministratorComponent = __decorate([

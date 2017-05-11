@@ -1,0 +1,74 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.cateTitle{
+    font-size:20px;
+    text-align:center;
+    height:50px;
+    line-height:50px;
+    color:#159a8e;
+    border-bottom:solid 1px #bbb7b7;
+    letter-spacing:10px;
+}
+.categoryBlock{
+	margin-bottom: 20px;
+	border: 1px solid #e2e2e2;
+    padding-bottom:15px;
+}
+.categoryBlock .myorderBody_des input,.categoryBlock .myorderBody_des a,.sentMassform .myorderComplaint_btn{
+  width:150px;
+  height:30px;
+  display: block;
+  font-size:16px;
+  background-color: #e72015;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 28px;
+  margin-bottom:20px;
+}
+.categoryBlock .myorderBody_des a{
+    margin-left:50%;
+    transform:translateX(-50%);
+    line-height:30px;
+}
+.categoryBlock .myorderBody_des input:hover,.categoryBlock .myorderBody_des input:focus,.categoryBlock .myorderBody_des a:hover,.categoryBlock .myorderBody_des a:focus,.sentMassform .myorderComplaint_btn:hover,.sentMassform .myorderComplaint_btn:focus {
+	background-color: #ef5048;
+}
+.categoryBlock .myorderTitle{
+	width:100%;
+	overflow:hidden;
+	border-bottom: 1px solid #e2e2e2;
+}
+.categoryBlock .myorderBody{
+	width:100%;
+	height:280px;
+	position:relative;
+}
+.myorderBody:before{
+	content:'';
+	width:100%;
+	height:100%;
+	background:rgba(1, 3, 21, 0.5);
+	position:absolute;
+	top:0;
+}
+.categoryBlock .myorderBody img{
+	width:100%;
+	height:280px;
+}
+.categoryBlock .myorderImg{
+	width:150px;
+	height:150px;
+}
+.myorderBody_des{
+	width:100%;
+	text-align:center;
+	position:absolute;
+	top:60px;
+}
+.myorderBody_des h4{
+	color:#fff;
+}
+.myorderBody_des input{
+	margin-left:28px;
+}

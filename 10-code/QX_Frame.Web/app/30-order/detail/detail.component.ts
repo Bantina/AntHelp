@@ -49,9 +49,10 @@ export class OrderDetailComponent implements OnInit {
     //立即抢单
     getOrder(): void {
         var self = this;
+        var loginUser = appService.getCookie('loginId');
         if (appService.IsLogin(self.router).isLogin) {
             //用户不能抢自己发布的订单；
-            if (appService.getCookie('loginId') != self.publisherLoginId) {
+            if (loginUser.toLowerCase() != self.publisherLoginId.toLowerCase()) {
                 $.ajax({
                     url: appBase.DomainApi + "api/Order/1",
                     type: "put",

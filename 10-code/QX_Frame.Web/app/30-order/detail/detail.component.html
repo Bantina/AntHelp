@@ -38,6 +38,10 @@
                 <p class="col-md-9 detail_content">{{order.orderDescription}}</p>
             </div>
             <div class="row">
+                <p class="col-md-3 detail_title">地  址 :</p>
+                <p class="col-md-9 detail_content">{{order.address}}</p>
+            </div>
+            <div class="row">
                 <input type="button" class="col-md-10 col-md-offset-1 no-top-margin getorder_btn" value="立  即  抢  单~" (click)="getOrder()" *ngIf="getOrderButtonIsDisabled==1" name="">
                 <input type="button" class="col-md-10 col-md-offset-1 no-top-margin getorder_dis_btn" disabled="disabled" value="手慢一步，试试其他订单吧~" (click)="getOrder()" *ngIf="getOrderButtonIsDisabled==0" name="">
             </div>

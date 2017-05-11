@@ -70,6 +70,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\01-index\category\category.component.css" />
+    <Content Include="app\01-index\category\category.component.html" />
     <Content Include="app\01-index\index.component.css" />
     <Content Include="app\01-index\index.component.html" />
     <Content Include="app\00-main\app.component.css" />
@@ -92,6 +94,8 @@
     <Content Include="app\20-management_center\personal\myOrder\myorderDetail.component.html" />
     <Content Include="app\30-order\detail\detail.component.css" />
     <Content Include="app\30-order\detail\detail.component.html" />
+    <Content Include="app\30-order\payment\payment.component.css" />
+    <Content Include="app\30-order\payment\payment.component.html" />
     <Content Include="app\30-order\publish\publish.component.css" />
     <Content Include="app\30-order\publish\publish.component.html" />
     <Content Include="app\60-activity\activity.component.css" />
@@ -118,6 +122,10 @@
     <Content Include="Images\01-index\home\top1.jpg" />
     <Content Include="Images\01-index\home\top2.jpg" />
     <Content Include="Images\01-index\home\top3.jpg" />
+    <Content Include="Images\01-index\index01.jpg" />
+    <Content Include="Images\01-index\index02.jpg" />
+    <Content Include="Images\01-index\index03.jpg" />
+    <Content Include="Images\01-index\index04.jpg" />
     <Content Include="Images\03-login\blank_bg.png" />
     <Content Include="Images\03-login\emo_fail.png" />
     <Content Include="Images\03-login\emo_suc.png" />
@@ -128,6 +136,7 @@
     <Content Include="Images\03-login\sign01.png" />
     <Content Include="Images\20-management\bg_sidenav.png" />
     <Content Include="Images\20-management\bg_sidenav_hover.png" />
+    <Content Include="Images\20-management\cart_payment.png" />
     <Content Include="Images\20-management\edit.png" />
     <Content Include="Images\20-management\user_default_img.png" />
     <Content Include="Images\30-order\addpic.png" />
@@ -136,6 +145,15 @@
     <Content Include="Images\30-order\bg3.png" />
     <Content Include="Images\30-order\bg4.png" />
     <Content Include="Images\30-order\bg5.png" />
+    <Content Include="Images\30-order\kinds_icon01.png" />
+    <Content Include="Images\30-order\kinds_icon02.png" />
+    <Content Include="Images\30-order\kinds_icon03.png" />
+    <Content Include="Images\30-order\kinds_icon04.png" />
+    <Content Include="Images\30-order\kinds_icon05.png" />
+    <Content Include="Images\30-order\kinds_icon06.png" />
+    <Content Include="Images\30-order\kinds_icon07.png" />
+    <Content Include="Images\30-order\kinds_icon08.png" />
+    <Content Include="Images\30-order\kinds_icon09.png" />
     <Content Include="Images\30-order\octopus.png" />
     <Content Include="Images\30-order\prev_next.png" />
     <Content Include="Images\60-activity\1493777571577.jpg" />
@@ -294,6 +312,7 @@
     <TypeScriptCompile Include="app\00-AQX_Frame.commons\appBase.ts" />
     <TypeScriptCompile Include="app\00-models\complain.model.ts" />
     <TypeScriptCompile Include="app\00-models\MessagePush.model.ts" />
+    <TypeScriptCompile Include="app\01-index\category\category.component.ts" />
     <TypeScriptCompile Include="app\01-index\index.component.ts" />
     <TypeScriptCompile Include="app\00-main\app.component.ts" />
     <TypeScriptCompile Include="app\02-example\example.component.ts" />
@@ -313,6 +332,7 @@
     <TypeScriptCompile Include="app\20-management_center\personal\myOrder\myorderDetail.component.ts" />
     <TypeScriptCompile Include="app\30-order\detail\detail.component.ts" />
     <TypeScriptCompile Include="app\30-order\order.model.ts" />
+    <TypeScriptCompile Include="app\30-order\payment\payment.component.ts" />
     <TypeScriptCompile Include="app\30-order\publish\publish.component.ts" />
     <TypeScriptCompile Include="app\60-activity\activity.component.ts" />
     <TypeScriptCompile Include="app\70-community\71-topic\detail\detail.model.ts" />
@@ -327,7 +347,6 @@
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\30-order\payment\" />
     <Folder Include="app\70-community\73-information\" />
     <Folder Include="Files\" />
     <Folder Include="fonts\" />

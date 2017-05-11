@@ -49,6 +49,7 @@ let ManagementComponent = class ManagementComponent {
         //global
         this.navStatus = appBase_1.appBase.AppObject.centerStatus; //-1未登录；
         this.loginId = appService_1.appService.getCookie("loginId");
+        this.balance = 0;
         ////个人账户
         //上传头像
         this.uploadFlag = false;
@@ -59,6 +60,9 @@ let ManagementComponent = class ManagementComponent {
     isLoginFlag() {
         if (!this.loginId || this.loginId == "undefined") {
             this.navStatus == -1;
+        }
+        else {
+            this.getPersonalBalance();
         }
     }
     //左菜单点击事件；
@@ -86,6 +90,32 @@ let ManagementComponent = class ManagementComponent {
         var $targetP = $(event.target || event.srcElement).parent().parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
+    }
+    /**
+     * 获取账户余额；
+     */
+    getPersonalBalance() {
+        var self = this;
+        var appKey = Number(appService_1.appService.getCookie("appKey"));
+        var token = appService_1.appService.getCookie("token");
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/UserMoney/" + self.loginId,
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                appKey: appKey,
+                token: token
+            },
+            success(json) {
+                if (json.isSuccess) {
+                    self.balance = json.data.money;
+                }
+            },
+            error(data) {
+                console.error(data);
+            }
+        });
     }
     personalHeadUpload(event) {
         var self = this;

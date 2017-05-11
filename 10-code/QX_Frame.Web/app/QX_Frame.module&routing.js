@@ -22,6 +22,7 @@ const signup_component_1 = require("./03-login/signup.component");
 const login_component_1 = require("./03-login/login/login.component");
 const signupVerify_component_1 = require("./03-login/signupVerify/signupVerify.component");
 const publish_component_1 = require("./30-order/publish/publish.component");
+const payment_component_1 = require("./30-order/payment/payment.component");
 const detail_component_1 = require("./30-order/detail/detail.component");
 const management_component_1 = require("./20-management_center/management.component");
 const administrator_component_1 = require("./20-management_center/administrator/administrator.component");
@@ -29,6 +30,7 @@ const blackLogin_component_1 = require("./03-login/blackLogin/blackLogin.compone
 const myorderDetail_component_1 = require("./20-management_center/personal/myOrder/myorderDetail.component");
 const complaint_component_1 = require("./20-management_center/personal/complaint/complaint.component");
 const activity_component_1 = require("./60-activity/activity.component");
+const category_component_1 = require("./01-index/category/category.component");
 const massege_component_1 = require("./20-management_center/massege/massege.component");
 /*bantina add end*/
 /*zyq add start*/
@@ -101,6 +103,14 @@ const appRoutes = [
         path: 'myMassege',
         component: massege_component_1.MassegeComponent
     },
+    {
+        path: 'category',
+        component: category_component_1.CategoryComponent
+    },
+    {
+        path: 'payment',
+        component: payment_component_1.PaymentComponent
+    },
     /*bantina add end*/
     /*zyq add start*/
     {
@@ -145,6 +155,8 @@ const appComponents = [
     complaint_component_1.ComplaintComponent,
     activity_component_1.ActivityComponent,
     massege_component_1.MassegeComponent,
+    category_component_1.CategoryComponent,
+    payment_component_1.PaymentComponent,
     /*bantina add end*/
     /*zyq add start*/
     topic_1.Topic,

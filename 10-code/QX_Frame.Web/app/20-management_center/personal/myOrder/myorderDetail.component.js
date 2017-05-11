@@ -5,15 +5,38 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular/core");
 const appBase_1 = require("../../../00-AQX_Frame.commons/appBase");
 const appService_1 = require("../../../00-AQX_Frame.services/appService");
+const router_1 = require("@angular/router");
 let MyorderDetailComponent = class MyorderDetailComponent {
-    constructor() {
-        //orderStatusFlag: number;//订单状态标识；
+    constructor(_router) {
         this.isMyPublish = true; //是否为我的发布/接单的标识
+        this.loginId = appService_1.appService.getCookie("loginId");
+        this.balance = 0; //余额
         //模型绑定;
+        this.order = {
+            orderUid: "",
+            publisherUid: "",
+            publishTime: "",
+            orderDescription: "",
+            orderCategoryId: "10",
+            receiverUid: "",
+            receiveTime: "",
+            orderStatusId: "",
+            orderValue: "0",
+            allowVoucher: "",
+            voucherMax: "",
+            evaluateUid: "",
+            address: "",
+            phone: "",
+            imageUrls: "",
+            imageDatas: []
+        };
         this.userInfoModel = {
             loginId: appService_1.appService.getCookie('loginId'),
             nickName: '',
@@ -40,26 +63,23 @@ let MyorderDetailComponent = class MyorderDetailComponent {
             roleName: '',
             roleDescription: '普通用户'
         };
-        this.order = {
-            orderUid: "",
-            publisherUid: "",
-            publishTime: "",
-            orderDescription: "",
-            orderCategoryId: "10",
-            receiverUid: "",
-            receiveTime: "",
-            orderStatusId: "",
-            orderValue: "0",
-            allowVoucher: "",
-            voucherMax: "",
-            evaluateUid: "",
-            address: "",
-            phone: "",
-            imageUrls: "",
-            imageDatas: []
-        };
         this.orderUid = appService_1.appService.GetQueryString("orderUid");
+        /**
+         * 判断余额是否充足；
+         */
+        this.canPay = 'false';
+        this.modelShowStatus = '0';
+        /**
+         * 取消订单
+         * @param status 订单状态
+         * @param haspay 是否已支付，1-已支付
+         */
+        this.isPay = false;
+        this.router = _router;
     }
+    /**
+     * *根据Id获取订单详情；
+     */
     GetsingleOrderByOrderUid() {
         var self = this;
         //var orderUid = appService.GetQueryString("orderUid");
@@ -95,12 +115,14 @@ let MyorderDetailComponent = class MyorderDetailComponent {
                     ////
                     self.orderStatus = data.data.orderStatus.orderStatusDescription;
                     self.publisherInfo = data.data.publisherInfo.loginId;
-                    self.receiverInfo = data.data.receiverInfo.loginId;
-                    if (appService_1.appService.getCookie("loginId") == data.data.receiverInfo.loginId) {
-                        self.isMyPublish = false; //我的接单
+                    if (data.data.receiverInfo != null) {
+                        self.receiverInfo = data.data.receiverInfo.loginId;
+                    }
+                    if (self.loginId.toLowerCase() == data.data.publisherInfo.loginId.toLowerCase()) {
+                        self.isMyPublish = true; //我的发布
                     }
                     else {
-                        self.isMyPublish = true; //我的发布
+                        self.isMyPublish = false; //我的接单
                     }
                 }
                 else {
@@ -112,8 +134,85 @@ let MyorderDetailComponent = class MyorderDetailComponent {
             }
         });
     }
-    //订单各项操作：
-    //修改订单状态
+    //跳转到充值页；
+    goPayment() {
+        $('#paymentModal').modal('hide');
+        this.router.navigateByUrl('/payment');
+    }
+    forPayment() {
+        var self = this;
+        if ((self.balance - Number(self.order.orderValue)) >= 0) {
+            self.canPay = 'true';
+        }
+        else {
+            self.canPay = 'false';
+        }
+    }
+    /**
+     * 获取账户余额；
+     */
+    getPersonalBalance() {
+        var self = this;
+        var appKey = Number(appService_1.appService.getCookie("appKey"));
+        var token = appService_1.appService.getCookie("token");
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/UserMoney/" + self.loginId,
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                appKey: appKey,
+                token: token
+            },
+            success(json) {
+                if (json.isSuccess) {
+                    self.balance = json.data.money;
+                }
+            },
+            error(data) {
+                console.error(data);
+            }
+        });
+    }
+    /**
+     * 确认支付；
+     */
+    toPayment() {
+        var self = this;
+        var appKey = Number(appService_1.appService.getCookie("appKey"));
+        var token = appService_1.appService.getCookie("token");
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/UserMoney/",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                appKey: appKey,
+                token: token,
+                loginId: self.loginId,
+                money: -Number(self.order.orderValue)
+            }),
+            success(json) {
+                if (json.isSuccess) {
+                    self.UpdateOrderStatus(3); //修改订单状态
+                    self.canPay = 'already';
+                }
+                else {
+                    alert('支付失败，请稍后重试~');
+                }
+            },
+            error(data) {
+                console.error(data);
+            }
+        });
+    }
+    refresh() {
+        this.router.navigateByUrl('/managementCenter');
+    }
+    /**
+     * 修改订单状态
+     * @param status 订单状态id
+     */
     UpdateOrderStatus(status) {
         var self = this;
         $.ajax({
@@ -133,9 +232,113 @@ let MyorderDetailComponent = class MyorderDetailComponent {
             }
         });
     }
+    /**
+     * 订单状态修改 模态框提示版
+     * @param status 订单状态
+     */
+    UpdateOrderStatus_finish(status) {
+        var self = this;
+        var appKey = Number(appService_1.appService.getCookie("appKey"));
+        var token = appService_1.appService.getCookie("token");
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Order/2",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "orderUid": self.orderUid,
+                "receiverLoginId": appService_1.appService.getCookie("loginId"),
+                "orderStatusId": status
+            }),
+            success(data) {
+                $('#feedbackModal').modal('show');
+                if (status == 6) {
+                    self.modelShowStatus = 'recerver_finish';
+                }
+                else if (status == 7) {
+                    self.modelShowStatus = 'publish_verify';
+                    $.ajax({
+                        url: appBase_1.appBase.DomainApi + "api/UserMoney/",
+                        type: "put",
+                        dataType: "json",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                            appKey: appKey,
+                            token: token,
+                            loginId: self.receiverInfo,
+                            money: Number(self.order.orderValue)
+                        }),
+                        error(data) {
+                            console.error(data);
+                        }
+                    });
+                }
+                else if (status == 10) {
+                    self.modelShowStatus = 'publish_cancel';
+                }
+            },
+            error(data) {
+                alert("服务器连接失败!请稍后重试...");
+            }
+        });
+    }
+    orderCancel(status, haspay) {
+        var self = this;
+        var appKey = Number(appService_1.appService.getCookie("appKey"));
+        var token = appService_1.appService.getCookie("token");
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Order/2",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "orderUid": self.orderUid,
+                "receiverLoginId": appService_1.appService.getCookie("loginId"),
+                "orderStatusId": status
+            }),
+            success(data) {
+                $('#feedbackModal').modal('show');
+                if (status == 6) {
+                    self.modelShowStatus = 'recerver_finish';
+                }
+                else if (status == 7) {
+                    self.modelShowStatus = 'publish_verify';
+                }
+                else if (status == 10) {
+                    self.modelShowStatus = 'publish_cancel';
+                    if (haspay == 1) {
+                        self.isPay = true;
+                        $.ajax({
+                            url: appBase_1.appBase.DomainApi + "api/UserMoney/",
+                            type: "put",
+                            dataType: "json",
+                            contentType: "application/json; charset=UTF-8",
+                            data: JSON.stringify({
+                                appKey: appKey,
+                                token: token,
+                                loginId: self.loginId,
+                                money: Number(self.order.orderValue)
+                            }),
+                            error(data) {
+                                console.error(data);
+                            }
+                        });
+                    }
+                }
+            },
+            error(data) {
+                alert("服务器连接失败!请稍后重试...");
+            }
+        });
+    }
     //the final execute ...
     ngOnInit() {
         this.GetsingleOrderByOrderUid();
+        this.getPersonalBalance();
     }
 };
 MyorderDetailComponent = __decorate([
@@ -144,7 +347,8 @@ MyorderDetailComponent = __decorate([
         templateUrl: 'app/20-management_center/personal/myOrder/myorderDetail.component.html',
         styleUrls: ['app/20-management_center/personal/myOrder/myorderDetail.component.css'],
         providers: []
-    })
+    }),
+    __metadata("design:paramtypes", [router_1.Router])
 ], MyorderDetailComponent);
 exports.MyorderDetailComponent = MyorderDetailComponent;
 //# sourceMappingURL=myorderDetail.component.js.map

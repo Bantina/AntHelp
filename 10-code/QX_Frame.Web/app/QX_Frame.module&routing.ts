@@ -15,6 +15,7 @@ import { SignUpComponent } from './03-login/signup.component';
 import { LoginComponent } from './03-login/login/login.component';
 import { SignupVerifyComponent } from './03-login/signupVerify/signupVerify.component';
 import { PublishComponent } from './30-order/publish/publish.component';
+import { PaymentComponent } from './30-order/payment/payment.component';
 import { OrderDetailComponent } from './30-order/detail/detail.component';
 import { ManagementComponent } from './20-management_center/management.component';
 import { AdministratorComponent } from './20-management_center/administrator/administrator.component';
@@ -22,6 +23,7 @@ import { BlackLoginComponent } from './03-login/blackLogin/blackLogin.component'
 import { MyorderDetailComponent } from './20-management_center/personal/myOrder/myorderDetail.component';
 import { ComplaintComponent } from './20-management_center/personal/complaint/complaint.component';
 import { ActivityComponent } from './60-activity/activity.component'; 
+import { CategoryComponent } from './01-index/category/category.component';   
 import { MassegeComponent } from './20-management_center/massege/massege.component'; 
 
 
@@ -99,7 +101,15 @@ const appRoutes: Routes = [
        {
           path: 'myMassege',
           component: MassegeComponent
-      }, 
+       }, 
+       {
+           path: 'category',
+           component: CategoryComponent
+       }, 
+       {
+           path: 'payment',
+           component: PaymentComponent
+       }, 
 
      /*bantina add end*/
 
@@ -149,6 +159,8 @@ const appComponents: any[] = [
     ComplaintComponent,
     ActivityComponent,
     MassegeComponent,
+    CategoryComponent,
+    PaymentComponent,
     /*bantina add end*/
 
     /*zyq add start*/

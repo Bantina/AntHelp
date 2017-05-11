@@ -26,3 +26,14 @@
 .index_carousel_right{
 	background-position: -40px;
 }
+
+.cateTitle_a:hover{
+    color:tomato;
+}
+.sti-icon{
+    transition:all 0.45s;
+    transform:rotate(0deg);
+}
+.sti-icon:hover{
+    transform:rotate(360deg);
+}

@@ -23,7 +23,7 @@ namespace QX_Frame.WebAPI.Controllers
     public class UserMoneyController:WebApiControllerBase
     {
         // GET: api/UserMoney
-        //[LimitsAttribute_DG(RoleLevel = 0)]//administrator
+        [LimitsAttribute_DG(RoleLevel = 0)]//administrator
         public IHttpActionResult Get()
         {
             throw new Exception_DG("The interface is not available", 9999);

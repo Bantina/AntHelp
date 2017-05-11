@@ -1,0 +1,42 @@
+﻿<div class="recharge_all">
+    <div class="recharge_title">
+        <img src="../../../Images/20-management/cart_payment.png" />
+        <span>充值中心</span>
+    </div>
+    <div class="balanceDIV">
+        <span style="color:#FF6347">温馨提示:</span>
+        您的账户余额为:
+        <span style="color:#FF6347;font-size:26px;">￥</span>
+        <span class="forBalance" style="font-size:22px;">{{balance}}</span>
+        <span class="forUserid" style="display:none;"></span>
+    </div>
+    <div class="rechargeDIV">
+        <div class="rechargeDiv_con">
+            <ul class="re_block_ul">
+                <li>100</li>
+                <li>200</li>
+                <li>300</li>
+                <li>500</li>
+                <li>1000</li>
+                <li>5000</li>
+            </ul>
+            <div class="clear"></div>
+            <div class="re_slid_div">
+                <span>充 值 金 额：</span>
+                <input class="inputBalance" type="text" />
+            </div>
+            <div class="re_slid_div">
+                <span>充 值 卡 号：</span>
+                <input class="inputCard" type="text" placeholder="请输入可用充值卡..." />
+            </div>
+            <div class="re_slid_div">
+                <span>充值卡密码：</span>
+                <input class="inputPwd" type="password" placeholder="********" />
+            </div>
+            <div class="re_slid_btn_div">
+                <a class="forRecharge" href="javascript:void(0)" (click)="UpdateBalance()">立 即 充 值</a>
+            </div>
+        </div>
+    </div>
+
+</div>

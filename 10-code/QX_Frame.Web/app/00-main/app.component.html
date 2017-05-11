@@ -12,11 +12,11 @@
                 <div class="col-md-4 col-md-offset-2 app_title">
                     <a routerLink="/">{{title}}</a>
                 </div>
-                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="!loginResult.isLogin">
+                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="!loginResult.isLogin||loginResult.loginId==''">
                     <li><a routerLink="/login">登 录</a></li>
                     <li><a routerLink="/signup">注 册</a></li>
                 </ul>
-                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="loginResult.isLogin">
+                <ul class="col-md-2 nav navbar-nav mynavbar" *ngIf="loginResult.isLogin&&loginResult.loginId!=''">
                     <div style="padding-top:5px;">欢迎~ {{loginResult.loginId}}</div>
                 </ul>
                 <ul class="col-md-4 nav navbar-nav mynavbar navbar-right">
@@ -45,60 +45,6 @@
         <!-- BEGIN logo -->
         <div style="margin-top:30px;"></div>
         <!-- /END logo -->
-
-        <!--<div class="blockeasing-wrapp" style="margin-top:30px;">
-            <h6 class="blockeasing-header">Menu</h6>
-            <ul class="blockeasing">
-                <li class="current">
-                    <a routerLink="/">首页</a>
-                    <ul>
-                        <li>
-                            <a href="index.html">SLIDE 1</a>
-                            <ul>
-                                <li><a href="index_layout_v1.html">HOME LAYOUT V1</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="index1.html">SLIDE 2</a>
-                            <ul>
-                                <li><a href="index1_layout_v1.html">HOME LAYOUT V1</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="index2.html">SLIDE 3</a>
-                            <ul>
-                                <li><a href="index2_layout_v1.html">HOME LAYOUT V1</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a routerLink="/example">example</a></li>
-                <li>
-                    <a href="blog.html">今日新单</a>
-                    <ul>
-                        <li><a href="blog_post.html">POST EXAMPLE</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="services.html">积分商城</a>
-                    <ul>
-                        <li><a href="services_page.html">SERVICES PAGE</a></li>
-                    </ul>
-                </li>
-                <li><a routerLink="/signupVerify">专题推荐</a></li>
-                <li>
-                    <a href="#">今日话题</a>
-                    <ul>
-                        <li><a href="icons.html">ICONS</a></li>
-                        <li><a href="elements.html">ELEMENTS</a></li>
-                        <li><a href="columns.html">COLUMNS</a></li>
-                        <li><a href="typography.html">TYPOGRAPHY</a></li>
-                    </ul>
-                </li>
-                <li><a routerLink="/signup">联系我们</a></li>
-                <li><a routerLink="/login">登录</a></li>
-            </ul>
-        </div>-->
         <div class="clear"></div>
     </div>
 </header>

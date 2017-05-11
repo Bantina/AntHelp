@@ -83,11 +83,11 @@ export class AdministratorComponent implements OnInit {
     navStatus: number = appBase.AppObject.administratorStatus; //-1未登录；
     loginId: string = appService.getCookie("loginId");
     //判断是否登录
-    isLoginFlag(): void {
-        if (!this.loginId || this.loginId == "undefined") {
-            this.navStatus == -1;
-        }
-    }
+    //isLoginFlag(): void {
+    //    if (!this.loginId || this.loginId == "undefined") {
+    //        this.navStatus == -1;
+    //    }
+    //}
 
     //左菜单点击事件；
     sidenavClick_admin(event, num): void { //a
@@ -241,11 +241,14 @@ export class AdministratorComponent implements OnInit {
                         self.userInfoModelList.push(per_userInfoModel);
                     }
                 } else {
-                    alert(data.msg);
+                    if (data.errorCode == 3020) {
+                        alert('没有管理权限');
+                    } else {
+                        //alert(data.msg);
+                    }
                 }
             },
             error(data) {
-                alert(JSON.stringify(data));
                 alert("服务器连接失败，请稍后重试...");
             }
         });
@@ -427,7 +430,7 @@ export class AdministratorComponent implements OnInit {
                         self.complainModelList.push(complainModel2);
                     }
                 } else {
-                    alert(data.msg);
+                    //alert(data.msg);
                 }
             },
             error(data) {
@@ -487,7 +490,7 @@ export class AdministratorComponent implements OnInit {
         orderDescription: "",
         orderCategoryId: '',
         orderCategory: '',
-        receiverUid:'',
+        receiverUid: '',
         receiveTime: '',
         receiverInfo: '',
         orderStatusId: "",
@@ -500,10 +503,10 @@ export class AdministratorComponent implements OnInit {
         address: '',
         phone: '',
         imageUrls: '',
-        firstImg:''
+        firstImg: ''
     }
     //tabclick
-    tabBoxClick_allOrder(event,queryId, orderCategoryId, orderStatusId): void {
+    tabBoxClick_allOrder(event, queryId, orderCategoryId, orderStatusId): void {
         var $targetP = $(event.target || event.srcElement).parent();
         $targetP.siblings().removeClass("on");
         $targetP.addClass("on");
@@ -600,7 +603,7 @@ export class AdministratorComponent implements OnInit {
     //    self.model_orderModel.phone =self.allorderModelList[i].phone;
     //    self.model_orderModel.imageUrls =self.allorderModelList[i].imageUrls;
     //    self.model_orderModel.firstImg ='';
-        
+
     //}
 
     //----- 消息管理 --------
@@ -654,7 +657,7 @@ export class AdministratorComponent implements OnInit {
                         self.messagePushList.push(messagePushModelTemp);
                     }
                 } else {
-                    alert(data.msg);
+                    //alert(data.msg);
                 }
             },
             error(data) {
@@ -693,7 +696,7 @@ export class AdministratorComponent implements OnInit {
                         //获取信息列表
                         self.GetMessagePushList(-1);
                     } else {
-                        alert(data.msg);
+                        //alert(data.msg);
                     }
                 },
                 error(data) {
@@ -725,7 +728,7 @@ export class AdministratorComponent implements OnInit {
                     self.messagePush.pushToUserUid = "";
                     self.GetMessagePushList(-1);
                 } else {
-                    alert(data.msg);
+                    //alert(data.msg);
                 }
             },
             error(data) {
@@ -750,19 +753,66 @@ export class AdministratorComponent implements OnInit {
 
     //----- end 消息管理 ---
 
+    /**
+     * 是否为管理员
+     */
+    //isAdministrator: boolean = false;
+    IsAdmin(): void {
+        var self = this;
+        $.ajax({
+            url: appBase.DomainApi + "api/User/" + self.loginId,
+            type: "get",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: {
+                "appKey": appService.getCookie("appKey"),
+                "token": appService.getCookie("token")
+            },
+            success(data) {
+                if (data.isSuccess) {
+                    if (data.data.roleId == 0) {
+                        self.navStatus = 9;
+                    } else {
+                        self.getUserInfo();
+                        //获取用户列表
+                        self.GetUserInfoListByCondition(-1, -1);
+                        //获取投诉消息
+                        self.GetComplainList(-1, -1);
+                        //获取信息列表
+                        self.GetMessagePushList(-1);
+                        //获取订单列表
+                        self.GetAllorderList(-1, -1, -1);
+                    }
+                } else {
+                    //alert(data.msg);
+                }
+            },
+            error(data) {
+                alert("服务器连接失败，请稍后重试...");
+            }
+        });
+    }
+
     ngOnInit(): void {
         //左菜单 焦点 判断 显示;
         $(".manageCenterUl li").eq(appBase.AppObject.administratorStatus).addClass("on");
-        this.isLoginFlag(); //判断是否登录
-        this.getUserInfo();
-        //获取用户列表
-        this.GetUserInfoListByCondition(-1, -1);
-        //获取投诉消息
-        this.GetComplainList(-1, -1);
-        //获取信息列表
-        this.GetMessagePushList(-1);
-        //获取订单列表
-        this.GetAllorderList(-1, -1, -1);
+
+        if (!this.loginId || this.loginId == "undefined") { //未登录
+            this.navStatus = -1;
+        } else { //已登录
+            this.IsAdmin();//是否具有管理权限；
+        }
+
+        //this.isLoginFlag(); //判断是否登录
+        //this.getUserInfo();
+        ////获取用户列表
+        //this.GetUserInfoListByCondition(-1, -1);
+        ////获取投诉消息
+        //this.GetComplainList(-1, -1);
+        ////获取信息列表
+        //this.GetMessagePushList(-1);
+        ////获取订单列表
+        //this.GetAllorderList(-1, -1, -1);
 
     }
 }

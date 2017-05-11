@@ -22,14 +22,9 @@ export class AppComponent {
     //个人中心菜单点击 切换
     setCenterStatus(num): void {
         appBase.AppObject.centerStatus = num;
-        //window.location.href = appBase.WebUrlDomain + "managementCenter";
         var manageCenterUl = $(".manageCenterUl li");
         manageCenterUl.removeClass("on");
         manageCenterUl.eq(appBase.AppObject.centerStatus).addClass("on");
-
-        //内容切换；
-        //manageCenterUl.eq(appBase.AppObject.centerStatus).click(event, appBase.AppObject.centerStatus);
-        //manageCenterUl.eq(num).trigger('click', {event,num});
     }
 
     //获取消息
@@ -63,10 +58,11 @@ export class AppComponent {
         });
     }
 
-
     ngOnInit(): void {
         this.loginResult = appService.IsLogin(this.router);
         //get message count
-        this.GetMessagePushList();
+        if (this.loginResult.isLogin) {
+            this.GetMessagePushList();
+        }
     }
 }

@@ -73,7 +73,7 @@
     </div>
     <div class="row pull-right">
         <input type="button" data-toggle="modal" data-target="#paymentModal" class="myorderDetail_F_btn" value="支 付" name="" (click)="forPayment()">
-        <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="">
+        <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name=""  (click)="orderCancel(10,0)">
         <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
     </div>
 </div>
@@ -85,7 +85,7 @@
         </p>
     </div>
     <div class="row pull-right">
-        <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="">
+        <input type="button" class="myorderDetail_F_btn" value="取 消 订 单" name="" (click)="orderCancel(10,1)">
         <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
     </div>
 </div>
@@ -97,7 +97,7 @@
         </p>
     </div>
     <div class="row pull-right">
-        <input type="button" class="myorderDetail_F_btn" value="我 已 完 成" name=""  (click)="UpdateOrderStatus(6)">
+        <input type="button" class="myorderDetail_F_btn" value="已 完 成" name="" (click)="UpdateOrderStatus_finish(6)">
         <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">投       诉</a>
     </div>
 </div><!-- 已完成 我的接单（接收者状态栏）6 -->
@@ -119,7 +119,7 @@
         </p>
     </div>
     <div class="row pull-right">
-        <input type="button" class="myorderDetail_F_btn" value="确 认 完 成" name=""  (click)="UpdateOrderStatus(7)">
+        <input type="button" class="myorderDetail_F_btn" value="确 认 完 成" name=""  (click)="UpdateOrderStatus_finish(7)">
         <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">我 要 投 诉</a>
     </div>
 </div>
@@ -132,6 +132,14 @@
     </div>
     <div class="row pull-right">
         <a routerLink="/complaint" class="myorderDetail_F_btn" name="" style="display:inline-block">我 要 投 诉</a>
+    </div>
+</div>
+<!-- 订单取消 10 -->
+<div class="myorderDetail_F" *ngIf="orderStatus=='发布者取消订单'">
+    <div class="row orderHints_div">
+        <p class="orderHints col-md-12">
+            该订单已被取消。。
+        </p>
     </div>
 </div>
 <!-- 支付model -->
@@ -164,6 +172,42 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal" *ngIf="canPay=='already'"  (click)="refresh()">确 定</button>
                 <button type="button" class="btn btn-primary" (click)="toPayment()" *ngIf="canPay=='true'">确 认 支 付</button>
                 <button type="button" class="btn btn-primary" (click)="goPayment()" *ngIf="canPay=='false'">去 充 值</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 反馈model -->
+<div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="feedbackLabel">提 示</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row banlance_hint" *ngIf="modelShowStatus == 'recerver_finish'">
+                    <img src="../../../../Images/03-login/emo_suc.png" />
+                    <span>您的反馈信息已发送给对方，</span><br/>
+                    <span style="padding-left:20px;">请耐心等候对方确认~</span>
+                </div>
+                <div class="row banlance_hint" *ngIf="modelShowStatus == 'publish_verify'">
+                    <img src="../../../../Images/03-login/emo_suc.png" />
+                    <span>确认成功，该订单交易已结束~</span><br />
+                </div>
+                <div class="row banlance_hint" *ngIf="modelShowStatus == 'publish_cancel'&&isPay==false">
+                    <img src="../../../../Images/03-login/emo_suc.png" />
+                    <span>取消成功~</span><br />
+                </div>
+                <div class="row banlance_hint" *ngIf="modelShowStatus == 'publish_cancel'&&isPay==true">
+                    <img src="../../../../Images/03-login/emo_suc.png" />
+                    <span>取消成功,付款金额已退回到您的账户~</span><br />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="refresh()">确 定</button>
             </div>
         </div>
     </div>

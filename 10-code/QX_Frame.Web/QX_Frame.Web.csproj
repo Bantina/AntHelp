@@ -125,6 +125,7 @@
     <Content Include="Images\01-index\index01.jpg" />
     <Content Include="Images\01-index\index02.jpg" />
     <Content Include="Images\01-index\index03.jpg" />
+    <Content Include="Images\01-index\index04.jpg" />
     <Content Include="Images\03-login\blank_bg.png" />
     <Content Include="Images\03-login\emo_fail.png" />
     <Content Include="Images\03-login\emo_suc.png" />

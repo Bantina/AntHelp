@@ -68,6 +68,13 @@ let MyorderDetailComponent = class MyorderDetailComponent {
          * 判断余额是否充足；
          */
         this.canPay = 'false';
+        this.modelShowStatus = '0';
+        /**
+         * 取消订单
+         * @param status 订单状态
+         * @param haspay 是否已支付，1-已支付
+         */
+        this.isPay = false;
         this.router = _router;
     }
     /**
@@ -111,7 +118,7 @@ let MyorderDetailComponent = class MyorderDetailComponent {
                     if (data.data.receiverInfo != null) {
                         self.receiverInfo = data.data.receiverInfo.loginId;
                     }
-                    if (appService_1.appService.getCookie("loginId") == data.data.publisherInfo.loginId) {
+                    if (self.loginId.toLowerCase() == data.data.publisherInfo.loginId.toLowerCase()) {
                         self.isMyPublish = true; //我的发布
                     }
                     else {
@@ -220,6 +227,109 @@ let MyorderDetailComponent = class MyorderDetailComponent {
                 "receiverLoginId": appService_1.appService.getCookie("loginId"),
                 "orderStatusId": status
             }),
+            error(data) {
+                alert("服务器连接失败!请稍后重试...");
+            }
+        });
+    }
+    /**
+     * 订单状态修改 模态框提示版
+     * @param status 订单状态
+     */
+    UpdateOrderStatus_finish(status) {
+        var self = this;
+        var appKey = Number(appService_1.appService.getCookie("appKey"));
+        var token = appService_1.appService.getCookie("token");
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Order/2",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "orderUid": self.orderUid,
+                "receiverLoginId": appService_1.appService.getCookie("loginId"),
+                "orderStatusId": status
+            }),
+            success(data) {
+                $('#feedbackModal').modal('show');
+                if (status == 6) {
+                    self.modelShowStatus = 'recerver_finish';
+                }
+                else if (status == 7) {
+                    self.modelShowStatus = 'publish_verify';
+                    $.ajax({
+                        url: appBase_1.appBase.DomainApi + "api/UserMoney/",
+                        type: "put",
+                        dataType: "json",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                            appKey: appKey,
+                            token: token,
+                            loginId: self.receiverInfo,
+                            money: Number(self.order.orderValue)
+                        }),
+                        error(data) {
+                            console.error(data);
+                        }
+                    });
+                }
+                else if (status == 10) {
+                    self.modelShowStatus = 'publish_cancel';
+                }
+            },
+            error(data) {
+                alert("服务器连接失败!请稍后重试...");
+            }
+        });
+    }
+    orderCancel(status, haspay) {
+        var self = this;
+        var appKey = Number(appService_1.appService.getCookie("appKey"));
+        var token = appService_1.appService.getCookie("token");
+        $.ajax({
+            url: appBase_1.appBase.DomainApi + "api/Order/2",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify({
+                "appKey": appService_1.appService.getCookie("appKey"),
+                "token": appService_1.appService.getCookie("token"),
+                "orderUid": self.orderUid,
+                "receiverLoginId": appService_1.appService.getCookie("loginId"),
+                "orderStatusId": status
+            }),
+            success(data) {
+                $('#feedbackModal').modal('show');
+                if (status == 6) {
+                    self.modelShowStatus = 'recerver_finish';
+                }
+                else if (status == 7) {
+                    self.modelShowStatus = 'publish_verify';
+                }
+                else if (status == 10) {
+                    self.modelShowStatus = 'publish_cancel';
+                    if (haspay == 1) {
+                        self.isPay = true;
+                        $.ajax({
+                            url: appBase_1.appBase.DomainApi + "api/UserMoney/",
+                            type: "put",
+                            dataType: "json",
+                            contentType: "application/json; charset=UTF-8",
+                            data: JSON.stringify({
+                                appKey: appKey,
+                                token: token,
+                                loginId: self.loginId,
+                                money: Number(self.order.orderValue)
+                            }),
+                            error(data) {
+                                console.error(data);
+                            }
+                        });
+                    }
+                }
+            },
             error(data) {
                 alert("服务器连接失败!请稍后重试...");
             }

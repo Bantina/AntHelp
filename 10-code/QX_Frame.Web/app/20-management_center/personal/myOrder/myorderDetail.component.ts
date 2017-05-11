@@ -117,7 +117,7 @@ export class MyorderDetailComponent implements OnInit {
                         self.receiverInfo = data.data.receiverInfo.loginId;
                     }
 
-                    if (appService.getCookie("loginId") == data.data.publisherInfo.loginId) {
+                    if (self.loginId.toLowerCase() == data.data.publisherInfo.loginId.toLowerCase()) {
                         self.isMyPublish = true; //我的发布
                     } else {
                         self.isMyPublish = false; //我的接单
@@ -237,6 +237,115 @@ export class MyorderDetailComponent implements OnInit {
         });
     }
 
+    modelShowStatus: string = '0';
+    /**
+     * 订单状态修改 模态框提示版
+     * @param status 订单状态
+     */
+    UpdateOrderStatus_finish(status): void {
+        var self = this;
+        var appKey = Number(appService.getCookie("appKey"));
+        var token = appService.getCookie("token");
+        $.ajax({
+            url: appBase.DomainApi + "api/Order/2",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(
+                {
+                    "appKey": appService.getCookie("appKey"),
+                    "token": appService.getCookie("token"),
+                    "orderUid": self.orderUid,
+                    "receiverLoginId": appService.getCookie("loginId"),
+                    "orderStatusId": status
+                }),
+            success(data) {
+                $('#feedbackModal').modal('show');
+                if (status == 6) {
+                    self.modelShowStatus = 'recerver_finish';
+                } else if (status == 7) {
+                    self.modelShowStatus = 'publish_verify';
+                    $.ajax({ //接单人 余额 更改；
+                        url: appBase.DomainApi + "api/UserMoney/",
+                        type: "put",
+                        dataType: "json",
+                        contentType: "application/json; charset=UTF-8",
+                        data: JSON.stringify({
+                            appKey: appKey,
+                            token: token,
+                            loginId: self.receiverInfo,
+                            money: Number(self.order.orderValue)
+                        }),
+                        error(data) {
+                            console.error(data);
+                        }
+                    });
+                } else if (status == 10) {
+                    self.modelShowStatus = 'publish_cancel';
+                }
+            },
+            error(data) {
+                alert("服务器连接失败!请稍后重试...");
+            }
+        });
+    }
+
+    /**
+     * 取消订单
+     * @param status 订单状态
+     * @param haspay 是否已支付，1-已支付
+     */
+    isPay: boolean = false;
+    orderCancel(status,haspay): void {
+        var self = this;
+        var appKey = Number(appService.getCookie("appKey"));
+        var token = appService.getCookie("token");
+        $.ajax({
+            url: appBase.DomainApi + "api/Order/2",
+            type: "put",
+            dataType: "json",
+            contentType: "application/json; charset=UTF-8",
+            data: JSON.stringify(
+                {
+                    "appKey": appService.getCookie("appKey"),
+                    "token": appService.getCookie("token"),
+                    "orderUid": self.orderUid,
+                    "receiverLoginId": appService.getCookie("loginId"),
+                    "orderStatusId": status
+                }),
+            success(data) {
+                $('#feedbackModal').modal('show');
+                if (status == 6) {
+                    self.modelShowStatus = 'recerver_finish';
+                } else if (status == 7) {
+                    self.modelShowStatus = 'publish_verify';
+                } else if (status == 10) {
+                    self.modelShowStatus = 'publish_cancel';
+                    if (haspay == 1) {
+                        self.isPay = true;
+                        $.ajax({
+                            url: appBase.DomainApi + "api/UserMoney/",
+                            type: "put",
+                            dataType: "json",
+                            contentType: "application/json; charset=UTF-8",
+                            data: JSON.stringify({
+                                appKey: appKey,
+                                token: token,
+                                loginId: self.loginId,
+                                money: Number(self.order.orderValue)
+                            }),
+                            error(data) {
+                                console.error(data);
+                            }
+                        });
+                    }
+                }
+            },
+            error(data) {
+                alert("服务器连接失败!请稍后重试...");
+            }
+        });
+    }
     //the final execute ...
     ngOnInit(): void {
         this.GetsingleOrderByOrderUid();

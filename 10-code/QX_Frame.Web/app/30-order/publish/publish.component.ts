@@ -179,7 +179,9 @@ export class PublishComponent implements OnInit {
         var a = 1;
     }
 
-    // publish order
+    /**
+     * 发布订单
+     */
     OrderPublish(): void {
 
         var self = this;
